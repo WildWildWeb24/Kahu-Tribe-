@@ -90,10 +90,12 @@
         "button_kahu"
       ],
       "settings": {
+        "image": "shopify://shop_images/Hero.webp",
+        "image_mobile": "shopify://shop_images/Hero-mob.webp",
         "mobile_crop": "focal",
-        "overlay_style": "bottom_left",
+        "overlay_style": "top_left",
         "overlay_color": "#031426",
-        "overlay_opacity": 50,
+        "overlay_opacity": 100,
         "overlay_opacity_mobile": 65,
         "text_color": "#f3efe5",
         "height_desktop": 820,

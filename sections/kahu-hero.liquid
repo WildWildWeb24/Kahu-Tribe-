@@ -232,6 +232,11 @@
   .kahu-hero__img--placeholder { background: var(--kahu-ink); fill: var(--kahu-sea); }
 
   /* Overlay styles (Figma 723:54 + 765:22886; exact stops TBC, strength is a setting) */
+  .kahu-hero--overlay-top_left .kahu-hero__overlay {
+    background:
+      linear-gradient(180deg, rgb(var(--kh-overlay-rgb) / var(--kh-overlay)) 0%, rgb(var(--kh-overlay-rgb) / 0) 55%),
+      linear-gradient(90deg, rgb(var(--kh-overlay-rgb) / calc(var(--kh-overlay) * 0.6)) 0%, rgb(var(--kh-overlay-rgb) / 0) 60%);
+  }
   .kahu-hero--overlay-bottom_left .kahu-hero__overlay {
     background:
       linear-gradient(0deg, rgb(var(--kh-overlay-rgb) / var(--kh-overlay)) 0%, rgb(var(--kh-overlay-rgb) / 0) 55%),
@@ -427,13 +432,14 @@
     {
       "type": "select", "id": "overlay_style", "label": "Overlay style",
       "options": [
-        { "value": "bottom_left", "label": "Gradient bottom + left (Figma)" },
+        { "value": "top_left", "label": "Gradient top + left (Figma)" },
+        { "value": "bottom_left", "label": "Gradient bottom + left" },
         { "value": "bottom", "label": "Gradient bottom" },
         { "value": "top_bottom", "label": "Gradient top + bottom" },
         { "value": "solid", "label": "Solid" },
         { "value": "none", "label": "None" }
       ],
-      "default": "bottom_left"
+      "default": "top_left"
     },
     { "type": "color", "id": "overlay_color", "label": "Overlay colour", "default": "#031426" },
     { "type": "range", "id": "overlay_opacity", "label": "Overlay strength (desktop)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
