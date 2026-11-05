@@ -1,0 +1,51 @@
+/* Kahu design tokens: source Figma file vblLWzkNnwBYnMqvzCQAPx (KAHU page variables).
+   Defined once; every kahu-* section uses these. Do not hard-code these values elsewhere.
+   Loaded globally from layout/theme.liquid. */
+:root {
+  /* Colours (Figma variables) */
+  --kahu-navy:   #031426;
+  --kahu-cream:  #f3efe5;
+  --kahu-yellow: #f4c84a;
+  --kahu-teal:   #2fa4a9;
+  --kahu-ink:    #10253b;
+  --kahu-sea:    #668e8d;
+  --kahu-white:  #ffffff;
+  --kahu-coral:  #d88b83;
+
+  /* Fonts */
+  --kahu-font-sans: 'DM Sans', system-ui, sans-serif;
+  --kahu-font-mono: 'DM Mono', ui-monospace, monospace;
+
+  /* Layout */
+  --kahu-content: 1280px;   /* 1440 frame - 2 x 80 gutter */
+  --kahu-gutter: 80px;      /* desktop, from Figma */
+}
+
+/* Mobile/tablet gutter: PROPOSAL (no mobile frames in Figma yet) */
+@media (max-width: 989px) {
+  :root { --kahu-gutter: 20px; }
+}
+
+/* Shared Kahu button (Figma KAHU / Button 723:19): 220 x 56, square corners */
+.kahu-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-width: 220px;
+  height: 56px;
+  padding: 0 20px;
+  font-family: var(--kahu-font-sans);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  transition: opacity 0.2s ease;
+}
+.kahu-btn:hover { opacity: 0.9; }
+.kahu-btn:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
+.kahu-btn__label { font-weight: 700; font-size: 14px; line-height: 20px; }
+.kahu-btn__arrow { font-weight: 400; font-size: 18px; line-height: 28px; }
+.kahu-btn--cream   { background: var(--kahu-cream); color: var(--kahu-navy); }
+.kahu-btn--teal    { background: var(--kahu-teal);  color: var(--kahu-navy); }
+.kahu-btn--navy    { background: var(--kahu-navy);  color: var(--kahu-cream); }
+.kahu-btn--outline { background: transparent; color: currentColor; border-color: currentColor; }

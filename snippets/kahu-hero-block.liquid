@@ -1,0 +1,83 @@
+{%- doc -%}
+  Renders one block of the Kahu hero (sections/kahu-hero.liquid).
+  Kept in a snippet so the section can place blocks in the main or side column without duplicating markup.
+
+  @param {object} block - The hero block
+{%- enddoc -%}
+
+{%- liquid
+  assign hide = ''
+  if block.settings.hide_mobile
+    assign hide = hide | append: ' kahu-hide-m'
+  endif
+  if block.settings.hide_desktop
+    assign hide = hide | append: ' kahu-hide-d'
+  endif
+  assign base_class = 'kahu-hero__block kahu-hero-block-' | append: block.id | append: hide
+-%}
+
+{%- case block.type -%}
+  {%- when 'eyebrow' -%}
+    {%- if block.settings.text != blank -%}
+      <p class="{{ base_class }} kahu-hero__eyebrow" {{ block.shopify_attributes }}>
+        {{- block.settings.text | escape -}}
+      </p>
+    {%- endif -%}
+
+  {%- when 'heading' -%}
+    {%- if block.settings.text != blank -%}
+      {%- assign tag = block.settings.tag | default: 'h1' -%}
+      <{{ tag }} class="{{ base_class }} kahu-hero__heading" {{ block.shopify_attributes }}>
+        {{- block.settings.text -}}
+      </{{ tag }}>
+    {%- endif -%}
+
+  {%- when 'text' -%}
+    {%- if block.settings.text != blank -%}
+      <div class="{{ base_class }} kahu-hero__body" {{ block.shopify_attributes }}>
+        {{- block.settings.text -}}
+      </div>
+    {%- endif -%}
+
+  {%- when 'button' -%}
+    {%- if block.settings.label != blank -%}
+      <div class="{{ base_class }} kahu-hero__button{% if block.settings.full_width_mobile %} kahu-hero__button--full-m{% endif %}" {{ block.shopify_attributes }}>
+        <a
+          class="kahu-btn kahu-btn--{{ block.settings.style }}"
+          href="{{ block.settings.link | default: routes.all_products_collection_url }}"
+          {% if block.settings.new_tab %}
+            target="_blank" rel="noopener"
+          {% endif %}
+        >
+          <span class="kahu-btn__label">{{ block.settings.label | escape }}</span>
+          {%- if block.settings.show_arrow -%}
+            <span class="kahu-btn__arrow" aria-hidden="true">→</span>
+          {%- endif -%}
+        </a>
+      </div>
+    {%- endif -%}
+
+  {%- when 'image' -%}
+    <div class="{{ base_class }} kahu-hero__image" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}
+        {%- capture img_html -%}
+          {{ block.settings.image | image_url: width: 640 | image_tag:
+              widths: '160, 240, 320, 480, 640',
+              sizes: '(min-width: 750px) 320px, 160px',
+              loading: 'eager',
+              class: 'kahu-hero__image-img',
+              alt: block.settings.alt }}
+        {%- endcapture -%}
+        {%- if block.settings.link != blank -%}
+          <a href="{{ block.settings.link }}" class="kahu-hero__image-link">{{ img_html }}</a>
+        {%- else -%}
+          {{ img_html }}
+        {%- endif -%}
+      {%- elsif request.design_mode -%}
+        {{ 'image' | placeholder_svg_tag: 'kahu-hero__image-img kahu-hero__image-img--placeholder' }}
+      {%- endif -%}
+    </div>
+
+  {%- when 'spacer' -%}
+    <div class="{{ base_class }} kahu-hero__spacer" aria-hidden="true" {{ block.shopify_attributes }}></div>
+{%- endcase -%}

@@ -9,6 +9,48 @@
  */
 {
   "sections": {
+    "kahu_hero": {
+      "type": "kahu-hero",
+      "blocks": {
+        "eyebrow_kahu": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Welcome to the Kahu Tribe"
+          }
+        },
+        "heading_kahu": {
+          "type": "heading",
+          "settings": {
+            "text": "All in one Kahu poncho"
+          }
+        },
+        "text_kahu": {
+          "type": "text",
+          "settings": {}
+        },
+        "sticker_kahu": {
+          "type": "image",
+          "settings": {
+            "alt": "See you at Golden Hour"
+          }
+        },
+        "button_kahu": {
+          "type": "button",
+          "settings": {
+            "label": "Shop towel ponchos",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_kahu",
+        "heading_kahu",
+        "text_kahu",
+        "sticker_kahu",
+        "button_kahu"
+      ],
+      "settings": {}
+    },
     "hero_jVaWmY": {
       "type": "hero",
       "blocks": {
@@ -276,6 +318,7 @@
     }
   },
   "order": [
+    "kahu_hero",
     "hero_jVaWmY",
     "product_list_fa6P9H"
   ]

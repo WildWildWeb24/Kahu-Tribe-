@@ -1,0 +1,640 @@
+{%- comment -%}
+  Kahu hero: Figma node 723:52 (1440 x 820 desktop). Spec: handoff/001-hero.md
+  Every element is a block (eyebrow, heading, text, button, image/sticker/logo, spacer).
+  Each block can sit in the MAIN column (text, bottom-left in Figma) or the SIDE column (sticker + button, bottom-right).
+  Desktop and mobile placement are set separately in the section settings.
+  Curved bottom edge: snippets/kahu-wave.liquid, following the colour stacking rule (_project/stacking-rules.md).
+  The Horizon header sits on top of this section (Header > "Transparent on home page"); no header is built here.
+  Tokens: assets/kahu-tokens.css (loaded in layout/theme.liquid).
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  # Flex mapping for vertical / horizontal placement
+  assign v_d = 'flex-end'
+  case s.desktop_vertical
+    when 'top'
+      assign v_d = 'flex-start'
+    when 'center'
+      assign v_d = 'center'
+  endcase
+  assign v_m = 'flex-end'
+  case s.mobile_vertical
+    when 'top'
+      assign v_m = 'flex-start'
+    when 'center'
+      assign v_m = 'center'
+  endcase
+  assign h_d = 'flex-start'
+  case s.desktop_align
+    when 'center'
+      assign h_d = 'center'
+    when 'right'
+      assign h_d = 'flex-end'
+  endcase
+  assign h_m = 'flex-start'
+  if s.mobile_align == 'center'
+    assign h_m = 'center'
+  endif
+
+  # Does the side column have anything in it?
+  assign aside_count = 0
+  for block in section.blocks
+    if block.settings.column == 'aside'
+      assign aside_count = aside_count | plus: 1
+    endif
+  endfor
+
+  assign desktop_layout = s.desktop_layout
+  if aside_count == 0
+    assign desktop_layout = 'stacked'
+  endif
+
+  # Bottom padding = curve height + chosen spacing, so text never sits under the curve
+  assign pb_d = s.desktop_padding_bottom
+  assign pb_m = s.mobile_padding_bottom
+  if s.wave_enable
+    assign pb_d = pb_d | plus: s.wave_height_desktop
+    assign pb_m = pb_m | plus: s.wave_height_mobile
+  endif
+
+  # Image crop position (focal point set on the image in the editor, or a manual override)
+  assign img = s.image
+  assign img_m = s.image_mobile | default: s.image
+  assign focal_d = '50% 50%'
+  if img and img.presentation.focal_point
+    assign focal_d = img.presentation.focal_point
+  endif
+  assign focal_m = '50% 50%'
+  if img_m and img_m.presentation.focal_point
+    assign focal_m = img_m.presentation.focal_point
+  endif
+  case s.mobile_crop
+    when 'left'
+      assign focal_m = '0% 50%'
+    when 'center'
+      assign focal_m = '50% 50%'
+    when 'right'
+      assign focal_m = '100% 50%'
+  endcase
+
+  assign overlay_d = s.overlay_opacity | divided_by: 100.0
+  assign overlay_m = s.overlay_opacity_mobile | divided_by: 100.0
+-%}
+
+{%- style -%}
+  #kahu-hero-{{ section.id }} {
+    --kh-h-d: {{ s.height_desktop }}px;
+    --kh-h-m: {{ s.height_mobile }}svh;
+    --kh-text: {{ s.text_color }};
+    --kh-overlay-rgb: {{ s.overlay_color.red }} {{ s.overlay_color.green }} {{ s.overlay_color.blue }};
+    --kh-overlay-d: {{ overlay_d }};
+    --kh-overlay-m: {{ overlay_m }};
+    --kh-focal-d: {{ focal_d }};
+    --kh-focal-m: {{ focal_m }};
+    --kh-v-d: {{ v_d }};
+    --kh-v-m: {{ v_m }};
+    --kh-h-d: {{ h_d }};
+    --kh-h-m: {{ h_m }};
+    --kh-ta-d: {{ s.desktop_align }};
+    --kh-ta-m: {{ s.mobile_align }};
+    --kh-pt-d: {{ s.desktop_padding_top }}px;
+    --kh-pt-m: {{ s.mobile_padding_top }}px;
+    --kh-pb-d: {{ pb_d }}px;
+    --kh-pb-m: {{ pb_m }}px;
+    --kh-main-w-d: {{ s.desktop_content_width }}px;
+  }
+  {%- for block in section.blocks %}
+  #kahu-hero-{{ section.id }} .kahu-hero-block-{{ block.id }} {
+    --kb-mb-d: {{ block.settings.space_below_desktop | default: 0 }}px;
+    --kb-mb-m: {{ block.settings.space_below_mobile | default: 0 }}px;
+    {%- case block.type -%}
+      {%- when 'heading' %}
+    --kb-fs-d: {{ block.settings.size_desktop }};
+    --kb-fs-m: {{ block.settings.size_mobile }};
+      {%- when 'text' %}
+    --kb-fs-d: {{ block.settings.size_desktop }};
+    --kb-fs-m: {{ block.settings.size_mobile }};
+    --kb-max-w: {{ block.settings.max_width }}px;
+      {%- when 'image' %}
+    --kb-w-d: {{ block.settings.width_desktop }}px;
+    --kb-w-m: {{ block.settings.width_mobile }}px;
+      {%- when 'spacer' %}
+    --kb-h-d: {{ block.settings.height_desktop }}px;
+    --kb-h-m: {{ block.settings.height_mobile }}px;
+    {%- endcase %}
+  }
+  {%- endfor %}
+{%- endstyle -%}
+
+<div
+  id="kahu-hero-{{ section.id }}"
+  class="kahu-hero kahu-hero--d-{{ desktop_layout }} kahu-hero--m-aside-{{ s.mobile_aside_layout }} kahu-hero--m-aside-{{ s.mobile_aside_position }} kahu-hero--overlay-{{ s.overlay_style }}"
+>
+  <div class="kahu-hero__media">
+    {%- if img -%}
+      <picture>
+        {%- if s.image_mobile -%}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ s.image_mobile | image_url: width: 750 }} 750w, {{ s.image_mobile | image_url: width: 1080 }} 1080w, {{ s.image_mobile | image_url: width: 1500 }} 1500w"
+            sizes="100vw"
+          >
+        {%- endif -%}
+        {{ img | image_url: width: 2880 | image_tag:
+            widths: '750, 1100, 1440, 1920, 2880',
+            sizes: '100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            class: 'kahu-hero__img',
+            alt: img.alt }}
+      </picture>
+    {%- else -%}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'kahu-hero__img kahu-hero__img--placeholder' }}
+    {%- endif -%}
+  </div>
+
+  {%- unless s.overlay_style == 'none' -%}
+    <div class="kahu-hero__overlay" aria-hidden="true"></div>
+  {%- endunless -%}
+
+  <div class="kahu-hero__inner">
+    <div class="kahu-hero__main">
+      {%- for block in section.blocks -%}
+        {%- unless block.settings.column == 'aside' -%}
+          {%- render 'kahu-hero-block', block: block -%}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if aside_count > 0 -%}
+      <div class="kahu-hero__aside">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.column == 'aside' -%}
+            {%- render 'kahu-hero-block', block: block -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if s.wave_enable -%}
+    {%- render 'kahu-wave',
+      id: section.id,
+      position: 'bottom',
+      shape: s.wave_shape,
+      color: s.wave_color,
+      custom_color: s.wave_color_custom,
+      height_desktop: s.wave_height_desktop,
+      height_mobile: s.wave_height_mobile,
+      flip: s.wave_flip
+    -%}
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  /* ---------- MOBILE FIRST (below 750px). Desktop overrides at the bottom. ---------- */
+  .kahu-hero {
+    --kh-header-offset: 0px;
+    --kh-overlay: var(--kh-overlay-m);
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: var(--kh-h-m);
+    overflow: hidden;
+    color: var(--kh-text);
+    font-family: var(--kahu-font-sans);
+  }
+
+  /* Horizon transparent header pulls this section up under it: push content down by the header height */
+  #header-group:has(#header-component[transparent]) ~ .content-for-layout > .shopify-section:first-child .kahu-hero {
+    --kh-header-offset: var(--header-group-height, 0px);
+  }
+
+  .kahu-hero__media,
+  .kahu-hero__overlay {
+    position: absolute;
+    inset: 0;
+  }
+  .kahu-hero__media { z-index: -2; }
+  .kahu-hero__overlay { z-index: -1; }
+  .kahu-hero__media picture { display: contents; }
+
+  .kahu-hero__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--kh-focal-m);
+  }
+  .kahu-hero__img--placeholder { background: var(--kahu-ink); fill: var(--kahu-sea); }
+
+  /* Overlay styles (Figma 723:54 + 765:22886; exact stops TBC, strength is a setting) */
+  .kahu-hero--overlay-bottom_left .kahu-hero__overlay {
+    background:
+      linear-gradient(0deg, rgb(var(--kh-overlay-rgb) / var(--kh-overlay)) 0%, rgb(var(--kh-overlay-rgb) / 0) 55%),
+      linear-gradient(90deg, rgb(var(--kh-overlay-rgb) / calc(var(--kh-overlay) * 0.6)) 0%, rgb(var(--kh-overlay-rgb) / 0) 60%);
+  }
+  .kahu-hero--overlay-bottom .kahu-hero__overlay {
+    background: linear-gradient(0deg, rgb(var(--kh-overlay-rgb) / var(--kh-overlay)) 0%, rgb(var(--kh-overlay-rgb) / 0) 65%);
+  }
+  .kahu-hero--overlay-top_bottom .kahu-hero__overlay {
+    background:
+      linear-gradient(0deg, rgb(var(--kh-overlay-rgb) / var(--kh-overlay)) 0%, rgb(var(--kh-overlay-rgb) / 0) 50%),
+      linear-gradient(180deg, rgb(var(--kh-overlay-rgb) / calc(var(--kh-overlay) * 0.7)) 0%, rgb(var(--kh-overlay-rgb) / 0) 30%);
+  }
+  .kahu-hero--overlay-solid .kahu-hero__overlay {
+    background: rgb(var(--kh-overlay-rgb) / var(--kh-overlay));
+  }
+
+  .kahu-hero__inner {
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: calc(var(--kahu-content) + var(--kahu-gutter) * 2);
+    margin: 0 auto;
+    padding: calc(var(--kh-header-offset) + var(--kh-pt-m)) var(--kahu-gutter) var(--kh-pb-m);
+    display: flex;
+    flex-direction: column;
+    justify-content: var(--kh-v-m);
+    align-items: var(--kh-h-m);
+    gap: 24px;
+    text-align: var(--kh-ta-m);
+  }
+
+  .kahu-hero__main,
+  .kahu-hero__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: var(--kh-h-m);
+    width: 100%;
+  }
+  .kahu-hero__aside { gap: 16px; }
+
+  /* Mobile-only arrangement of the side column (scoped so it never leaks into desktop) */
+  @media (max-width: 749px) {
+    /* Side column above or below the text */
+    .kahu-hero--m-aside-before .kahu-hero__aside { order: -1; }
+
+    /* Side column items in a row: button left, sticker/logo right (desktop keeps block order) */
+    .kahu-hero--m-aside-row .kahu-hero__aside {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .kahu-hero--m-aside-row .kahu-hero__aside .kahu-hero__image { order: 2; }
+  }
+
+  .kahu-hero__block { margin: 0 0 var(--kb-mb-m); }
+
+  .kahu-hero__eyebrow {
+    font-family: var(--kahu-font-mono);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .kahu-hero__heading {
+    font-family: var(--kahu-font-sans);
+    font-weight: 800;
+    font-size: calc(var(--kb-fs-m) * 1px);
+    line-height: 0.9;
+    letter-spacing: -1px;
+    color: inherit;
+    text-wrap: balance;
+  }
+
+  .kahu-hero__body {
+    max-width: var(--kb-max-w);
+    font-weight: 700;
+    font-size: calc(var(--kb-fs-m) * 1px);
+    line-height: 1.5;
+  }
+  .kahu-hero__body p { margin: 0; }
+  .kahu-hero__body p + p { margin-top: 0.75em; }
+
+  .kahu-hero__button--full-m { align-self: stretch; }
+  .kahu-hero__button--full-m .kahu-btn { width: 100%; }
+
+  .kahu-hero__image-img { display: block; width: var(--kb-w-m); height: auto; }
+  .kahu-hero__image-img--placeholder { aspect-ratio: 1; background: rgb(255 255 255 / 0.15); }
+
+  .kahu-hero__spacer { height: var(--kb-h-m); margin: 0; }
+
+  @media (max-width: 749px) {
+    .kahu-hide-m { display: none; }
+  }
+
+  /* ---------- DESKTOP (750px and up) ---------- */
+  @media (min-width: 750px) {
+    .kahu-hero {
+      --kh-overlay: var(--kh-overlay-d);
+      min-height: var(--kh-h-d);
+    }
+
+    .kahu-hero__img { object-position: var(--kh-focal-d); }
+
+    .kahu-hero__inner {
+      padding: calc(var(--kh-header-offset) + var(--kh-pt-d)) var(--kahu-gutter) var(--kh-pb-d);
+      text-align: var(--kh-ta-d);
+    }
+
+    .kahu-hero__main {
+      max-width: var(--kh-main-w-d);
+      align-items: var(--kh-h-d);
+    }
+
+    .kahu-hero__aside { width: auto; }
+
+    /* Split: text column + side column (Figma: text bottom-left, sticker + button bottom-right) */
+    .kahu-hero--d-split .kahu-hero__inner {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: var(--kh-v-d);
+      gap: 40px;
+    }
+    .kahu-hero--d-split .kahu-hero__aside {
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      flex-shrink: 0;
+      gap: 24px;
+    }
+
+    /* Stacked: everything in one column, side items in a row under the text */
+    .kahu-hero--d-stacked .kahu-hero__inner {
+      flex-direction: column;
+      justify-content: var(--kh-v-d);
+      align-items: var(--kh-h-d);
+    }
+    .kahu-hero--d-stacked .kahu-hero__aside {
+      flex-direction: row;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .kahu-hero__block { margin-bottom: var(--kb-mb-d); }
+
+    .kahu-hero__eyebrow { font-size: 14px; line-height: 16px; }
+
+    /* Scales with the screen and reaches the set size at the 1440 design width */
+    .kahu-hero__heading {
+      font-size: clamp(calc(var(--kb-fs-m) * 1px), calc(var(--kb-fs-d) / 14.4 * 1vw), calc(var(--kb-fs-d) * 1px));
+    }
+
+    .kahu-hero__body {
+      font-size: calc(var(--kb-fs-d) * 1px);
+      line-height: calc(28 / 18);
+    }
+
+    .kahu-hero__button--full-m { align-self: auto; }
+    .kahu-hero__button--full-m .kahu-btn { width: auto; }
+
+    .kahu-hero__image-img { width: var(--kb-w-d); }
+
+    .kahu-hero__spacer { height: var(--kb-h-d); }
+
+    .kahu-hide-d { display: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Kahu hero",
+  "tag": "section",
+  "class": "kahu-hero-section",
+  "max_blocks": 16,
+  "settings": [
+    { "type": "header", "content": "Background" },
+    { "type": "image_picker", "id": "image", "label": "Background image (desktop)", "info": "WebP, 2880 x 1690 (2x of 1440 x 845). Set the focal point on the image to control how it crops." },
+    { "type": "image_picker", "id": "image_mobile", "label": "Background image (mobile)", "info": "Optional. Portrait WebP, 1500 x 2668 recommended. Falls back to the desktop image." },
+    {
+      "type": "select", "id": "mobile_crop", "label": "Mobile crop position",
+      "options": [
+        { "value": "focal", "label": "Use image focal point" },
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "focal",
+      "info": "Which part of the photo stays visible on narrow screens"
+    },
+
+    { "type": "header", "content": "Overlay" },
+    {
+      "type": "select", "id": "overlay_style", "label": "Overlay style",
+      "options": [
+        { "value": "bottom_left", "label": "Gradient bottom + left (Figma)" },
+        { "value": "bottom", "label": "Gradient bottom" },
+        { "value": "top_bottom", "label": "Gradient top + bottom" },
+        { "value": "solid", "label": "Solid" },
+        { "value": "none", "label": "None" }
+      ],
+      "default": "bottom_left"
+    },
+    { "type": "color", "id": "overlay_color", "label": "Overlay colour", "default": "#031426" },
+    { "type": "range", "id": "overlay_opacity", "label": "Overlay strength (desktop)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
+    { "type": "range", "id": "overlay_opacity_mobile", "label": "Overlay strength (mobile)", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 65 },
+    { "type": "color", "id": "text_color", "label": "Text colour", "default": "#f3efe5" },
+
+    { "type": "header", "content": "Desktop layout" },
+    { "type": "range", "id": "height_desktop", "label": "Height", "min": 400, "max": 1100, "step": 10, "unit": "px", "default": 820 },
+    {
+      "type": "select", "id": "desktop_layout", "label": "Columns",
+      "options": [
+        { "value": "split", "label": "Text left, side column right" },
+        { "value": "stacked", "label": "One column (side items under text)" }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "select", "id": "desktop_vertical", "label": "Content position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Middle" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "text_alignment", "id": "desktop_align", "label": "Text alignment", "default": "left"
+    },
+    { "type": "range", "id": "desktop_content_width", "label": "Text column max width", "min": 400, "max": 1280, "step": 20, "unit": "px", "default": 760 },
+    { "type": "range", "id": "desktop_padding_top", "label": "Top spacing", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 40, "info": "Added below the header" },
+    { "type": "range", "id": "desktop_padding_bottom", "label": "Bottom spacing", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 60, "info": "Added above the curved edge" },
+
+    { "type": "header", "content": "Mobile layout" },
+    { "type": "range", "id": "height_mobile", "label": "Minimum height", "min": 50, "max": 100, "step": 5, "unit": "%", "default": 90, "info": "% of screen height. Grows if the content needs more room." },
+    {
+      "type": "select", "id": "mobile_vertical", "label": "Content position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Middle" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "select", "id": "mobile_align", "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select", "id": "mobile_aside_position", "label": "Side column position",
+      "options": [
+        { "value": "after", "label": "Below the text" },
+        { "value": "before", "label": "Above the text" }
+      ],
+      "default": "after"
+    },
+    {
+      "type": "select", "id": "mobile_aside_layout", "label": "Side column items",
+      "options": [
+        { "value": "row", "label": "Side by side" },
+        { "value": "stack", "label": "Stacked" }
+      ],
+      "default": "row"
+    },
+    { "type": "range", "id": "mobile_padding_top", "label": "Top spacing", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Bottom spacing", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 32, "info": "Added above the curved edge" },
+
+    { "type": "header", "content": "Curved edge (stacking)", "info": "Rule: pick the background colour of the NEXT section so this one appears to sit on top of it." },
+    { "type": "checkbox", "id": "wave_enable", "label": "Show curved bottom edge", "default": true },
+    {
+      "type": "select", "id": "wave_shape", "label": "Shape",
+      "options": [
+        { "value": "wave", "label": "Wave" },
+        { "value": "tide", "label": "Double wave" },
+        { "value": "arc", "label": "Arc (bulge up)" },
+        { "value": "dip", "label": "Dip (curve down)" },
+        { "value": "slant", "label": "Slant" }
+      ],
+      "default": "wave"
+    },
+    {
+      "type": "select", "id": "wave_color", "label": "Colour (next section background)",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "navy", "label": "Navy" },
+        { "value": "ink", "label": "Ink" },
+        { "value": "teal", "label": "Teal" },
+        { "value": "yellow", "label": "Yellow" },
+        { "value": "sea", "label": "Sea" },
+        { "value": "white", "label": "White" },
+        { "value": "coral", "label": "Coral" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "cream"
+    },
+    { "type": "color", "id": "wave_color_custom", "label": "Custom colour", "default": "#f3efe5", "visible_if": "{{ section.settings.wave_color == 'custom' }}" },
+    { "type": "range", "id": "wave_height_desktop", "label": "Height (desktop)", "min": 20, "max": 220, "step": 2, "unit": "px", "default": 90 },
+    { "type": "range", "id": "wave_height_mobile", "label": "Height (mobile)", "min": 10, "max": 120, "step": 2, "unit": "px", "default": 40 },
+    { "type": "checkbox", "id": "wave_flip", "label": "Mirror left/right", "default": false }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Welcome to the Kahu Tribe" },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "main", "label": "Main (text)" }, { "value": "aside", "label": "Side" } ], "default": "main" },
+        { "type": "range", "id": "space_below_desktop", "label": "Space below (desktop)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 16 },
+        { "type": "range", "id": "space_below_mobile", "label": "Space below (mobile)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 12 },
+        { "type": "checkbox", "id": "hide_desktop", "label": "Hide on desktop", "default": false },
+        { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        { "type": "inline_richtext", "id": "text", "label": "Heading", "default": "All in one Kahu poncho" },
+        { "type": "select", "id": "tag", "label": "HTML tag", "options": [ { "value": "h1", "label": "H1" }, { "value": "h2", "label": "H2" }, { "value": "p", "label": "Paragraph" } ], "default": "h1", "info": "Use only one H1 per page" },
+        { "type": "range", "id": "size_desktop", "label": "Size (desktop)", "min": 32, "max": 140, "step": 2, "unit": "px", "default": 88 },
+        { "type": "range", "id": "size_mobile", "label": "Size (mobile)", "min": 24, "max": 80, "step": 2, "unit": "px", "default": 48 },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "main", "label": "Main (text)" }, { "value": "aside", "label": "Side" } ], "default": "main" },
+        { "type": "range", "id": "space_below_desktop", "label": "Space below (desktop)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 20 },
+        { "type": "range", "id": "space_below_mobile", "label": "Space below (mobile)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 16 },
+        { "type": "checkbox", "id": "hide_desktop", "label": "Hide on desktop", "default": false },
+        { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "info": "Paste the exact text from Figma" },
+        { "type": "range", "id": "size_desktop", "label": "Size (desktop)", "min": 12, "max": 32, "step": 1, "unit": "px", "default": 18 },
+        { "type": "range", "id": "size_mobile", "label": "Size (mobile)", "min": 12, "max": 24, "step": 1, "unit": "px", "default": 16 },
+        { "type": "range", "id": "max_width", "label": "Max width", "min": 240, "max": 1000, "step": 20, "unit": "px", "default": 560 },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "main", "label": "Main (text)" }, { "value": "aside", "label": "Side" } ], "default": "main" },
+        { "type": "range", "id": "space_below_desktop", "label": "Space below (desktop)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "space_below_mobile", "label": "Space below (mobile)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+        { "type": "checkbox", "id": "hide_desktop", "label": "Hide on desktop", "default": false },
+        { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop towel ponchos" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "checkbox", "id": "new_tab", "label": "Open in new tab", "default": false },
+        { "type": "select", "id": "style", "label": "Style", "options": [ { "value": "cream", "label": "Cream" }, { "value": "teal", "label": "Teal" }, { "value": "navy", "label": "Navy" }, { "value": "outline", "label": "Outline" } ], "default": "cream" },
+        { "type": "checkbox", "id": "show_arrow", "label": "Show arrow", "default": true },
+        { "type": "checkbox", "id": "full_width_mobile", "label": "Full width on mobile", "default": false },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "main", "label": "Main (text)" }, { "value": "aside", "label": "Side" } ], "default": "aside" },
+        { "type": "range", "id": "space_below_desktop", "label": "Space below (desktop)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "space_below_mobile", "label": "Space below (mobile)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+        { "type": "checkbox", "id": "hide_desktop", "label": "Hide on desktop", "default": false },
+        { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image / sticker / logo",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Golden Hour sticker: WebP 306 x 332 (2x). Logos: SVG/PNG/WebP with transparency." },
+        { "type": "text", "id": "alt", "label": "Alt text", "default": "See you at Golden Hour" },
+        { "type": "url", "id": "link", "label": "Link (optional)" },
+        { "type": "range", "id": "width_desktop", "label": "Width (desktop)", "min": 40, "max": 320, "step": 1, "unit": "px", "default": 153 },
+        { "type": "range", "id": "width_mobile", "label": "Width (mobile)", "min": 30, "max": 240, "step": 1, "unit": "px", "default": 96 },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "main", "label": "Main (text)" }, { "value": "aside", "label": "Side" } ], "default": "aside" },
+        { "type": "range", "id": "space_below_desktop", "label": "Space below (desktop)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+        { "type": "range", "id": "space_below_mobile", "label": "Space below (mobile)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+        { "type": "checkbox", "id": "hide_desktop", "label": "Hide on desktop", "default": false },
+        { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false }
+      ]
+    },
+    {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": [
+        { "type": "range", "id": "height_desktop", "label": "Height (desktop)", "min": 0, "max": 200, "step": 4, "unit": "px", "default": 24 },
+        { "type": "range", "id": "height_mobile", "label": "Height (mobile)", "min": 0, "max": 160, "step": 4, "unit": "px", "default": 16 },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "main", "label": "Main (text)" }, { "value": "aside", "label": "Side" } ], "default": "main" },
+        { "type": "checkbox", "id": "hide_desktop", "label": "Hide on desktop", "default": false },
+        { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kahu hero",
+      "blocks": [
+        { "type": "eyebrow" },
+        { "type": "heading" },
+        { "type": "text" },
+        { "type": "image" },
+        { "type": "button" }
+      ]
+    }
+  ]
+}
+{% endschema %}
