@@ -101,9 +101,7 @@
         "enable_transparent_header_product": false,
         "enable_transparent_header_collection": false,
         "home_inverse_logo": true,
-        "text_color_transparent_home": "#f3efe5",
-        "background_color_top": "#031426",
-        "text_color_top": "#f3efe5"
+        "text_color_transparent_home": "#f3efe5"
       }
     }
   },

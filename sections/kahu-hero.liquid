@@ -207,9 +207,10 @@
     font-family: var(--kahu-font-sans);
   }
 
-  /* Horizon transparent header pulls this section up under it: push content down by the header height */
+  /* Horizon transparent header pulls this section up under the announcement bar, and the header itself is
+     absolutely positioned on top (not counted in --header-group-height), so push content down by both */
   #header-group:has(#header-component[transparent]) ~ .content-for-layout > .shopify-section:first-child .kahu-hero {
-    --kh-header-offset: var(--header-group-height, 0px);
+    --kh-header-offset: calc(var(--header-group-height, 0px) + var(--header-height, 0px));
   }
 
   .kahu-hero__media,

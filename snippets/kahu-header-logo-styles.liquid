@@ -1,0 +1,24 @@
+{%- doc -%}
+  Kahu header logo colours (rendered in layout/theme.liquid <head>).
+
+  Horizon shows two logos:
+  - Transparent header over the hero: Theme settings > "Inverse logo" (white).
+  - Solid white header (after scrolling, and on pages without a transparent header): Theme settings > "Logo".
+
+  Only a white logo file is uploaded, so when "Logo" and "Inverse logo" are the same file, the solid-header logo is
+  recoloured navy here using the logo as a mask. Upload a separate dark logo as "Logo" and this switches itself off.
+{%- enddoc -%}
+
+{%- if settings.logo != blank and settings.logo_inverse != blank and settings.logo.src == settings.logo_inverse.src -%}
+  {%- assign kahu_logo_url = settings.logo | image_url: width: 600 -%}
+  <style>
+    html #header-component .header-logo > span:not(.header-logo__transparent-header-image-container) {
+      background-color: var(--kahu-navy, #031426);
+      -webkit-mask: url('{{ kahu_logo_url }}') center / contain no-repeat;
+      mask: url('{{ kahu_logo_url }}') center / contain no-repeat;
+    }
+    html #header-component .header-logo > span:not(.header-logo__transparent-header-image-container) .header-logo__image {
+      opacity: 0;
+    }
+  </style>
+{%- endif -%}
