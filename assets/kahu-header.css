@@ -1,0 +1,37 @@
+/* Kahu tweaks for Horizon's header (spec 002 will extend this).
+   Loaded globally from layout/theme.liquid. Prefixed with `html` so it wins over Horizon's section styles. */
+
+/* Mobile header (Horizon switches to the drawer layout below 750px, or on touch devices).
+   Horizon's centre column is `1fr`, which can never shrink below the logo's full width, so a long
+   logo pushes the cart/account icons off the screen. `minmax(0, 1fr)` lets the logo shrink instead. */
+@media screen and (max-width: 749px) {
+  html #header-component .header__columns {
+    --header-template-columns: var(--header-mobile-bookend) var(--header-mobile-bookend) minmax(0, 1fr)
+      var(--header-mobile-bookend) var(--header-mobile-bookend);
+  }
+}
+
+html #header-component[data-menu-style='drawer'] .header__columns {
+  --header-template-columns: var(--header-mobile-bookend) var(--header-mobile-bookend) minmax(0, 1fr)
+    var(--header-mobile-bookend) var(--header-mobile-bookend);
+}
+
+html #header-component[data-menu-style='drawer'] .header-logo {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Text fallback (no logo image uploaded yet): shrink and cut off neatly */
+html #header-component[data-menu-style='drawer'] .header-logo > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Logo image: keep it inside the centre column on small phones */
+html #header-component[data-menu-style='drawer'] .header-logo__image {
+  max-width: 100%;
+  object-fit: contain;
+}

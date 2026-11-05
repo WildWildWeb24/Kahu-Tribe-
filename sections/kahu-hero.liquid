@@ -85,8 +85,8 @@
 
 {%- style -%}
   #kahu-hero-{{ section.id }} {
-    --kh-h-d: {{ s.height_desktop }}px;
-    --kh-h-m: {{ s.height_mobile }}svh;
+    --kh-height-d: {{ s.height_desktop }}px;
+    --kh-height-m: {{ s.height_mobile }}svh;
     --kh-text: {{ s.text_color }};
     --kh-overlay-rgb: {{ s.overlay_color.red }} {{ s.overlay_color.green }} {{ s.overlay_color.blue }};
     --kh-overlay-d: {{ overlay_d }};
@@ -201,7 +201,7 @@
     position: relative;
     isolation: isolate;
     display: flex;
-    min-height: var(--kh-h-m);
+    min-height: var(--kh-height-m);
     overflow: hidden;
     color: var(--kh-text);
     font-family: var(--kahu-font-sans);
@@ -331,7 +331,7 @@
   @media (min-width: 750px) {
     .kahu-hero {
       --kh-overlay: var(--kh-overlay-d);
-      min-height: var(--kh-h-d);
+      min-height: var(--kh-height-d);
     }
 
     .kahu-hero__img { object-position: var(--kh-focal-d); }
