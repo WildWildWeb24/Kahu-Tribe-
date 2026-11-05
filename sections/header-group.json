@@ -17,13 +17,14 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Welcome to our store",
+            "text": "All America free shipping on orders over $99",
             "link": "",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "weight": "",
             "letter_spacing": "normal",
-            "case": "none"
+            "case": "none",
+            "text_color": ""
           },
           "blocks": {}
         }
@@ -35,10 +36,11 @@
       "settings": {
         "speed": 5,
         "section_width": "page-width",
+        "background_color": "#031426",
         "divider_width": 1,
-        "padding-block-start": 15,
-        "padding-block-end": 15,
-        "divider_color": "{{ settings.color_palette.color3 }}"
+        "divider_color": "#031426",
+        "padding-block-start": 8,
+        "padding-block-end": 8
       }
     },
     "header_section": {
@@ -99,7 +101,9 @@
         "enable_transparent_header_product": false,
         "enable_transparent_header_collection": false,
         "home_inverse_logo": true,
-        "text_color_transparent_home": "#f3efe5"
+        "text_color_transparent_home": "#f3efe5",
+        "background_color_top": "#031426",
+        "text_color_top": "#f3efe5"
       }
     }
   },
