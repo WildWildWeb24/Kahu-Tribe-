@@ -9,83 +9,245 @@
  */
 {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "kahu_hero": {
+      "type": "kahu-hero",
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
+        "eyebrow_kahu": {
+          "type": "eyebrow",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "text": "Welcome to the Kahu Tribe",
+            "column": "main",
+            "space_below_desktop": 16,
+            "space_below_mobile": 12,
+            "hide_desktop": false,
+            "hide_mobile": false
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "heading_kahu": {
+          "type": "heading",
           "settings": {
-            "label": "Shop all",
+            "text": "All in one | Kahu poncho",
+            "tag": "h1",
+            "size_desktop": 88,
+            "size_mobile": 48,
+            "column": "main",
+            "space_below_desktop": 20,
+            "space_below_mobile": 16,
+            "hide_desktop": false,
+            "hide_mobile": false
+          }
+        },
+        "text_kahu": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dry off, change comfortably and keep the day moving from the first swim to the road home.</p>",
+            "size_desktop": 18,
+            "size_mobile": 16,
+            "max_width": 560,
+            "column": "main",
+            "space_below_desktop": 0,
+            "space_below_mobile": 0,
+            "hide_desktop": false,
+            "hide_mobile": false
+          }
+        },
+        "sticker_kahu": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/golden_hour.webp",
+            "alt": "See you at Golden Hour",
+            "link": "",
+            "width_desktop": 153,
+            "width_mobile": 96,
+            "column": "main",
+            "space_below_desktop": 0,
+            "space_below_mobile": 0,
+            "hide_desktop": false,
+            "hide_mobile": false
+          }
+        },
+        "button_kahu": {
+          "type": "button",
+          "settings": {
+            "label": "Shop towel ponchos",
             "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "rgba(0, 0, 0, 0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "new_tab": false,
+            "style": "cream",
+            "show_arrow": true,
+            "full_width_mobile": false,
+            "column": "aside",
+            "space_below_desktop": 0,
+            "space_below_mobile": 0,
+            "hide_desktop": false,
+            "hide_mobile": false
+          }
         }
       },
       "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
+        "eyebrow_kahu",
+        "heading_kahu",
+        "text_kahu",
+        "sticker_kahu",
+        "button_kahu"
       ],
-      "name": "t:names.hero",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "image": "shopify://shop_images/Hero.webp",
+        "image_mobile": "shopify://shop_images/Hero-mob.webp",
+        "mobile_crop": "focal",
+        "overlay_style": "top_left",
+        "overlay_color": "#031426",
+        "overlay_opacity": 50,
+        "overlay_opacity_mobile": 50,
+        "text_color": "#f3efe5",
+        "height_desktop": 820,
+        "desktop_layout": "split",
+        "desktop_vertical": "bottom",
+        "desktop_align": "left",
+        "desktop_content_width": 760,
+        "desktop_padding_top": 40,
+        "desktop_padding_bottom": 152,
+        "height_mobile": 90,
+        "mobile_vertical": "bottom",
+        "mobile_align": "left",
+        "mobile_aside_position": "after",
+        "mobile_aside_layout": "row",
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 72,
+        "wave_enable": false,
+        "wave_shape": "wave",
+        "wave_color": "cream",
+        "wave_color_custom": "#f3efe5",
+        "wave_height_desktop": 90,
+        "wave_height_mobile": 40,
+        "wave_flip": false
+      }
+    },
+    "kahu_separator_hero": {
+      "type": "kahu-separator",
+      "settings": {
+        "shape": "wave",
+        "direction": "up",
+        "mode": "overlap",
+        "wave_color": "cream",
+        "wave_color_custom": "#f3efe5",
+        "bg_color": "transparent",
+        "bg_color_custom": "#2fa4a9",
+        "height_desktop": 90,
+        "height_mobile": 40,
+        "flip": false
+      }
+    },
+    "kahu_image_rail": {
+      "type": "kahu-image-rail",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_1.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_2.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_3.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_4.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_7.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_5.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_8.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_9.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_6.webp",
+            "link": "",
+            "alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "image_8",
+        "image_9"
+      ],
+      "settings": {
+        "autoplay": true,
+        "speed_desktop": 20,
+        "speed_mobile": 20,
+        "direction": "left",
+        "pause_on_hover": true,
+        "hover_lift": false,
+        "full_width": true,
+        "aria_label": "Find your KAHU",
+        "bg_color": "custom",
+        "bg_color_custom": "#F3EFE5",
+        "bg_overlay": 0,
+        "desktop_item_width": 168,
+        "desktop_gap": 0,
+        "desktop_padding_top": 24,
+        "desktop_padding_bottom": 24,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_item_width": 112,
+        "mobile_gap": 0,
+        "mobile_padding_top": 16,
+        "mobile_padding_bottom": 16,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
       }
     },
     "product_list_fa6P9H": {
@@ -111,11 +273,13 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
+            "background_color": "",
             "video_position": "cover",
             "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -138,6 +302,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -155,6 +320,10 @@
                 "label": "View all",
                 "open_in_new_tab": false,
                 "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
                 "width": "fit-content",
                 "custom_width": 100,
                 "width_mobile": "fit-content",
@@ -174,9 +343,11 @@
           "static": true,
           "settings": {
             "product_card_gap": 4,
+            "background_color": "",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
+            "border_color": "",
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -192,6 +363,7 @@
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,
+                "border_color": "",
                 "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
@@ -214,6 +386,7 @@
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
+                "text_color": "",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -239,6 +412,7 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
+                "text_color": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -254,6 +428,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "t:names.featured_collection",
       "settings": {
         "collection": "all",
@@ -270,13 +445,16 @@
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
         "gap": 28,
+        "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
+    "kahu_hero",
+    "kahu_separator_hero",
+    "kahu_image_rail",
     "product_list_fa6P9H"
   ]
 }

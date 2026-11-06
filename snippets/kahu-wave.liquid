@@ -1,0 +1,108 @@
+{%- doc -%}
+  Kahu curved edge ("wave") used to stack Kahu sections on top of each other.
+
+  STACKING RULE (mandatory for every kahu-* section, see _project/stacking-rules.md):
+  1. A section's BOTTOM curve is filled with the background colour of the section directly BELOW it.
+     (A TOP curve, if used, is filled with the colour of the section directly ABOVE it.)
+  2. The curve is drawn inside the section, pinned to its edge, above the background image/overlay.
+  3. The section must keep bottom (or top) padding of at least the curve height so text never sits under it.
+  4. Colours are picked from the Kahu tokens; "custom" is only for one-off colours.
+
+  Standard settings every section copies into its schema (ids must match):
+  wave_enable, wave_shape, wave_color, wave_color_custom, wave_height_desktop, wave_height_mobile, wave_flip
+
+  @param {string} id - Unique id (e.g. section.id). Required.
+  @param {string} [position] - 'bottom' (default) or 'top'
+  @param {string} [shape] - 'wave' (default), 'tide', 'arc', 'dip', 'slant'
+  @param {string} [color] - Token name: cream, navy, yellow, teal, ink, sea, white, coral, or 'custom'
+  @param {color} [custom_color] - Used when color is 'custom'
+  @param {number} [height_desktop] - Curve height in px from 750px wide up (default 90)
+  @param {number} [height_mobile] - Curve height in px below 750px (default 40)
+  @param {boolean} [flip] - Mirror the curve left/right
+
+  @example
+  {% render 'kahu-wave',
+    id: section.id,
+    position: 'bottom',
+    shape: section.settings.wave_shape,
+    color: section.settings.wave_color,
+    custom_color: section.settings.wave_color_custom,
+    height_desktop: section.settings.wave_height_desktop,
+    height_mobile: section.settings.wave_height_mobile,
+    flip: section.settings.wave_flip
+  %}
+{%- enddoc -%}
+
+{%- liquid
+  assign position = position | default: 'bottom'
+  assign shape = shape | default: 'wave'
+  assign color = color | default: 'cream'
+  assign h_d = height_desktop | default: 90
+  assign h_m = height_mobile | default: 40
+
+  if color == 'custom' and custom_color != blank
+    assign fill = custom_color
+  elsif color == 'custom'
+    assign fill = 'var(--kahu-cream)'
+  else
+    assign fill = 'var(--kahu-' | append: color | append: ')'
+  endif
+
+  assign wave_id = 'kahu-wave-' | append: id | append: '-' | append: position
+-%}
+
+{%- style -%}
+  #{{ wave_id }} {
+    --kahu-wave-fill: {{ fill }};
+    --kahu-wave-h-m: {{ h_m }}px;
+    --kahu-wave-h-d: {{ h_d }}px;
+  }
+{%- endstyle -%}
+
+<div
+  id="{{ wave_id }}"
+  class="kahu-wave kahu-wave--{{ position }}{% if flip %} kahu-wave--flip{% endif %}"
+  aria-hidden="true"
+>
+  <svg class="kahu-wave__svg" viewBox="0 0 1440 100" preserveAspectRatio="none" focusable="false">
+    {%- case shape -%}
+      {%- when 'tide' -%}
+        <path d="M0 52C180 4 360 2 540 40C720 78 900 92 1080 54C1260 16 1350 18 1440 38V100H0Z"/>
+      {%- when 'arc' -%}
+        <path d="M0 100Q720 -40 1440 100Z"/>
+      {%- when 'dip' -%}
+        <path d="M0 0Q720 140 1440 0V100H0Z"/>
+      {%- when 'slant' -%}
+        <path d="M0 100L1440 0V100Z"/>
+      {%- else -%}
+        <path d="M0 64C220 8 470 4 720 46C970 88 1210 96 1440 36V100H0Z"/>
+    {%- endcase -%}
+  </svg>
+</div>
+
+{% stylesheet %}
+  .kahu-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    height: calc(var(--kahu-wave-h-m) + 1px); /* +1px hides hairline seams between sections */
+    line-height: 0;
+    pointer-events: none;
+  }
+
+  .kahu-wave--bottom { bottom: -1px; }
+  .kahu-wave--top { top: -1px; transform: scaleY(-1); }
+  .kahu-wave--flip .kahu-wave__svg { transform: scaleX(-1); }
+
+  .kahu-wave__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: var(--kahu-wave-fill);
+  }
+
+  @media (min-width: 750px) {
+    .kahu-wave { height: calc(var(--kahu-wave-h-d) + 1px); }
+  }
+{% endstylesheet %}
