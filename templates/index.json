@@ -144,7 +144,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_1.webp",
+            "product": "anuenue-rainbow-turtle-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -152,7 +154,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_2.webp",
+            "product": "kahu-manu-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -160,7 +164,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_3.webp",
+            "product": "pololia-pacific-wave-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -168,7 +174,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_4.webp",
+            "product": "lahui-hawaiian-tribal-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -176,7 +184,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_7.webp",
+            "product": "padi-aware-shark-closeup-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -184,7 +194,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_5.webp",
+            "product": "naia-dolphin-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -192,7 +204,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_8.webp",
+            "product": "honu-green-sea-turtle-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -200,7 +214,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_9.webp",
+            "product": "padi-aware-shark-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         },
@@ -208,7 +224,9 @@
           "type": "image",
           "settings": {
             "image": "shopify://shop_images/Flatlay_6.webp",
+            "product": "kukui-kai-manta-ray-towel-poncho-regular",
             "link": "",
+            "scale": 100,
             "alt": ""
           }
         }
@@ -231,10 +249,12 @@
         "direction": "left",
         "pause_on_hover": true,
         "hover_lift": false,
+        "click_action": "quick_view",
+        "item_ratio": "167 / 208",
         "full_width": true,
         "aria_label": "Find your KAHU",
         "bg_color": "custom",
-        "bg_color_custom": "#F3EFE5",
+        "bg_color_custom": "#f3efe5",
         "bg_overlay": 0,
         "desktop_item_width": 168,
         "desktop_gap": 0,
