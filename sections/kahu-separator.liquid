@@ -1,0 +1,206 @@
+{%- comment -%}
+  Kahu separator: a stand-alone curved divider (or plain space) placed BETWEEN two sections.
+  Spec: handoff/002-separator.md · Curve drawing: snippets/kahu-wave.liquid (same shapes as the hero)
+  Stacking rule (_project/stacking-rules.md):
+    - Curve colour      = background of the section the curve flows INTO
+    - Background colour = background of the section on the other side
+  Modes:
+    - "overlap": pulls up over the bottom of the section above (e.g. over a photo), transparent behind
+    - "stack":   takes its own space, painted with the background colour
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  if s.bg_color == 'custom'
+    assign bg = s.bg_color_custom
+  elsif s.bg_color == 'transparent'
+    assign bg = 'transparent'
+  else
+    assign bg = 'var(--kahu-' | append: s.bg_color | append: ')'
+  endif
+
+  if s.wave_color == 'custom'
+    assign fill = s.wave_color_custom
+  else
+    assign fill = 'var(--kahu-' | append: s.wave_color | append: ')'
+  endif
+
+  if s.direction == 'down'
+    assign wave_position = 'top'
+  else
+    assign wave_position = 'bottom'
+  endif
+
+  assign is_overlap = false
+  if s.mode == 'overlap'
+    assign is_overlap = true
+  endif
+-%}
+
+{%- style -%}
+  #kahu-sep-{{ section.id }} {
+    --kahu-sep-h-m: {{ s.height_mobile }}px;
+    --kahu-sep-h-d: {{ s.height_desktop }}px;
+    --kahu-sep-bg: {% if is_overlap %}transparent{% else %}{{ bg }}{% endif %};
+    --kahu-sep-fill: {{ fill }};
+  }
+{%- endstyle -%}
+
+<div
+  id="kahu-sep-{{ section.id }}"
+  class="kahu-sep kahu-sep--{{ s.mode }}{% if s.shape == 'flat' %} kahu-sep--flat{% endif %}"
+  aria-hidden="true"
+  role="presentation"
+>
+  {%- unless s.shape == 'flat' -%}
+    {%- render 'kahu-wave',
+      id: section.id,
+      position: wave_position,
+      shape: s.shape,
+      color: s.wave_color,
+      custom_color: s.wave_color_custom,
+      height_desktop: s.height_desktop,
+      height_mobile: s.height_mobile,
+      flip: s.flip
+    -%}
+  {%- endunless -%}
+</div>
+
+{% stylesheet %}
+  .kahu-sep {
+    position: relative;
+    height: var(--kahu-sep-h-m);
+    background: var(--kahu-sep-bg);
+    pointer-events: none;
+  }
+
+  /* Plain space: a solid block in the curve colour */
+  .kahu-sep--flat { background: var(--kahu-sep-fill); }
+
+  /* Overlap: sits on top of the bottom edge of the section above */
+  .kahu-sep--overlap {
+    margin-top: calc(var(--kahu-sep-h-m) * -1);
+    z-index: 3;
+  }
+
+  /* The snippet adds a 1px overhang to hide seams; keep it inside this section */
+  .kahu-sep .kahu-wave { z-index: 1; }
+
+  @media (min-width: 750px) {
+    .kahu-sep { height: var(--kahu-sep-h-d); }
+    .kahu-sep--overlap { margin-top: calc(var(--kahu-sep-h-d) * -1); }
+  }
+
+  /* Theme editor: keep an overlapping separator clickable/visible when selected */
+  .shopify-design-mode .kahu-sep { pointer-events: auto; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Kahu separator",
+  "tag": "div",
+  "class": "kahu-separator-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Place between two sections. Curve colour = background of the section the curve flows into. Background = the other section's colour."
+    },
+    {
+      "type": "select",
+      "id": "shape",
+      "label": "Shape",
+      "options": [
+        { "value": "wave", "label": "Wave" },
+        { "value": "tide", "label": "Double wave" },
+        { "value": "arc", "label": "Arc (bulge up)" },
+        { "value": "dip", "label": "Dip (curve down)" },
+        { "value": "slant", "label": "Slant" },
+        { "value": "flat", "label": "None (plain space)" }
+      ],
+      "default": "wave"
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Curve direction",
+      "options": [
+        { "value": "up", "label": "Rises from the bottom (into section below)" },
+        { "value": "down", "label": "Hangs from the top (from section above)" }
+      ],
+      "default": "up"
+    },
+    {
+      "type": "select",
+      "id": "mode",
+      "label": "Placement",
+      "options": [
+        { "value": "stack", "label": "Own space between sections" },
+        { "value": "overlap", "label": "Overlap the section above (e.g. over a photo)" }
+      ],
+      "default": "stack",
+      "info": "Overlap: give the section above enough bottom spacing so its text isn't covered."
+    },
+
+    { "type": "header", "content": "Colours" },
+    {
+      "type": "select",
+      "id": "wave_color",
+      "label": "Curve colour",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "navy", "label": "Navy" },
+        { "value": "ink", "label": "Ink" },
+        { "value": "teal", "label": "Teal" },
+        { "value": "yellow", "label": "Yellow" },
+        { "value": "sea", "label": "Sea" },
+        { "value": "white", "label": "White" },
+        { "value": "coral", "label": "Coral" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "color",
+      "id": "wave_color_custom",
+      "label": "Custom curve colour",
+      "default": "#f3efe5",
+      "visible_if": "{{ section.settings.wave_color == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "bg_color",
+      "label": "Background colour",
+      "options": [
+        { "value": "transparent", "label": "Transparent" },
+        { "value": "cream", "label": "Cream" },
+        { "value": "navy", "label": "Navy" },
+        { "value": "ink", "label": "Ink" },
+        { "value": "teal", "label": "Teal" },
+        { "value": "yellow", "label": "Yellow" },
+        { "value": "sea", "label": "Sea" },
+        { "value": "white", "label": "White" },
+        { "value": "coral", "label": "Coral" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "teal",
+      "visible_if": "{{ section.settings.mode == 'stack' and section.settings.shape != 'flat' }}"
+    },
+    {
+      "type": "color",
+      "id": "bg_color_custom",
+      "label": "Custom background colour",
+      "default": "#2fa4a9",
+      "visible_if": "{{ section.settings.mode == 'stack' and section.settings.bg_color == 'custom' }}"
+    },
+
+    { "type": "header", "content": "Size" },
+    { "type": "range", "id": "height_desktop", "label": "Height (desktop)", "min": 20, "max": 220, "step": 2, "unit": "px", "default": 90 },
+    { "type": "range", "id": "height_mobile", "label": "Height (mobile)", "min": 10, "max": 120, "step": 2, "unit": "px", "default": 40 },
+    { "type": "checkbox", "id": "flip", "label": "Mirror left/right", "default": false }
+  ],
+  "presets": [
+    { "name": "Kahu separator" }
+  ]
+}
+{% endschema %}
