@@ -1,0 +1,343 @@
+{%- comment -%}
+  Kahu image rail: infinite auto-scrolling row of linked images (Figma "Find your KAHU" 723:157).
+  Spec: handoff/003-image-rail.md
+  - One "Image" block per item (image + link + optional alt). Add as many as needed.
+  - Auto-scroll: seamless infinite loop, speed in px per second (desktop + mobile), direction, pause on hover.
+  - Auto-scroll off (or reduced-motion users): a swipeable, scroll-snapping row.
+  - Section spacing (padding + margin) set separately for desktop and mobile.
+  - Background: Kahu colour (or custom) + optional background image (desktop + mobile).
+  - No curved edge here: use the "Kahu separator" section above/below.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  if s.bg_color == 'custom'
+    assign bg = s.bg_color_custom
+  elsif s.bg_color == 'transparent'
+    assign bg = 'transparent'
+  else
+    assign bg = 'var(--kahu-' | append: s.bg_color | append: ')'
+  endif
+
+  assign bg_img_m = s.bg_image_mobile | default: s.bg_image
+-%}
+
+{%- style -%}
+  #kahu-rail-{{ section.id }} {
+    --kr-bg: {{ bg }};
+    --kr-pt: {{ s.mobile_padding_top }}px;
+    --kr-pb: {{ s.mobile_padding_bottom }}px;
+    --kr-mt: {{ s.mobile_margin_top }}px;
+    --kr-mb: {{ s.mobile_margin_bottom }}px;
+    --kr-item-w: {{ s.mobile_item_width }}px;
+    --kr-gap: {{ s.mobile_gap }}px;
+    --kr-overlay: {{ s.bg_overlay | divided_by: 100.0 }};
+  }
+  @media (min-width: 750px) {
+    #kahu-rail-{{ section.id }} {
+      --kr-pt: {{ s.desktop_padding_top }}px;
+      --kr-pb: {{ s.desktop_padding_bottom }}px;
+      --kr-mt: {{ s.desktop_margin_top }}px;
+      --kr-mb: {{ s.desktop_margin_bottom }}px;
+      --kr-item-w: {{ s.desktop_item_width }}px;
+      --kr-gap: {{ s.desktop_gap }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="kahu-rail-{{ section.id }}"
+  class="kahu-rail{% if s.full_width %} kahu-rail--full{% endif %}{% if s.hover_lift %} kahu-rail--hover{% endif %}"
+>
+  {%- if s.bg_image -%}
+    <div class="kahu-rail__bg" aria-hidden="true">
+      <picture>
+        {%- if s.bg_image_mobile -%}
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ bg_img_m | image_url: width: 750 }} 750w, {{ bg_img_m | image_url: width: 1100 }} 1100w, {{ bg_img_m | image_url: width: 1500 }} 1500w"
+            sizes="100vw">
+        {%- endif -%}
+        {{ s.bg_image | image_url: width: 2880 | image_tag:
+            widths: '750, 1100, 1440, 1920, 2880',
+            sizes: '100vw',
+            loading: 'lazy',
+            class: 'kahu-rail__bg-img',
+            alt: '' }}
+      </picture>
+      <span class="kahu-rail__bg-overlay"></span>
+    </div>
+  {%- endif -%}
+
+  <kahu-marquee
+    class="kahu-marquee{% if s.autoplay %} kahu-marquee--auto{% endif %}"
+    data-auto="{{ s.autoplay }}"
+    data-speed="{{ s.speed_desktop }}"
+    data-speed-mobile="{{ s.speed_mobile }}"
+    data-direction="{{ s.direction }}"
+    data-pause="{{ s.pause_on_hover }}"
+    {% if s.aria_label != blank %}aria-label="{{ s.aria_label | escape }}"{% endif %}
+    role="region"
+  >
+    <div class="kahu-marquee__track">
+      <ul class="kahu-marquee__group" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign img = block.settings.image
+            assign alt = block.settings.alt | default: img.alt
+          -%}
+          <li class="kahu-marquee__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              <a class="kahu-marquee__link" href="{{ block.settings.link }}"{% if alt != blank %} aria-label="{{ alt | escape }}"{% endif %}>
+            {%- else -%}
+              <div class="kahu-marquee__link">
+            {%- endif -%}
+              {%- if img -%}
+                {{ img | image_url: width: 800 | image_tag:
+                    widths: '200, 300, 400, 600, 800',
+                    sizes: '(min-width: 750px) 400px, 240px',
+                    loading: 'lazy',
+                    class: 'kahu-marquee__img',
+                    alt: alt }}
+              {%- else -%}
+                {{ 'product-apparel-1' | placeholder_svg_tag: 'kahu-marquee__img kahu-marquee__img--placeholder' }}
+              {%- endif -%}
+            {%- if block.settings.link != blank -%}
+              </a>
+            {%- else -%}
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </kahu-marquee>
+</div>
+
+{% stylesheet %}
+  .kahu-rail {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--kr-bg);
+    padding-top: var(--kr-pt);
+    padding-bottom: var(--kr-pb);
+    margin-top: var(--kr-mt);
+    margin-bottom: var(--kr-mb);
+  }
+
+  .kahu-rail__bg,
+  .kahu-rail__bg picture,
+  .kahu-rail__bg-overlay { position: absolute; inset: 0; z-index: -1; }
+  .kahu-rail__bg-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .kahu-rail__bg-overlay { background: rgb(3 20 38 / var(--kr-overlay)); }
+
+  .kahu-rail:not(.kahu-rail--full) .kahu-marquee {
+    max-width: calc(var(--kahu-content, 1280px) + var(--kahu-gutter, 20px) * 2);
+    margin: 0 auto;
+    padding: 0 var(--kahu-gutter, 20px);
+  }
+
+  .kahu-marquee { display: block; overflow: hidden; }
+
+  .kahu-marquee__track { display: flex; width: max-content; }
+
+  .kahu-marquee__group {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--kr-gap);
+    padding: 0 var(--kr-gap) 0 0; /* trailing gap so the loop seam matches the item gap */
+    margin: 0;
+    list-style: none;
+  }
+
+  .kahu-marquee__item { flex: 0 0 var(--kr-item-w); width: var(--kr-item-w); }
+
+  .kahu-marquee__link { display: block; color: inherit; text-decoration: none; }
+  .kahu-marquee__link:focus-visible { outline: 2px solid var(--kahu-yellow, #f4c84a); outline-offset: 2px; }
+
+  .kahu-marquee__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .kahu-marquee__img--placeholder { aspect-ratio: 167 / 208; height: auto; background: rgb(0 0 0 / 0.04); }
+
+  .kahu-rail--hover .kahu-marquee__img { transition: transform 0.3s ease; }
+  .kahu-rail--hover a.kahu-marquee__link:hover .kahu-marquee__img { transform: translateY(-4px) scale(1.03); }
+
+  /* Auto-scroll (activated by JS once the loop is measured) */
+  .kahu-marquee.is-running .kahu-marquee__track {
+    animation: kahu-marquee-scroll var(--kr-duration, 30s) linear infinite;
+  }
+  .kahu-marquee.is-running[data-direction='right'] .kahu-marquee__track { animation-direction: reverse; }
+  .kahu-marquee.is-running[data-pause='true']:hover .kahu-marquee__track,
+  .kahu-marquee.is-running[data-pause='true']:focus-within .kahu-marquee__track { animation-play-state: paused; }
+
+  @keyframes kahu-marquee-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(calc(var(--kr-distance, 0px) * -1), 0, 0); }
+  }
+
+  /* Manual mode: auto-scroll off or reduced motion → swipeable row */
+  .kahu-marquee:not(.is-running) {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .kahu-marquee:not(.is-running)::-webkit-scrollbar { display: none; }
+  .kahu-marquee:not(.is-running) .kahu-marquee__item { scroll-snap-align: start; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .kahu-marquee.is-running .kahu-marquee__track { animation: none; }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  if (!customElements.get('kahu-marquee')) {
+    class KahuMarquee extends HTMLElement {
+      connectedCallback() {
+        this.track = this.querySelector('.kahu-marquee__track');
+        this.group = this.querySelector('.kahu-marquee__group');
+        if (!this.track || !this.group) return;
+        if (this.dataset.auto !== 'true') return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        this.mq = window.matchMedia('(min-width: 750px)');
+        this.onChange = () => this.setup();
+        this.mq.addEventListener('change', this.onChange);
+
+        this.ro = new ResizeObserver(() => {
+          cancelAnimationFrame(this.raf);
+          this.raf = requestAnimationFrame(() => this.setup());
+        });
+        this.ro.observe(this);
+        this.ro.observe(this.group);
+        this.setup();
+      }
+
+      disconnectedCallback() {
+        if (this.ro) this.ro.disconnect();
+        if (this.mq) this.mq.removeEventListener('change', this.onChange);
+        cancelAnimationFrame(this.raf);
+      }
+
+      setup() {
+        const groupWidth = this.group.getBoundingClientRect().width;
+        if (!groupWidth) return;
+
+        // Enough copies to always fill the visible width while the first copy scrolls out
+        const needed = Math.max(1, Math.ceil(this.clientWidth / groupWidth));
+        const clones = this.track.querySelectorAll('[data-kahu-clone]');
+        if (clones.length !== needed) {
+          clones.forEach((n) => n.remove());
+          for (let i = 0; i < needed; i++) {
+            const copy = this.group.cloneNode(true);
+            copy.setAttribute('data-kahu-clone', '');
+            copy.setAttribute('aria-hidden', 'true');
+            copy.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+            copy.querySelectorAll('[data-shopify-editor-block]').forEach((el) => el.removeAttribute('data-shopify-editor-block'));
+            copy.querySelectorAll('a').forEach((a) => a.setAttribute('tabindex', '-1'));
+            this.track.appendChild(copy);
+          }
+        }
+
+        const speed = parseFloat(this.mq.matches ? this.dataset.speed : this.dataset.speedMobile) || 40;
+        this.style.setProperty('--kr-distance', groupWidth + 'px');
+        this.style.setProperty('--kr-duration', (groupWidth / speed).toFixed(2) + 's');
+        this.classList.add('is-running');
+      }
+    }
+    customElements.define('kahu-marquee', KahuMarquee);
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Kahu image rail",
+  "tag": "section",
+  "class": "kahu-rail-section",
+  "max_blocks": 30,
+  "settings": [
+    { "type": "header", "content": "Slider" },
+    { "type": "checkbox", "id": "autoplay", "label": "Auto-scroll (infinite)", "default": true, "info": "Off = visitors swipe/scroll the row themselves" },
+    { "type": "range", "id": "speed_desktop", "label": "Speed (desktop)", "min": 10, "max": 200, "step": 5, "unit": "px", "default": 40, "info": "Pixels per second", "visible_if": "{{ section.settings.autoplay }}" },
+    { "type": "range", "id": "speed_mobile", "label": "Speed (mobile)", "min": 10, "max": 200, "step": 5, "unit": "px", "default": 30, "info": "Pixels per second", "visible_if": "{{ section.settings.autoplay }}" },
+    {
+      "type": "select", "id": "direction", "label": "Direction",
+      "options": [
+        { "value": "left", "label": "Right to left" },
+        { "value": "right", "label": "Left to right" }
+      ],
+      "default": "left",
+      "visible_if": "{{ section.settings.autoplay }}"
+    },
+    { "type": "checkbox", "id": "pause_on_hover", "label": "Pause on hover", "default": true, "visible_if": "{{ section.settings.autoplay }}" },
+    { "type": "checkbox", "id": "hover_lift", "label": "Lift image on hover", "default": true },
+    { "type": "checkbox", "id": "full_width", "label": "Full width (edge to edge)", "default": true },
+    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Find your KAHU", "info": "Read by screen readers; not shown" },
+
+    { "type": "header", "content": "Background" },
+    {
+      "type": "select", "id": "bg_color", "label": "Background colour",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "navy", "label": "Navy" },
+        { "value": "ink", "label": "Ink" },
+        { "value": "teal", "label": "Teal" },
+        { "value": "yellow", "label": "Yellow" },
+        { "value": "sea", "label": "Sea" },
+        { "value": "white", "label": "White" },
+        { "value": "coral", "label": "Coral" },
+        { "value": "transparent", "label": "Transparent" },
+        { "value": "custom", "label": "Custom" }
+      ],
+      "default": "cream"
+    },
+    { "type": "color", "id": "bg_color_custom", "label": "Custom background colour", "default": "#f3efe5", "visible_if": "{{ section.settings.bg_color == 'custom' }}" },
+    { "type": "image_picker", "id": "bg_image", "label": "Background image (desktop)", "info": "WebP. Covers the whole section" },
+    { "type": "image_picker", "id": "bg_image_mobile", "label": "Background image (mobile)", "info": "Optional. Falls back to desktop image" },
+    { "type": "range", "id": "bg_overlay", "label": "Image overlay", "min": 0, "max": 80, "step": 5, "unit": "%", "default": 0, "visible_if": "{{ section.settings.bg_image != blank }}" },
+
+    { "type": "header", "content": "Desktop layout" },
+    { "type": "range", "id": "desktop_item_width", "label": "Image width", "min": 60, "max": 460, "step": 4, "unit": "px", "default": 168 },
+    { "type": "range", "id": "desktop_gap", "label": "Gap between images", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "desktop_padding_top", "label": "Padding top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "desktop_padding_bottom", "label": "Padding bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "desktop_margin_top", "label": "Margin top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "desktop_margin_bottom", "label": "Margin bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
+
+    { "type": "header", "content": "Mobile layout" },
+    { "type": "range", "id": "mobile_item_width", "label": "Image width", "min": 40, "max": 340, "step": 4, "unit": "px", "default": 112 },
+    { "type": "range", "id": "mobile_gap", "label": "Gap between images", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "mobile_margin_top", "label": "Margin top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_margin_bottom", "label": "Margin bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Transparent PNG/WebP. Figma size 167 × 208 (export 2x: 334 × 416)" },
+        { "type": "url", "id": "link", "label": "Link", "info": "e.g. the poncho's collection or product" },
+        { "type": "text", "id": "alt", "label": "Alt text", "info": "Describe the poncho, e.g. \"Manta Ray towel poncho\". Falls back to the image's own alt text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kahu image rail",
+      "blocks": [
+        { "type": "image" }, { "type": "image" }, { "type": "image" },
+        { "type": "image" }, { "type": "image" }, { "type": "image" },
+        { "type": "image" }, { "type": "image" }, { "type": "image" }
+      ]
+    }
+  ]
+}
+{% endschema %}

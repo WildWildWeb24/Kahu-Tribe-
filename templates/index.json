@@ -104,15 +104,15 @@
         "desktop_align": "left",
         "desktop_content_width": 760,
         "desktop_padding_top": 40,
-        "desktop_padding_bottom": 60,
+        "desktop_padding_bottom": 152,
         "height_mobile": 90,
         "mobile_vertical": "bottom",
         "mobile_align": "left",
         "mobile_aside_position": "after",
         "mobile_aside_layout": "row",
         "mobile_padding_top": 24,
-        "mobile_padding_bottom": 32,
-        "wave_enable": true,
+        "mobile_padding_bottom": 72,
+        "wave_enable": false,
         "wave_shape": "wave",
         "wave_color": "cream",
         "wave_color_custom": "#f3efe5",
@@ -406,10 +406,125 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "kahu_separator_hero": {
+      "type": "kahu-separator",
+      "settings": {
+        "shape": "wave",
+        "direction": "up",
+        "mode": "overlap",
+        "wave_color": "cream",
+        "wave_color_custom": "#f3efe5",
+        "bg_color": "transparent",
+        "bg_color_custom": "#2fa4a9",
+        "height_desktop": 90,
+        "height_mobile": 40,
+        "flip": false
+      }
+    },
+    "kahu_image_rail": {
+      "type": "kahu-image-rail",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_5": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_6": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_7": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_8": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_9": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "image_8",
+        "image_9"
+      ],
+      "settings": {
+        "autoplay": true,
+        "speed_desktop": 40,
+        "speed_mobile": 30,
+        "direction": "left",
+        "pause_on_hover": true,
+        "hover_lift": true,
+        "full_width": true,
+        "aria_label": "Find your KAHU",
+        "bg_color": "cream",
+        "desktop_item_width": 168,
+        "desktop_gap": 0,
+        "desktop_padding_top": 24,
+        "desktop_padding_bottom": 24,
+        "mobile_item_width": 112,
+        "mobile_gap": 0,
+        "mobile_padding_top": 16,
+        "mobile_padding_bottom": 16
+      }
     }
   },
   "order": [
     "kahu_hero",
+    "kahu_separator_hero",
+    "kahu_image_rail",
     "hero_jVaWmY",
     "product_list_fa6P9H"
   ]
