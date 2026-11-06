@@ -27,8 +27,9 @@
   {%- when 'heading' -%}
     {%- if block.settings.text != blank -%}
       {%- assign tag = block.settings.tag | default: 'h1' -%}
+      {%- assign heading_text = block.settings.text | replace: ' | ', '<br/>' | replace: ' |', '<br/>' | replace: '| ', '<br/>' -%}
       <{{ tag }} class="{{ base_class }} kahu-hero__heading" {{ block.shopify_attributes }}>
-        {{- block.settings.text -}}
+        {{- heading_text -}}
       </{{ tag }}>
     {%- endif -%}
 

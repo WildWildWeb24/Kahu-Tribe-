@@ -23,16 +23,16 @@
             "hide_mobile": false
           }
         },
-        "text_DPN3fx": {
-          "type": "text",
+        "heading_kahu": {
+          "type": "heading",
           "settings": {
-            "text": "<h1>All in one<br/>Kahu poncho</h1>",
-            "size_desktop": 18,
-            "size_mobile": 16,
-            "max_width": 560,
+            "text": "All in one<br/>Kahu poncho",
+            "tag": "h1",
+            "size_desktop": 88,
+            "size_mobile": 48,
             "column": "main",
-            "space_below_desktop": 0,
-            "space_below_mobile": 0,
+            "space_below_desktop": 20,
+            "space_below_mobile": 16,
             "hide_desktop": false,
             "hide_mobile": false
           }
@@ -84,7 +84,7 @@
       },
       "block_order": [
         "eyebrow_kahu",
-        "text_DPN3fx",
+        "heading_kahu",
         "text_kahu",
         "sticker_kahu",
         "button_kahu"
