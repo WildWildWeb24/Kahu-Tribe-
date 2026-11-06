@@ -1,7 +1,9 @@
 {%- comment -%}
   Kahu image rail: infinite auto-scrolling row of linked images (Figma "Find your KAHU" 723:157).
   Spec: handoff/003-image-rail.md
-  - One "Image" block per item (image + link + optional alt). Add as many as needed.
+  - One "Image" block per item (image + product + optional link/alt). Add as many as needed.
+  - Click: opens the product in Horizon's quick-buy popup (assets/kahu-quick-view.js), or goes to the page.
+  - Every image sits in the same fixed-ratio box (object-fit: contain) so all items look equal; per-image scale fine-tunes it.
   - Auto-scroll: seamless infinite loop, speed in px per second (desktop + mobile), direction, pause on hover.
   - Auto-scroll off (or reduced-motion users): a swipeable, scroll-snapping row.
   - Section spacing (padding + margin) set separately for desktop and mobile.
@@ -33,6 +35,7 @@
     --kr-item-w: {{ s.mobile_item_width }}px;
     --kr-gap: {{ s.mobile_gap }}px;
     --kr-overlay: {{ s.bg_overlay | divided_by: 100.0 }};
+    --kr-ratio: {{ s.item_ratio }};
   }
   @media (min-width: 750px) {
     #kahu-rail-{{ section.id }} {
@@ -85,28 +88,60 @@
         {%- for block in section.blocks -%}
           {%- liquid
             assign img = block.settings.image
-            assign alt = block.settings.alt | default: img.alt
+            assign product = block.settings.product
+            assign alt = block.settings.alt | default: img.alt | default: product.title
+            assign scale = block.settings.scale | divided_by: 100.0
+            assign use_quick_view = false
+            if product != blank and s.click_action == 'quick_view'
+              assign use_quick_view = true
+            endif
+            if product != blank
+              assign href = product.url
+            else
+              assign href = block.settings.link
+            endif
           -%}
-          <li class="kahu-marquee__item" {{ block.shopify_attributes }}>
-            {%- if block.settings.link != blank -%}
-              <a class="kahu-marquee__link" href="{{ block.settings.link }}"{% if alt != blank %} aria-label="{{ alt | escape }}"{% endif %}>
-            {%- else -%}
-              <div class="kahu-marquee__link">
-            {%- endif -%}
-              {%- if img -%}
-                {{ img | image_url: width: 800 | image_tag:
-                    widths: '200, 300, 400, 600, 800',
-                    sizes: '(min-width: 750px) 400px, 240px',
-                    loading: 'lazy',
-                    class: 'kahu-marquee__img',
-                    alt: alt }}
-              {%- else -%}
-                {{ 'product-apparel-1' | placeholder_svg_tag: 'kahu-marquee__img kahu-marquee__img--placeholder' }}
-              {%- endif -%}
-            {%- if block.settings.link != blank -%}
+          <li class="kahu-marquee__item" style="--kr-scale: {{ scale }};" {{ block.shopify_attributes }}>
+            {%- capture media -%}
+              <span class="kahu-marquee__frame">
+                {%- if img -%}
+                  {{ img | image_url: width: 800 | image_tag:
+                      widths: '200, 300, 400, 600, 800',
+                      sizes: '(min-width: 750px) 400px, 240px',
+                      loading: 'lazy',
+                      class: 'kahu-marquee__img',
+                      alt: alt }}
+                {%- elsif product.featured_image -%}
+                  {{ product.featured_image | image_url: width: 800 | image_tag:
+                      widths: '200, 300, 400, 600, 800',
+                      sizes: '(min-width: 750px) 400px, 240px',
+                      loading: 'lazy',
+                      class: 'kahu-marquee__img',
+                      alt: alt }}
+                {%- else -%}
+                  {{ 'product-apparel-1' | placeholder_svg_tag: 'kahu-marquee__img kahu-marquee__img--placeholder' }}
+                {%- endif -%}
+              </span>
+            {%- endcapture -%}
+
+            {%- if use_quick_view -%}
+              <kahu-quick-view
+                class="kahu-marquee__link"
+                data-product-url="{{ product.url }}"
+                data-product-title="{{ product.title | escape }}"
+                data-product-id="{{ product.id }}"
+                data-uses-selling-plans="{% if product.requires_selling_plan or product.selling_plan_groups.size > 0 %}true{% else %}false{% endif %}"
+              >
+                <a class="kahu-marquee__hit" href="{{ product.url }}" role="button" aria-haspopup="dialog" aria-label="{{ 'Quick view: ' | append: product.title | escape }}">
+                  {{- media -}}
+                </a>
+              </kahu-quick-view>
+            {%- elsif href != blank -%}
+              <a class="kahu-marquee__link kahu-marquee__hit" href="{{ href }}"{% if alt != blank %} aria-label="{{ alt | escape }}"{% endif %}>
+                {{- media -}}
               </a>
             {%- else -%}
-              </div>
+              <div class="kahu-marquee__link">{{- media -}}</div>
             {%- endif -%}
           </li>
         {%- endfor -%}
@@ -114,6 +149,17 @@
     </div>
   </kahu-marquee>
 </div>
+
+{%- if s.click_action == 'quick_view' -%}
+  <script src="{{ 'kahu-quick-view.js' | asset_url }}" type="module" fetchpriority="low"></script>
+  {%- unless settings.quick_add or settings.mobile_quick_add -%}
+    {%- comment -%} Horizon only adds its quick-buy popup when Quick add is on in theme settings; add it here otherwise. {%- endcomment -%}
+    <script src="{{ 'quick-add.js' | asset_url }}" type="module" fetchpriority="low"></script>
+    <template id="kahu-quick-add-modal-{{ section.id }}" data-kahu-modal-template>
+      {%- render 'quick-add-modal' -%}
+    </template>
+  {%- endunless -%}
+{%- endif -%}
 
 {% stylesheet %}
   .kahu-rail {
@@ -155,18 +201,29 @@
   .kahu-marquee__item { flex: 0 0 var(--kr-item-w); width: var(--kr-item-w); }
 
   .kahu-marquee__link { display: block; color: inherit; text-decoration: none; }
-  .kahu-marquee__link:focus-visible { outline: 2px solid var(--kahu-yellow, #f4c84a); outline-offset: 2px; }
+  .kahu-marquee__hit { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+  .kahu-marquee__hit:focus-visible { outline: 2px solid var(--kahu-yellow, #f4c84a); outline-offset: 2px; }
 
+  /* Same box for every image, whatever the file's own size or crop */
+  .kahu-marquee__frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--kr-ratio, 167 / 208);
+    overflow: visible;
+  }
   .kahu-marquee__img {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
+    object-position: center bottom;
+    scale: var(--kr-scale, 1);
+    transform-origin: center bottom;
   }
-  .kahu-marquee__img--placeholder { aspect-ratio: 167 / 208; height: auto; background: rgb(0 0 0 / 0.04); }
+  .kahu-marquee__img--placeholder { background: rgb(0 0 0 / 0.04); }
 
-  .kahu-rail--hover .kahu-marquee__img { transition: transform 0.3s ease; }
-  .kahu-rail--hover a.kahu-marquee__link:hover .kahu-marquee__img { transform: translateY(-4px) scale(1.03); }
+  .kahu-rail--hover .kahu-marquee__img { transition: translate 0.3s ease; }
+  .kahu-rail--hover .kahu-marquee__hit:hover .kahu-marquee__img { translate: 0 -4px; }
 
   /* Auto-scroll (activated by JS once the loop is measured) */
   .kahu-marquee.is-running .kahu-marquee__track {
@@ -240,7 +297,7 @@
             copy.setAttribute('aria-hidden', 'true');
             copy.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
             copy.querySelectorAll('[data-shopify-editor-block]').forEach((el) => el.removeAttribute('data-shopify-editor-block'));
-            copy.querySelectorAll('a').forEach((a) => a.setAttribute('tabindex', '-1'));
+            copy.querySelectorAll('a, button').forEach((a) => a.setAttribute('tabindex', '-1'));
             this.track.appendChild(copy);
           }
         }
@@ -277,6 +334,25 @@
     },
     { "type": "checkbox", "id": "pause_on_hover", "label": "Pause on hover", "default": true, "visible_if": "{{ section.settings.autoplay }}" },
     { "type": "checkbox", "id": "hover_lift", "label": "Lift image on hover", "default": true },
+    {
+      "type": "select", "id": "click_action", "label": "When an image with a product is clicked",
+      "options": [
+        { "value": "quick_view", "label": "Open quick-buy popup" },
+        { "value": "page", "label": "Go to product page" }
+      ],
+      "default": "quick_view"
+    },
+    {
+      "type": "select", "id": "item_ratio", "label": "Image box shape",
+      "options": [
+        { "value": "167 / 208", "label": "Poncho (Figma, 167 × 208)" },
+        { "value": "4 / 5", "label": "Portrait 4:5" },
+        { "value": "1 / 1", "label": "Square" },
+        { "value": "3 / 4", "label": "Tall 3:4" }
+      ],
+      "default": "167 / 208",
+      "info": "Every image is fitted inside this same box, so all items match"
+    },
     { "type": "checkbox", "id": "full_width", "label": "Full width (edge to edge)", "default": true },
     { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Find your KAHU", "info": "Read by screen readers; not shown" },
 
@@ -323,8 +399,10 @@
       "type": "image",
       "name": "Image",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image", "info": "Transparent PNG/WebP. Figma size 167 × 208 (export 2x: 334 × 416)" },
-        { "type": "url", "id": "link", "label": "Link", "info": "e.g. the poncho's collection or product" },
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Transparent PNG/WebP. Figma size 167 × 208 (export 2x: 334 × 416). Empty = product's main image" },
+        { "type": "product", "id": "product", "label": "Product", "info": "Click opens this product in the quick-buy popup" },
+        { "type": "url", "id": "link", "label": "Link (used only when no product is set)" },
+        { "type": "range", "id": "scale", "label": "Image scale", "min": 50, "max": 150, "step": 5, "unit": "%", "default": 100, "info": "Fine-tune if one PNG has more or less empty space around it" },
         { "type": "text", "id": "alt", "label": "Alt text", "info": "Describe the poncho, e.g. \"Manta Ray towel poncho\". Falls back to the image's own alt text" }
       ]
     }
