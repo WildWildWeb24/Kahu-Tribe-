@@ -12,21 +12,6 @@
     "kahu_hero": {
       "type": "kahu-hero",
       "blocks": {
-        "sticker_kahu": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/golden_hour.webp",
-            "alt": "See you at Golden Hour",
-            "link": "",
-            "width_desktop": 153,
-            "width_mobile": 96,
-            "column": "main",
-            "space_below_desktop": 0,
-            "space_below_mobile": 0,
-            "hide_desktop": false,
-            "hide_mobile": false
-          }
-        },
         "eyebrow_kahu": {
           "type": "eyebrow",
           "settings": {
@@ -59,6 +44,21 @@
             "size_desktop": 18,
             "size_mobile": 16,
             "max_width": 560,
+            "column": "main",
+            "space_below_desktop": 0,
+            "space_below_mobile": 0,
+            "hide_desktop": false,
+            "hide_mobile": false
+          }
+        },
+        "sticker_kahu": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/golden_hour.webp",
+            "alt": "See you at Golden Hour",
+            "link": "",
+            "width_desktop": 153,
+            "width_mobile": 96,
             "column": "main",
             "space_below_desktop": 0,
             "space_below_mobile": 0,
@@ -120,6 +120,134 @@
         "wave_height_desktop": 90,
         "wave_height_mobile": 40,
         "wave_flip": false
+      }
+    },
+    "kahu_separator_hero": {
+      "type": "kahu-separator",
+      "settings": {
+        "shape": "wave",
+        "direction": "up",
+        "mode": "overlap",
+        "wave_color": "cream",
+        "wave_color_custom": "#f3efe5",
+        "bg_color": "transparent",
+        "bg_color_custom": "#2fa4a9",
+        "height_desktop": 90,
+        "height_mobile": 40,
+        "flip": false
+      }
+    },
+    "kahu_image_rail": {
+      "type": "kahu-image-rail",
+      "blocks": {
+        "image_1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_1.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_2.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_3.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_4": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_4.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_7.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_6": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_5.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_8.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_9.webp",
+            "link": "",
+            "alt": ""
+          }
+        },
+        "image_9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Flatlay_6.webp",
+            "link": "",
+            "alt": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_1",
+        "image_2",
+        "image_3",
+        "image_4",
+        "image_5",
+        "image_6",
+        "image_7",
+        "image_8",
+        "image_9"
+      ],
+      "settings": {
+        "autoplay": true,
+        "speed_desktop": 20,
+        "speed_mobile": 20,
+        "direction": "left",
+        "pause_on_hover": true,
+        "hover_lift": false,
+        "full_width": true,
+        "aria_label": "Find your KAHU",
+        "bg_color": "custom",
+        "bg_color_custom": "#F3EFE5",
+        "bg_overlay": 0,
+        "desktop_item_width": 168,
+        "desktop_gap": 0,
+        "desktop_padding_top": 24,
+        "desktop_padding_bottom": 24,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_item_width": 112,
+        "mobile_gap": 0,
+        "mobile_padding_top": 16,
+        "mobile_padding_bottom": 16,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
       }
     },
     "product_list_fa6P9H": {
@@ -320,119 +448,6 @@
         "background_color": "",
         "padding-block-start": 48,
         "padding-block-end": 48
-      }
-    },
-    "kahu_separator_hero": {
-      "type": "kahu-separator",
-      "settings": {
-        "shape": "wave",
-        "direction": "up",
-        "mode": "overlap",
-        "wave_color": "cream",
-        "wave_color_custom": "#f3efe5",
-        "bg_color": "transparent",
-        "bg_color_custom": "#2fa4a9",
-        "height_desktop": 90,
-        "height_mobile": 40,
-        "flip": false
-      }
-    },
-    "kahu_image_rail": {
-      "type": "kahu-image-rail",
-      "blocks": {
-        "image_1": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_2": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_3": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_4": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_5": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_6": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_7": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_8": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        },
-        "image_9": {
-          "type": "image",
-          "settings": {
-            "link": "",
-            "alt": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_1",
-        "image_2",
-        "image_3",
-        "image_4",
-        "image_5",
-        "image_6",
-        "image_7",
-        "image_8",
-        "image_9"
-      ],
-      "settings": {
-        "autoplay": true,
-        "speed_desktop": 40,
-        "speed_mobile": 30,
-        "direction": "left",
-        "pause_on_hover": true,
-        "hover_lift": true,
-        "full_width": true,
-        "aria_label": "Find your KAHU",
-        "bg_color": "cream",
-        "desktop_item_width": 168,
-        "desktop_gap": 0,
-        "desktop_padding_top": 24,
-        "desktop_padding_bottom": 24,
-        "mobile_item_width": 112,
-        "mobile_gap": 0,
-        "mobile_padding_top": 16,
-        "mobile_padding_bottom": 16
       }
     }
   },
