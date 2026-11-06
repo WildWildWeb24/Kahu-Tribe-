@@ -23,16 +23,16 @@
             "hide_mobile": false
           }
         },
-        "heading_kahu": {
-          "type": "heading",
+        "text_DPN3fx": {
+          "type": "text",
           "settings": {
-            "text": "All in one Kahu poncho",
-            "tag": "h1",
-            "size_desktop": 88,
-            "size_mobile": 48,
+            "text": "<h1>All in one<br/>Kahu poncho</h1>",
+            "size_desktop": 18,
+            "size_mobile": 16,
+            "max_width": 560,
             "column": "main",
-            "space_below_desktop": 20,
-            "space_below_mobile": 16,
+            "space_below_desktop": 0,
+            "space_below_mobile": 0,
             "hide_desktop": false,
             "hide_mobile": false
           }
@@ -40,7 +40,7 @@
         "text_kahu": {
           "type": "text",
           "settings": {
-            "text": "",
+            "text": "<p>Dry off, change comfortably and keep the day moving from the first swim to the road home.</p>",
             "size_desktop": 18,
             "size_mobile": 16,
             "max_width": 560,
@@ -58,7 +58,7 @@
             "link": "",
             "width_desktop": 153,
             "width_mobile": 96,
-            "column": "aside",
+            "column": "main",
             "space_below_desktop": 0,
             "space_below_mobile": 0,
             "hide_desktop": false,
@@ -84,7 +84,7 @@
       },
       "block_order": [
         "eyebrow_kahu",
-        "heading_kahu",
+        "text_DPN3fx",
         "text_kahu",
         "sticker_kahu",
         "button_kahu"
@@ -95,8 +95,8 @@
         "mobile_crop": "focal",
         "overlay_style": "top_left",
         "overlay_color": "#031426",
-        "overlay_opacity": 100,
-        "overlay_opacity_mobile": 65,
+        "overlay_opacity": 50,
+        "overlay_opacity_mobile": 50,
         "text_color": "#f3efe5",
         "height_desktop": 820,
         "desktop_layout": "split",
