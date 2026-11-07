@@ -319,6 +319,7 @@
       ],
       "name": "Kahu section header",
       "settings": {
+        "layout": "split",
         "full_width": false,
         "right_align": "end",
         "bg_color": "cream",
@@ -865,7 +866,7 @@
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "#F3EFE5",
+        "background_color": "#f3efe5",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -903,8 +904,10 @@
         "icon": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/recycle.webp",
             "width_desktop": 40,
             "width_mobile": 30,
+            "link": "",
             "alt": "",
             "column": "left"
           }
@@ -943,13 +946,19 @@
       "settings": {
         "layout": "center",
         "full_width": false,
-        "right_align": "end",
+        "right_align": "center",
         "bg_color": "teal",
+        "bg_color_custom": "#f3efe5",
         "text_color": "navy",
+        "text_color_custom": "#031426",
         "desktop_padding_top": 80,
         "desktop_padding_bottom": 40,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
         "mobile_padding_top": 48,
-        "mobile_padding_bottom": 24
+        "mobile_padding_bottom": 24,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
       }
     },
     "kahu_bottles_rail": {
@@ -958,8 +967,11 @@
         "bottle_1": {
           "type": "image",
           "settings": {
-            "alt": "",
-            "scale": 100
+            "image": "shopify://shop_images/bottles.webp",
+            "product": "",
+            "link": "",
+            "scale": 100,
+            "alt": ""
           }
         }
       },
@@ -970,7 +982,7 @@
         "autoplay": true,
         "speed_desktop": 20,
         "speed_mobile": 20,
-        "direction": "right",
+        "direction": "left",
         "pause_on_hover": false,
         "hover_lift": false,
         "click_action": "page",
@@ -978,14 +990,20 @@
         "full_width": true,
         "aria_label": "Plastic bottles saved",
         "bg_color": "teal",
+        "bg_color_custom": "#f3efe5",
+        "bg_overlay": 0,
         "desktop_item_width": 160,
         "desktop_gap": 16,
         "desktop_padding_top": 0,
         "desktop_padding_bottom": 130,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
         "mobile_item_width": 120,
         "mobile_gap": 12,
         "mobile_padding_top": 0,
-        "mobile_padding_bottom": 64
+        "mobile_padding_bottom": 64,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
       }
     }
   },
