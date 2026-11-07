@@ -849,7 +849,7 @@
       ],
       "custom_css": [
         "@media screen and (max-width: 749px) {h1, h2, h3, h4, h5, h6, p {text-align: center; } a.size-style {display: block; margin-left: auto !important; margin-right: auto !important; }}",
-        "@media screen and (min-width: 750px) {{padding-left: 40px; padding-right: 50px; }}"
+        "@media screen and (min-width: 750px) {{padding-left: 30px; padding-right: 50px; }}"
       ],
       "name": "t:names.multicolumn",
       "settings": {
