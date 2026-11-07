@@ -84,6 +84,66 @@
       "visible_if": "{{ block.settings.style_class == 'button-unstyled' }}"
     },
     {
+  "type": "header",
+  "content": "Button spacing and corners"
+},
+{
+  "type": "checkbox",
+  "id": "use_custom_button_spacing",
+  "label": "Use custom spacing and corners",
+  "default": false
+},
+{
+  "type": "range",
+  "id": "button_radius",
+  "label": "Corner radius",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 8
+},
+{
+  "type": "range",
+  "id": "button_padding_top",
+  "label": "Top padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 12
+},
+{
+  "type": "range",
+  "id": "button_padding_bottom",
+  "label": "Bottom padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 12
+},
+{
+  "type": "range",
+  "id": "button_padding_left",
+  "label": "Left padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 24
+},
+{
+  "type": "range",
+  "id": "button_padding_right",
+  "label": "Right padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "default": 24
+},
+{
       "type": "header",
       "content": "t:content.size"
     },
