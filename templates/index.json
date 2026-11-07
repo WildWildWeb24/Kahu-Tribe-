@@ -335,6 +335,145 @@
         "mobile_margin_bottom": 0
       }
     },
+    "kahu_columns_jxmUGE": {
+      "type": "kahu-columns",
+      "blocks": {
+        "column_NBApgz": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Use_it_as_a_towel.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "Use it as a towel",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_cNrfit": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Throw_it_like_a_mat.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "Throw it like a mat",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_wRWj7p": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Change_anywhere.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "Change anywhere",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_L74MQr": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/After_water_cover.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "After water cover",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        }
+      },
+      "block_order": [
+        "column_NBApgz",
+        "column_cNrfit",
+        "column_wRWj7p",
+        "column_L74MQr"
+      ],
+      "name": "Kahu columns",
+      "settings": {
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "mobile_layout": "slider",
+        "gap_desktop": 8,
+        "gap_mobile": 8,
+        "full_width": false,
+        "ratio": "314 / 492",
+        "radius": 0,
+        "title_size": "sm",
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 46,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 32,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
+    },
     "marquee_VGLqCT": {
       "type": "marquee",
       "blocks": {
@@ -513,6 +652,7 @@
     "kahu_separator_hero",
     "kahu_image_rail",
     "kahu_section_header_Yfyzjm",
+    "kahu_columns_jxmUGE",
     "marquee_VGLqCT"
   ]
 }
