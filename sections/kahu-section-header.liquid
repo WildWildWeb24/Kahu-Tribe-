@@ -1,0 +1,333 @@
+{%- comment -%}
+  Kahu section header: reusable intro row used above content sections
+  (Figma: Benefits 723:75, Size 723:104, Occasions 723:167, Promo packs 752:15335).
+  Spec: handoff/004-section-header-and-columns.md
+  - Everything is a block: Eyebrow, Title, Text, Button, Image, Divider.
+  - Eyebrow / Title / Text / Button / Image each choose the LEFT or RIGHT column.
+    Figma pattern: eyebrow + title + text on the left, button (or an image) on the right, 1px rule underneath.
+  - Divider block always spans the full width, wherever it sits in the block list.
+  - Spacing (padding + margin) set separately for desktop and mobile.
+{%- endcomment -%}
+
+{%- liquid
+  assign s = section.settings
+
+  case s.bg_color
+    when 'custom'
+      assign bg = s.bg_color_custom
+    when 'transparent'
+      assign bg = 'transparent'
+    else
+      assign bg = 'var(--kahu-' | append: s.bg_color | append: ')'
+  endcase
+
+  if s.text_color == 'custom'
+    assign fg = s.text_color_custom
+  else
+    assign fg = 'var(--kahu-' | append: s.text_color | append: ')'
+  endif
+
+  assign has_right = false
+  for block in section.blocks
+    if block.settings.column == 'right'
+      assign has_right = true
+      break
+    endif
+  endfor
+-%}
+
+{%- style -%}
+  #kahu-sh-{{ section.id }} {
+    --ksh-bg: {{ bg }};
+    --ksh-fg: {{ fg }};
+    --ksh-pt: {{ s.mobile_padding_top }}px;
+    --ksh-pb: {{ s.mobile_padding_bottom }}px;
+    --ksh-mt: {{ s.mobile_margin_top }}px;
+    --ksh-mb: {{ s.mobile_margin_bottom }}px;
+  }
+  @media (min-width: 750px) {
+    #kahu-sh-{{ section.id }} {
+      --ksh-pt: {{ s.desktop_padding_top }}px;
+      --ksh-pb: {{ s.desktop_padding_bottom }}px;
+      --ksh-mt: {{ s.desktop_margin_top }}px;
+      --ksh-mb: {{ s.desktop_margin_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- capture left_col -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type != 'divider' and block.settings.column != 'right' -%}
+      {%- render 'kahu-section-header-block', block: block -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture right_col -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type != 'divider' and block.settings.column == 'right' -%}
+      {%- render 'kahu-section-header-block', block: block -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+<div id="kahu-sh-{{ section.id }}" class="kahu-sh">
+  <div class="kahu-sh__inner{% unless s.full_width %} kahu-sh__inner--contained{% endunless %}">
+    <div class="kahu-sh__row kahu-sh__row--align-{{ s.right_align }}{% if has_right %} kahu-sh__row--split{% endif %}">
+      {%- if left_col != blank -%}
+        <div class="kahu-sh__col kahu-sh__col--left">{{ left_col }}</div>
+      {%- endif -%}
+      {%- if right_col != blank -%}
+        <div class="kahu-sh__col kahu-sh__col--right">{{ right_col }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'divider' -%}
+        {%- liquid
+          if block.settings.color == 'custom'
+            assign line = block.settings.color_custom
+          elsif block.settings.color == 'current'
+            assign line = 'currentColor'
+          else
+            assign line = 'var(--kahu-' | append: block.settings.color | append: ')'
+          endif
+        -%}
+        <hr
+          class="kahu-sh__divider"
+          style="--ksh-line: {{ line }}; --ksh-line-w: {{ block.settings.thickness }}px; --ksh-line-gap-d: {{ block.settings.space_desktop }}px; --ksh-line-gap-m: {{ block.settings.space_mobile }}px;"
+          {{ block.shopify_attributes }}
+        >
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .kahu-sh {
+    background: var(--ksh-bg);
+    color: var(--ksh-fg);
+    padding-top: var(--ksh-pt);
+    padding-bottom: var(--ksh-pb);
+    margin-top: var(--ksh-mt);
+    margin-bottom: var(--ksh-mb);
+    font-family: var(--kahu-font-sans);
+  }
+  .kahu-sh__inner { padding: 0 var(--kahu-gutter, 20px); }
+  .kahu-sh__inner--contained { max-width: calc(var(--kahu-content, 1280px) + var(--kahu-gutter, 20px) * 2); margin: 0 auto; }
+
+  .kahu-sh__row { display: flex; flex-direction: column; gap: 20px; }
+  .kahu-sh__col { display: flex; flex-direction: column; min-width: 0; }
+  .kahu-sh__col--right { gap: 12px; }
+
+  .kahu-sh__eyebrow {
+    margin: 0 0 6px;
+    font-family: var(--kahu-font-mono);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .kahu-sh__title {
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    color: inherit;
+  }
+  .kahu-sh__title--md { font-size: 32px; }
+  .kahu-sh__title--lg { font-size: 36px; }
+  .kahu-sh__title--xl { font-size: 40px; }
+  .kahu-sh__text {
+    margin-top: 12px;
+    max-width: var(--ksh-text-w, 560px);
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .kahu-sh__text p { margin: 0; }
+  .kahu-sh__text p + p { margin-top: 0.6em; }
+
+  .kahu-sh__image { display: block; height: auto; width: var(--ksh-img-w-m, 80px); max-width: 100%; }
+  .kahu-sh__image-link { display: inline-block; line-height: 0; }
+
+  .kahu-sh__button--full-m .kahu-btn { width: 100%; }
+
+  .kahu-sh__divider {
+    border: 0;
+    border-top: var(--ksh-line-w, 1px) solid var(--ksh-line, currentColor);
+    margin: var(--ksh-line-gap-m, 20px) 0 0;
+  }
+
+  @media (min-width: 750px) {
+    .kahu-sh__row--split { flex-direction: row; justify-content: space-between; gap: 40px; }
+    .kahu-sh__row--split .kahu-sh__col--right { flex-shrink: 0; align-items: flex-end; }
+    .kahu-sh__row--align-end { align-items: flex-end; }
+    .kahu-sh__row--align-center { align-items: center; }
+    .kahu-sh__row--align-start { align-items: flex-start; }
+
+    .kahu-sh__title--md { font-size: 40px; }
+    .kahu-sh__title--lg { font-size: 48px; }
+    .kahu-sh__title--xl { font-size: 58px; }
+    .kahu-sh__text { font-size: 18px; line-height: 1.2; }
+    .kahu-sh__image { width: var(--ksh-img-w-d, 120px); }
+    .kahu-sh__button--full-m .kahu-btn { width: auto; }
+    .kahu-sh__divider { margin-top: var(--ksh-line-gap-d, 24px); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Kahu section header",
+  "tag": "section",
+  "class": "kahu-section-header",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "header", "content": "Layout" },
+    { "type": "checkbox", "id": "full_width", "label": "Full width (no max width)", "default": false },
+    {
+      "type": "select", "id": "right_align", "label": "Right column vertical alignment",
+      "options": [
+        { "value": "end", "label": "Bottom" },
+        { "value": "center", "label": "Middle" },
+        { "value": "start", "label": "Top" }
+      ],
+      "default": "end"
+    },
+
+    { "type": "header", "content": "Colours" },
+    {
+      "type": "select", "id": "bg_color", "label": "Background",
+      "options": [
+        { "value": "cream", "label": "Cream" }, { "value": "navy", "label": "Navy" }, { "value": "ink", "label": "Ink" },
+        { "value": "teal", "label": "Teal" }, { "value": "yellow", "label": "Yellow" }, { "value": "sea", "label": "Sea" },
+        { "value": "white", "label": "White" }, { "value": "coral", "label": "Coral" },
+        { "value": "transparent", "label": "Transparent" }, { "value": "custom", "label": "Custom" }
+      ],
+      "default": "cream"
+    },
+    { "type": "color", "id": "bg_color_custom", "label": "Custom background", "default": "#f3efe5", "visible_if": "{{ section.settings.bg_color == 'custom' }}" },
+    {
+      "type": "select", "id": "text_color", "label": "Text",
+      "options": [
+        { "value": "navy", "label": "Navy" }, { "value": "cream", "label": "Cream" }, { "value": "ink", "label": "Ink" },
+        { "value": "white", "label": "White" }, { "value": "custom", "label": "Custom" }
+      ],
+      "default": "navy"
+    },
+    { "type": "color", "id": "text_color_custom", "label": "Custom text colour", "default": "#031426", "visible_if": "{{ section.settings.text_color == 'custom' }}" },
+
+    { "type": "header", "content": "Desktop spacing" },
+    { "type": "range", "id": "desktop_padding_top", "label": "Padding top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 26 },
+    { "type": "range", "id": "desktop_padding_bottom", "label": "Padding bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 36 },
+    { "type": "range", "id": "desktop_margin_top", "label": "Margin top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "desktop_margin_bottom", "label": "Margin bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
+
+    { "type": "header", "content": "Mobile spacing" },
+    { "type": "range", "id": "mobile_padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 24 },
+    { "type": "range", "id": "mobile_margin_top", "label": "Margin top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "mobile_margin_bottom", "label": "Margin bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Multi-purpose towel poncho" },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "Title",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Title", "default": "One Kahu many use", "info": "Use | for a line break" },
+        {
+          "type": "select", "id": "size", "label": "Size",
+          "options": [
+            { "value": "md", "label": "Section (40px)" },
+            { "value": "lg", "label": "Large (48px)" },
+            { "value": "xl", "label": "Extra large (58px)" }
+          ],
+          "default": "md"
+        },
+        {
+          "type": "select", "id": "tag", "label": "Heading level (SEO)",
+          "options": [ { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" }, { "value": "p", "label": "Not a heading" } ],
+          "default": "h2"
+        },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text" },
+        { "type": "range", "id": "max_width", "label": "Max width", "min": 240, "max": 900, "step": 10, "unit": "px", "default": 560 },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop towel ponchos" },
+        { "type": "url", "id": "link", "label": "Link" },
+        {
+          "type": "select", "id": "style", "label": "Style",
+          "options": [
+            { "value": "teal", "label": "Teal" }, { "value": "cream", "label": "Cream" },
+            { "value": "navy", "label": "Navy" }, { "value": "outline", "label": "Outline" }
+          ],
+          "default": "teal"
+        },
+        { "type": "checkbox", "id": "arrow", "label": "Show arrow", "default": true },
+        { "type": "checkbox", "id": "full_mobile", "label": "Full width on mobile", "default": false },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "e.g. the size icons in \"Made for all body types\". WebP/SVG" },
+        { "type": "range", "id": "width_desktop", "label": "Width (desktop)", "min": 20, "max": 600, "step": 10, "unit": "px", "default": 140 },
+        { "type": "range", "id": "width_mobile", "label": "Width (mobile)", "min": 20, "max": 400, "step": 10, "unit": "px", "default": 90 },
+        { "type": "url", "id": "link", "label": "Link (optional)" },
+        { "type": "text", "id": "alt", "label": "Alt text" },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider line",
+      "settings": [
+        { "type": "paragraph", "content": "Always full width, below the header row." },
+        {
+          "type": "select", "id": "color", "label": "Colour",
+          "options": [
+            { "value": "current", "label": "Same as text" }, { "value": "navy", "label": "Navy" }, { "value": "cream", "label": "Cream" },
+            { "value": "teal", "label": "Teal" }, { "value": "yellow", "label": "Yellow" }, { "value": "custom", "label": "Custom" }
+          ],
+          "default": "current"
+        },
+        { "type": "color", "id": "color_custom", "label": "Custom colour", "default": "#031426", "visible_if": "{{ block.settings.color == 'custom' }}" },
+        { "type": "range", "id": "thickness", "label": "Thickness", "min": 1, "max": 6, "step": 1, "unit": "px", "default": 1 },
+        { "type": "range", "id": "space_desktop", "label": "Space above (desktop)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 24 },
+        { "type": "range", "id": "space_mobile", "label": "Space above (mobile)", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 20 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kahu section header",
+      "blocks": [
+        { "type": "eyebrow" },
+        { "type": "title" },
+        { "type": "button" },
+        { "type": "divider" }
+      ]
+    }
+  ]
+}
+{% endschema %}
