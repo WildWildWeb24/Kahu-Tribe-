@@ -904,7 +904,7 @@
           "type": "image",
           "settings": {
             "width_desktop": 40,
-            "width_mobile": 32,
+            "width_mobile": 30,
             "alt": "",
             "column": "left"
           }
