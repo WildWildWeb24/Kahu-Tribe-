@@ -73,7 +73,7 @@
 
 <div id="kahu-sh-{{ section.id }}" class="kahu-sh">
   <div class="kahu-sh__inner{% unless s.full_width %} kahu-sh__inner--contained{% endunless %}">
-    <div class="kahu-sh__row kahu-sh__row--align-{{ s.right_align }}{% if has_right %} kahu-sh__row--split{% endif %}">
+    <div class="kahu-sh__row kahu-sh__row--align-{{ s.right_align }}{% if has_right and s.layout != 'center' %} kahu-sh__row--split{% endif %}{% if s.layout == 'center' %} kahu-sh__row--center{% endif %}">
       {%- if left_col != blank -%}
         <div class="kahu-sh__col kahu-sh__col--left">{{ left_col }}</div>
       {%- endif -%}
@@ -151,6 +151,12 @@
 
   .kahu-sh__button--full-m .kahu-btn { width: 100%; }
 
+  /* Centred layout: everything stacked in the middle (e.g. "Crafted from 20 plastic bottles") */
+  .kahu-sh__row--center { align-items: center; text-align: center; }
+  .kahu-sh__row--center .kahu-sh__col { align-items: center; }
+  .kahu-sh__row--center .kahu-sh__text { margin-left: auto; margin-right: auto; }
+  .kahu-sh__row--center .kahu-sh__media { margin-bottom: 12px; }
+
   .kahu-sh__divider {
     border: 0;
     border-top: var(--ksh-line-w, 1px) solid var(--ksh-line, currentColor);
@@ -182,6 +188,14 @@
   "max_blocks": 12,
   "settings": [
     { "type": "header", "content": "Layout" },
+    {
+      "type": "select", "id": "layout", "label": "Layout",
+      "options": [
+        { "value": "split", "label": "Left text, right button/image" },
+        { "value": "center", "label": "Centred (everything stacked)" }
+      ],
+      "default": "split"
+    },
     { "type": "checkbox", "id": "full_width", "label": "Full width (no max width)", "default": false },
     {
       "type": "select", "id": "right_align", "label": "Right column vertical alignment",

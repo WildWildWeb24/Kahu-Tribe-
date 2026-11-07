@@ -896,6 +896,97 @@
         "height_mobile": 40,
         "flip": false
       }
+    },
+    "kahu_bottles_header": {
+      "type": "kahu-section-header",
+      "blocks": {
+        "icon": {
+          "type": "image",
+          "settings": {
+            "width_desktop": 40,
+            "width_mobile": 32,
+            "alt": "",
+            "column": "left"
+          }
+        },
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Saving the ocean",
+            "column": "left"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "text": "Crafted from 20 plastic bottles",
+            "size": "md",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Use your Kahu poncho bag to carry inside or even use it as a carry bag on your holidays.</p>",
+            "max_width": 560,
+            "column": "left"
+          }
+        }
+      },
+      "block_order": [
+        "icon",
+        "eyebrow",
+        "title",
+        "text"
+      ],
+      "settings": {
+        "layout": "center",
+        "full_width": false,
+        "right_align": "end",
+        "bg_color": "teal",
+        "text_color": "navy",
+        "desktop_padding_top": 80,
+        "desktop_padding_bottom": 40,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 24
+      }
+    },
+    "kahu_bottles_rail": {
+      "type": "kahu-image-rail",
+      "blocks": {
+        "bottle_1": {
+          "type": "image",
+          "settings": {
+            "alt": "",
+            "scale": 100
+          }
+        }
+      },
+      "block_order": [
+        "bottle_1"
+      ],
+      "settings": {
+        "autoplay": true,
+        "speed_desktop": 20,
+        "speed_mobile": 20,
+        "direction": "right",
+        "pause_on_hover": false,
+        "hover_lift": false,
+        "click_action": "page",
+        "item_ratio": "auto",
+        "full_width": true,
+        "aria_label": "Plastic bottles saved",
+        "bg_color": "teal",
+        "desktop_item_width": 160,
+        "desktop_gap": 16,
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 130,
+        "mobile_item_width": 120,
+        "mobile_gap": 12,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 64
+      }
     }
   },
   "order": [
@@ -906,6 +997,8 @@
     "kahu_columns_jxmUGE",
     "marquee_VGLqCT",
     "section_3MVibR",
-    "kahu_separator_yR3zGg"
+    "kahu_separator_yR3zGg",
+    "kahu_bottles_header",
+    "kahu_bottles_rail"
   ]
 }
