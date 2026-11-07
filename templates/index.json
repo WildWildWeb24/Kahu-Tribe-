@@ -469,12 +469,146 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "kahu_benefits_header": {
+      "type": "kahu-section-header",
+      "blocks": {
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Multi-purpose towel poncho",
+            "column": "left"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "text": "One Kahu many use",
+            "size": "md",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop towel ponchos",
+            "link": "shopify://collections/all",
+            "style": "teal",
+            "arrow": true,
+            "full_mobile": false,
+            "column": "right"
+          }
+        },
+        "divider": {
+          "type": "divider",
+          "settings": {
+            "color": "current",
+            "thickness": 1,
+            "space_desktop": 24,
+            "space_mobile": 20
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow",
+        "title",
+        "button",
+        "divider"
+      ],
+      "settings": {
+        "full_width": false,
+        "right_align": "end",
+        "bg_color": "cream",
+        "text_color": "navy",
+        "desktop_padding_top": 26,
+        "desktop_padding_bottom": 36,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24
+      }
+    },
+    "kahu_benefits_columns": {
+      "type": "kahu-columns",
+      "blocks": {
+        "column_1": {
+          "type": "column",
+          "settings": {
+            "title": "Use it as a towel",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "ratio": "inherit",
+            "sticker_position": "bottom-left",
+            "sticker_width": 65,
+            "button_position": "below"
+          }
+        },
+        "column_2": {
+          "type": "column",
+          "settings": {
+            "title": "Throw it like a mat",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "ratio": "inherit",
+            "sticker_position": "bottom-left",
+            "sticker_width": 65,
+            "button_position": "below"
+          }
+        },
+        "column_3": {
+          "type": "column",
+          "settings": {
+            "title": "Change anywhere",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "ratio": "inherit",
+            "sticker_position": "bottom-left",
+            "sticker_width": 65,
+            "button_position": "below"
+          }
+        },
+        "column_4": {
+          "type": "column",
+          "settings": {
+            "title": "After water cover",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "ratio": "inherit",
+            "sticker_position": "bottom-left",
+            "sticker_width": 65,
+            "button_position": "below"
+          }
+        }
+      },
+      "block_order": [
+        "column_1",
+        "column_2",
+        "column_3",
+        "column_4"
+      ],
+      "settings": {
+        "columns_desktop": 4,
+        "columns_mobile": 1,
+        "mobile_layout": "slider",
+        "gap_desktop": 8,
+        "gap_mobile": 8,
+        "ratio": "314 / 492",
+        "radius": 0,
+        "title_size": "sm",
+        "bg_color": "cream",
+        "text_color": "navy",
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 46,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 32
+      }
     }
   },
   "order": [
     "kahu_hero",
     "kahu_separator_hero",
     "kahu_image_rail",
+    "kahu_benefits_header",
+    "kahu_benefits_columns",
     "product_list_fa6P9H"
   ]
 }

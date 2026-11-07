@@ -1,0 +1,61 @@
+{%- doc -%}
+  Renders one block of the Kahu section header (eyebrow, title, text, button, image).
+  The divider block is rendered by the section itself.
+
+  @param {object} block - The section block
+{%- enddoc -%}
+
+{%- case block.type -%}
+  {%- when 'eyebrow' -%}
+    {%- if block.settings.text != blank -%}
+      <p class="kahu-sh__eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+    {%- endif -%}
+
+  {%- when 'title' -%}
+    {%- if block.settings.text != blank -%}
+      {%- assign tag = block.settings.tag | default: 'h2' -%}
+      <{{ tag }} class="kahu-sh__title kahu-sh__title--{{ block.settings.size }}" {{ block.shopify_attributes }}>
+        {{- block.settings.text | escape | replace: '|', '<br>' -}}
+      </{{ tag }}>
+    {%- endif -%}
+
+  {%- when 'text' -%}
+    {%- if block.settings.text != blank -%}
+      <div class="kahu-sh__text" style="--ksh-text-w: {{ block.settings.max_width }}px;" {{ block.shopify_attributes }}>
+        {{- block.settings.text -}}
+      </div>
+    {%- endif -%}
+
+  {%- when 'button' -%}
+    {%- if block.settings.label != blank -%}
+      <div class="kahu-sh__button{% if block.settings.full_mobile %} kahu-sh__button--full-m{% endif %}" {{ block.shopify_attributes }}>
+        <a class="kahu-btn kahu-btn--{{ block.settings.style }}" href="{{ block.settings.link | default: routes.all_products_collection_url }}">
+          <span class="kahu-btn__label">{{ block.settings.label | escape }}</span>
+          {%- if block.settings.arrow -%}<span class="kahu-btn__arrow" aria-hidden="true">→</span>{%- endif -%}
+        </a>
+      </div>
+    {%- endif -%}
+
+  {%- when 'image' -%}
+    {%- if block.settings.image -%}
+      {%- capture img -%}
+        {{ block.settings.image | image_url: width: 1200 | image_tag:
+            widths: '200, 400, 600, 900, 1200',
+            sizes: '(min-width: 750px) 600px, 400px',
+            loading: 'lazy',
+            class: 'kahu-sh__image',
+            alt: block.settings.alt | default: block.settings.image.alt }}
+      {%- endcapture -%}
+      <div
+        class="kahu-sh__media"
+        style="--ksh-img-w-d: {{ block.settings.width_desktop }}px; --ksh-img-w-m: {{ block.settings.width_mobile }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {%- if block.settings.link != blank -%}
+          <a class="kahu-sh__image-link" href="{{ block.settings.link }}">{{ img }}</a>
+        {%- else -%}
+          {{ img }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+{%- endcase -%}
