@@ -1005,6 +1005,22 @@
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0
       }
+    },
+    "kahu_separator_43e8XT": {
+      "type": "kahu-separator",
+      "name": "Kahu separator",
+      "settings": {
+        "shape": "wave",
+        "direction": "up",
+        "mode": "stack",
+        "wave_color": "navy",
+        "wave_color_custom": "#f3efe5",
+        "bg_color": "teal",
+        "bg_color_custom": "#2fa4a9",
+        "height_desktop": 90,
+        "height_mobile": 40,
+        "flip": false
+      }
     }
   },
   "order": [
@@ -1017,6 +1033,7 @@
     "section_3MVibR",
     "kahu_separator_yR3zGg",
     "kahu_bottles_header",
-    "kahu_bottles_rail"
+    "kahu_bottles_rail",
+    "kahu_separator_43e8XT"
   ]
 }
