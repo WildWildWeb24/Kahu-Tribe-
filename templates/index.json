@@ -864,7 +864,7 @@
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "",
+        "background_color": "#F3EFE5",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -879,6 +879,22 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "kahu_separator_yR3zGg": {
+      "type": "kahu-separator",
+      "name": "Kahu separator",
+      "settings": {
+        "shape": "wave",
+        "direction": "up",
+        "mode": "stack",
+        "wave_color": "teal",
+        "wave_color_custom": "#f3efe5",
+        "bg_color": "cream",
+        "bg_color_custom": "#2fa4a9",
+        "height_desktop": 90,
+        "height_mobile": 40,
+        "flip": false
+      }
     }
   },
   "order": [
@@ -888,6 +904,7 @@
     "kahu_section_header_Yfyzjm",
     "kahu_columns_jxmUGE",
     "marquee_VGLqCT",
-    "section_3MVibR"
+    "section_3MVibR",
+    "kahu_separator_yR3zGg"
   ]
 }
