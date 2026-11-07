@@ -134,7 +134,11 @@
         "bg_color_custom": "#2fa4a9",
         "height_desktop": 90,
         "height_mobile": 40,
-        "flip": false
+        "flip": false,
+        "extra_bottom_desktop": 0,
+        "extra_bottom_mobile": 0,
+        "extra_top_desktop": 0,
+        "extra_top_mobile": 0
       }
     },
     "kahu_image_rail": {
@@ -895,7 +899,11 @@
         "bg_color_custom": "#2fa4a9",
         "height_desktop": 90,
         "height_mobile": 40,
-        "flip": false
+        "flip": false,
+        "extra_bottom_desktop": 0,
+        "extra_bottom_mobile": 0,
+        "extra_top_desktop": 0,
+        "extra_top_mobile": 0
       }
     },
     "kahu_bottles_header": {
@@ -1008,6 +1016,46 @@
     },
     "kahu_separator_43e8XT": {
       "type": "kahu-separator",
+      "blocks": {
+        "graphic_KMtAJx": {
+          "type": "graphic",
+          "settings": {
+            "image": "shopify://shop_images/02-sea-turtle_1.webp",
+            "alt": "",
+            "layer": "front",
+            "rotate": 0,
+            "flip": false,
+            "width_desktop": 240,
+            "x_desktop": 40,
+            "y_desktop": 36,
+            "hide_mobile": false,
+            "width_mobile": 120,
+            "x_mobile": 25,
+            "y_mobile": 50
+          }
+        },
+        "graphic_9Pzjdd": {
+          "type": "graphic",
+          "settings": {
+            "image": "shopify://shop_images/01-manta-ray_1.webp",
+            "alt": "",
+            "layer": "front",
+            "rotate": 0,
+            "flip": false,
+            "width_desktop": 240,
+            "x_desktop": 79,
+            "y_desktop": 72,
+            "hide_mobile": false,
+            "width_mobile": 120,
+            "x_mobile": 25,
+            "y_mobile": 50
+          }
+        }
+      },
+      "block_order": [
+        "graphic_KMtAJx",
+        "graphic_9Pzjdd"
+      ],
       "name": "Kahu separator",
       "settings": {
         "shape": "wave",
@@ -1019,7 +1067,11 @@
         "bg_color_custom": "#2fa4a9",
         "height_desktop": 90,
         "height_mobile": 40,
-        "flip": false
+        "flip": false,
+        "extra_bottom_desktop": 152,
+        "extra_bottom_mobile": 0,
+        "extra_top_desktop": 0,
+        "extra_top_mobile": 0
       }
     }
   },
