@@ -96,7 +96,31 @@
   {%- for block in section.blocks -%}
     {%- liquid
       assign g = block.settings
-      assign g_style = '--g-w-d: ' | append: g.width_desktop | append: 'px; --g-w-m: ' | append: g.width_mobile | append: 'px; --g-x-d: ' | append: g.x_desktop | append: '%; --g-y-d: ' | append: g.y_desktop | append: '%; --g-x-m: ' | append: g.x_mobile | append: '%; --g-y-m: ' | append: g.y_mobile | append: '%; --g-rot: ' | append: g.rotate | append: 'deg;'
+      assign w_d = g.width_desktop
+      assign scale_m = g.mobile_scale | default: 50
+
+      # Size: "auto" scales with the screen (design widths: desktop 1440, mobile 390); "fixed" uses exact px
+      if g.size_mode == 'fixed'
+        assign size_d = w_d | append: 'px'
+        assign size_m = g.width_mobile | append: 'px'
+      else
+        assign w_m = w_d | times: scale_m | divided_by: 100.0
+        assign vw_d = w_d | divided_by: 14.4
+        assign vw_m = w_m | divided_by: 3.9
+        assign size_d = 'min(' | append: w_d | append: 'px, ' | append: vw_d | append: 'vw)'
+        assign size_m = 'min(' | append: w_d | append: 'px, ' | append: vw_m | append: 'vw)'
+      endif
+
+      # Position on mobile: same as desktop, or its own
+      if g.mobile_position == 'custom'
+        assign x_m = g.x_mobile
+        assign y_m = g.y_mobile
+      else
+        assign x_m = g.x_desktop
+        assign y_m = g.y_desktop
+      endif
+
+      assign g_style = '--g-w-d: ' | append: size_d | append: '; --g-w-m: ' | append: size_m | append: '; --g-x-d: ' | append: g.x_desktop | append: '%; --g-y-d: ' | append: g.y_desktop | append: '%; --g-x-m: ' | append: x_m | append: '%; --g-y-m: ' | append: y_m | append: '%; --g-rot: ' | append: g.rotate | append: 'deg;'
     -%}
     <div
       class="kahu-sep__graphic kahu-sep__graphic--{{ g.layer }}{% if g.flip %} kahu-sep__graphic--flip{% endif %}{% if g.hide_mobile %} kahu-sep__graphic--hide-m{% endif %}"
@@ -300,16 +324,34 @@
         { "type": "range", "id": "rotate", "label": "Rotation", "min": -45, "max": 45, "step": 1, "unit": "deg", "default": 0 },
         { "type": "checkbox", "id": "flip", "label": "Mirror image", "default": false },
 
+        {
+          "type": "select", "id": "size_mode", "label": "Sizing",
+          "options": [
+            { "value": "auto", "label": "Auto (scales with screen width)" },
+            { "value": "fixed", "label": "Fixed pixels" }
+          ],
+          "default": "auto"
+        },
+
         { "type": "header", "content": "Desktop" },
-        { "type": "range", "id": "width_desktop", "label": "Width", "min": 40, "max": 600, "step": 10, "unit": "px", "default": 240 },
+        { "type": "range", "id": "width_desktop", "label": "Width", "min": 40, "max": 600, "step": 10, "unit": "px", "default": 240, "info": "Auto: size on a 1440px-wide screen; smaller screens shrink it" },
         { "type": "range", "id": "x_desktop", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 25 },
         { "type": "range", "id": "y_desktop", "label": "Vertical position", "min": -50, "max": 150, "step": 2, "unit": "%", "default": 50, "info": "0% = top of the separator, 100% = bottom; beyond overhangs the next/previous section" },
 
         { "type": "header", "content": "Mobile" },
         { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false },
-        { "type": "range", "id": "width_mobile", "label": "Width", "min": 20, "max": 400, "step": 10, "unit": "px", "default": 120 },
-        { "type": "range", "id": "x_mobile", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 25 },
-        { "type": "range", "id": "y_mobile", "label": "Vertical position", "min": -50, "max": 150, "step": 2, "unit": "%", "default": 50 }
+        { "type": "range", "id": "mobile_scale", "label": "Size on mobile", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 50, "info": "% of the desktop width, then scales with the phone's width", "visible_if": "{{ block.settings.size_mode != 'fixed' }}" },
+        { "type": "range", "id": "width_mobile", "label": "Width", "min": 20, "max": 400, "step": 10, "unit": "px", "default": 120, "visible_if": "{{ block.settings.size_mode == 'fixed' }}" },
+        {
+          "type": "select", "id": "mobile_position", "label": "Position on mobile",
+          "options": [
+            { "value": "same", "label": "Same as desktop" },
+            { "value": "custom", "label": "Set separately" }
+          ],
+          "default": "same"
+        },
+        { "type": "range", "id": "x_mobile", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 25, "visible_if": "{{ block.settings.mobile_position == 'custom' }}" },
+        { "type": "range", "id": "y_mobile", "label": "Vertical position", "min": -50, "max": 150, "step": 2, "unit": "%", "default": 50, "visible_if": "{{ block.settings.mobile_position == 'custom' }}" }
       ]
     }
   ],
