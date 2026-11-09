@@ -1218,7 +1218,19 @@
         "video_jeMMDq": {
           "type": "video",
           "settings": {
-            "video": "shopify://files/videos/instagram-video_16876485-9f1e-4167-ac17-20761b102a16.mp4",
+            "video": "shopify://files/videos/instagram-video-ddf364d1-5c33-44a7-9a07-21969e2d4c3f.mp4",
+            "video_url": "",
+            "caption": "",
+            "alt": "",
+            "size": "auto",
+            "link": "",
+            "link_label": "Watch on Instagram"
+          }
+        },
+        "video_TnDTVT": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/instagram-video-378e0477-f9e8-4db6-b36a-2ab5d30aa5c2.mp4",
             "video_url": "",
             "caption": "",
             "alt": "",
@@ -1234,7 +1246,8 @@
         "video_3",
         "video_4",
         "video_5",
-        "video_jeMMDq"
+        "video_jeMMDq",
+        "video_TnDTVT"
       ],
       "settings": {
         "pattern": "graded",
