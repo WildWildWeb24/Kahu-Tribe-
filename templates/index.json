@@ -1214,6 +1214,18 @@
             "link": "",
             "link_label": "Watch on Instagram"
           }
+        },
+        "video_jeMMDq": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/instagram-video_16876485-9f1e-4167-ac17-20761b102a16.mp4",
+            "video_url": "",
+            "caption": "",
+            "alt": "",
+            "size": "auto",
+            "link": "",
+            "link_label": "Watch on Instagram"
+          }
         }
       },
       "block_order": [
@@ -1221,7 +1233,8 @@
         "video_2",
         "video_3",
         "video_4",
-        "video_5"
+        "video_5",
+        "video_jeMMDq"
       ],
       "settings": {
         "pattern": "graded",
