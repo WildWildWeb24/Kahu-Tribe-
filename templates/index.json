@@ -1023,11 +1023,11 @@
             "image": "shopify://shop_images/02-sea-turtle_1.webp",
             "alt": "",
             "layer": "front",
-            "rotate": 0,
+            "rotate": -6,
             "flip": false,
             "width_desktop": 240,
             "x_desktop": 40,
-            "y_desktop": 36,
+            "y_desktop": 40,
             "hide_mobile": false,
             "width_mobile": 120,
             "x_mobile": 25,
@@ -1073,6 +1073,211 @@
         "extra_top_desktop": 0,
         "extra_top_mobile": 0
       }
+    },
+    "kahu_section_header_6KHbaF": {
+      "type": "kahu-section-header",
+      "blocks": {
+        "eyebrow_gcT6TD": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Multi-purpose towel poncho",
+            "column": "left"
+          }
+        },
+        "title_4gcGUh": {
+          "type": "title",
+          "settings": {
+            "text": "One Kahu many use",
+            "size": "md",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "button_PbXtMh": {
+          "type": "button",
+          "settings": {
+            "label": "Shop towel ponchos",
+            "link": "",
+            "style": "teal",
+            "arrow": true,
+            "full_mobile": false,
+            "column": "right"
+          }
+        },
+        "divider_jy8bdC": {
+          "type": "divider",
+          "settings": {
+            "color": "current",
+            "color_custom": "#031426",
+            "thickness": 1,
+            "space_desktop": 24,
+            "space_mobile": 20
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_gcT6TD",
+        "title_4gcGUh",
+        "button_PbXtMh",
+        "divider_jy8bdC"
+      ],
+      "name": "Kahu section header",
+      "settings": {
+        "layout": "split",
+        "full_width": false,
+        "right_align": "end",
+        "bg_color": "navy",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "cream",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 26,
+        "desktop_padding_bottom": 36,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 24,
+        "mobile_padding_bottom": 24,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
+    },
+    "kahu_columns_VJA4JH": {
+      "type": "kahu-columns",
+      "blocks": {
+        "column_zMRTxd": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Use_it_as_a_towel.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "Use it as a towel",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_pVrc8H": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Throw_it_like_a_mat.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "Throw it like a mat",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_RBK8ze": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Change_anywhere.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "Change anywhere",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_THWrKa": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/After_water_cover.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 50,
+            "overlay_style": "bottom",
+            "sticker_width": 60,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "",
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "After water cover",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        }
+      },
+      "block_order": [
+        "column_zMRTxd",
+        "column_pVrc8H",
+        "column_RBK8ze",
+        "column_THWrKa"
+      ],
+      "name": "Kahu columns",
+      "settings": {
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "mobile_layout": "slider",
+        "gap_desktop": 8,
+        "gap_mobile": 8,
+        "full_width": false,
+        "ratio": "314 / 492",
+        "radius": 0,
+        "title_size": "sm",
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 46,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 32,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
     }
   },
   "order": [
@@ -1086,6 +1291,8 @@
     "kahu_separator_yR3zGg",
     "kahu_bottles_header",
     "kahu_bottles_rail",
-    "kahu_separator_43e8XT"
+    "kahu_separator_43e8XT",
+    "kahu_section_header_6KHbaF",
+    "kahu_columns_VJA4JH"
   ]
 }
