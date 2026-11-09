@@ -13,6 +13,8 @@
   Pair with "Kahu section header" above it for the eyebrow / title / button row.
 {%- endcomment -%}
 
+{{ 'kahu-columns.css' | asset_url | stylesheet_tag }}
+
 {%- liquid
   assign s = section.settings
 
@@ -254,148 +256,6 @@
     </div>
   </div>
 </div>
-
-{% stylesheet %}
-.kahu-cols {
-position: relative;
-isolation: isolate;
-background: var(--kc-bg);
-color: var(--kc-fg);
-padding-top: var(--kc-pt);
-padding-bottom: var(--kc-pb);
-margin-top: var(--kc-mt);
-margin-bottom: var(--kc-mb);
-font-family: var(--kahu-font-sans);
-}
-.kahu-cols__bg { position: absolute; inset: 0; z-index: -1; }
-.kahu-cols__bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.kahu-cols__inner { padding: 0 var(--kahu-gutter, 20px); }
-.kahu-cols__inner--contained { max-width: calc(var(--kahu-content, 1280px) + var(--kahu-gutter, 20px) * 2); margin: 0 auto; }
-.kahu-cols__grid {
-display: grid;
-grid-template-columns: repeat(var(--kc-cols-m), minmax(0, 1fr));
-gap: var(--kc-gap);
-}
-@media (max-width: 749px) {
-.kahu-cols--slider-m .kahu-cols__inner { padding-right: 0; }
-.kahu-cols--slider-m .kahu-cols__grid {
-display: flex;
-overflow-x: auto;
-scroll-snap-type: x mandatory;
-scrollbar-width: none;
-padding-right: var(--kahu-gutter, 20px);
--webkit-overflow-scrolling: touch;
-}
-.kahu-cols--slider-m .kahu-cols__grid::-webkit-scrollbar { display: none; }
-.kahu-cols--slider-m .kahu-col { flex: 0 0 var(--kc-slide-w); scroll-snap-align: start; }
-}
-.kahu-col { position: relative; display: flex; flex-direction: column; min-width: 0; }
-.kahu-col__media { position: relative; }
-.kahu-col__frame {
-position: relative;
-aspect-ratio: var(--kc-card-ratio, 314 / 492);
-overflow: hidden;
-border-radius: var(--kc-radius);
-}
-.kahu-col__media--natural .kahu-col__frame { aspect-ratio: auto; }
-.kahu-col__img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.kahu-col__media--natural .kahu-col__img { height: auto; }
-.kahu-col__img--placeholder { background: rgb(0 0 0 / 0.06); }
-.kahu-col__overlay { position: absolute; inset: 0; pointer-events: none; }
-.kahu-col__overlay--bottom { background: linear-gradient(0deg, rgb(0 0 0 / var(--kc-overlay)) 0%, rgb(0 0 0 / 0) 60%); }
-.kahu-col__overlay--top { background: linear-gradient(180deg, rgb(0 0 0 / var(--kc-overlay)) 0%, rgb(0 0 0 / 0) 60%); }
-.kahu-col__overlay--diagonal { background: linear-gradient(160deg, rgb(0 0 0 / var(--kc-overlay)) 0%, rgb(0 0 0 / 0) 55%); }
-.kahu-col__overlay--flat { background: rgb(0 0 0 / var(--kc-overlay)); }
-.kahu-col__cover-link { position: absolute; inset: 0; z-index: 1; }
-.kahu-col__cover-link:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 2px; }
-.kahu-col__sticker {
-position: absolute;
-z-index: 2;
-width: var(--kc-sticker-w, 60%);
-height: auto;
-rotate: var(--kc-sticker-rot, 0deg);
-pointer-events: none;
-}
-.kahu-col__sticker--top-left { top: 6%; left: 6%; }
-.kahu-col__sticker--top-right { top: 6%; right: 6%; }
-.kahu-col__sticker--top-center { top: 6%; left: 50%; translate: -50% 0; }
-.kahu-col__sticker--center { top: 50%; left: 50%; translate: -50% -50%; }
-.kahu-col__sticker--bottom-left { bottom: 6%; left: 6%; }
-.kahu-col__sticker--bottom-right { bottom: 6%; right: 6%; }
-.kahu-col__sticker--bottom-center { bottom: 6%; left: 50%; translate: -50% 0; }
-.kahu-col__inside {
-position: absolute;
-inset: 0;
-z-index: 2;
-display: flex;
-flex-direction: column;
-gap: 8px;
-padding: 20px;
-color: var(--kc-in-fg);
-pointer-events: none;
-}
-.kahu-col__inside a { pointer-events: auto; }
-.kahu-col__inside--top-left { justify-content: flex-start; align-items: flex-start; }
-.kahu-col__inside--top-right { justify-content: flex-start; align-items: flex-end; text-align: right; }
-.kahu-col__inside--bottom-left { justify-content: flex-end; align-items: flex-start; }
-.kahu-col__inside--bottom-right { justify-content: flex-end; align-items: flex-end; text-align: right; }
-.kahu-col__inside--center { justify-content: center; align-items: center; text-align: center; }
-.kahu-col__inside--split { justify-content: space-between; align-items: flex-start; }
-.kahu-col__logo { width: var(--kc-logo-w, 40px); height: auto; display: block; flex-shrink: 0; }
-.kahu-col__brand { display: flex; flex-direction: column; align-items: inherit; gap: 8px; }
-.kahu-col__brand--beside { flex-direction: row; align-items: center; gap: var(--kc-div-gap, 12px); }
-.kahu-col__divider { flex-shrink: 0; height: var(--kc-div-h, 48px); }
-.kahu-col__divider--straight { border-left: var(--kc-div-w, 1px) solid currentColor; }
-.kahu-col__divider--dotted { border-left: var(--kc-div-w, 1px) dotted currentColor; }
-.kahu-col__divider--dashed { border-left: var(--kc-div-w, 1px) dashed currentColor; }
-.kahu-col__divider--curved { width: 12px; overflow: visible; }
-.kahu-col__in-title { margin: 0; font-weight: 700; font-size: calc(var(--kc-in-title-d, 40px) * 0.75); line-height: 1; color: inherit; }
-.kahu-col__title--moved { font-size: calc(var(--kc-in-title-d, 40px) * 0.75); }
-.kahu-col__in-text { font-size: 14px; line-height: 1.2; }
-.kahu-col__in-text p { margin: 0; }
-.kahu-col__in-text strong { font-size: 16px; font-weight: 700; }
-.kahu-col__in-text p + p { margin-top: 4px; }
-.kahu-col__btn--inside { margin-top: auto; }
-.kahu-col__inside--split .kahu-col__btn--inside { margin-top: auto; }
-.kahu-col__below { padding-top: 10px; display: flex; flex-direction: column; gap: 8px; }
-.kahu-col__title { margin: 0; font-weight: 700; line-height: 1; color: inherit; }
-.kahu-col__title a { color: inherit; text-decoration: none; }
-.kahu-cols--title-sm .kahu-col__title { font-size: 18px; }
-.kahu-cols--title-md .kahu-col__title { font-size: 24px; }
-.kahu-cols--title-lg .kahu-col__title { font-size: 28px; }
-.kahu-col__text { font-size: 15px; line-height: 1.3; }
-.kahu-col__text p { margin: 0; }
-.kahu-col__btn { margin-top: 6px; }
-.kahu-col__btn--full .kahu-btn { width: 100%; min-width: 0; }
-.kahu-cols .kahu-col__btn .kahu-btn {
-height: var(--kc-btn-h, 44px);
-padding: 0 var(--kc-btn-px, 16px);
-width: var(--kc-btn-w, 176px);
-min-width: 0;
-gap: 16px;
-}
-.kahu-cols .kahu-col__btn .kahu-btn__label { font-size: var(--kc-btn-fs, 12px); }
-.kahu-cols--btn-auto .kahu-col__btn .kahu-btn { width: auto; }
-.kahu-cols--btn-full .kahu-col__btn .kahu-btn,
-.kahu-cols .kahu-col__btn--full .kahu-btn { width: 100%; }
-.kahu-cols .kahu-col__btn--inside { align-self: stretch; }
-.kahu-cols--btn-fixed .kahu-col__btn--inside,
-.kahu-cols--btn-auto .kahu-col__btn--inside { align-self: auto; }
-@media (min-width: 750px) {
-.kahu-cols__grid { grid-template-columns: repeat(var(--kc-cols-d), minmax(0, 1fr)); }
-.kahu-col__inside { padding: 24px; }
-.kahu-col__in-title,
-.kahu-col__title--moved { font-size: var(--kc-in-title-d, 40px); }
-.kahu-cols--title-sm .kahu-col__title { font-size: 20px; }
-.kahu-cols--title-md .kahu-col__title { font-size: 32px; }
-.kahu-cols--title-lg .kahu-col__title { font-size: 40px; }
-.kahu-col__text { font-size: 16px; }
-}
-@media (hover: hover) {
-.kahu-col__img { transition: scale 0.5s ease; }
-.kahu-col:has(.kahu-col__cover-link:hover) .kahu-col__img { scale: 1.03; }
-}
-{% endstylesheet %}
 
 {% schema %}
 {"name":"Kahu columns","tag":"section","class":"kahu-columns-section","max_blocks":12,"settings":[{"type":"header","content":"Columns"},{"type":"range","id":"columns_desktop","label":"Columns (desktop)","min":1,"max":6,"step":1,"default":4},{"type":"select","id":"columns_mobile","label":"Columns (mobile)","options":[{"value":"1","label":"1"},{"value":"2","label":"2"}],"default":"1"},{"type":"select","id":"mobile_layout","label":"Mobile layout","options":[{"value":"slider","label":"Swipe row"},{"value":"grid","label":"Stacked grid"}],"default":"slider"},{"type":"range","id":"gap_desktop","label":"Gap (desktop)","min":0,"max":60,"step":2,"unit":"px","default":8},{"type":"range","id":"gap_mobile","label":"Gap (mobile)","min":0,"max":40,"step":2,"unit":"px","default":8},{"type":"checkbox","id":"full_width","label":"Full width (no max width)","default":false},{"type":"header","content":"Cards"},{"type":"select","id":"ratio","label":"Image shape","options":[{"value":"314 / 492","label":"Tall (Benefits, 314 × 492)"},{"value":"413 / 628","label":"Tall (Size cards, 413 × 628)"},{"value":"314 / 390","label":"Portrait (Occasions, 314 × 390)"},{"value":"4 / 5","label":"Portrait 4:5"},{"value":"1 / 1","label":"Square"},{"value":"16 / 9","label":"Landscape 16:9"},{"value":"natural","label":"Image's own shape"}],"default":"314 / 492","info":"Each column can override this"},{"type":"range","id":"radius","label":"Corner radius","min":0,"max":24,"step":1,"unit":"px","default":0},{"type":"select","id":"title_size","label":"Title size (below image)","options":[{"value":"sm","label":"Small (20px)"},{"value":"md","label":"Medium (32px)"},{"value":"lg","label":"Large (40px)"}],"default":"sm"},{"type":"header","content":"Card buttons"},{"type":"select","id":"btn_width","label":"Button width","options":[{"value":"fixed","label":"Fixed"},{"value":"auto","label":"Fit the text"},{"value":"full","label":"Full card width"}],"default":"fixed"},{"type":"range","id":"btn_width_fixed","label":"Fixed width","min":120,"max":320,"step":4,"unit":"px","default":176,"visible_if":"{{ section.settings.btn_width == 'fixed' }}"},{"type":"range","id":"btn_height","label":"Height (desktop)","min":32,"max":64,"step":2,"unit":"px","default":44},{"type":"range","id":"btn_height_mobile","label":"Height (mobile)","min":28,"max":56,"step":2,"unit":"px","default":40},{"type":"range","id":"btn_padding","label":"Side padding","min":8,"max":40,"step":2,"unit":"px","default":16},{"type":"range","id":"btn_font","label":"Text size","min":10,"max":18,"step":1,"unit":"px","default":12},{"type":"header","content":"Colours"},{"type":"select","id":"bg_color","label":"Background","options":[{"value":"cream","label":"Cream"},{"value":"navy","label":"Navy"},{"value":"ink","label":"Ink"},{"value":"teal","label":"Teal"},{"value":"yellow","label":"Yellow"},{"value":"sea","label":"Sea"},{"value":"white","label":"White"},{"value":"coral","label":"Coral"},{"value":"transparent","label":"Transparent"},{"value":"custom","label":"Custom"}],"default":"cream"},{"type":"color","id":"bg_color_custom","label":"Custom background","default":"#f3efe5","visible_if":"{{ section.settings.bg_color == 'custom' }}"},{"type":"image_picker","id":"bg_image","label":"Background image"},{"type":"select","id":"text_color","label":"Text (below images)","options":[{"value":"navy","label":"Navy"},{"value":"cream","label":"Cream"},{"value":"ink","label":"Ink"},{"value":"white","label":"White"},{"value":"custom","label":"Custom"}],"default":"navy"},{"type":"color","id":"text_color_custom","label":"Custom text colour","default":"#031426","visible_if":"{{ section.settings.text_color == 'custom' }}"},{"type":"header","content":"Desktop spacing"},{"type":"range","id":"desktop_padding_top","label":"Padding top","min":0,"max":200,"step":2,"unit":"px","default":0},{"type":"range","id":"desktop_padding_bottom","label":"Padding bottom","min":0,"max":200,"step":2,"unit":"px","default":46},{"type":"range","id":"desktop_margin_top","label":"Margin top","min":0,"max":200,"step":2,"unit":"px","default":0},{"type":"range","id":"desktop_margin_bottom","label":"Margin bottom","min":0,"max":200,"step":2,"unit":"px","default":0},{"type":"header","content":"Mobile spacing"},{"type":"range","id":"mobile_padding_top","label":"Padding top","min":0,"max":160,"step":2,"unit":"px","default":0},{"type":"range","id":"mobile_padding_bottom","label":"Padding bottom","min":0,"max":160,"step":2,"unit":"px","default":32},{"type":"range","id":"mobile_margin_top","label":"Margin top","min":0,"max":160,"step":2,"unit":"px","default":0},{"type":"range","id":"mobile_margin_bottom","label":"Margin bottom","min":0,"max":160,"step":2,"unit":"px","default":0}],"blocks":[{"type":"column","name":"Column","settings":[{"type":"header","content":"Image"},{"type":"image_picker","id":"image","label":"Image","info":"WebP"},{"type":"image_picker","id":"image_mobile","label":"Image (mobile, optional)"},{"type":"text","id":"alt","label":"Alt text"},{"type":"select","id":"ratio","label":"Image shape","options":[{"value":"inherit","label":"Same as section"},{"value":"314 / 492","label":"Tall (Benefits)"},{"value":"413 / 628","label":"Tall (Size cards)"},{"value":"314 / 390","label":"Portrait (Occasions)"},{"value":"4 / 5","label":"Portrait 4:5"},{"value":"1 / 1","label":"Square"},{"value":"16 / 9","label":"Landscape 16:9"},{"value":"natural","label":"Image's own shape"}],"default":"inherit"},{"type":"url","id":"link","label":"Card link","info":"Makes the whole image clickable"},{"type":"range","id":"overlay","label":"Dark overlay","min":0,"max":90,"step":5,"unit":"%","default":0},{"type":"select","id":"overlay_style","label":"Overlay style","options":[{"value":"bottom","label":"Gradient from bottom"},{"value":"top","label":"Gradient from top"},{"value":"diagonal","label":"Diagonal from top-left"},{"value":"flat","label":"Flat"}],"default":"bottom"},{"type":"header","content":"Sticker"},{"type":"image_picker","id":"sticker","label":"Sticker graphic","info":"Transparent WebP/PNG"},{"type":"range","id":"sticker_width","label":"Sticker width","min":10,"max":100,"step":5,"unit":"%","default":60},{"type":"select","id":"sticker_position","label":"Sticker position","options":[{"value":"top-left","label":"Top left"},{"value":"top-center","label":"Top centre"},{"value":"top-right","label":"Top right"},{"value":"center","label":"Centre"},{"value":"bottom-left","label":"Bottom left"},{"value":"bottom-center","label":"Bottom centre"},{"value":"bottom-right","label":"Bottom right"}],"default":"bottom-left"},{"type":"range","id":"sticker_rotate","label":"Sticker rotation","min":-20,"max":20,"step":1,"unit":"deg","default":0},{"type":"header","content":"Inside the image"},{"type":"image_picker","id":"in_logo","label":"Logo / icon"},{"type":"range","id":"in_logo_width","label":"Logo width","min":20,"max":160,"step":2,"unit":"px","default":40},{"type":"text","id":"in_title","label":"Title","info":"e.g. Max. Use | for a line break"},{"type":"select","id":"in_title_position","label":"Title position","options":[{"value":"beside","label":"Next to the logo"},{"value":"below_logo","label":"Below the logo"},{"value":"below_image","label":"Below the image"}],"default":"beside"},{"type":"range","id":"in_title_size","label":"Title size (desktop)","min":20,"max":64,"step":2,"unit":"px","default":40,"info":"Mobile uses 75%"},{"type":"select","id":"in_divider","label":"Divider between logo and title","options":[{"value":"none","label":"None"},{"value":"straight","label":"Straight line"},{"value":"dotted","label":"Dotted line"},{"value":"dashed","label":"Dashed line"},{"value":"curved","label":"Curved line"}],"default":"straight","visible_if":"{{ block.settings.in_title_position == 'beside' }}"},{"type":"range","id":"in_divider_height","label":"Divider height","min":16,"max":120,"step":2,"unit":"px","default":44,"visible_if":"{{ block.settings.in_title_position == 'beside' and block.settings.in_divider != 'none' }}"},{"type":"range","id":"in_divider_thickness","label":"Divider thickness","min":1,"max":6,"step":1,"unit":"px","default":1,"visible_if":"{{ block.settings.in_title_position == 'beside' and block.settings.in_divider != 'none' }}"},{"type":"range","id":"in_divider_gap","label":"Space around divider","min":4,"max":40,"step":2,"unit":"px","default":12,"visible_if":"{{ block.settings.in_title_position == 'beside' }}"},{"type":"richtext","id":"in_text","label":"Text","info":"e.g. bold \"6ft & above\", then \"H 120cm × W 90cm\""},{"type":"select","id":"in_position","label":"Position","options":[{"value":"split","label":"Top, button at bottom"},{"value":"top-left","label":"Top left"},{"value":"top-right","label":"Top right"},{"value":"center","label":"Centre"},{"value":"bottom-left","label":"Bottom left"},{"value":"bottom-right","label":"Bottom right"}],"default":"split"},{"type":"select","id":"in_color","label":"Text colour","options":[{"value":"cream","label":"Cream"},{"value":"white","label":"White"},{"value":"navy","label":"Navy"}],"default":"cream"},{"type":"header","content":"Below the image"},{"type":"text","id":"title","label":"Title"},{"type":"richtext","id":"text","label":"Description"},{"type":"header","content":"Button"},{"type":"text","id":"button_label","label":"Label"},{"type":"url","id":"button_link","label":"Link","info":"Empty = card link"},{"type":"select","id":"button_style","label":"Style","options":[{"value":"white","label":"White"},{"value":"cream","label":"Cream"},{"value":"teal","label":"Teal"},{"value":"navy","label":"Navy"},{"value":"outline","label":"Outline"}],"default":"cream"},{"type":"select","id":"button_position","label":"Position","options":[{"value":"inside","label":"Inside the image"},{"value":"below","label":"Below the image"}],"default":"inside"},{"type":"checkbox","id":"button_full","label":"Full width button","default":false}]}],"presets":[{"name":"Kahu columns","blocks":[{"type":"column","settings":{"title":"Use it as a towel","overlay":50}},{"type":"column","settings":{"title":"Throw it like a mat","overlay":50}},{"type":"column","settings":{"title":"Change anywhere","overlay":50}},{"type":"column","settings":{"title":"After water cover","overlay":50}}]}]}
