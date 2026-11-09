@@ -1162,7 +1162,6 @@
             "video_url": "",
             "caption": "",
             "alt": "",
-            "size": "auto",
             "link": "",
             "link_label": "Watch on Instagram"
           }
@@ -1174,7 +1173,6 @@
             "video_url": "",
             "caption": "",
             "alt": "",
-            "size": "auto",
             "link": "",
             "link_label": "Watch on Instagram"
           }
@@ -1186,7 +1184,6 @@
             "video_url": "",
             "caption": "",
             "alt": "",
-            "size": "auto",
             "link": "",
             "link_label": "Watch on Instagram"
           }
@@ -1198,7 +1195,6 @@
             "video_url": "",
             "caption": "",
             "alt": "",
-            "size": "auto",
             "link": "",
             "link_label": "Watch on Instagram"
           }
@@ -1210,7 +1206,6 @@
             "video_url": "",
             "caption": "",
             "alt": "",
-            "size": "auto",
             "link": "",
             "link_label": "Watch on Instagram"
           }
@@ -1222,7 +1217,6 @@
             "video_url": "",
             "caption": "",
             "alt": "",
-            "size": "auto",
             "link": "",
             "link_label": "Watch on Instagram"
           }
@@ -1234,7 +1228,6 @@
             "video_url": "",
             "caption": "",
             "alt": "",
-            "size": "auto",
             "link": "",
             "link_label": "Watch on Instagram"
           }
@@ -1251,6 +1244,7 @@
       ],
       "settings": {
         "pattern": "graded",
+        "start": "center",
         "width_small": 188,
         "width_medium": 220,
         "width_large": 260,
@@ -1258,7 +1252,6 @@
         "ratio": "188 / 308",
         "radius": 8,
         "align": "center",
-        "start": "center",
         "gap_desktop": 18,
         "gap_mobile": 12,
         "autoplay": true,
@@ -1275,6 +1268,72 @@
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0
       }
+    },
+    "kahu_separator_EtHiB9": {
+      "type": "kahu-separator",
+      "blocks": {
+        "graphic_aLCt83": {
+          "type": "graphic",
+          "settings": {
+            "image": "shopify://shop_images/03-octopus-tentacle_1.webp",
+            "alt": "",
+            "layer": "front",
+            "rotate": 0,
+            "flip": false,
+            "size_mode": "auto",
+            "width_desktop": 240,
+            "x_desktop": 8,
+            "y_desktop": -50,
+            "hide_mobile": false,
+            "mobile_scale": 60,
+            "width_mobile": 200,
+            "mobile_position": "same",
+            "x_mobile": 30,
+            "y_mobile": 30
+          }
+        },
+        "graphic_cUNWiC": {
+          "type": "graphic",
+          "settings": {
+            "image": "shopify://shop_images/01-manta-ray_1.webp",
+            "alt": "",
+            "layer": "front",
+            "rotate": 0,
+            "flip": false,
+            "size_mode": "auto",
+            "width_desktop": 240,
+            "x_desktop": 79,
+            "y_desktop": 66,
+            "hide_mobile": false,
+            "mobile_scale": 50,
+            "width_mobile": 240,
+            "mobile_position": "same",
+            "x_mobile": 79,
+            "y_mobile": 72
+          }
+        }
+      },
+      "block_order": [
+        "graphic_aLCt83",
+        "graphic_cUNWiC"
+      ],
+      "name": "Kahu separator",
+      "settings": {
+        "shape": "wave",
+        "direction": "up",
+        "mode": "stack",
+        "wave_color": "cream",
+        "wave_color_custom": "#f3efe5",
+        "bg_color": "navy",
+        "bg_color_custom": "#2fa4a9",
+        "height_desktop": 90,
+        "height_mobile": 40,
+        "flip": false,
+        "extra_bottom_desktop": 152,
+        "extra_bottom_mobile": 0,
+        "extra_top_desktop": 0,
+        "extra_top_mobile": 0
+      }
     }
   },
   "order": [
@@ -1290,6 +1349,7 @@
     "kahu_bottles_rail",
     "kahu_separator_43e8XT",
     "kahu_section_header_6KHbaF",
-    "kahu_video_stories"
+    "kahu_video_stories",
+    "kahu_separator_EtHiB9"
   ]
 }
