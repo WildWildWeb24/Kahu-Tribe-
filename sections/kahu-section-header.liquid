@@ -151,6 +151,21 @@
 
   .kahu-sh__button--full-m .kahu-btn { width: 100%; }
 
+  /* Social links (e.g. "Follow us" + icons in Kahu TV) */
+  .kahu-sh__social { display: flex; flex-direction: column; gap: 10px; }
+  .kahu-sh__social--inline { flex-direction: row; align-items: center; gap: 16px; }
+  .kahu-sh__col--right .kahu-sh__social--above { align-items: flex-end; }
+  .kahu-sh__row--center .kahu-sh__social { align-items: center; }
+  .kahu-sh__social-label { margin: 0; }
+  .kahu-sh__social-label--eyebrow { font-family: var(--kahu-font-mono); font-weight: 500; font-size: 12px; line-height: 16px; }
+  .kahu-sh__social-label--text { font-weight: 700; font-size: 14px; line-height: 20px; }
+  .kahu-sh__social-list { display: flex; gap: var(--ksh-icon-gap, 12px); margin: 0; padding: 0; list-style: none; }
+  .kahu-sh__social-link { display: flex; color: inherit; transition: opacity 0.2s ease; }
+  .kahu-sh__social-link:hover { opacity: 0.75; }
+  .kahu-sh__social-link:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
+  .kahu-sh__social-link svg { width: var(--ksh-icon, 24px); height: var(--ksh-icon, 24px); fill: currentColor; }
+  .kahu-sh__social-link--empty { opacity: 0.35; pointer-events: none; }
+
   /* Centred layout: everything stacked in the middle (e.g. "Crafted from 20 plastic bottles") */
   .kahu-sh__row--center { align-items: center; text-align: center; }
   .kahu-sh__row--center .kahu-sh__col { align-items: center; }
@@ -297,6 +312,34 @@
         },
         { "type": "checkbox", "id": "arrow", "label": "Show arrow", "default": true },
         { "type": "checkbox", "id": "full_mobile", "label": "Full width on mobile", "default": false },
+        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social links",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Follow us" },
+        {
+          "type": "select", "id": "label_style", "label": "Label style",
+          "options": [ { "value": "eyebrow", "label": "Eyebrow (DM Mono)" }, { "value": "text", "label": "Bold text" } ],
+          "default": "eyebrow"
+        },
+        {
+          "type": "select", "id": "layout", "label": "Layout",
+          "options": [ { "value": "above", "label": "Label above icons" }, { "value": "inline", "label": "Label beside icons" } ],
+          "default": "above"
+        },
+        { "type": "header", "content": "Links", "info": "Only icons with a link are shown" },
+        { "type": "url", "id": "link_instagram", "label": "Instagram" },
+        { "type": "url", "id": "link_facebook", "label": "Facebook" },
+        { "type": "url", "id": "link_youtube", "label": "YouTube" },
+        { "type": "url", "id": "link_tiktok", "label": "TikTok" },
+        { "type": "url", "id": "link_x", "label": "X (Twitter)" },
+        { "type": "url", "id": "link_pinterest", "label": "Pinterest" },
+        { "type": "header", "content": "Icons" },
+        { "type": "range", "id": "icon_size", "label": "Icon size", "min": 16, "max": 48, "step": 2, "unit": "px", "default": 24 },
+        { "type": "range", "id": "gap", "label": "Space between icons", "min": 4, "max": 40, "step": 2, "unit": "px", "default": 12 },
         { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" }
       ]
     },

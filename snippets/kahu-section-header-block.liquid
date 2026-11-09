@@ -36,6 +36,51 @@
       </div>
     {%- endif -%}
 
+  {%- when 'social' -%}
+    {%- liquid
+      assign platforms = 'instagram,facebook,youtube,tiktok,x,pinterest' | split: ','
+      assign any_link = false
+      for p in platforms
+        assign key = 'link_' | append: p
+        if block.settings[key] != blank
+          assign any_link = true
+        endif
+      endfor
+    -%}
+    {%- if any_link or request.design_mode -%}
+      <div
+        class="kahu-sh__social kahu-sh__social--{{ block.settings.layout }}"
+        style="--ksh-icon: {{ block.settings.icon_size }}px; --ksh-icon-gap: {{ block.settings.gap }}px;"
+        {{ block.shopify_attributes }}
+      >
+        {%- if block.settings.label != blank -%}
+          <p class="kahu-sh__social-label kahu-sh__social-label--{{ block.settings.label_style }}">{{ block.settings.label | escape }}</p>
+        {%- endif -%}
+        <ul class="kahu-sh__social-list" role="list">
+          {%- for p in platforms -%}
+            {%- assign key = 'link_' | append: p -%}
+            {%- assign url = block.settings[key] -%}
+            {%- if url != blank or any_link == false -%}
+              <li>
+                <a
+                  class="kahu-sh__social-link{% if url == blank %} kahu-sh__social-link--empty{% endif %}"
+                  href="{{ url | default: '#' }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="{{ p | capitalize }}"
+                >
+                  <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+                    {%- render 'icon', icon: p -%}
+                  </svg>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if any_link == false and forloop.index == 4 -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+
   {%- when 'image' -%}
     {%- if block.settings.image -%}
       {%- capture img -%}
