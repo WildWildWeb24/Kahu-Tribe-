@@ -1481,6 +1481,90 @@
         "padding-block-start": 40,
         "padding-block-end": 40
       }
+    },
+    "kahu_video_stories": {
+      "type": "kahu-video-stories",
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "size": "auto",
+            "link_label": "Watch on Instagram"
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "size": "auto",
+            "link_label": "Watch on Instagram"
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "size": "auto",
+            "link_label": "Watch on Instagram"
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "size": "auto",
+            "link_label": "Watch on Instagram"
+          }
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "size": "auto",
+            "link_label": "Watch on Instagram"
+          }
+        },
+        "video_6": {
+          "type": "video",
+          "settings": {
+            "size": "auto",
+            "link_label": "Watch on Instagram"
+          }
+        },
+        "video_7": {
+          "type": "video",
+          "settings": {
+            "size": "auto",
+            "link_label": "Watch on Instagram"
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5",
+        "video_6",
+        "video_7"
+      ],
+      "settings": {
+        "pattern": "graded",
+        "width_small": 188,
+        "width_medium": 220,
+        "width_large": 260,
+        "mobile_scale": 70,
+        "ratio": "188 / 308",
+        "radius": 8,
+        "align": "center",
+        "start": "center",
+        "gap_desktop": 18,
+        "gap_mobile": 12,
+        "autoplay": true,
+        "show_play": true,
+        "click_action": "popup",
+        "bg_color": "navy",
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 110,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 56
+      }
     }
   },
   "order": [
@@ -1496,6 +1580,7 @@
     "kahu_bottles_rail",
     "kahu_separator_43e8XT",
     "kahu_section_header_6KHbaF",
+    "kahu_video_stories",
     "layered_slideshow_jDYHdp"
   ]
 }
