@@ -1245,6 +1245,10 @@
       "settings": {
         "pattern": "graded",
         "start": "center",
+        "show_arrows": true,
+        "edge_fade": true,
+        "auto_advance": 0,
+        "aria_label": "Kahu TV videos",
         "width_small": 188,
         "width_medium": 220,
         "width_large": 260,
@@ -1329,40 +1333,40 @@
         "height_desktop": 90,
         "height_mobile": 72,
         "flip": false,
-        "extra_bottom_desktop": 152,
+        "extra_bottom_desktop": 0,
         "extra_bottom_mobile": 0,
-        "extra_top_desktop": 0,
+        "extra_top_desktop": 32,
         "extra_top_mobile": 0
       }
     },
     "kahu_section_header_YKac9L": {
       "type": "kahu-section-header",
       "blocks": {
+        "image_WHWNYN": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/sizes.webp",
+            "width_desktop": 140,
+            "width_mobile": 90,
+            "link": "",
+            "alt": "",
+            "column": "right"
+          }
+        },
         "eyebrow_8etjxd": {
           "type": "eyebrow",
           "settings": {
-            "text": "Multi-purpose towel poncho",
+            "text": "Find your size",
             "column": "left"
           }
         },
         "title_E8xNGh": {
           "type": "title",
           "settings": {
-            "text": "One Kahu many use",
+            "text": "Made for all body types",
             "size": "md",
             "tag": "h2",
             "column": "left"
-          }
-        },
-        "button_D7wDba": {
-          "type": "button",
-          "settings": {
-            "label": "Shop towel ponchos",
-            "link": "",
-            "style": "teal",
-            "arrow": true,
-            "full_mobile": false,
-            "column": "right"
           }
         },
         "divider_6WL3Rj": {
@@ -1377,9 +1381,9 @@
         }
       },
       "block_order": [
+        "image_WHWNYN",
         "eyebrow_8etjxd",
         "title_E8xNGh",
-        "button_D7wDba",
         "divider_6WL3Rj"
       ],
       "name": "Kahu section header",
@@ -1400,6 +1404,133 @@
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0
       }
+    },
+    "kahu_columns_xKYD4q": {
+      "type": "kahu-columns",
+      "blocks": {
+        "column_RmY8e9": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Max.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 0,
+            "overlay_style": "bottom",
+            "sticker_width": 70,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo": "shopify://shop_images/logo-unit.svg",
+            "in_logo_width": 40,
+            "in_title": "Max",
+            "in_text": "<p><strong>Best for&nbsp;<br/>6ft & above</strong></p><p>H = 120cm<br/>W= 90cm</p>",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "",
+            "text": "",
+            "button_label": "Shop Max",
+            "button_link": "shopify://collections/kahu-max",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_xzG7hx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Regular.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 0,
+            "overlay_style": "bottom",
+            "sticker_width": 70,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo": "shopify://shop_images/logo-unit.svg",
+            "in_logo_width": 40,
+            "in_title": "Regular",
+            "in_title_position": "beside",
+            "in_title_size": 40,
+            "in_divider": "straight",
+            "in_divider_height": 44,
+            "in_divider_thickness": 1,
+            "in_divider_gap": 12,
+            "in_text": "<p><strong>Best for&nbsp;<br/>4.5ft till 6ft</strong></p><p>H = 110cm<br/>W= 80cm</p>",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "",
+            "text": "",
+            "button_label": "Shop Regular",
+            "button_link": "shopify://collections/kahu-regular",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        },
+        "column_jj4Dq4": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Mini.webp",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 0,
+            "overlay_style": "bottom",
+            "sticker_width": 70,
+            "sticker_position": "bottom-left",
+            "sticker_rotate": 0,
+            "in_logo": "shopify://shop_images/logo-unit.svg",
+            "in_logo_width": 40,
+            "in_title": "Mini",
+            "in_title_position": "beside",
+            "in_title_size": 40,
+            "in_divider": "straight",
+            "in_divider_height": 44,
+            "in_divider_thickness": 1,
+            "in_divider_gap": 12,
+            "in_text": "<p><strong>Best for&nbsp;<br/>3ft till 4.5ft</strong></p><p>H = 75cm<br/>W= 75cm</p>",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "",
+            "text": "",
+            "button_label": "Shop Mini",
+            "button_link": "shopify://collections/kahu-mini",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false
+          }
+        }
+      },
+      "block_order": [
+        "column_RmY8e9",
+        "column_xzG7hx",
+        "column_jj4Dq4"
+      ],
+      "name": "Kahu columns",
+      "settings": {
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "mobile_layout": "slider",
+        "gap_desktop": 8,
+        "gap_mobile": 8,
+        "full_width": false,
+        "ratio": "314 / 492",
+        "radius": 0,
+        "title_size": "sm",
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 0,
+        "desktop_padding_bottom": 46,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 0,
+        "mobile_padding_bottom": 32,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
     }
   },
   "order": [
@@ -1417,6 +1548,7 @@
     "kahu_section_header_6KHbaF",
     "kahu_video_stories",
     "kahu_separator_EtHiB9",
-    "kahu_section_header_YKac9L"
+    "kahu_section_header_YKac9L",
+    "kahu_columns_xKYD4q"
   ]
 }
