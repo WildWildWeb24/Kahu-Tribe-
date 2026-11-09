@@ -1,0 +1,57 @@
+/* Kahu separator (shared: section + blocks inside other Kahu sections) */
+  .kahu-sep {
+    position: relative;
+    z-index: 2; /* graphics may overhang the neighbouring sections */
+    display: flex;
+    flex-direction: column;
+    background: var(--kahu-sep-bg);
+    pointer-events: none;
+  }
+
+  .kahu-sep__band--top { height: var(--kahu-sep-top); background: var(--kahu-sep-top-color); }
+  .kahu-sep__band--bottom { height: var(--kahu-sep-bottom); background: var(--kahu-sep-bottom-color); }
+  .kahu-sep__curve { position: relative; height: var(--kahu-sep-h); }
+
+  /* Plain space: one solid block in the curve colour */
+  .kahu-sep--flat,
+  .kahu-sep--flat .kahu-sep__band { background: var(--kahu-sep-fill); }
+
+  /* Overlap: the curve (and any top band) sits on top of the bottom edge of the section above */
+  .kahu-sep--overlap {
+    margin-top: calc((var(--kahu-sep-h) + var(--kahu-sep-top)) * -1);
+    z-index: 3;
+  }
+
+  .kahu-sep .kahu-wave { z-index: 2; }
+
+  /* Decorative graphics */
+  .kahu-sep__graphic {
+    position: absolute;
+    left: var(--g-x-m);
+    top: var(--g-y-m);
+    width: var(--g-w-m);
+    translate: -50% -50%;
+    rotate: var(--g-rot, 0deg);
+    line-height: 0;
+  }
+  .kahu-sep__graphic img,
+  .kahu-sep__graphic svg { display: block; width: 100%; height: auto; }
+  .kahu-sep__graphic--flip img { transform: scaleX(-1); }
+  .kahu-sep__graphic--front { z-index: 3; }
+  .kahu-sep__graphic--back { z-index: 1; }
+  .kahu-sep__placeholder { aspect-ratio: 4 / 3; background: rgb(0 0 0 / 0.08); }
+
+  @media (max-width: 749px) {
+    .kahu-sep__graphic--hide-m { display: none; }
+  }
+
+  @media (min-width: 750px) {
+    .kahu-sep__graphic {
+      left: var(--g-x-d);
+      top: var(--g-y-d);
+      width: var(--g-w-d);
+    }
+  }
+
+  /* Theme editor: keep the separator selectable */
+  .shopify-design-mode .kahu-sep { pointer-events: auto; }

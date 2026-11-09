@@ -5,7 +5,8 @@
   @param {object} block - The section block
 {%- enddoc -%}
 
-{%- case block.type -%}
+{%- assign t = block.type | remove_first: 'h_' -%}
+{%- case t -%}
   {%- when 'eyebrow' -%}
     {%- if block.settings.text != blank -%}
       <p class="kahu-sh__eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>

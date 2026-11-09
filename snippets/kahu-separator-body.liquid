@@ -1,0 +1,93 @@
+{%- doc -%}
+  Draws a Kahu separator: extra-space bands + curve (+ graphics HTML passed in).
+  Used by sections/kahu-separator.liquid and by separator blocks inside other Kahu sections, so both look identical.
+  Styles: assets/kahu-separator.css
+
+  @param {object} s - Settings object (shape, direction, mode, wave_color, bg_color, heights, flip, extra space…)
+  @param {string} id - Unique id for this separator (section.id or block.id)
+  @param {string} [graphics] - Rendered graphics HTML
+  @param {string} [attrs] - block.shopify_attributes, for theme editor selection
+  @param {string} [class] - Extra classes
+{%- enddoc -%}
+
+{%- liquid
+  if s.bg_color == 'custom'
+    assign bg = s.bg_color_custom
+  elsif s.bg_color == 'transparent'
+    assign bg = 'transparent'
+  else
+    assign bg = 'var(--kahu-' | append: s.bg_color | append: ')'
+  endif
+
+  if s.wave_color == 'custom'
+    assign fill = s.wave_color_custom
+  else
+    assign fill = 'var(--kahu-' | append: s.wave_color | append: ')'
+  endif
+
+  if s.mode == 'overlap'
+    assign bg = 'transparent'
+  endif
+
+  if s.direction == 'down'
+    assign wave_position = 'top'
+    assign top_color = fill
+    assign bottom_color = bg
+  else
+    assign wave_position = 'bottom'
+    assign top_color = bg
+    assign bottom_color = fill
+  endif
+
+  assign extra_top_d = s.extra_top_desktop | default: 0
+  assign extra_top_m = s.extra_top_mobile | default: 0
+  assign extra_bottom_d = s.extra_bottom_desktop | default: 0
+  assign extra_bottom_m = s.extra_bottom_mobile | default: 0
+-%}
+
+{%- style -%}
+  #kahu-sep-{{ id }} {
+    --kahu-sep-h: {{ s.height_mobile }}px;
+    --kahu-sep-top: {{ extra_top_m }}px;
+    --kahu-sep-bottom: {{ extra_bottom_m }}px;
+    --kahu-sep-bg: {{ bg }};
+    --kahu-sep-fill: {{ fill }};
+    --kahu-sep-top-color: {{ top_color }};
+    --kahu-sep-bottom-color: {{ bottom_color }};
+  }
+  @media (min-width: 750px) {
+    #kahu-sep-{{ id }} {
+      --kahu-sep-h: {{ s.height_desktop }}px;
+      --kahu-sep-top: {{ extra_top_d }}px;
+      --kahu-sep-bottom: {{ extra_bottom_d }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div
+  id="kahu-sep-{{ id }}"
+  class="kahu-sep kahu-sep--{{ s.mode }}{% if s.shape == 'flat' %} kahu-sep--flat{% endif %}{% if class %} {{ class }}{% endif %}"
+  role="presentation"
+  {{ attrs }}
+>
+  <div class="kahu-sep__band kahu-sep__band--top"></div>
+
+  <div class="kahu-sep__curve" aria-hidden="true">
+    {%- unless s.shape == 'flat' -%}
+      {%- render 'kahu-wave',
+        id: id,
+        position: wave_position,
+        shape: s.shape,
+        color: s.wave_color,
+        custom_color: s.wave_color_custom,
+        height_desktop: s.height_desktop,
+        height_mobile: s.height_mobile,
+        flip: s.flip
+      -%}
+    {%- endunless -%}
+  </div>
+
+  <div class="kahu-sep__band kahu-sep__band--bottom"></div>
+
+  {{- graphics -}}
+</div>

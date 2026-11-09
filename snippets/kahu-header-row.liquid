@@ -1,0 +1,73 @@
+{%- doc -%}
+  Header row (eyebrow / title / text / button / image / social + divider line) built from "h_" blocks
+  inside any Kahu section (Kahu columns, image rail, video stories). Same look as the Kahu section header.
+  Styles: assets/kahu-section-header.css
+
+  @param {object} blocks - section.blocks (only blocks whose type starts with "h_" are used)
+  @param {string} [layout] - 'split' (left text, right button/image) or 'center'
+  @param {string} [right_align] - 'end' | 'center' | 'start'
+{%- enddoc -%}
+
+{%- liquid
+  assign has_right = false
+  assign has_any = false
+  for block in blocks
+    assign head = block.type | slice: 0, 2
+    if head == 'h_'
+      assign has_any = true
+      if block.type != 'h_divider' and block.settings.column == 'right'
+        assign has_right = true
+      endif
+    endif
+  endfor
+-%}
+
+{%- if has_any -%}
+  {%- capture left_col -%}
+    {%- for block in blocks -%}
+      {%- assign head = block.type | slice: 0, 2 -%}
+      {%- if head == 'h_' and block.type != 'h_divider' and block.settings.column != 'right' -%}
+        {%- render 'kahu-section-header-block', block: block -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- capture right_col -%}
+    {%- for block in blocks -%}
+      {%- assign head = block.type | slice: 0, 2 -%}
+      {%- if head == 'h_' and block.type != 'h_divider' and block.settings.column == 'right' -%}
+        {%- render 'kahu-section-header-block', block: block -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  <div class="kahu-sh kahu-sh--inline">
+    <div class="kahu-sh__row kahu-sh__row--align-{{ right_align | default: 'end' }}{% if has_right and layout != 'center' %} kahu-sh__row--split{% endif %}{% if layout == 'center' %} kahu-sh__row--center{% endif %}">
+      {%- if left_col != blank -%}
+        <div class="kahu-sh__col kahu-sh__col--left">{{ left_col }}</div>
+      {%- endif -%}
+      {%- if right_col != blank -%}
+        <div class="kahu-sh__col kahu-sh__col--right">{{ right_col }}</div>
+      {%- endif -%}
+    </div>
+
+    {%- for block in blocks -%}
+      {%- if block.type == 'h_divider' -%}
+        {%- liquid
+          if block.settings.color == 'custom'
+            assign line = block.settings.color_custom
+          elsif block.settings.color == 'current'
+            assign line = 'currentColor'
+          else
+            assign line = 'var(--kahu-' | append: block.settings.color | append: ')'
+          endif
+        -%}
+        <hr
+          class="kahu-sh__divider"
+          style="--ksh-line: {{ line }}; --ksh-line-w: {{ block.settings.thickness }}px; --ksh-line-gap-d: {{ block.settings.space_desktop }}px; --ksh-line-gap-m: {{ block.settings.space_mobile }}px;"
+          {{ block.shopify_attributes }}
+        >
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- endif -%}

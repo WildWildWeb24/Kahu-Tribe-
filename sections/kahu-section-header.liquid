@@ -9,6 +9,8 @@
   - Spacing (padding + margin) set separately for desktop and mobile.
 {%- endcomment -%}
 
+{{ 'kahu-section-header.css' | asset_url | stylesheet_tag }}
+
 {%- liquid
   assign s = section.settings
 
@@ -102,98 +104,6 @@
     {%- endfor -%}
   </div>
 </div>
-
-{% stylesheet %}
-  .kahu-sh {
-    background: var(--ksh-bg);
-    color: var(--ksh-fg);
-    padding-top: var(--ksh-pt);
-    padding-bottom: var(--ksh-pb);
-    margin-top: var(--ksh-mt);
-    margin-bottom: var(--ksh-mb);
-    font-family: var(--kahu-font-sans);
-  }
-  .kahu-sh__inner { padding: 0 var(--kahu-gutter, 20px); }
-  .kahu-sh__inner--contained { max-width: calc(var(--kahu-content, 1280px) + var(--kahu-gutter, 20px) * 2); margin: 0 auto; }
-
-  .kahu-sh__row { display: flex; flex-direction: column; gap: 20px; }
-  .kahu-sh__col { display: flex; flex-direction: column; min-width: 0; }
-  .kahu-sh__col--right { gap: 12px; }
-
-  .kahu-sh__eyebrow {
-    margin: 0 0 6px;
-    font-family: var(--kahu-font-mono);
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-  }
-  .kahu-sh__title {
-    margin: 0;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1;
-    color: inherit;
-  }
-  .kahu-sh__title--md { font-size: 32px; }
-  .kahu-sh__title--lg { font-size: 36px; }
-  .kahu-sh__title--xl { font-size: 40px; }
-  .kahu-sh__text {
-    margin-top: 12px;
-    max-width: var(--ksh-text-w, 560px);
-    font-size: 16px;
-    line-height: 1.3;
-  }
-  .kahu-sh__text p { margin: 0; }
-  .kahu-sh__text p + p { margin-top: 0.6em; }
-
-  .kahu-sh__image { display: block; height: auto; width: var(--ksh-img-w-m, 80px); max-width: 100%; }
-  .kahu-sh__image-link { display: inline-block; line-height: 0; }
-
-  .kahu-sh__button--full-m .kahu-btn { width: 100%; }
-
-  /* Social links (e.g. "Follow us" + icons in Kahu TV) */
-  .kahu-sh__social { display: flex; flex-direction: column; gap: 10px; }
-  .kahu-sh__social--inline { flex-direction: row; align-items: center; gap: 16px; }
-  .kahu-sh__col--right .kahu-sh__social--above { align-items: flex-end; }
-  .kahu-sh__row--center .kahu-sh__social { align-items: center; }
-  .kahu-sh__social-label { margin: 0; }
-  .kahu-sh__social-label--eyebrow { font-family: var(--kahu-font-mono); font-weight: 500; font-size: 12px; line-height: 16px; }
-  .kahu-sh__social-label--text { font-weight: 700; font-size: 14px; line-height: 20px; }
-  .kahu-sh__social-list { display: flex; gap: var(--ksh-icon-gap, 12px); margin: 0; padding: 0; list-style: none; }
-  .kahu-sh__social-link { display: flex; color: inherit; transition: opacity 0.2s ease; }
-  .kahu-sh__social-link:hover { opacity: 0.75; }
-  .kahu-sh__social-link:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
-  .kahu-sh__social-link svg { width: var(--ksh-icon, 24px); height: var(--ksh-icon, 24px); fill: currentColor; }
-  .kahu-sh__social-link--empty { opacity: 0.35; pointer-events: none; }
-
-  /* Centred layout: everything stacked in the middle (e.g. "Crafted from 20 plastic bottles") */
-  .kahu-sh__row--center { align-items: center; text-align: center; }
-  .kahu-sh__row--center .kahu-sh__col { align-items: center; }
-  .kahu-sh__row--center .kahu-sh__text { margin-left: auto; margin-right: auto; }
-  .kahu-sh__row--center .kahu-sh__media { margin-bottom: 12px; }
-
-  .kahu-sh__divider {
-    border: 0;
-    border-top: var(--ksh-line-w, 1px) solid var(--ksh-line, currentColor);
-    margin: var(--ksh-line-gap-m, 20px) 0 0;
-  }
-
-  @media (min-width: 750px) {
-    .kahu-sh__row--split { flex-direction: row; justify-content: space-between; gap: 40px; }
-    .kahu-sh__row--split .kahu-sh__col--right { flex-shrink: 0; align-items: flex-end; }
-    .kahu-sh__row--align-end { align-items: flex-end; }
-    .kahu-sh__row--align-center { align-items: center; }
-    .kahu-sh__row--align-start { align-items: flex-start; }
-
-    .kahu-sh__title--md { font-size: 40px; }
-    .kahu-sh__title--lg { font-size: 48px; }
-    .kahu-sh__title--xl { font-size: 58px; }
-    .kahu-sh__text { font-size: 18px; line-height: 1.2; }
-    .kahu-sh__image { width: var(--ksh-img-w-d, 120px); }
-    .kahu-sh__button--full-m .kahu-btn { width: auto; }
-    .kahu-sh__divider { margin-top: var(--ksh-line-gap-d, 24px); }
-  }
-{% endstylesheet %}
 
 {% schema %}
 {

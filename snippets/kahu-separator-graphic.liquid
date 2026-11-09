@@ -1,0 +1,78 @@
+{%- doc -%}
+  One decorative graphic on a Kahu separator (turtle, manta ray, octopus…).
+  Used by sections/kahu-separator.liquid (graphic blocks) and by separator blocks inside other Kahu sections.
+
+  @param {object} g - Settings object holding the graphic's settings
+  @param {string} [prefix] - Setting id prefix, e.g. 'g1_' for graphics stored inline in a block; '' for graphic blocks
+  @param {string} [attrs] - block.shopify_attributes, for theme editor selection
+{%- enddoc -%}
+
+{%- liquid
+  assign p = prefix | default: ''
+  assign k_image = p | append: 'image'
+  assign img = g[k_image]
+  assign k = p | append: 'layer'
+  assign layer = g[k] | default: 'front'
+  assign k = p | append: 'rotate'
+  assign rot = g[k] | default: 0
+  assign k = p | append: 'flip'
+  assign flip = g[k]
+  assign k = p | append: 'hide_mobile'
+  assign hide_m = g[k]
+  assign k = p | append: 'size_mode'
+  assign size_mode = g[k] | default: 'auto'
+  assign k = p | append: 'width_desktop'
+  assign w_d = g[k] | default: 240
+  assign k = p | append: 'width_mobile'
+  assign w_fixed_m = g[k] | default: 120
+  assign k = p | append: 'mobile_scale'
+  assign scale_m = g[k] | default: 50
+  assign k = p | append: 'x_desktop'
+  assign x_d = g[k] | default: 25
+  assign k = p | append: 'y_desktop'
+  assign y_d = g[k] | default: 50
+  assign k = p | append: 'mobile_position'
+  assign mpos = g[k] | default: 'same'
+  assign k = p | append: 'alt'
+  assign alt = g[k]
+
+  # Size: "auto" scales with the screen (design widths: desktop 1440, mobile 390); "fixed" uses exact px
+  if size_mode == 'fixed'
+    assign size_d = w_d | append: 'px'
+    assign size_m = w_fixed_m | append: 'px'
+  else
+    assign w_m = w_d | times: scale_m | divided_by: 100.0
+    assign vw_d = w_d | divided_by: 14.4
+    assign vw_m = w_m | divided_by: 3.9
+    assign size_d = 'min(' | append: w_d | append: 'px, ' | append: vw_d | append: 'vw)'
+    assign size_m = 'min(' | append: w_d | append: 'px, ' | append: vw_m | append: 'vw)'
+  endif
+
+  # Position on mobile: same as desktop, or its own
+  if mpos == 'custom'
+    assign k = p | append: 'x_mobile'
+    assign x_m = g[k]
+    assign k = p | append: 'y_mobile'
+    assign y_m = g[k]
+  else
+    assign x_m = x_d
+    assign y_m = y_d
+  endif
+
+  assign g_style = '--g-w-d: ' | append: size_d | append: '; --g-w-m: ' | append: size_m | append: '; --g-x-d: ' | append: x_d | append: '%; --g-y-d: ' | append: y_d | append: '%; --g-x-m: ' | append: x_m | append: '%; --g-y-m: ' | append: y_m | append: '%; --g-rot: ' | append: rot | append: 'deg;'
+-%}
+<div
+  class="kahu-sep__graphic kahu-sep__graphic--{{ layer }}{% if flip %} kahu-sep__graphic--flip{% endif %}{% if hide_m %} kahu-sep__graphic--hide-m{% endif %}"
+  style="{{ g_style }}"
+  {{ attrs }}
+>
+  {%- if img -%}
+    {{ img | image_url: width: 1200 | image_tag:
+        widths: '200, 400, 600, 900, 1200',
+        sizes: '(min-width: 750px) 480px, 240px',
+        loading: 'lazy',
+        alt: alt }}
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'kahu-sep__placeholder' }}
+  {%- endif -%}
+</div>

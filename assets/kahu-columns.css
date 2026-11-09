@@ -138,3 +138,8 @@ gap: 16px;
 .kahu-col__img { transition: scale 0.5s ease; }
 .kahu-col:has(.kahu-col__cover-link:hover) .kahu-col__img { scale: 1.03; }
 }
+
+/* Band layout: separators (top/bottom) sit outside the padded body */
+.kahu-cols { padding-top: 0; padding-bottom: 0; }
+.kahu-cols__body { padding-top: var(--kc-pt); padding-bottom: var(--kc-pb); }
+.kahu-cols__head { color: var(--kc-head-fg); margin-bottom: var(--kc-head-gap); }
