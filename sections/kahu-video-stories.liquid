@@ -160,552 +160,388 @@
 </kahu-video-stories>
 
 {% stylesheet %}
-  .kahu-tv {
-    display: block;
-    background: var(--ktv-bg);
-    padding-top: var(--ktv-pt);
-    padding-bottom: var(--ktv-pb);
-    margin-top: var(--ktv-mt);
-    margin-bottom: var(--ktv-mb);
-    outline: none;
-  }
-
-  .kahu-tv__stage {
-    position: relative;
-    height: var(--ktv-stage-h);
-    overflow: hidden;
-    touch-action: pan-y;
-  }
-
-  .kahu-tv__row { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
-
-  /* Items are placed by JS (left/top/width); before JS runs they sit in a simple centred row */
-  .kahu-tv__item {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 0;
-    transition:
-      left 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
-      top 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
-      width 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
-      opacity 0.4s ease;
-  }
-  .kahu-tv__item.is-jump { transition: none; }
-  .kahu-tv:not(.is-ready) .kahu-tv__item { opacity: 0; }
-
-  .kahu-tv__card {
-    position: relative;
-    display: block;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    background: rgb(255 255 255 / 0.06);
-    border-radius: var(--ktv-radius);
-    overflow: hidden;
-    color: var(--kahu-cream);
-    cursor: pointer;
-    text-align: left;
-    font: inherit;
-  }
-  .kahu-tv__card:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
-
-  .kahu-tv__item:not(.is-active) .kahu-tv__card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgb(3 20 38 / 0.18);
-    transition: background 0.4s ease;
-    pointer-events: none;
-  }
-  .kahu-tv__item:not(.is-active) .kahu-tv__card:hover::after { background: rgb(3 20 38 / 0.05); }
-
-  .kahu-tv__media { display: block; aspect-ratio: var(--ktv-card-ratio, 188 / 308); }
-  .kahu-tv__media video,
-  .kahu-tv__media img,
-  .kahu-tv__media svg { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .kahu-tv__poster--placeholder { background: rgb(255 255 255 / 0.08); }
-
-  .kahu-tv__play {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgb(3 20 38 / 0.55);
-    color: var(--kahu-cream);
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.2s ease;
-  }
-  .kahu-tv__item.is-active .kahu-tv__play { opacity: 1; }
-  .kahu-tv__play svg { width: 16px; height: 16px; }
-  .kahu-tv__item.is-active .kahu-tv__card:hover .kahu-tv__play { transform: scale(1.1); }
-
-  .kahu-tv__caption {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 28px 12px 12px;
-    background: linear-gradient(0deg, rgb(0 0 0 / 0.6), rgb(0 0 0 / 0));
-    font-family: var(--kahu-font-sans);
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 1.2;
-  }
-
-  /* Soft edge fades that blend into the section background */
-  .kahu-tv--fade .kahu-tv__stage::before,
-  .kahu-tv--fade .kahu-tv__stage::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    z-index: 2;
-    width: clamp(48px, 9vw, 160px);
-    pointer-events: none;
-  }
-  .kahu-tv--fade .kahu-tv__stage::before { left: 0; background: linear-gradient(90deg, var(--ktv-bg), transparent); }
-  .kahu-tv--fade .kahu-tv__stage::after { right: 0; background: linear-gradient(270deg, var(--ktv-bg), transparent); }
-
-  /* Arrows */
-  .kahu-tv__arrow {
-    position: absolute;
-    top: 50%;
-    z-index: 3;
-    display: grid;
-    place-items: center;
-    width: 44px;
-    height: 44px;
-    translate: 0 -50%;
-    border: 1px solid rgb(243 239 229 / 0.28);
-    border-radius: 50%;
-    background: rgb(243 239 229 / 0.1);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    color: var(--kahu-cream);
-    cursor: pointer;
-    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
-  }
-  .kahu-tv__arrow:hover { background: rgb(243 239 229 / 0.22); border-color: rgb(243 239 229 / 0.5); }
-  .kahu-tv__arrow:active { transform: scale(0.94); }
-  .kahu-tv__arrow:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
-  .kahu-tv__arrow svg { width: 20px; height: 20px; }
-  .kahu-tv__arrow--prev { left: max(12px, calc(var(--kahu-gutter, 20px) - 8px)); }
-  .kahu-tv__arrow--next { right: max(12px, calc(var(--kahu-gutter, 20px) - 8px)); }
-
-  @media (max-width: 749px) {
-    .kahu-tv__arrow { width: 36px; height: 36px; }
-    .kahu-tv__arrow svg { width: 16px; height: 16px; }
-    .kahu-tv__arrow--prev { left: 8px; }
-    .kahu-tv__arrow--next { right: 8px; }
-  }
-
-  /* Popup: bottom sheet (site rule) */
-  .kahu-tv-modal {
-    width: min(440px, 100%);
-    padding: 0;
-    background: var(--kahu-ink, #10253b);
-    color: var(--kahu-cream);
-    border: 0;
-    overflow: hidden;
-  }
-  .kahu-tv-modal::backdrop { background: rgb(3 20 38 / 0.7); }
-  .kahu-tv-modal__body { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding-bottom: 12px; }
-  .kahu-tv-modal__video,
-  .kahu-tv-modal__embed {
-    display: block;
-    width: 100%;
-    max-height: calc(100dvh - 140px);
-    aspect-ratio: 9 / 16;
-    object-fit: contain;
-    background: #000;
-    border: 0;
-  }
-  .kahu-tv-modal__link { align-self: center; }
-  .kahu-tv-modal__close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 2;
-    display: grid;
-    place-items: center;
-    width: 36px;
-    height: 36px;
-    border: 0;
-    border-radius: 50%;
-    background: rgb(3 20 38 / 0.6);
-    color: var(--kahu-cream);
-    cursor: pointer;
-  }
-  .kahu-tv-modal__close svg { width: 18px; height: 18px; }
-
-  @media (prefers-reduced-motion: reduce) {
-    .kahu-tv__item { transition: none; }
-  }
+.kahu-tv {
+display: block;
+background: var(--ktv-bg);
+padding-top: var(--ktv-pt);
+padding-bottom: var(--ktv-pb);
+margin-top: var(--ktv-mt);
+margin-bottom: var(--ktv-mb);
+outline: none;
+}
+.kahu-tv__stage {
+position: relative;
+height: var(--ktv-stage-h);
+overflow: hidden;
+touch-action: pan-y;
+}
+.kahu-tv__row { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.kahu-tv__item {
+position: absolute;
+top: 0;
+left: 50%;
+width: 0;
+transition:
+left 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+top 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+width 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+opacity 0.4s ease;
+}
+.kahu-tv__item.is-jump { transition: none; }
+.kahu-tv:not(.is-ready) .kahu-tv__item { opacity: 0; }
+.kahu-tv__card {
+position: relative;
+display: block;
+width: 100%;
+padding: 0;
+border: 0;
+background: rgb(255 255 255 / 0.06);
+border-radius: var(--ktv-radius);
+overflow: hidden;
+color: var(--kahu-cream);
+cursor: pointer;
+text-align: left;
+font: inherit;
+}
+.kahu-tv__card:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
+.kahu-tv__item:not(.is-active) .kahu-tv__card::after {
+content: '';
+position: absolute;
+inset: 0;
+background: rgb(3 20 38 / 0.18);
+transition: background 0.4s ease;
+pointer-events: none;
+}
+.kahu-tv__item:not(.is-active) .kahu-tv__card:hover::after { background: rgb(3 20 38 / 0.05); }
+.kahu-tv__media { display: block; aspect-ratio: var(--ktv-card-ratio, 188 / 308); }
+.kahu-tv__media video,
+.kahu-tv__media img,
+.kahu-tv__media svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+.kahu-tv__poster--placeholder { background: rgb(255 255 255 / 0.08); }
+.kahu-tv__play {
+position: absolute;
+top: 10px;
+right: 10px;
+display: grid;
+place-items: center;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+background: rgb(3 20 38 / 0.55);
+color: var(--kahu-cream);
+opacity: 0;
+transition: opacity 0.3s ease, transform 0.2s ease;
+}
+.kahu-tv__item.is-active .kahu-tv__play { opacity: 1; }
+.kahu-tv__play svg { width: 16px; height: 16px; }
+.kahu-tv__item.is-active .kahu-tv__card:hover .kahu-tv__play { transform: scale(1.1); }
+.kahu-tv__caption {
+position: absolute;
+inset: auto 0 0 0;
+padding: 28px 12px 12px;
+background: linear-gradient(0deg, rgb(0 0 0 / 0.6), rgb(0 0 0 / 0));
+font-family: var(--kahu-font-sans);
+font-weight: 700;
+font-size: 14px;
+line-height: 1.2;
+}
+.kahu-tv--fade .kahu-tv__stage::before,
+.kahu-tv--fade .kahu-tv__stage::after {
+content: '';
+position: absolute;
+top: 0;
+bottom: 0;
+z-index: 2;
+width: clamp(48px, 9vw, 160px);
+pointer-events: none;
+}
+.kahu-tv--fade .kahu-tv__stage::before { left: 0; background: linear-gradient(90deg, var(--ktv-bg), transparent); }
+.kahu-tv--fade .kahu-tv__stage::after { right: 0; background: linear-gradient(270deg, var(--ktv-bg), transparent); }
+.kahu-tv__arrow {
+position: absolute;
+top: 50%;
+z-index: 3;
+display: grid;
+place-items: center;
+width: 44px;
+height: 44px;
+translate: 0 -50%;
+border: 1px solid rgb(243 239 229 / 0.28);
+border-radius: 50%;
+background: rgb(243 239 229 / 0.1);
+-webkit-backdrop-filter: blur(8px);
+backdrop-filter: blur(8px);
+color: var(--kahu-cream);
+cursor: pointer;
+transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+.kahu-tv__arrow:hover { background: rgb(243 239 229 / 0.22); border-color: rgb(243 239 229 / 0.5); }
+.kahu-tv__arrow:active { transform: scale(0.94); }
+.kahu-tv__arrow:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
+.kahu-tv__arrow svg { width: 20px; height: 20px; }
+.kahu-tv__arrow--prev { left: max(12px, calc(var(--kahu-gutter, 20px) - 8px)); }
+.kahu-tv__arrow--next { right: max(12px, calc(var(--kahu-gutter, 20px) - 8px)); }
+@media (max-width: 749px) {
+.kahu-tv__arrow { width: 36px; height: 36px; }
+.kahu-tv__arrow svg { width: 16px; height: 16px; }
+.kahu-tv__arrow--prev { left: 8px; }
+.kahu-tv__arrow--next { right: 8px; }
+}
+.kahu-tv-modal {
+width: min(440px, 100%);
+padding: 0;
+background: var(--kahu-ink, #10253b);
+color: var(--kahu-cream);
+border: 0;
+overflow: hidden;
+}
+.kahu-tv-modal::backdrop { background: rgb(3 20 38 / 0.7); }
+.kahu-tv-modal__body { display: flex; flex-direction: column; align-items: stretch; gap: 12px; padding-bottom: 12px; }
+.kahu-tv-modal__video,
+.kahu-tv-modal__embed {
+display: block;
+width: 100%;
+max-height: calc(100dvh - 140px);
+aspect-ratio: 9 / 16;
+object-fit: contain;
+background: #000;
+border: 0;
+}
+.kahu-tv-modal__link { align-self: center; }
+.kahu-tv-modal__close {
+position: absolute;
+top: 10px;
+right: 10px;
+z-index: 2;
+display: grid;
+place-items: center;
+width: 36px;
+height: 36px;
+border: 0;
+border-radius: 50%;
+background: rgb(3 20 38 / 0.6);
+color: var(--kahu-cream);
+cursor: pointer;
+}
+.kahu-tv-modal__close svg { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: reduce) {
+.kahu-tv__item { transition: none; }
+}
 {% endstylesheet %}
 
 {% javascript %}
-  if (!customElements.get('kahu-video-stories')) {
-    class KahuVideoStories extends HTMLElement {
-      connectedCallback() {
-        this.stage = this.querySelector('.kahu-tv__stage');
-        this.row = this.querySelector('.kahu-tv__row');
-        this.dialog = this.querySelector('.kahu-tv-modal');
-        this.body = this.querySelector('[data-kahu-tv-body]');
-        this.status = this.querySelector('[data-kahu-tv-status]');
-        if (!this.row) return;
-
-        this.originals = Array.from(this.row.children);
-        this.realCount = this.originals.length;
-        if (!this.realCount) return;
-
-        this.ratio = parseFloat(this.dataset.ratio) || 308 / 188;
-        this.style.setProperty('--ktv-card-ratio', `1 / ${this.ratio}`);
-        this.mq = window.matchMedia('(min-width: 750px)');
-        this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        this.buildLoop();
-        const start = this.dataset.start === 'center' ? Math.floor((this.realCount - 1) / 2) : 0;
-        // Active pointer sits in the middle copy so there are always videos on both sides
-        this.active = this.copyOffset + start;
-        this.layout(false);
-        this.classList.add('is-ready');
-
-        this.addEventListener('click', this.onClick);
-        this.addEventListener('keydown', this.onKey);
-        this.stage.addEventListener('pointerdown', this.onPointerDown);
-        this.stage.addEventListener('pointerup', this.onPointerUp);
-        this.stage.addEventListener('pointercancel', () => (this.dragX = null));
-        this.mq.addEventListener('change', this.onResize);
-        this.ro = new ResizeObserver(this.onResize);
-        this.ro.observe(this.stage);
-
-        // Theme editor: selecting a video block brings it to the centre
-        document.addEventListener('shopify:block:select', this.onBlockSelect);
-
-        if (this.dialog) {
-          this.dialog.addEventListener('close', this.onClose);
-          this.dialog.addEventListener('click', (e) => { if (e.target === this.dialog) this.dialog.close(); });
-        }
-
-        const secs = parseInt(this.dataset.advance, 10);
-        if (secs > 0 && !this.reduce) {
-          this.timer = setInterval(() => {
-            if (!this.matches(':hover') && !(this.dialog && this.dialog.open)) this.go(1);
-          }, secs * 1000);
-        }
-      }
-
-      disconnectedCallback() {
-        if (this.ro) this.ro.disconnect();
-        if (this.mq) this.mq.removeEventListener('change', this.onResize);
-        clearInterval(this.timer);
-        document.removeEventListener('shopify:block:select', this.onBlockSelect);
-      }
-
-      onBlockSelect = (e) => {
-        const i = this.items ? this.items.indexOf(e.target) : -1;
-        if (i >= 0) this.goTo(i);
-      };
-
-      /* Clone the set so the wrap-around always happens off-screen (min 13 cards in the loop) */
-      buildLoop() {
-        const copies = Math.max(3, Math.ceil(13 / this.realCount));
-        const finalCopies = copies % 2 === 0 ? copies + 1 : copies; // odd → a true middle copy
-        const frag = document.createDocumentFragment();
-        for (let c = 0; c < finalCopies; c++) {
-          this.originals.forEach((li) => {
-            const node = c === Math.floor(finalCopies / 2) ? li : li.cloneNode(true);
-            if (node !== li) {
-              node.setAttribute('aria-hidden', 'true');
-              node.removeAttribute('data-shopify-editor-block');
-              node.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
-              node.querySelectorAll('button, a').forEach((el) => el.setAttribute('tabindex', '-1'));
-            }
-            frag.appendChild(node);
-          });
-        }
-        this.row.replaceChildren(frag);
-        this.items = Array.from(this.row.children);
-        this.count = this.items.length;
-        this.copyOffset = Math.floor(finalCopies / 2) * this.realCount;
-      }
-
-      metrics() {
-        const desktop = this.mq.matches;
-        const sizes = (desktop ? this.dataset.sizesDesktop : this.dataset.sizesMobile).split(',').map(Number);
-        return {
-          sm: sizes[0],
-          md: sizes[1],
-          lg: sizes[2],
-          gap: Number(desktop ? this.dataset.gapDesktop : this.dataset.gapMobile),
-        };
-      }
-
-      widthFor(distance, m) {
-        const d = Math.abs(distance);
-        if (d === 0) return m.lg;
-        if (d === 1 && this.dataset.pattern !== 'highlight') return m.md;
-        return m.sm;
-      }
-
-      distance(i) {
-        const half = Math.floor(this.count / 2);
-        return ((i - this.active + this.count + half) % this.count) - half;
-      }
-
-      layout(animate = true) {
-        const m = this.metrics();
-        const stageW = this.stage.clientWidth;
-        const stageH = this.stage.clientHeight;
-        const centre = stageW / 2;
-        const align = this.classList.contains('kahu-tv--align-start') ? 'start' : this.classList.contains('kahu-tv--align-end') ? 'end' : 'center';
-
-        // Centre position for each distance (same on both sides)
-        const offsets = { 0: 0 };
-        const maxD = Math.ceil(this.count / 2);
-        let acc = this.widthFor(0, m) / 2;
-        for (let d = 1; d <= maxD; d++) {
-          const w = this.widthFor(d, m);
-          acc += m.gap + w / 2;
-          offsets[d] = acc;
-          acc += w / 2;
-        }
-
-        this.items.forEach((li, i) => {
-          const d = this.distance(i);
-          const w = this.widthFor(d, m);
-          const h = w * this.ratio;
-          const x = centre + Math.sign(d) * offsets[Math.abs(d)] - w / 2;
-          const top = align === 'start' ? 0 : align === 'end' ? stageH - h : (stageH - h) / 2;
-
-          // A card that wraps from one end to the other jumps without animating (it is off-screen)
-          const prev = li._d;
-          const jump = !animate || (prev !== undefined && Math.abs(prev - d) > 1);
-          li.classList.toggle('is-jump', jump);
-          li.style.left = `${x}px`;
-          li.style.top = `${top}px`;
-          li.style.width = `${w}px`;
-          li._d = d;
-
-          const active = d === 0;
-          li.classList.toggle('is-active', active);
-          const card = li.querySelector('[data-kahu-tv-card]');
-          if (card) card.setAttribute('aria-current', active ? 'true' : 'false');
-        });
-
-        if (animate) {
-          requestAnimationFrame(() => this.items.forEach((li) => li.classList.remove('is-jump')));
-        } else {
-          requestAnimationFrame(() => requestAnimationFrame(() => this.items.forEach((li) => li.classList.remove('is-jump'))));
-        }
-        this.updatePlayback();
-      }
-
-      updatePlayback() {
-        const autoplay = this.dataset.autoplay === 'true' && !this.reduce;
-        this.items.forEach((li) => {
-          const v = li.querySelector('.kahu-tv__video');
-          if (!v) return;
-          const near = Math.abs(li._d) <= 1;
-          if (autoplay && near) {
-            v.muted = true;
-            v.preload = 'auto';
-            const p = v.play();
-            if (p && p.catch) p.catch(() => {});
-          } else if (!v.paused) {
-            v.pause();
-          }
-        });
-        const real = ((this.active % this.realCount) + this.realCount) % this.realCount;
-        if (this.status) this.status.textContent = `Video ${real + 1} of ${this.realCount}`;
-      }
-
-      go(step) {
-        this.active = (this.active + step + this.count) % this.count;
-        this.layout(true);
-      }
-
-      goTo(i) {
-        const d = this.distance(i);
-        if (d !== 0) this.go(d);
-      }
-
-      onResize = () => {
-        cancelAnimationFrame(this.raf);
-        this.raf = requestAnimationFrame(() => this.layout(false));
-      };
-
-      onClick = (e) => {
-        if (e.target.closest('[data-kahu-tv-close]')) { this.dialog.close(); return; }
-        if (e.target.closest('[data-kahu-tv-prev]')) { this.go(-1); return; }
-        if (e.target.closest('[data-kahu-tv-next]')) { this.go(1); return; }
-        if (this.suppressClick) { this.suppressClick = false; return; }
-
-        const card = e.target.closest('[data-kahu-tv-card]');
-        if (!card) return;
-        const li = card.closest('.kahu-tv__item');
-        const i = this.items.indexOf(li);
-        if (i < 0) return;
-
-        if (li._d !== 0) { this.goTo(i); return; }
-
-        // Centre video: popup with sound, or follow link
-        const link = card.dataset.link;
-        const tpl = li.querySelector('template[data-kahu-tv-full]');
-        if (this.dataset.click === 'link' && link) {
-          window.open(link, '_blank', 'noopener');
-        } else if (tpl && this.dialog) {
-          this.body.replaceChildren(tpl.content.cloneNode(true));
-          this.dialog.showModal();
-          const v = this.body.querySelector('video');
-          if (v) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
-        } else if (link) {
-          window.open(link, '_blank', 'noopener');
-        }
-      };
-
-      onKey = (e) => {
-        if (this.dialog && this.dialog.open) return;
-        if (e.key === 'ArrowRight') { e.preventDefault(); this.go(1); }
-        if (e.key === 'ArrowLeft') { e.preventDefault(); this.go(-1); }
-      };
-
-      onPointerDown = (e) => { this.dragX = e.clientX; };
-
-      onPointerUp = (e) => {
-        if (this.dragX == null) return;
-        const dx = e.clientX - this.dragX;
-        this.dragX = null;
-        if (Math.abs(dx) > 40) {
-          this.suppressClick = true;
-          setTimeout(() => (this.suppressClick = false), 0);
-          this.go(dx < 0 ? 1 : -1);
-        }
-      };
-
-      onClose = () => {
-        this.body.querySelectorAll('video').forEach((v) => v.pause());
-        this.body.replaceChildren();
-      };
-    }
-    customElements.define('kahu-video-stories', KahuVideoStories);
-  }
+if (!customElements.get('kahu-video-stories')) {
+class KahuVideoStories extends HTMLElement {
+connectedCallback() {
+this.stage = this.querySelector('.kahu-tv__stage');
+this.row = this.querySelector('.kahu-tv__row');
+this.dialog = this.querySelector('.kahu-tv-modal');
+this.body = this.querySelector('[data-kahu-tv-body]');
+this.status = this.querySelector('[data-kahu-tv-status]');
+if (!this.row) return;
+this.originals = Array.from(this.row.children);
+this.realCount = this.originals.length;
+if (!this.realCount) return;
+this.ratio = parseFloat(this.dataset.ratio) || 308 / 188;
+this.style.setProperty('--ktv-card-ratio', `1 / ${this.ratio}`);
+this.mq = window.matchMedia('(min-width: 750px)');
+this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+this.buildLoop();
+const start = this.dataset.start === 'center' ? Math.floor((this.realCount - 1) / 2) : 0;
+this.active = this.copyOffset + start;
+this.layout(false);
+this.classList.add('is-ready');
+this.addEventListener('click', this.onClick);
+this.addEventListener('keydown', this.onKey);
+this.stage.addEventListener('pointerdown', this.onPointerDown);
+this.stage.addEventListener('pointerup', this.onPointerUp);
+this.stage.addEventListener('pointercancel', () => (this.dragX = null));
+this.mq.addEventListener('change', this.onResize);
+this.ro = new ResizeObserver(this.onResize);
+this.ro.observe(this.stage);
+document.addEventListener('shopify:block:select', this.onBlockSelect);
+if (this.dialog) {
+this.dialog.addEventListener('close', this.onClose);
+this.dialog.addEventListener('click', (e) => { if (e.target === this.dialog) this.dialog.close(); });
+}
+const secs = parseInt(this.dataset.advance, 10);
+if (secs > 0 && !this.reduce) {
+this.timer = setInterval(() => {
+if (!this.matches(':hover') && !(this.dialog && this.dialog.open)) this.go(1);
+}, secs * 1000);
+}
+}
+disconnectedCallback() {
+if (this.ro) this.ro.disconnect();
+if (this.mq) this.mq.removeEventListener('change', this.onResize);
+clearInterval(this.timer);
+document.removeEventListener('shopify:block:select', this.onBlockSelect);
+}
+onBlockSelect = (e) => {
+const i = this.items ? this.items.indexOf(e.target) : -1;
+if (i >= 0) this.goTo(i);
+};
+buildLoop() {
+const copies = Math.max(3, Math.ceil(13 / this.realCount));
+const finalCopies = copies % 2 === 0 ? copies + 1 : copies; // odd → a true middle copy
+const frag = document.createDocumentFragment();
+for (let c = 0; c < finalCopies; c++) {
+this.originals.forEach((li) => {
+const node = c === Math.floor(finalCopies / 2) ? li : li.cloneNode(true);
+if (node !== li) {
+node.setAttribute('aria-hidden', 'true');
+node.removeAttribute('data-shopify-editor-block');
+node.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+node.querySelectorAll('button, a').forEach((el) => el.setAttribute('tabindex', '-1'));
+}
+frag.appendChild(node);
+});
+}
+this.row.replaceChildren(frag);
+this.items = Array.from(this.row.children);
+this.count = this.items.length;
+this.copyOffset = Math.floor(finalCopies / 2) * this.realCount;
+}
+metrics() {
+const desktop = this.mq.matches;
+const sizes = (desktop ? this.dataset.sizesDesktop : this.dataset.sizesMobile).split(',').map(Number);
+return {
+sm: sizes[0],
+md: sizes[1],
+lg: sizes[2],
+gap: Number(desktop ? this.dataset.gapDesktop : this.dataset.gapMobile),
+};
+}
+widthFor(distance, m) {
+const d = Math.abs(distance);
+if (d === 0) return m.lg;
+if (d === 1 && this.dataset.pattern !== 'highlight') return m.md;
+return m.sm;
+}
+distance(i) {
+const half = Math.floor(this.count / 2);
+return ((i - this.active + this.count + half) % this.count) - half;
+}
+layout(animate = true) {
+const m = this.metrics();
+const stageW = this.stage.clientWidth;
+const stageH = this.stage.clientHeight;
+const centre = stageW / 2;
+const align = this.classList.contains('kahu-tv--align-start') ? 'start' : this.classList.contains('kahu-tv--align-end') ? 'end' : 'center';
+const offsets = { 0: 0 };
+const maxD = Math.ceil(this.count / 2);
+let acc = this.widthFor(0, m) / 2;
+for (let d = 1; d <= maxD; d++) {
+const w = this.widthFor(d, m);
+acc += m.gap + w / 2;
+offsets[d] = acc;
+acc += w / 2;
+}
+this.items.forEach((li, i) => {
+const d = this.distance(i);
+const w = this.widthFor(d, m);
+const h = w * this.ratio;
+const x = centre + Math.sign(d) * offsets[Math.abs(d)] - w / 2;
+const top = align === 'start' ? 0 : align === 'end' ? stageH - h : (stageH - h) / 2;
+const prev = li._d;
+const jump = !animate || (prev !== undefined && Math.abs(prev - d) > 1);
+li.classList.toggle('is-jump', jump);
+li.style.left = `${x}px`;
+li.style.top = `${top}px`;
+li.style.width = `${w}px`;
+li._d = d;
+const active = d === 0;
+li.classList.toggle('is-active', active);
+const card = li.querySelector('[data-kahu-tv-card]');
+if (card) card.setAttribute('aria-current', active ? 'true' : 'false');
+});
+if (animate) {
+requestAnimationFrame(() => this.items.forEach((li) => li.classList.remove('is-jump')));
+} else {
+requestAnimationFrame(() => requestAnimationFrame(() => this.items.forEach((li) => li.classList.remove('is-jump'))));
+}
+this.updatePlayback();
+}
+updatePlayback() {
+const autoplay = this.dataset.autoplay === 'true' && !this.reduce;
+this.items.forEach((li) => {
+const v = li.querySelector('.kahu-tv__video');
+if (!v) return;
+const near = Math.abs(li._d) <= 1;
+if (autoplay && near) {
+v.muted = true;
+v.preload = 'auto';
+const p = v.play();
+if (p && p.catch) p.catch(() => {});
+} else if (!v.paused) {
+v.pause();
+}
+});
+const real = ((this.active % this.realCount) + this.realCount) % this.realCount;
+if (this.status) this.status.textContent = `Video ${real + 1} of ${this.realCount}`;
+}
+go(step) {
+this.active = (this.active + step + this.count) % this.count;
+this.layout(true);
+}
+goTo(i) {
+const d = this.distance(i);
+if (d !== 0) this.go(d);
+}
+onResize = () => {
+cancelAnimationFrame(this.raf);
+this.raf = requestAnimationFrame(() => this.layout(false));
+};
+onClick = (e) => {
+if (e.target.closest('[data-kahu-tv-close]')) { this.dialog.close(); return; }
+if (e.target.closest('[data-kahu-tv-prev]')) { this.go(-1); return; }
+if (e.target.closest('[data-kahu-tv-next]')) { this.go(1); return; }
+if (this.suppressClick) { this.suppressClick = false; return; }
+const card = e.target.closest('[data-kahu-tv-card]');
+if (!card) return;
+const li = card.closest('.kahu-tv__item');
+const i = this.items.indexOf(li);
+if (i < 0) return;
+if (li._d !== 0) { this.goTo(i); return; }
+const link = card.dataset.link;
+const tpl = li.querySelector('template[data-kahu-tv-full]');
+if (this.dataset.click === 'link' && link) {
+window.open(link, '_blank', 'noopener');
+} else if (tpl && this.dialog) {
+this.body.replaceChildren(tpl.content.cloneNode(true));
+this.dialog.showModal();
+const v = this.body.querySelector('video');
+if (v) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
+} else if (link) {
+window.open(link, '_blank', 'noopener');
+}
+};
+onKey = (e) => {
+if (this.dialog && this.dialog.open) return;
+if (e.key === 'ArrowRight') { e.preventDefault(); this.go(1); }
+if (e.key === 'ArrowLeft') { e.preventDefault(); this.go(-1); }
+};
+onPointerDown = (e) => { this.dragX = e.clientX; };
+onPointerUp = (e) => {
+if (this.dragX == null) return;
+const dx = e.clientX - this.dragX;
+this.dragX = null;
+if (Math.abs(dx) > 40) {
+this.suppressClick = true;
+setTimeout(() => (this.suppressClick = false), 0);
+this.go(dx < 0 ? 1 : -1);
+}
+};
+onClose = () => {
+this.body.querySelectorAll('video').forEach((v) => v.pause());
+this.body.replaceChildren();
+};
+}
+customElements.define('kahu-video-stories', KahuVideoStories);
+}
 {% endjavascript %}
 
 {% schema %}
-{
-  "name": "Kahu video stories",
-  "tag": "section",
-  "class": "kahu-video-stories-section",
-  "max_blocks": 16,
-  "settings": [
-    { "type": "header", "content": "Carousel" },
-    {
-      "type": "select", "id": "pattern", "label": "Card sizes",
-      "options": [
-        { "value": "graded", "label": "Graded: big centre, smaller sides (Figma)" },
-        { "value": "highlight", "label": "Large centre, all others small" }
-      ],
-      "default": "graded"
-    },
-    {
-      "type": "select", "id": "start", "label": "Highlighted video when the page loads",
-      "options": [ { "value": "start", "label": "First video" }, { "value": "center", "label": "Middle video" } ],
-      "default": "start"
-    },
-    { "type": "checkbox", "id": "show_arrows", "label": "Show left / right arrows", "default": true },
-    { "type": "checkbox", "id": "edge_fade", "label": "Fade the edges into the background", "default": true },
-    { "type": "range", "id": "auto_advance", "label": "Auto-advance", "min": 0, "max": 15, "step": 1, "unit": "s", "default": 0, "info": "0 = off. Pauses on hover and while a video is open" },
-    { "type": "text", "id": "aria_label", "label": "Accessible name", "default": "Kahu TV videos" },
-
-    { "type": "header", "content": "Cards" },
-    { "type": "range", "id": "width_small", "label": "Small width (desktop)", "min": 120, "max": 320, "step": 2, "unit": "px", "default": 188 },
-    { "type": "range", "id": "width_medium", "label": "Medium width (desktop)", "min": 140, "max": 360, "step": 4, "unit": "px", "default": 220 },
-    { "type": "range", "id": "width_large", "label": "Highlighted width (desktop)", "min": 160, "max": 400, "step": 4, "unit": "px", "default": 260 },
-    { "type": "range", "id": "mobile_scale", "label": "Card size on mobile", "min": 40, "max": 100, "step": 5, "unit": "%", "default": 70, "info": "% of the desktop widths" },
-    {
-      "type": "select", "id": "ratio", "label": "Card shape",
-      "options": [
-        { "value": "188 / 308", "label": "Story (Figma, 188 × 308)" },
-        { "value": "9 / 16", "label": "Reel 9:16" },
-        { "value": "4 / 5", "label": "Portrait 4:5" },
-        { "value": "1 / 1", "label": "Square" }
-      ],
-      "default": "188 / 308"
-    },
-    { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 24, "step": 1, "unit": "px", "default": 8 },
-    {
-      "type": "select", "id": "align", "label": "Vertical alignment",
-      "options": [ { "value": "center", "label": "Middle" }, { "value": "end", "label": "Bottom" }, { "value": "start", "label": "Top" } ],
-      "default": "center"
-    },
-    { "type": "range", "id": "gap_desktop", "label": "Gap (desktop)", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 18 },
-    { "type": "range", "id": "gap_mobile", "label": "Gap (mobile)", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12 },
-
-    { "type": "header", "content": "Playback" },
-    { "type": "checkbox", "id": "autoplay", "label": "Play muted previews", "default": true, "info": "Centre video and its neighbours only" },
-    { "type": "checkbox", "id": "show_play", "label": "Show play icon on the highlighted video", "default": true },
-    {
-      "type": "select", "id": "click_action", "label": "When the highlighted video is clicked",
-      "options": [
-        { "value": "popup", "label": "Play with sound in a popup" },
-        { "value": "link", "label": "Go to the video's link" }
-      ],
-      "default": "popup",
-      "info": "Clicking a side video always brings it to the centre"
-    },
-
-    { "type": "header", "content": "Colours" },
-    {
-      "type": "select", "id": "bg_color", "label": "Background",
-      "options": [
-        { "value": "ink", "label": "Ink" }, { "value": "navy", "label": "Navy" }, { "value": "cream", "label": "Cream" },
-        { "value": "teal", "label": "Teal" }, { "value": "yellow", "label": "Yellow" }, { "value": "sea", "label": "Sea" },
-        { "value": "white", "label": "White" }, { "value": "transparent", "label": "Transparent" }, { "value": "custom", "label": "Custom" }
-      ],
-      "default": "ink"
-    },
-    { "type": "color", "id": "bg_color_custom", "label": "Custom background", "default": "#10253b", "visible_if": "{{ section.settings.bg_color == 'custom' }}" },
-
-    { "type": "header", "content": "Desktop spacing" },
-    { "type": "range", "id": "desktop_padding_top", "label": "Padding top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "desktop_padding_bottom", "label": "Padding bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 110 },
-    { "type": "range", "id": "desktop_margin_top", "label": "Margin top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "desktop_margin_bottom", "label": "Margin bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
-
-    { "type": "header", "content": "Mobile spacing" },
-    { "type": "range", "id": "mobile_padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 56 },
-    { "type": "range", "id": "mobile_margin_top", "label": "Margin top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "mobile_margin_bottom", "label": "Margin bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 }
-  ],
-  "blocks": [
-    {
-      "type": "video",
-      "name": "Video",
-      "settings": [
-        { "type": "video", "id": "video", "label": "Video", "info": "Upload to Shopify. Vertical MP4, short loop works best" },
-        { "type": "video_url", "id": "video_url", "label": "Or YouTube / Vimeo link", "accept": ["youtube", "vimeo"], "info": "Used only if no video is uploaded; preview shows the poster" },
-        { "type": "image_picker", "id": "poster", "label": "Poster image", "info": "Shown before the video loads. WebP" },
-        { "type": "text", "id": "caption", "label": "Caption (optional)" },
-        { "type": "text", "id": "alt", "label": "Description for screen readers" },
-        { "type": "url", "id": "link", "label": "Link", "info": "e.g. the Instagram reel. Shown as a button in the popup" },
-        { "type": "text", "id": "link_label", "label": "Link button label", "default": "Watch on Instagram" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "Kahu video stories",
-      "blocks": [
-        { "type": "video" }, { "type": "video" }, { "type": "video" }, { "type": "video" },
-        { "type": "video" }, { "type": "video" }, { "type": "video" }
-      ]
-    }
-  ]
-}
+{"name":"Kahu video stories","tag":"section","class":"kahu-video-stories-section","max_blocks":16,"settings":[{"type":"header","content":"Carousel"},{"type":"select","id":"pattern","label":"Card sizes","options":[{"value":"graded","label":"Graded: big centre, smaller sides (Figma)"},{"value":"highlight","label":"Large centre, all others small"}],"default":"graded"},{"type":"select","id":"start","label":"Highlighted video when the page loads","options":[{"value":"start","label":"First video"},{"value":"center","label":"Middle video"}],"default":"start"},{"type":"checkbox","id":"show_arrows","label":"Show left / right arrows","default":true},{"type":"checkbox","id":"edge_fade","label":"Fade the edges into the background","default":true},{"type":"range","id":"auto_advance","label":"Auto-advance","min":0,"max":15,"step":1,"unit":"s","default":0,"info":"0 = off. Pauses on hover and while a video is open"},{"type":"text","id":"aria_label","label":"Accessible name","default":"Kahu TV videos"},{"type":"header","content":"Cards"},{"type":"range","id":"width_small","label":"Small width (desktop)","min":120,"max":320,"step":2,"unit":"px","default":188},{"type":"range","id":"width_medium","label":"Medium width (desktop)","min":140,"max":360,"step":4,"unit":"px","default":220},{"type":"range","id":"width_large","label":"Highlighted width (desktop)","min":160,"max":400,"step":4,"unit":"px","default":260},{"type":"range","id":"mobile_scale","label":"Card size on mobile","min":40,"max":100,"step":5,"unit":"%","default":70,"info":"% of the desktop widths"},{"type":"select","id":"ratio","label":"Card shape","options":[{"value":"188 / 308","label":"Story (Figma, 188 × 308)"},{"value":"9 / 16","label":"Reel 9:16"},{"value":"4 / 5","label":"Portrait 4:5"},{"value":"1 / 1","label":"Square"}],"default":"188 / 308"},{"type":"range","id":"radius","label":"Corner radius","min":0,"max":24,"step":1,"unit":"px","default":8},{"type":"select","id":"align","label":"Vertical alignment","options":[{"value":"center","label":"Middle"},{"value":"end","label":"Bottom"},{"value":"start","label":"Top"}],"default":"center"},{"type":"range","id":"gap_desktop","label":"Gap (desktop)","min":0,"max":60,"step":2,"unit":"px","default":18},{"type":"range","id":"gap_mobile","label":"Gap (mobile)","min":0,"max":40,"step":2,"unit":"px","default":12},{"type":"header","content":"Playback"},{"type":"checkbox","id":"autoplay","label":"Play muted previews","default":true,"info":"Centre video and its neighbours only"},{"type":"checkbox","id":"show_play","label":"Show play icon on the highlighted video","default":true},{"type":"select","id":"click_action","label":"When the highlighted video is clicked","options":[{"value":"popup","label":"Play with sound in a popup"},{"value":"link","label":"Go to the video's link"}],"default":"popup","info":"Clicking a side video always brings it to the centre"},{"type":"header","content":"Colours"},{"type":"select","id":"bg_color","label":"Background","options":[{"value":"ink","label":"Ink"},{"value":"navy","label":"Navy"},{"value":"cream","label":"Cream"},{"value":"teal","label":"Teal"},{"value":"yellow","label":"Yellow"},{"value":"sea","label":"Sea"},{"value":"white","label":"White"},{"value":"transparent","label":"Transparent"},{"value":"custom","label":"Custom"}],"default":"ink"},{"type":"color","id":"bg_color_custom","label":"Custom background","default":"#10253b","visible_if":"{{ section.settings.bg_color == 'custom' }}"},{"type":"header","content":"Desktop spacing"},{"type":"range","id":"desktop_padding_top","label":"Padding top","min":0,"max":200,"step":2,"unit":"px","default":0},{"type":"range","id":"desktop_padding_bottom","label":"Padding bottom","min":0,"max":200,"step":2,"unit":"px","default":110},{"type":"range","id":"desktop_margin_top","label":"Margin top","min":0,"max":200,"step":2,"unit":"px","default":0},{"type":"range","id":"desktop_margin_bottom","label":"Margin bottom","min":0,"max":200,"step":2,"unit":"px","default":0},{"type":"header","content":"Mobile spacing"},{"type":"range","id":"mobile_padding_top","label":"Padding top","min":0,"max":160,"step":2,"unit":"px","default":0},{"type":"range","id":"mobile_padding_bottom","label":"Padding bottom","min":0,"max":160,"step":2,"unit":"px","default":56},{"type":"range","id":"mobile_margin_top","label":"Margin top","min":0,"max":160,"step":2,"unit":"px","default":0},{"type":"range","id":"mobile_margin_bottom","label":"Margin bottom","min":0,"max":160,"step":2,"unit":"px","default":0}],"blocks":[{"type":"video","name":"Video","settings":[{"type":"video","id":"video","label":"Video","info":"Upload to Shopify. Vertical MP4, short loop works best"},{"type":"video_url","id":"video_url","label":"Or YouTube / Vimeo link","accept":["youtube","vimeo"],"info":"Used only if no video is uploaded; preview shows the poster"},{"type":"image_picker","id":"poster","label":"Poster image","info":"Shown before the video loads. WebP"},{"type":"text","id":"caption","label":"Caption (optional)"},{"type":"text","id":"alt","label":"Description for screen readers"},{"type":"url","id":"link","label":"Link","info":"e.g. the Instagram reel. Shown as a button in the popup"},{"type":"text","id":"link_label","label":"Link button label","default":"Watch on Instagram"}]}],"presets":[{"name":"Kahu video stories","blocks":[{"type":"video"},{"type":"video"},{"type":"video"},{"type":"video"},{"type":"video"},{"type":"video"},{"type":"video"}]}]}
 {% endschema %}
 
