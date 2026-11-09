@@ -1093,14 +1093,20 @@
             "column": "left"
           }
         },
-        "button_PbXtMh": {
-          "type": "button",
+        "social_DKfgp8": {
+          "type": "social",
           "settings": {
-            "label": "Shop towel ponchos",
-            "link": "",
-            "style": "teal",
-            "arrow": true,
-            "full_mobile": false,
+            "label": "Follow us",
+            "label_style": "eyebrow",
+            "layout": "above",
+            "link_instagram": "https://www.instagram.com/kahu.tribe/",
+            "link_facebook": "https://www.facebook.com/p/Kahu-Tribe-61573989368085/",
+            "link_youtube": "https://www.youtube.com/@KahuTribe/",
+            "link_tiktok": "https://www.tiktok.com/@kahutribe",
+            "link_x": "",
+            "link_pinterest": "",
+            "icon_size": 24,
+            "gap": 12,
             "column": "right"
           }
         },
@@ -1118,7 +1124,7 @@
       "block_order": [
         "eyebrow_gcT6TD",
         "title_4gcGUh",
-        "button_PbXtMh",
+        "social_DKfgp8",
         "divider_jy8bdC"
       ],
       "name": "Kahu section header",
@@ -1140,143 +1146,340 @@
         "mobile_margin_bottom": 0
       }
     },
-    "kahu_columns_VJA4JH": {
-      "type": "kahu-columns",
+    "layered_slideshow_jDYHdp": {
+      "type": "layered-slideshow",
       "blocks": {
-        "column_zMRTxd": {
-          "type": "column",
+        "layered_slide_qKNJX3": {
+          "type": "_layered-slide",
           "settings": {
-            "image": "shopify://shop_images/Use_it_as_a_towel.webp",
-            "alt": "",
-            "ratio": "inherit",
-            "link": "",
-            "overlay": 50,
-            "overlay_style": "bottom",
-            "sticker_width": 60,
-            "sticker_position": "bottom-left",
-            "sticker_rotate": 0,
-            "in_logo_width": 40,
-            "in_title": "",
-            "in_text": "",
-            "in_position": "split",
-            "in_color": "cream",
-            "title": "Use it as a towel",
-            "text": "",
-            "button_label": "",
-            "button_link": "",
-            "button_style": "cream",
-            "button_position": "inside",
-            "button_full": false
-          }
+            "media_type_1": "image",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "background_color": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 32,
+            "padding-inline-start": 32,
+            "padding-inline-end": 32
+          },
+          "blocks": {
+            "text_LhYV8T": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>New arrivals</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_jdNYm6": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Introducing our latest products, made especially for the season. Shop your favorites before they're gone!</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_6RpWi4": {
+              "type": "button",
+              "settings": {
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "use_custom_button_spacing": false,
+                "button_radius": 8,
+                "button_padding_top": 12,
+                "button_padding_bottom": 12,
+                "button_padding_left": 24,
+                "button_padding_right": 24,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_LhYV8T",
+            "text_jdNYm6",
+            "button_6RpWi4"
+          ]
         },
-        "column_pVrc8H": {
-          "type": "column",
+        "layered_slide_xtLqXi": {
+          "type": "_layered-slide",
           "settings": {
-            "image": "shopify://shop_images/Throw_it_like_a_mat.webp",
-            "alt": "",
-            "ratio": "inherit",
-            "link": "",
-            "overlay": 50,
-            "overlay_style": "bottom",
-            "sticker_width": 60,
-            "sticker_position": "bottom-left",
-            "sticker_rotate": 0,
-            "in_logo_width": 40,
-            "in_title": "",
-            "in_text": "",
-            "in_position": "split",
-            "in_color": "cream",
-            "title": "Throw it like a mat",
-            "text": "",
-            "button_label": "",
-            "button_link": "",
-            "button_style": "cream",
-            "button_position": "inside",
-            "button_full": false
-          }
+            "media_type_1": "image",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "background_color": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 32,
+            "padding-inline-start": 32,
+            "padding-inline-end": 32
+          },
+          "blocks": {
+            "text_HpUr3H": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>Bestsellers</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_AAYXh6": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Discover the bestsellers that have captured the hearts of our customers with their perfect blend of functionality and style.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_TxMNVB": {
+              "type": "button",
+              "settings": {
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "use_custom_button_spacing": false,
+                "button_radius": 8,
+                "button_padding_top": 12,
+                "button_padding_bottom": 12,
+                "button_padding_left": 24,
+                "button_padding_right": 24,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_HpUr3H",
+            "text_AAYXh6",
+            "button_TxMNVB"
+          ]
         },
-        "column_RBK8ze": {
-          "type": "column",
+        "layered_slide_zQ4BEV": {
+          "type": "_layered-slide",
           "settings": {
-            "image": "shopify://shop_images/Change_anywhere.webp",
-            "alt": "",
-            "ratio": "inherit",
-            "link": "",
-            "overlay": 50,
-            "overlay_style": "bottom",
-            "sticker_width": 60,
-            "sticker_position": "bottom-left",
-            "sticker_rotate": 0,
-            "in_logo_width": 40,
-            "in_title": "",
-            "in_text": "",
-            "in_position": "split",
-            "in_color": "cream",
-            "title": "Change anywhere",
-            "text": "",
-            "button_label": "",
-            "button_link": "",
-            "button_style": "cream",
-            "button_position": "inside",
-            "button_full": false
-          }
-        },
-        "column_THWrKa": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/After_water_cover.webp",
-            "alt": "",
-            "ratio": "inherit",
-            "link": "",
-            "overlay": 50,
-            "overlay_style": "bottom",
-            "sticker_width": 60,
-            "sticker_position": "bottom-left",
-            "sticker_rotate": 0,
-            "in_logo_width": 40,
-            "in_title": "",
-            "in_text": "",
-            "in_position": "split",
-            "in_color": "cream",
-            "title": "After water cover",
-            "text": "",
-            "button_label": "",
-            "button_link": "",
-            "button_style": "cream",
-            "button_position": "inside",
-            "button_full": false
-          }
+            "media_type_1": "image",
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 12,
+            "background_color": "",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 32,
+            "padding-inline-start": 32,
+            "padding-inline-end": 32
+          },
+          "blocks": {
+            "text_pkk8Li": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>Featured collection</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_Yt77WU": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Discover our curated collection featuring hand-picked favorites that blend style and quality.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "button_zDi3PP": {
+              "type": "button",
+              "settings": {
+                "label": "Shop now",
+                "link": "shopify://collections/all",
+                "open_in_new_tab": false,
+                "style_class": "button",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "use_custom_button_spacing": false,
+                "button_radius": 8,
+                "button_padding_top": 12,
+                "button_padding_bottom": 12,
+                "button_padding_left": 24,
+                "button_padding_right": 24,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_pkk8Li",
+            "text_Yt77WU",
+            "button_zDi3PP"
+          ]
         }
       },
       "block_order": [
-        "column_zMRTxd",
-        "column_pVrc8H",
-        "column_RBK8ze",
-        "column_THWrKa"
+        "layered_slide_qKNJX3",
+        "layered_slide_xtLqXi",
+        "layered_slide_zQ4BEV"
       ],
-      "name": "Kahu columns",
+      "name": "t:names.layered_slideshow",
       "settings": {
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "mobile_layout": "slider",
-        "gap_desktop": 8,
-        "gap_mobile": 8,
-        "full_width": false,
-        "ratio": "314 / 492",
-        "radius": 0,
-        "title_size": "sm",
-        "bg_color": "cream",
-        "bg_color_custom": "#f3efe5",
-        "text_color": "navy",
-        "text_color_custom": "#031426",
-        "desktop_padding_top": 0,
-        "desktop_padding_bottom": 46,
-        "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "mobile_padding_top": 0,
-        "mobile_padding_bottom": 32,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
+        "section_width": "page-width",
+        "height": "medium",
+        "corner_radius": 0,
+        "border_width": 1,
+        "drop_shadow": false,
+        "background_color": "",
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     }
   },
@@ -1293,6 +1496,6 @@
     "kahu_bottles_rail",
     "kahu_separator_43e8XT",
     "kahu_section_header_6KHbaF",
-    "kahu_columns_VJA4JH"
+    "layered_slideshow_jDYHdp"
   ]
 }
