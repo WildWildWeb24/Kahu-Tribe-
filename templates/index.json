@@ -1029,9 +1029,9 @@
             "x_desktop": 40,
             "y_desktop": 40,
             "hide_mobile": false,
-            "width_mobile": 120,
-            "x_mobile": 25,
-            "y_mobile": 50
+            "width_mobile": 240,
+            "x_mobile": 40,
+            "y_mobile": 40
           }
         },
         "graphic_9Pzjdd": {
@@ -1046,9 +1046,9 @@
             "x_desktop": 79,
             "y_desktop": 72,
             "hide_mobile": false,
-            "width_mobile": 120,
-            "x_mobile": 25,
-            "y_mobile": 50
+            "width_mobile": 240,
+            "x_mobile": 79,
+            "y_mobile": 72
           }
         }
       },
