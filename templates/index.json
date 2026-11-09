@@ -274,18 +274,18 @@
         "mobile_margin_bottom": 0
       }
     },
-    "kahu_section_header_Yfyzjm": {
-      "type": "kahu-section-header",
+    "kahu_columns_jxmUGE": {
+      "type": "kahu-columns",
       "blocks": {
         "eyebrow_F8V4AT": {
-          "type": "eyebrow",
+          "type": "h_eyebrow",
           "settings": {
             "text": "Multi-purpose towel poncho",
             "column": "left"
           }
         },
         "title_fGReqK": {
-          "type": "title",
+          "type": "h_title",
           "settings": {
             "text": "One Kahu many use",
             "size": "md",
@@ -294,7 +294,7 @@
           }
         },
         "button_abDp4b": {
-          "type": "button",
+          "type": "h_button",
           "settings": {
             "label": "Shop towel ponchos",
             "link": "",
@@ -305,7 +305,7 @@
           }
         },
         "divider_Q8Cwr4": {
-          "type": "divider",
+          "type": "h_divider",
           "settings": {
             "color": "current",
             "color_custom": "#031426",
@@ -313,36 +313,7 @@
             "space_desktop": 24,
             "space_mobile": 20
           }
-        }
-      },
-      "block_order": [
-        "eyebrow_F8V4AT",
-        "title_fGReqK",
-        "button_abDp4b",
-        "divider_Q8Cwr4"
-      ],
-      "name": "Kahu section header",
-      "settings": {
-        "layout": "split",
-        "full_width": false,
-        "right_align": "end",
-        "bg_color": "cream",
-        "bg_color_custom": "#f3efe5",
-        "text_color": "navy",
-        "text_color_custom": "#031426",
-        "desktop_padding_top": 26,
-        "desktop_padding_bottom": 36,
-        "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "mobile_padding_top": 24,
-        "mobile_padding_bottom": 24,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
-      }
-    },
-    "kahu_columns_jxmUGE": {
-      "type": "kahu-columns",
-      "blocks": {
+        },
         "column_NBApgz": {
           "type": "column",
           "settings": {
@@ -449,6 +420,10 @@
         }
       },
       "block_order": [
+        "eyebrow_F8V4AT",
+        "title_fGReqK",
+        "button_abDp4b",
+        "divider_Q8Cwr4",
         "column_NBApgz",
         "column_cNrfit",
         "column_wRWj7p",
@@ -469,14 +444,20 @@
         "bg_color_custom": "#f3efe5",
         "text_color": "navy",
         "text_color_custom": "#031426",
-        "desktop_padding_top": 0,
+        "desktop_padding_top": 26,
         "desktop_padding_bottom": 46,
         "desktop_margin_top": 0,
         "desktop_margin_bottom": 0,
-        "mobile_padding_top": 0,
+        "mobile_padding_top": 24,
         "mobile_padding_bottom": 32,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
+        "mobile_margin_bottom": 0,
+        "header_layout": "split",
+        "header_right_align": "end",
+        "header_text_color": "navy",
+        "header_text_color_custom": "#031426",
+        "header_gap_desktop": 36,
+        "header_gap_mobile": 24
       }
     },
     "marquee_VGLqCT": {
@@ -1273,77 +1254,61 @@
         "mobile_margin_bottom": 0
       }
     },
-    "kahu_separator_EtHiB9": {
-      "type": "kahu-separator",
+    "kahu_columns_xKYD4q": {
+      "type": "kahu-columns",
       "blocks": {
-        "graphic_aLCt83": {
-          "type": "graphic",
+        "separator_EtHiB9": {
+          "type": "separator",
           "settings": {
-            "image": "shopify://shop_images/03-octopus-tentacle_1.webp",
-            "alt": "",
-            "layer": "front",
-            "rotate": 0,
+            "shape": "wave",
+            "direction": "up",
+            "mode": "stack",
+            "wave_color": "cream",
+            "wave_color_custom": "#f3efe5",
+            "bg_color": "navy",
+            "bg_color_custom": "#2fa4a9",
+            "height_desktop": 90,
+            "height_mobile": 72,
             "flip": false,
-            "size_mode": "auto",
-            "width_desktop": 240,
-            "x_desktop": 8,
-            "y_desktop": -50,
-            "hide_mobile": false,
-            "mobile_scale": 60,
-            "width_mobile": 200,
-            "mobile_position": "same",
-            "x_mobile": 30,
-            "y_mobile": 30
+            "extra_bottom_desktop": 0,
+            "extra_bottom_mobile": 0,
+            "extra_top_desktop": 32,
+            "extra_top_mobile": 0,
+            "position": "top",
+            "g1_image": "shopify://shop_images/03-octopus-tentacle_1.webp",
+            "g1_alt": "",
+            "g1_layer": "front",
+            "g1_rotate": 0,
+            "g1_flip": false,
+            "g1_size_mode": "auto",
+            "g1_width_desktop": 240,
+            "g1_x_desktop": 8,
+            "g1_y_desktop": -50,
+            "g1_hide_mobile": false,
+            "g1_mobile_scale": 60,
+            "g1_width_mobile": 200,
+            "g1_mobile_position": "same",
+            "g1_x_mobile": 30,
+            "g1_y_mobile": 30,
+            "g2_image": "shopify://shop_images/04-branching-coral_1.webp",
+            "g2_alt": "",
+            "g2_layer": "front",
+            "g2_rotate": 0,
+            "g2_flip": false,
+            "g2_size_mode": "auto",
+            "g2_width_desktop": 240,
+            "g2_x_desktop": 92,
+            "g2_y_desktop": -50,
+            "g2_hide_mobile": false,
+            "g2_mobile_scale": 40,
+            "g2_width_mobile": 240,
+            "g2_mobile_position": "custom",
+            "g2_x_mobile": 88,
+            "g2_y_mobile": -50
           }
         },
-        "graphic_cUNWiC": {
-          "type": "graphic",
-          "settings": {
-            "image": "shopify://shop_images/04-branching-coral_1.webp",
-            "alt": "",
-            "layer": "front",
-            "rotate": 0,
-            "flip": false,
-            "size_mode": "auto",
-            "width_desktop": 240,
-            "x_desktop": 92,
-            "y_desktop": -50,
-            "hide_mobile": false,
-            "mobile_scale": 40,
-            "width_mobile": 240,
-            "mobile_position": "custom",
-            "x_mobile": 88,
-            "y_mobile": -50
-          }
-        }
-      },
-      "block_order": [
-        "graphic_aLCt83",
-        "graphic_cUNWiC"
-      ],
-      "name": "Kahu separator",
-      "settings": {
-        "shape": "wave",
-        "direction": "up",
-        "mode": "stack",
-        "wave_color": "cream",
-        "wave_color_custom": "#f3efe5",
-        "bg_color": "navy",
-        "bg_color_custom": "#2fa4a9",
-        "height_desktop": 90,
-        "height_mobile": 72,
-        "flip": false,
-        "extra_bottom_desktop": 0,
-        "extra_bottom_mobile": 0,
-        "extra_top_desktop": 32,
-        "extra_top_mobile": 0
-      }
-    },
-    "kahu_section_header_YKac9L": {
-      "type": "kahu-section-header",
-      "blocks": {
         "image_WHWNYN": {
-          "type": "image",
+          "type": "h_image",
           "settings": {
             "image": "shopify://shop_images/sizes.webp",
             "width_desktop": 140,
@@ -1354,14 +1319,14 @@
           }
         },
         "eyebrow_8etjxd": {
-          "type": "eyebrow",
+          "type": "h_eyebrow",
           "settings": {
             "text": "Find your size",
             "column": "left"
           }
         },
         "title_E8xNGh": {
-          "type": "title",
+          "type": "h_title",
           "settings": {
             "text": "Made for all body types",
             "size": "md",
@@ -1370,7 +1335,7 @@
           }
         },
         "divider_6WL3Rj": {
-          "type": "divider",
+          "type": "h_divider",
           "settings": {
             "color": "current",
             "color_custom": "#031426",
@@ -1378,36 +1343,7 @@
             "space_desktop": 24,
             "space_mobile": 20
           }
-        }
-      },
-      "block_order": [
-        "image_WHWNYN",
-        "eyebrow_8etjxd",
-        "title_E8xNGh",
-        "divider_6WL3Rj"
-      ],
-      "name": "Kahu section header",
-      "settings": {
-        "layout": "split",
-        "full_width": false,
-        "right_align": "end",
-        "bg_color": "cream",
-        "bg_color_custom": "#f3efe5",
-        "text_color": "navy",
-        "text_color_custom": "#031426",
-        "desktop_padding_top": 26,
-        "desktop_padding_bottom": 36,
-        "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "mobile_padding_top": 24,
-        "mobile_padding_bottom": 24,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
-      }
-    },
-    "kahu_columns_xKYD4q": {
-      "type": "kahu-columns",
-      "blocks": {
+        },
         "column_RmY8e9": {
           "type": "column",
           "settings": {
@@ -1503,6 +1439,11 @@
         }
       },
       "block_order": [
+        "separator_EtHiB9",
+        "image_WHWNYN",
+        "eyebrow_8etjxd",
+        "title_E8xNGh",
+        "divider_6WL3Rj",
         "column_RmY8e9",
         "column_xzG7hx",
         "column_jj4Dq4"
@@ -1522,14 +1463,20 @@
         "bg_color_custom": "#f3efe5",
         "text_color": "navy",
         "text_color_custom": "#031426",
-        "desktop_padding_top": 0,
+        "desktop_padding_top": 26,
         "desktop_padding_bottom": 46,
         "desktop_margin_top": 0,
         "desktop_margin_bottom": 0,
-        "mobile_padding_top": 0,
+        "mobile_padding_top": 24,
         "mobile_padding_bottom": 32,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
+        "mobile_margin_bottom": 0,
+        "header_layout": "split",
+        "header_right_align": "end",
+        "header_text_color": "navy",
+        "header_text_color_custom": "#031426",
+        "header_gap_desktop": 36,
+        "header_gap_mobile": 24
       }
     }
   },
@@ -1537,7 +1484,6 @@
     "kahu_hero",
     "kahu_separator_hero",
     "kahu_image_rail",
-    "kahu_section_header_Yfyzjm",
     "kahu_columns_jxmUGE",
     "marquee_VGLqCT",
     "section_3MVibR",
@@ -1547,8 +1493,6 @@
     "kahu_separator_43e8XT",
     "kahu_section_header_6KHbaF",
     "kahu_video_stories",
-    "kahu_separator_EtHiB9",
-    "kahu_section_header_YKac9L",
     "kahu_columns_xKYD4q"
   ]
 }
