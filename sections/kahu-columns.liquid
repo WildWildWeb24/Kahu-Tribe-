@@ -52,6 +52,10 @@
     --kc-pb: {{ s.mobile_padding_bottom }}px;
     --kc-mt: {{ s.mobile_margin_top }}px;
     --kc-mb: {{ s.mobile_margin_bottom }}px;
+    --kc-btn-h: {{ s.btn_height_mobile | default: 44 }}px;
+    --kc-btn-px: {{ s.btn_padding | default: 16 }}px;
+    --kc-btn-fs: {{ s.btn_font | default: 12 }}px;
+    --kc-btn-w: {{ s.btn_width_fixed | default: 176 }}px;
   }
   @media (min-width: 750px) {
     #kahu-cols-{{ section.id }} {
@@ -60,13 +64,14 @@
       --kc-pb: {{ s.desktop_padding_bottom }}px;
       --kc-mt: {{ s.desktop_margin_top }}px;
       --kc-mb: {{ s.desktop_margin_bottom }}px;
+      --kc-btn-h: {{ s.btn_height | default: 44 }}px;
     }
   }
 {%- endstyle -%}
 
 <div
   id="kahu-cols-{{ section.id }}"
-  class="kahu-cols kahu-cols--title-{{ s.title_size }}{% if s.mobile_layout == 'slider' %} kahu-cols--slider-m{% endif %}"
+  class="kahu-cols kahu-cols--title-{{ s.title_size }} kahu-cols--btn-{{ s.btn_width | default: 'fixed' }}{% if s.mobile_layout == 'slider' %} kahu-cols--slider-m{% endif %}"
 >
   {%- if s.bg_image -%}
     <div class="kahu-cols__bg" aria-hidden="true">
@@ -80,7 +85,7 @@
         {%- liquid
           assign b = block.settings
           assign has_inside = false
-          if b.in_logo != blank or b.in_title != blank or b.in_text != blank
+          if b.in_logo != blank or b.in_text != blank or b.in_title != blank and b.in_title_position != 'below_image'
             assign has_inside = true
           endif
           assign btn_inside = false
@@ -119,6 +124,19 @@
           assign sticker_class = 'kahu-col__sticker kahu-col__sticker--' | append: b.sticker_position
           assign sticker_style = '--kc-sticker-w: ' | append: b.sticker_width | append: '%; --kc-sticker-rot: ' | append: b.sticker_rotate | append: 'deg;'
           assign logo_style = '--kc-logo-w: ' | append: b.in_logo_width | append: 'px;'
+
+          assign title_pos = b.in_title_position | default: 'beside'
+          assign title_inside = false
+          if b.in_title != blank and title_pos != 'below_image'
+            assign title_inside = true
+          endif
+          assign title_below_image = false
+          if b.in_title != blank and title_pos == 'below_image'
+            assign title_below_image = true
+            assign has_below = true
+          endif
+          assign divider = b.in_divider | default: 'none'
+          assign brand_style = '--kc-div-h: ' | append: b.in_divider_height | append: 'px; --kc-div-w: ' | append: b.in_divider_thickness | append: 'px; --kc-div-gap: ' | append: b.in_divider_gap | append: 'px; --kc-in-title-d: ' | append: b.in_title_size | append: 'px;'
         -%}
 
         <div
@@ -169,15 +187,28 @@
 
               {%- if has_inside or btn_inside -%}
                 <div class="kahu-col__inside kahu-col__inside--{{ b.in_position }}">
-                  {%- if b.in_logo -%}
-                    {{ b.in_logo | image_url: width: 200 | image_tag:
-                        class: 'kahu-col__logo',
-                        style: logo_style,
-                        loading: 'lazy',
-                        alt: '' }}
-                  {%- endif -%}
-                  {%- if b.in_title != blank -%}
-                    <h3 class="kahu-col__in-title">{{ b.in_title | escape | replace: '|', '<br>' }}</h3>
+                  {%- if b.in_logo or title_inside -%}
+                    <div class="kahu-col__brand kahu-col__brand--{{ title_pos }}" style="{{ brand_style }}">
+                      {%- if b.in_logo -%}
+                        {{ b.in_logo | image_url: width: 200 | image_tag:
+                            class: 'kahu-col__logo',
+                            style: logo_style,
+                            loading: 'lazy',
+                            alt: '' }}
+                      {%- endif -%}
+                      {%- if b.in_logo and title_inside and title_pos == 'beside' and divider != 'none' -%}
+                        {%- if divider == 'curved' -%}
+                          <svg class="kahu-col__divider kahu-col__divider--curved" viewBox="0 0 12 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                            <path d="M3 0 Q 11 50 3 100" fill="none" stroke="currentColor" stroke-width="{{ b.in_divider_thickness }}" vector-effect="non-scaling-stroke" stroke-linecap="round"/>
+                          </svg>
+                        {%- else -%}
+                          <span class="kahu-col__divider kahu-col__divider--{{ divider }}" aria-hidden="true"></span>
+                        {%- endif -%}
+                      {%- endif -%}
+                      {%- if title_inside -%}
+                        <h3 class="kahu-col__in-title">{{ b.in_title | escape | replace: '|', '<br>' }}</h3>
+                      {%- endif -%}
+                    </div>
                   {%- endif -%}
                   {%- if b.in_text != blank -%}
                     <div class="kahu-col__in-text">{{ b.in_text }}</div>
@@ -197,6 +228,9 @@
 
           {%- if has_below -%}
             <div class="kahu-col__below">
+              {%- if title_below_image -%}
+                <h3 class="kahu-col__title kahu-col__title--moved" style="{{ brand_style }}">{{ b.in_title | escape | replace: '|', '<br>' }}</h3>
+              {%- endif -%}
               {%- if b.title != blank -%}
                 <h3 class="kahu-col__title">
                   {%- if b.link != blank -%}<a href="{{ b.link }}" tabindex="-1">{{ b.title | escape }}</a>{%- else -%}{{ b.title | escape }}{%- endif -%}
@@ -318,8 +352,19 @@
   .kahu-col__inside--center { justify-content: center; align-items: center; text-align: center; }
   .kahu-col__inside--split { justify-content: space-between; align-items: flex-start; }
 
-  .kahu-col__logo { width: var(--kc-logo-w, 40px); height: auto; display: block; }
-  .kahu-col__in-title { margin: 0; font-weight: 700; font-size: 32px; line-height: 1; color: inherit; }
+  .kahu-col__logo { width: var(--kc-logo-w, 40px); height: auto; display: block; flex-shrink: 0; }
+
+  /* Logo + divider + title row (Size cards: KAHU | Max) */
+  .kahu-col__brand { display: flex; flex-direction: column; align-items: inherit; gap: 8px; }
+  .kahu-col__brand--beside { flex-direction: row; align-items: center; gap: var(--kc-div-gap, 12px); }
+  .kahu-col__divider { flex-shrink: 0; height: var(--kc-div-h, 48px); }
+  .kahu-col__divider--straight { border-left: var(--kc-div-w, 1px) solid currentColor; }
+  .kahu-col__divider--dotted { border-left: var(--kc-div-w, 1px) dotted currentColor; }
+  .kahu-col__divider--dashed { border-left: var(--kc-div-w, 1px) dashed currentColor; }
+  .kahu-col__divider--curved { width: 12px; overflow: visible; }
+
+  .kahu-col__in-title { margin: 0; font-weight: 700; font-size: calc(var(--kc-in-title-d, 40px) * 0.75); line-height: 1; color: inherit; }
+  .kahu-col__title--moved { font-size: calc(var(--kc-in-title-d, 40px) * 0.75); }
   .kahu-col__in-text { font-size: 14px; line-height: 1.2; }
   .kahu-col__in-text p { margin: 0; }
   .kahu-col__in-text strong { font-size: 16px; font-weight: 700; }
@@ -338,10 +383,27 @@
   .kahu-col__btn { margin-top: 6px; }
   .kahu-col__btn--full .kahu-btn { width: 100%; min-width: 0; }
 
+  /* Card buttons: size set once per section */
+  .kahu-cols .kahu-col__btn .kahu-btn {
+    height: var(--kc-btn-h, 44px);
+    padding: 0 var(--kc-btn-px, 16px);
+    width: var(--kc-btn-w, 176px);
+    min-width: 0;
+    gap: 16px;
+  }
+  .kahu-cols .kahu-col__btn .kahu-btn__label { font-size: var(--kc-btn-fs, 12px); }
+  .kahu-cols--btn-auto .kahu-col__btn .kahu-btn { width: auto; }
+  .kahu-cols--btn-full .kahu-col__btn .kahu-btn,
+  .kahu-cols .kahu-col__btn--full .kahu-btn { width: 100%; }
+  .kahu-cols .kahu-col__btn--inside { align-self: stretch; }
+  .kahu-cols--btn-fixed .kahu-col__btn--inside,
+  .kahu-cols--btn-auto .kahu-col__btn--inside { align-self: auto; }
+
   @media (min-width: 750px) {
     .kahu-cols__grid { grid-template-columns: repeat(var(--kc-cols-d), minmax(0, 1fr)); }
     .kahu-col__inside { padding: 24px; }
-    .kahu-col__in-title { font-size: 40px; }
+    .kahu-col__in-title,
+    .kahu-col__title--moved { font-size: var(--kc-in-title-d, 40px); }
     .kahu-cols--title-sm .kahu-col__title { font-size: 20px; }
     .kahu-cols--title-md .kahu-col__title { font-size: 32px; }
     .kahu-cols--title-lg .kahu-col__title { font-size: 40px; }
@@ -394,6 +456,22 @@
       "options": [ { "value": "sm", "label": "Small (20px)" }, { "value": "md", "label": "Medium (32px)" }, { "value": "lg", "label": "Large (40px)" } ],
       "default": "sm"
     },
+
+    { "type": "header", "content": "Card buttons" },
+    {
+      "type": "select", "id": "btn_width", "label": "Button width",
+      "options": [
+        { "value": "fixed", "label": "Fixed" },
+        { "value": "auto", "label": "Fit the text" },
+        { "value": "full", "label": "Full card width" }
+      ],
+      "default": "fixed"
+    },
+    { "type": "range", "id": "btn_width_fixed", "label": "Fixed width", "min": 120, "max": 320, "step": 4, "unit": "px", "default": 176, "visible_if": "{{ section.settings.btn_width == 'fixed' }}" },
+    { "type": "range", "id": "btn_height", "label": "Height (desktop)", "min": 32, "max": 64, "step": 2, "unit": "px", "default": 44 },
+    { "type": "range", "id": "btn_height_mobile", "label": "Height (mobile)", "min": 28, "max": 56, "step": 2, "unit": "px", "default": 40 },
+    { "type": "range", "id": "btn_padding", "label": "Side padding", "min": 8, "max": 40, "step": 2, "unit": "px", "default": 16 },
+    { "type": "range", "id": "btn_font", "label": "Text size", "min": 10, "max": 18, "step": 1, "unit": "px", "default": 12 },
 
     { "type": "header", "content": "Colours" },
     {
@@ -484,6 +562,31 @@
         { "type": "image_picker", "id": "in_logo", "label": "Logo / icon" },
         { "type": "range", "id": "in_logo_width", "label": "Logo width", "min": 20, "max": 160, "step": 2, "unit": "px", "default": 40 },
         { "type": "text", "id": "in_title", "label": "Title", "info": "e.g. Max. Use | for a line break" },
+        {
+          "type": "select", "id": "in_title_position", "label": "Title position",
+          "options": [
+            { "value": "beside", "label": "Next to the logo" },
+            { "value": "below_logo", "label": "Below the logo" },
+            { "value": "below_image", "label": "Below the image" }
+          ],
+          "default": "beside"
+        },
+        { "type": "range", "id": "in_title_size", "label": "Title size (desktop)", "min": 20, "max": 64, "step": 2, "unit": "px", "default": 40, "info": "Mobile uses 75%" },
+        {
+          "type": "select", "id": "in_divider", "label": "Divider between logo and title",
+          "options": [
+            { "value": "none", "label": "None" },
+            { "value": "straight", "label": "Straight line" },
+            { "value": "dotted", "label": "Dotted line" },
+            { "value": "dashed", "label": "Dashed line" },
+            { "value": "curved", "label": "Curved line" }
+          ],
+          "default": "straight",
+          "visible_if": "{{ block.settings.in_title_position == 'beside' }}"
+        },
+        { "type": "range", "id": "in_divider_height", "label": "Divider height", "min": 16, "max": 120, "step": 2, "unit": "px", "default": 44, "visible_if": "{{ block.settings.in_title_position == 'beside' and block.settings.in_divider != 'none' }}" },
+        { "type": "range", "id": "in_divider_thickness", "label": "Divider thickness", "min": 1, "max": 6, "step": 1, "unit": "px", "default": 1, "visible_if": "{{ block.settings.in_title_position == 'beside' and block.settings.in_divider != 'none' }}" },
+        { "type": "range", "id": "in_divider_gap", "label": "Space around divider", "min": 4, "max": 40, "step": 2, "unit": "px", "default": 12, "visible_if": "{{ block.settings.in_title_position == 'beside' }}" },
         { "type": "richtext", "id": "in_text", "label": "Text", "info": "e.g. bold \"6ft & above\", then \"H 120cm × W 90cm\"" },
         {
           "type": "select", "id": "in_position", "label": "Position",
@@ -511,7 +614,7 @@
         {
           "type": "select", "id": "button_style", "label": "Style",
           "options": [
-            { "value": "cream", "label": "Cream" }, { "value": "teal", "label": "Teal" },
+            { "value": "white", "label": "White" }, { "value": "cream", "label": "Cream" }, { "value": "teal", "label": "Teal" },
             { "value": "navy", "label": "Navy" }, { "value": "outline", "label": "Outline" }
           ],
           "default": "cream"

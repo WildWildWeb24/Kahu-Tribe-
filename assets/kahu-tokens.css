@@ -45,6 +45,7 @@
 .kahu-btn:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
 .kahu-btn__label { font-weight: 700; font-size: 14px; line-height: 20px; }
 .kahu-btn__arrow { font-weight: 400; font-size: 18px; line-height: 28px; }
+.kahu-btn--white   { background: var(--kahu-white, #fff); color: var(--kahu-navy); }
 .kahu-btn--cream   { background: var(--kahu-cream); color: var(--kahu-navy); }
 .kahu-btn--teal    { background: var(--kahu-teal);  color: var(--kahu-navy); }
 .kahu-btn--navy    { background: var(--kahu-navy);  color: var(--kahu-cream); }
