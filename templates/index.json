@@ -1295,21 +1295,21 @@
         "graphic_cUNWiC": {
           "type": "graphic",
           "settings": {
-            "image": "shopify://shop_images/01-manta-ray_1.webp",
+            "image": "shopify://shop_images/04-branching-coral_1.webp",
             "alt": "",
             "layer": "front",
             "rotate": 0,
             "flip": false,
             "size_mode": "auto",
             "width_desktop": 240,
-            "x_desktop": 79,
-            "y_desktop": 66,
+            "x_desktop": 92,
+            "y_desktop": -50,
             "hide_mobile": false,
-            "mobile_scale": 50,
+            "mobile_scale": 40,
             "width_mobile": 240,
-            "mobile_position": "same",
-            "x_mobile": 79,
-            "y_mobile": 72
+            "mobile_position": "custom",
+            "x_mobile": 88,
+            "y_mobile": -50
           }
         }
       },
@@ -1327,7 +1327,7 @@
         "bg_color": "navy",
         "bg_color_custom": "#2fa4a9",
         "height_desktop": 90,
-        "height_mobile": 40,
+        "height_mobile": 72,
         "flip": false,
         "extra_bottom_desktop": 152,
         "extra_bottom_mobile": 0,
