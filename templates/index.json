@@ -1080,14 +1080,14 @@
         "eyebrow_gcT6TD": {
           "type": "eyebrow",
           "settings": {
-            "text": "Multi-purpose towel poncho",
+            "text": "From the Kahu Tribe",
             "column": "left"
           }
         },
         "title_4gcGUh": {
           "type": "title",
           "settings": {
-            "text": "One Kahu many use",
+            "text": "Channel kahu.tribe",
             "size": "md",
             "tag": "h2",
             "column": "left"
