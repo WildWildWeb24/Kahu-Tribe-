@@ -51,3 +51,42 @@
 .kahu-btn--navy    { background: var(--kahu-navy);  color: var(--kahu-cream); }
 .kahu-btn--outline { background: transparent; color: currentColor; border-color: currentColor; }
 
+
+/* ------------------------------------------------------------------
+   Footer group styling (newsletter + footer, both built from Horizon's own sections).
+   Lives here instead of each section's "Custom CSS" box, because that box is limited to
+   500 characters and the theme editor refuses to save when it is over.
+   Selectors match the section ids in sections/footer-group.json: "kahu_newsletter" and "footer".
+   ------------------------------------------------------------------ */
+.shopify-section-group-footer-group[id$='__kahu_newsletter'] {
+  & :is(h2, p, input, button) { font-family: var(--kahu-font-sans); }
+  & h2 { font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+  & button { font-weight: 700; border-radius: 0 !important; width: auto !important; flex: none; white-space: nowrap; }
+  & input { flex: 1; }
+  & .email-signup__input-group { gap: 0 !important; align-items: stretch !important; flex-direction: row !important; }
+
+  /* Desktop: height follows the photo's shape (2880 x 1676) so the curves don't hide it; stops growing at 1680px */
+  @media (min-width: 750px) {
+    & .section { --section-min-height: calc(min(100vw, 1680px) * 0.582) !important; }
+  }
+  @media (max-width: 749px) {
+    & h2 { font-size: 8vw !important; white-space: nowrap; }
+  }
+}
+
+.shopify-section-group-footer-group[id$='__footer'] {
+  & h3 { font: 500 12px/16px var(--kahu-font-mono) !important; letter-spacing: 1.2px !important; color: var(--kahu-yellow); margin: 0; }
+  & :is(p, a) { font: 14px/20px var(--kahu-font-sans) !important; color: var(--kahu-cream); text-decoration: none; }
+  & p { margin: 0; }
+  & p + p { margin-top: 10px; }
+  & a:hover { color: var(--kahu-yellow); }
+  & jumbo-text { font-family: var(--kahu-font-sans) !important; font-weight: 800 !important; }
+  /* Privacy / Terms / Accessibility */
+  & a[href^='/p'] + a { margin-left: 20px; }
+
+  @media (max-width: 749px) {
+    & .footer-content { grid-template-columns: 1fr 1fr; }
+    & .footer-content > :last-child { grid-column: 1 / -1; }
+    & .mobile-column .mobile-column { align-items: center; }
+  }
+}
