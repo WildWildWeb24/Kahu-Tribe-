@@ -22,14 +22,14 @@
 
   {%- when 'text' -%}
     {%- if block.settings.text != blank -%}
-      <div class="kahu-sh__text" style="--ksh-text-w: {{ block.settings.max_width }}px;" {{ block.shopify_attributes }}>
+      <div class="kahu-sh__text kahu-sh__space" style="--ksh-text-w: {{ block.settings.max_width }}px; --ksh-sa-d: {{ block.settings.space_above_desktop | default: 12 }}px; --ksh-sa-m: {{ block.settings.space_above_mobile | default: 12 }}px;" {{ block.shopify_attributes }}>
         {{- block.settings.text -}}
       </div>
     {%- endif -%}
 
   {%- when 'button' -%}
     {%- if block.settings.label != blank -%}
-      <div class="kahu-sh__button{% if block.settings.full_mobile %} kahu-sh__button--full-m{% endif %}" {{ block.shopify_attributes }}>
+      <div class="kahu-sh__button kahu-sh__space{% if block.settings.full_mobile %} kahu-sh__button--full-m{% endif %}" style="--ksh-sa-d: {{ block.settings.space_above_desktop | default: 0 }}px; --ksh-sa-m: {{ block.settings.space_above_mobile | default: 0 }}px;" {{ block.shopify_attributes }}>
         <a class="kahu-btn kahu-btn--{{ block.settings.style }}" href="{{ block.settings.link | default: routes.all_products_collection_url }}">
           <span class="kahu-btn__label">{{ block.settings.label | escape }}</span>
           {%- if block.settings.arrow -%}<span class="kahu-btn__arrow" aria-hidden="true">→</span>{%- endif -%}
@@ -93,8 +93,8 @@
             alt: block.settings.alt | default: block.settings.image.alt }}
       {%- endcapture -%}
       <div
-        class="kahu-sh__media"
-        style="--ksh-img-w-d: {{ block.settings.width_desktop }}px; --ksh-img-w-m: {{ block.settings.width_mobile }}px;"
+        class="kahu-sh__media kahu-sh__space"
+        style="--ksh-img-w-d: {{ block.settings.width_desktop }}px; --ksh-img-w-m: {{ block.settings.width_mobile }}px; --ksh-sa-d: {{ block.settings.space_above_desktop | default: 0 }}px; --ksh-sa-m: {{ block.settings.space_above_mobile | default: 0 }}px;"
         {{ block.shopify_attributes }}
       >
         {%- if block.settings.link != blank -%}

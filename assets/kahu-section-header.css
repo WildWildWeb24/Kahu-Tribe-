@@ -91,3 +91,7 @@
 
 /* Header row used inside other Kahu sections (columns, rail, video): no own background/padding */
 .kahu-sh--inline { background: none; padding: 0; margin: 0; color: inherit; }
+
+/* "Space above" setting on text / button / image blocks */
+.kahu-sh .kahu-sh__space { margin-top: var(--ksh-sa-m, 0px); }
+@media (min-width: 750px) { .kahu-sh .kahu-sh__space { margin-top: var(--ksh-sa-d, 0px); } }
