@@ -69,8 +69,8 @@
                 "image_2": "shopify://shop_images/bottles_d5c9af3a-88a5-4fe6-b651-3cccc0508f02.webp",
                 "image_width_desktop": 32,
                 "image_width_mobile": 24,
-                "image_2_width_desktop": 124,
-                "image_2_width_mobile": 80,
+                "image_2_width_desktop": 100,
+                "image_2_width_mobile": 46,
                 "text_size_desktop": 11,
                 "text_size_mobile": 10,
                 "weight": "regular",
@@ -83,6 +83,7 @@
             "badge_bag": {
               "type": "_kahu-media-badge",
               "settings": {
+                "image": "shopify://shop_images/carry_bag.webp",
                 "text": "Carry bag|included",
                 "layout": "beside",
                 "divider": false,
