@@ -2128,7 +2128,9 @@
           "settings": {
             "text": "<p>Notes from people who keep finding their way back to the water</p>",
             "max_width": 560,
-            "column": "left"
+            "column": "left",
+            "space_above_desktop": 16,
+            "space_above_mobile": 12
           }
         },
         "h_button_ws": {
@@ -2139,7 +2141,9 @@
             "style": "teal",
             "arrow": true,
             "full_mobile": false,
-            "column": "left"
+            "column": "left",
+            "space_above_desktop": 32,
+            "space_above_mobile": 24
           }
         },
         "h_logos_ws": {
@@ -2150,7 +2154,9 @@
             "width_mobile": 340,
             "link": "",
             "alt": "Brands we have worked with",
-            "column": "left"
+            "column": "left",
+            "space_above_desktop": 48,
+            "space_above_mobile": 32
           }
         },
         "h_photo_ws": {
@@ -2161,7 +2167,9 @@
             "width_mobile": 340,
             "link": "",
             "alt": "",
-            "column": "right"
+            "column": "right",
+            "space_above_desktop": 0,
+            "space_above_mobile": 8
           }
         }
       },
