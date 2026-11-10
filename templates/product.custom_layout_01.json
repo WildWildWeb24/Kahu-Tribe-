@@ -56,7 +56,7 @@
                 "image": "shopify://shop_images/recycle.webp",
                 "background": "#e2b47c",
                 "image_2": "shopify://shop_images/bottles.webp",
-                "image_2_width_desktop": 120,
+                "image_2_width_desktop": 124,
                 "image_2_width_mobile": 80
               },
               "blocks": {}
