@@ -1,0 +1,32 @@
+/* Kahu reviews (sections/kahu-reviews.liquid) */
+.kahu-rv { position: relative; isolation: isolate; display: block; background: var(--kr-bg); color: var(--kr-fg); margin-top: var(--kr-mt); margin-bottom: var(--kr-mb); font-family: var(--kahu-font-sans); }
+.kahu-rv__bg, .kahu-rv__bg picture, .kahu-rv__overlay { position: absolute; inset: 0; z-index: -1; }
+.kahu-rv__bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kahu-rv__overlay { background: rgb(0 0 0 / var(--kr-overlay, 0.4)); }
+.kahu-rv__body { padding-top: var(--kr-pt); padding-bottom: var(--kr-pb); }
+.kahu-rv__inner { max-width: calc(var(--kahu-content, 1280px) + var(--kahu-gutter, 20px) * 2); margin: 0 auto; padding: 0 var(--kahu-gutter, 20px); display: flex; flex-direction: column; gap: var(--kr-col-gap-m, 24px); }
+.kahu-rv__intro { color: var(--kr-head-fg); min-width: 0; }
+.kahu-rv__intro .kahu-sh__text { max-width: none; }
+.kahu-rv__cards { position: relative; min-width: 0; }
+.kahu-rv__track { display: flex; gap: var(--kr-gap, 18px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin: 0; padding: 0; list-style: none; }
+.kahu-rv__track::-webkit-scrollbar { display: none; }
+.kahu-rv__card { flex: 0 0 var(--kr-card-w-m, 82%); min-height: var(--kr-card-h, 210px); scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; padding: var(--kr-card-pad, 26px); background: var(--kr-card-bg); color: var(--kr-card-fg); border-radius: var(--kr-radius, 0); }
+.kahu-rv__stars { color: var(--kr-star); font-size: 14px; line-height: 20px; letter-spacing: 2px; }
+.kahu-rv__title { margin: 0; font-weight: 700; font-size: 16px; line-height: 1.2; }
+.kahu-rv__quote { margin: 0; font-size: var(--kr-quote-m, 16px); line-height: 1.5; flex: 1; }
+.kahu-rv__meta { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.kahu-rv__name { font-family: var(--kahu-font-mono); font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: 1.2px; color: var(--kr-name); }
+.kahu-rv__product, .kahu-rv__date { font-size: 12px; line-height: 16px; opacity: 0.7; }
+.kahu-rv__arrows { display: flex; gap: 10px; margin-top: 16px; }
+.kahu-rv__arrow { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; opacity: 0.85; transition: opacity 0.2s ease, background 0.2s ease; }
+.kahu-rv__arrow:hover { opacity: 1; background: rgb(255 255 255 / 0.12); }
+.kahu-rv__arrow:focus-visible { outline: 2px solid var(--kahu-yellow); outline-offset: 3px; }
+.kahu-rv__arrow svg { width: 18px; height: 18px; }
+@media (min-width: 750px) {
+  .kahu-rv__inner { gap: var(--kr-col-gap-d, 50px); }
+  .kahu-rv--side .kahu-rv__inner { flex-direction: row; align-items: var(--kr-align, center); }
+  .kahu-rv--side .kahu-rv__intro { flex: 0 0 var(--kr-intro-w, 350px); }
+  .kahu-rv--side .kahu-rv__cards { flex: 1 1 auto; }
+  .kahu-rv__card { flex-basis: var(--kr-card-w, 330px); }
+  .kahu-rv__quote { font-size: var(--kr-quote-d, 18px); line-height: 1.55; }
+}
