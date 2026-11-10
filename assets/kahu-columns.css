@@ -158,3 +158,5 @@ gap: 16px;
   .kahu-cols__note--above { margin-bottom: var(--kn-gap-d, 12px); }
 }
 .kahu-cols__head--below { margin-bottom: 0; margin-top: var(--kc-head-gap); }
+.kahu-cols__note strong, .kahu-cols__note b { font-weight: 700; }
+.kahu-cols__note a { color: inherit; text-decoration: underline; }
