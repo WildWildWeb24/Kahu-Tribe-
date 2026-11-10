@@ -116,16 +116,20 @@
 .kahu-badge--bottom { order: 1; }
 /* first bottom badge pushes the bottom group down to the bottom edge */
 .kahu-badges > .kahu-badge--bottom:not(.kahu-badge--bottom ~ .kahu-badge--bottom) { margin-top: auto; }
-.kahu-badge--above { flex-direction: column; align-items: flex-start; gap: 6px; }
+.kahu-badge__main { display: flex; align-items: center; gap: 10px; }
+.kahu-badge--above .kahu-badge__main { flex-direction: column; align-items: flex-start; gap: 6px; }
+.kahu-badge { gap: 14px; }
 .kahu-badge--card { background: var(--kbg-bg); border-radius: var(--kbg-radius, 8px); padding: 10px 12px; }
 /* !important: the product gallery styles every img inside a media item as full-size */
 .kahu-badges .kahu-badge__img { display: block; position: static !important; width: var(--kbg-img-m, 28px) !important; height: auto !important; max-width: none; aspect-ratio: auto !important; object-fit: contain !important; flex-shrink: 0; }
+.kahu-badges .kahu-badge__img--2 { width: var(--kbg-img2-m, 80px) !important; }
 .kahu-badge__divider { align-self: stretch; border-left: 1px solid currentColor; opacity: 0.8; }
 .kahu-badge__text { font-size: var(--kbg-fs-m, 12px); line-height: 1.15; }
 .kahu-badge__text--bold { font-weight: 700; }
 @media (min-width: 750px) {
   .kahu-badges { padding: 24px; }
   .kahu-badges .kahu-badge__img { width: var(--kbg-img-d, 40px) !important; }
+  .kahu-badges .kahu-badge__img--2 { width: var(--kbg-img2-d, 120px) !important; }
   .kahu-badge__text { font-size: var(--kbg-fs-d, 14px); }
 }
 .shopify-design-mode .kahu-badge { pointer-events: auto; }

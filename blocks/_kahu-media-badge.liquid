@@ -17,17 +17,22 @@
 {%- if s.image or has_text or request.design_mode -%}
   <div
     class="kahu-badge kahu-badge--{{ corner[0] }} kahu-badge--{{ corner[1] }} kahu-badge--{{ s.layout }}{% if s.background != blank %} kahu-badge--card{% endif %}"
-    style="--kbg-img-d: {{ s.image_width_desktop }}px; --kbg-img-m: {{ s.image_width_mobile }}px; --kbg-fs-d: {{ s.text_size_desktop }}px; --kbg-fs-m: {{ s.text_size_mobile }}px; --kbg-fg: {{ s.text_color }};{% if s.background != blank %} --kbg-bg: {{ s.background }};{% endif %} --kbg-radius: {{ s.radius }}px;"
+    style="--kbg-img-d: {{ s.image_width_desktop }}px; --kbg-img-m: {{ s.image_width_mobile }}px; --kbg-img2-d: {{ s.image_2_width_desktop }}px; --kbg-img2-m: {{ s.image_2_width_mobile }}px; --kbg-fs-d: {{ s.text_size_desktop }}px; --kbg-fs-m: {{ s.text_size_mobile }}px; --kbg-fg: {{ s.text_color }};{% if s.background != blank %} --kbg-bg: {{ s.background }};{% endif %} --kbg-radius: {{ s.radius }}px;"
     {{ block.shopify_attributes }}
   >
-    {%- if s.image -%}
-      {{ s.image | image_url: width: 480 | image_tag: widths: '120, 240, 360, 480', sizes: '160px', class: 'kahu-badge__img', alt: '' }}
-    {%- endif -%}
-    {%- if s.image and has_text and s.divider -%}
-      <span class="kahu-badge__divider" aria-hidden="true"></span>
-    {%- endif -%}
-    {%- if has_text -%}
-      <span class="kahu-badge__text kahu-badge__text--{{ s.weight }}">{{ s.text | escape | replace: '|', '<br>' }}</span>
+    <span class="kahu-badge__main">
+      {%- if s.image -%}
+        {{ s.image | image_url: width: 480 | image_tag: widths: '120, 240, 360, 480', sizes: '160px', class: 'kahu-badge__img', alt: '' }}
+      {%- endif -%}
+      {%- if s.image and has_text and s.divider -%}
+        <span class="kahu-badge__divider" aria-hidden="true"></span>
+      {%- endif -%}
+      {%- if has_text -%}
+        <span class="kahu-badge__text kahu-badge__text--{{ s.weight }}">{{ s.text | escape | replace: '|', '<br>' }}</span>
+      {%- endif -%}
+    </span>
+    {%- if s.image_2 -%}
+      {{ s.image_2 | image_url: width: 600 | image_tag: widths: '150, 300, 450, 600', sizes: '200px', class: 'kahu-badge__img kahu-badge__img--2', alt: '' }}
     {%- endif -%}
   </div>
 {%- endif -%}
@@ -60,9 +65,12 @@
       "default": "top_left",
       "info": "Badges in the same corner stack in block order"
     },
+    { "type": "image_picker", "id": "image_2", "label": "Second graphic (right side)", "info": "e.g. the ten bottles, shown to the right of the icon and text" },
     { "type": "header", "content": "Size" },
     { "type": "range", "id": "image_width_desktop", "label": "Icon width (desktop)", "min": 16, "max": 240, "step": 4, "unit": "px", "default": 40 },
     { "type": "range", "id": "image_width_mobile", "label": "Icon width (mobile)", "min": 12, "max": 160, "step": 2, "unit": "px", "default": 28 },
+    { "type": "range", "id": "image_2_width_desktop", "label": "Second graphic width (desktop)", "min": 20, "max": 300, "step": 4, "unit": "px", "default": 120, "visible_if": "{{ block.settings.image_2 != blank }}" },
+    { "type": "range", "id": "image_2_width_mobile", "label": "Second graphic width (mobile)", "min": 16, "max": 200, "step": 2, "unit": "px", "default": 80, "visible_if": "{{ block.settings.image_2 != blank }}" },
     { "type": "range", "id": "text_size_desktop", "label": "Text size (desktop)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 14 },
     { "type": "range", "id": "text_size_mobile", "label": "Text size (mobile)", "min": 9, "max": 30, "step": 1, "unit": "px", "default": 12 },
     {
