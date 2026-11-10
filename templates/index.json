@@ -2221,11 +2221,9 @@
         "mobile_padding_top": 48,
         "mobile_padding_bottom": 48,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
-      },
-      "custom_css": [
-        "@media (max-width:749px){.kahu-sh__media{margin-inline:auto}}"
-      ]
+        "mobile_margin_bottom": 0,
+        "header_mobile": "center"
+      }
     }
   },
   "order": [
