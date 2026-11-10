@@ -21,6 +21,9 @@ gap: var(--kc-gap);
 }
 @media (max-width: 749px) {
 .kahu-cols--slider-m .kahu-cols__inner { padding-right: 0; }
+/* Only the card slider runs off the right edge; the header and notes keep the side gutter */
+.kahu-cols--slider-m .kahu-cols__head,
+.kahu-cols--slider-m .kahu-cols__note { margin-right: var(--kahu-gutter, 20px); }
 .kahu-cols--slider-m .kahu-cols__grid {
 display: flex;
 overflow-x: auto;
