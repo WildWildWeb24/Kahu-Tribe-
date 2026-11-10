@@ -112,176 +112,693 @@
   "class": "kahu-section-header",
   "max_blocks": 12,
   "settings": [
-    { "type": "header", "content": "Layout" },
     {
-      "type": "select", "id": "layout", "label": "Layout",
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
       "options": [
-        { "value": "split", "label": "Left text, right button/image" },
-        { "value": "center", "label": "Centred (everything stacked)" }
+        {
+          "value": "split",
+          "label": "Left text, right button/image"
+        },
+        {
+          "value": "center",
+          "label": "Centred (everything stacked)"
+        }
       ],
       "default": "split"
     },
-    { "type": "checkbox", "id": "full_width", "label": "Full width (no max width)", "default": false },
     {
-      "type": "select", "id": "right_align", "label": "Right column vertical alignment",
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width (no max width)",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "right_align",
+      "label": "Right column vertical alignment",
       "options": [
-        { "value": "end", "label": "Bottom" },
-        { "value": "center", "label": "Middle" },
-        { "value": "start", "label": "Top" }
+        {
+          "value": "end",
+          "label": "Bottom"
+        },
+        {
+          "value": "center",
+          "label": "Middle"
+        },
+        {
+          "value": "start",
+          "label": "Top"
+        }
       ],
       "default": "end"
     },
-
-    { "type": "header", "content": "Colours" },
     {
-      "type": "select", "id": "bg_color", "label": "Background",
+      "type": "header",
+      "content": "Colours"
+    },
+    {
+      "type": "select",
+      "id": "bg_color",
+      "label": "Background",
       "options": [
-        { "value": "cream", "label": "Cream" }, { "value": "navy", "label": "Navy" }, { "value": "ink", "label": "Ink" },
-        { "value": "teal", "label": "Teal" }, { "value": "yellow", "label": "Yellow" }, { "value": "sea", "label": "Sea" },
-        { "value": "white", "label": "White" }, { "value": "coral", "label": "Coral" },
-        { "value": "transparent", "label": "Transparent" }, { "value": "custom", "label": "Custom" }
+        {
+          "value": "cream",
+          "label": "Cream"
+        },
+        {
+          "value": "navy",
+          "label": "Navy"
+        },
+        {
+          "value": "ink",
+          "label": "Ink"
+        },
+        {
+          "value": "teal",
+          "label": "Teal"
+        },
+        {
+          "value": "yellow",
+          "label": "Yellow"
+        },
+        {
+          "value": "sea",
+          "label": "Sea"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "coral",
+          "label": "Coral"
+        },
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
       ],
       "default": "cream"
     },
-    { "type": "color", "id": "bg_color_custom", "label": "Custom background", "default": "#f3efe5", "visible_if": "{{ section.settings.bg_color == 'custom' }}" },
     {
-      "type": "select", "id": "text_color", "label": "Text",
+      "type": "color",
+      "id": "bg_color_custom",
+      "label": "Custom background",
+      "default": "#f3efe5",
+      "visible_if": "{{ section.settings.bg_color == 'custom' }}"
+    },
+    {
+      "type": "select",
+      "id": "text_color",
+      "label": "Text",
       "options": [
-        { "value": "navy", "label": "Navy" }, { "value": "cream", "label": "Cream" }, { "value": "ink", "label": "Ink" },
-        { "value": "white", "label": "White" }, { "value": "custom", "label": "Custom" }
+        {
+          "value": "navy",
+          "label": "Navy"
+        },
+        {
+          "value": "cream",
+          "label": "Cream"
+        },
+        {
+          "value": "ink",
+          "label": "Ink"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
       ],
       "default": "navy"
     },
-    { "type": "color", "id": "text_color_custom", "label": "Custom text colour", "default": "#031426", "visible_if": "{{ section.settings.text_color == 'custom' }}" },
-
-    { "type": "header", "content": "Desktop spacing" },
-    { "type": "range", "id": "desktop_padding_top", "label": "Padding top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 26 },
-    { "type": "range", "id": "desktop_padding_bottom", "label": "Padding bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 36 },
-    { "type": "range", "id": "desktop_margin_top", "label": "Margin top", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "desktop_margin_bottom", "label": "Margin bottom", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
-
-    { "type": "header", "content": "Mobile spacing" },
-    { "type": "range", "id": "mobile_padding_top", "label": "Padding top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 24 },
-    { "type": "range", "id": "mobile_padding_bottom", "label": "Padding bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 24 },
-    { "type": "range", "id": "mobile_margin_top", "label": "Margin top", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "mobile_margin_bottom", "label": "Margin bottom", "min": 0, "max": 160, "step": 2, "unit": "px", "default": 0 }
+    {
+      "type": "color",
+      "id": "text_color_custom",
+      "label": "Custom text colour",
+      "default": "#031426",
+      "visible_if": "{{ section.settings.text_color == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "Desktop spacing"
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "desktop_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_top",
+      "label": "Margin top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "desktop_margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile spacing"
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_top",
+      "label": "Margin top",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "mobile_margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 160,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
   ],
   "blocks": [
     {
       "type": "eyebrow",
       "name": "Eyebrow",
       "settings": [
-        { "type": "text", "id": "text", "label": "Text", "default": "Multi-purpose towel poncho" },
-        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" }
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Multi-purpose towel poncho"
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        }
       ]
     },
     {
       "type": "title",
       "name": "Title",
       "settings": [
-        { "type": "text", "id": "text", "label": "Title", "default": "One Kahu many use", "info": "Use | for a line break" },
         {
-          "type": "select", "id": "size", "label": "Size",
+          "type": "text",
+          "id": "text",
+          "label": "Title",
+          "default": "One Kahu many use",
+          "info": "Use | for a line break"
+        },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
           "options": [
-            { "value": "md", "label": "Section (40px)" },
-            { "value": "lg", "label": "Large (48px)" },
-            { "value": "xl", "label": "Extra large (58px)" }
+            {
+              "value": "md",
+              "label": "Section (40px)"
+            },
+            {
+              "value": "lg",
+              "label": "Large (48px)"
+            },
+            {
+              "value": "xl",
+              "label": "Extra large (58px)"
+            }
           ],
           "default": "md"
         },
         {
-          "type": "select", "id": "tag", "label": "Heading level (SEO)",
-          "options": [ { "value": "h2", "label": "H2" }, { "value": "h3", "label": "H3" }, { "value": "p", "label": "Not a heading" } ],
+          "type": "select",
+          "id": "tag",
+          "label": "Heading level (SEO)",
+          "options": [
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "p",
+              "label": "Not a heading"
+            }
+          ],
           "default": "h2"
         },
-        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" }
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        }
       ]
     },
     {
       "type": "text",
       "name": "Text",
       "settings": [
-        { "type": "richtext", "id": "text", "label": "Text" },
-        { "type": "range", "id": "max_width", "label": "Max width", "min": 240, "max": 900, "step": 10, "unit": "px", "default": 560 },
-        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left" }
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "range",
+          "id": "max_width",
+          "label": "Max width",
+          "min": 240,
+          "max": 900,
+          "step": 10,
+          "unit": "px",
+          "default": 560
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "left"
+        }
       ]
     },
     {
       "type": "button",
       "name": "Button",
       "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "Shop towel ponchos" },
-        { "type": "url", "id": "link", "label": "Link" },
         {
-          "type": "select", "id": "style", "label": "Style",
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop towel ponchos"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
           "options": [
-            { "value": "teal", "label": "Teal" }, { "value": "cream", "label": "Cream" },
-            { "value": "navy", "label": "Navy" }, { "value": "outline", "label": "Outline" }
+            {
+              "value": "teal",
+              "label": "Teal"
+            },
+            {
+              "value": "cream",
+              "label": "Cream"
+            },
+            {
+              "value": "navy",
+              "label": "Navy"
+            },
+            {
+              "value": "outline",
+              "label": "Outline"
+            }
           ],
           "default": "teal"
         },
-        { "type": "checkbox", "id": "arrow", "label": "Show arrow", "default": true },
-        { "type": "checkbox", "id": "full_mobile", "label": "Full width on mobile", "default": false },
-        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" }
+        {
+          "type": "checkbox",
+          "id": "arrow",
+          "label": "Show arrow",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "full_mobile",
+          "label": "Full width on mobile",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        }
       ]
     },
     {
       "type": "social",
       "name": "Social links",
       "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "Follow us" },
         {
-          "type": "select", "id": "label_style", "label": "Label style",
-          "options": [ { "value": "eyebrow", "label": "Eyebrow (DM Mono)" }, { "value": "text", "label": "Bold text" } ],
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Follow us"
+        },
+        {
+          "type": "select",
+          "id": "label_style",
+          "label": "Label style",
+          "options": [
+            {
+              "value": "eyebrow",
+              "label": "Eyebrow (DM Mono)"
+            },
+            {
+              "value": "text",
+              "label": "Bold text"
+            }
+          ],
           "default": "eyebrow"
         },
         {
-          "type": "select", "id": "layout", "label": "Layout",
-          "options": [ { "value": "above", "label": "Label above icons" }, { "value": "inline", "label": "Label beside icons" } ],
+          "type": "select",
+          "id": "layout",
+          "label": "Layout",
+          "options": [
+            {
+              "value": "above",
+              "label": "Label above icons"
+            },
+            {
+              "value": "inline",
+              "label": "Label beside icons"
+            }
+          ],
           "default": "above"
         },
-        { "type": "header", "content": "Links", "info": "Only icons with a link are shown" },
-        { "type": "url", "id": "link_instagram", "label": "Instagram" },
-        { "type": "url", "id": "link_facebook", "label": "Facebook" },
-        { "type": "url", "id": "link_youtube", "label": "YouTube" },
-        { "type": "url", "id": "link_tiktok", "label": "TikTok" },
-        { "type": "url", "id": "link_x", "label": "X (Twitter)" },
-        { "type": "url", "id": "link_pinterest", "label": "Pinterest" },
-        { "type": "header", "content": "Icons" },
-        { "type": "range", "id": "icon_size", "label": "Icon size", "min": 16, "max": 48, "step": 2, "unit": "px", "default": 24 },
-        { "type": "range", "id": "gap", "label": "Space between icons", "min": 4, "max": 40, "step": 2, "unit": "px", "default": 12 },
-        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" }
+        {
+          "type": "header",
+          "content": "Links",
+          "info": "Only icons with a link are shown"
+        },
+        {
+          "type": "url",
+          "id": "link_instagram",
+          "label": "Instagram"
+        },
+        {
+          "type": "url",
+          "id": "link_facebook",
+          "label": "Facebook"
+        },
+        {
+          "type": "url",
+          "id": "link_youtube",
+          "label": "YouTube"
+        },
+        {
+          "type": "url",
+          "id": "link_tiktok",
+          "label": "TikTok"
+        },
+        {
+          "type": "url",
+          "id": "link_x",
+          "label": "X (Twitter)"
+        },
+        {
+          "type": "url",
+          "id": "link_pinterest",
+          "label": "Pinterest"
+        },
+        {
+          "type": "header",
+          "content": "Icons"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "label": "Icon size",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "gap",
+          "label": "Space between icons",
+          "min": 4,
+          "max": 40,
+          "step": 2,
+          "unit": "px",
+          "default": 12
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        }
       ]
     },
     {
       "type": "image",
       "name": "Image",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image", "info": "e.g. the size icons in \"Made for all body types\". WebP/SVG" },
-        { "type": "range", "id": "width_desktop", "label": "Width (desktop)", "min": 20, "max": 600, "step": 10, "unit": "px", "default": 140 },
-        { "type": "range", "id": "width_mobile", "label": "Width (mobile)", "min": 20, "max": 400, "step": 10, "unit": "px", "default": 90 },
-        { "type": "url", "id": "link", "label": "Link (optional)" },
-        { "type": "text", "id": "alt", "label": "Alt text" },
-        { "type": "select", "id": "column", "label": "Column", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "right" }
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "e.g. the size icons in \"Made for all body types\". WebP/SVG"
+        },
+        {
+          "type": "range",
+          "id": "width_desktop",
+          "label": "Width (desktop)",
+          "min": 20,
+          "max": 800,
+          "step": 10,
+          "unit": "px",
+          "default": 140
+        },
+        {
+          "type": "range",
+          "id": "width_mobile",
+          "label": "Width (mobile)",
+          "min": 20,
+          "max": 400,
+          "step": 10,
+          "unit": "px",
+          "default": 90
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt text"
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "right"
+        }
       ]
     },
     {
       "type": "divider",
       "name": "Divider line",
       "settings": [
-        { "type": "paragraph", "content": "Always full width, below the header row." },
         {
-          "type": "select", "id": "color", "label": "Colour",
+          "type": "paragraph",
+          "content": "Always full width, below the header row."
+        },
+        {
+          "type": "select",
+          "id": "color",
+          "label": "Colour",
           "options": [
-            { "value": "current", "label": "Same as text" }, { "value": "navy", "label": "Navy" }, { "value": "cream", "label": "Cream" },
-            { "value": "teal", "label": "Teal" }, { "value": "yellow", "label": "Yellow" }, { "value": "custom", "label": "Custom" }
+            {
+              "value": "current",
+              "label": "Same as text"
+            },
+            {
+              "value": "navy",
+              "label": "Navy"
+            },
+            {
+              "value": "cream",
+              "label": "Cream"
+            },
+            {
+              "value": "teal",
+              "label": "Teal"
+            },
+            {
+              "value": "yellow",
+              "label": "Yellow"
+            },
+            {
+              "value": "custom",
+              "label": "Custom"
+            }
           ],
           "default": "current"
         },
-        { "type": "color", "id": "color_custom", "label": "Custom colour", "default": "#031426", "visible_if": "{{ block.settings.color == 'custom' }}" },
-        { "type": "range", "id": "thickness", "label": "Thickness", "min": 1, "max": 6, "step": 1, "unit": "px", "default": 1 },
-        { "type": "range", "id": "space_desktop", "label": "Space above (desktop)", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 24 },
-        { "type": "range", "id": "space_mobile", "label": "Space above (mobile)", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 20 }
+        {
+          "type": "color",
+          "id": "color_custom",
+          "label": "Custom colour",
+          "default": "#031426",
+          "visible_if": "{{ block.settings.color == 'custom' }}"
+        },
+        {
+          "type": "range",
+          "id": "thickness",
+          "label": "Thickness",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "unit": "px",
+          "default": 1
+        },
+        {
+          "type": "range",
+          "id": "space_desktop",
+          "label": "Space above (desktop)",
+          "min": 0,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "default": 24
+        },
+        {
+          "type": "range",
+          "id": "space_mobile",
+          "label": "Space above (mobile)",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "px",
+          "default": 20
+        }
       ]
     }
   ],
@@ -289,10 +806,18 @@
     {
       "name": "Kahu section header",
       "blocks": [
-        { "type": "eyebrow" },
-        { "type": "title" },
-        { "type": "button" },
-        { "type": "divider" }
+        {
+          "type": "eyebrow"
+        },
+        {
+          "type": "title"
+        },
+        {
+          "type": "button"
+        },
+        {
+          "type": "divider"
+        }
       ]
     }
   ]
