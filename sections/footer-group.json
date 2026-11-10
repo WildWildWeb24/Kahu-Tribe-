@@ -478,7 +478,7 @@
         },
         "ft_col_stay": {
           "type": "group",
-          "name": "Column: Stay in the curre",
+          "name": "Column: Stay",
           "settings": {
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -777,10 +777,13 @@
       "custom_css": [
         "h3 {font-family: var(--kahu-font-mono); font-weight: 500; font-size: 12px; line-height: 16px; letter-spacing: 1.2px; text-transform: uppercase; color: #f4c84a; margin: 0;}",
         "p, a {font-family: var(--kahu-font-sans); font-size: 14px; line-height: 20px; color: #f3efe5;}",
-        "p {margin: 0;} p + p {margin-top: 10px;}",
-        "a {text-decoration: none;} a:hover {color: #f4c84a;}",
+        "p {margin: 0;}",
+        "p + p {margin-top: 10px;}",
+        "a {text-decoration: none;}",
+        "a:hover {color: #f4c84a;}",
         "jumbo-text {font-family: var(--kahu-font-sans) !important; font-weight: 800 !important; color: #d88b83;}",
-        "@media screen and (max-width: 749px) {.footer-content {grid-template-columns: 1fr 1fr; row-gap: 32px; column-gap: 24px;} .footer-content > :last-child {grid-column: 1 / -1;} .text-block--ft_legal > * {text-align: left;}}"
+        "@media screen and (max-width: 749px) {.footer-content {grid-template-columns: 1fr 1fr; row-gap: 32px; column-gap: 24px;}}",
+        "@media screen and (max-width: 749px) {.footer-content > :last-child {grid-column: 1 / -1;}}"
       ]
     },
     "utilities": {
