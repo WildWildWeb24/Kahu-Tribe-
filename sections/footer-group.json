@@ -158,8 +158,8 @@
         "shape": "wave",
         "direction": "up",
         "mode": "overlap",
-        "wave_color": "navy",
-        "wave_color_custom": "#031426",
+        "wave_color": "custom",
+        "wave_color_custom": "#061A2E",
         "bg_color": "transparent",
         "bg_color_custom": "#2fa4a9",
         "height_desktop": 90,
@@ -626,6 +626,7 @@
               "type": "image",
               "name": "Mural",
               "settings": {
+                "image": "shopify://shop_images/Footer_murial.webp",
                 "link": "",
                 "image_ratio": "adapt",
                 "width": "fill",
@@ -641,8 +642,7 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "image": "shopify://shop_images/Footer_murial.webp"
+                "padding-inline-end": 0
               },
               "blocks": {}
             },
@@ -763,7 +763,7 @@
       "settings": {
         "section_width": "page-width",
         "gap": 70,
-        "background_color": "#031426",
+        "background_color": "#061A2E",
         "padding-block-start": 70,
         "padding-block-end": 30
       }
