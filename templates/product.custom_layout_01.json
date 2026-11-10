@@ -18,8 +18,8 @@
           "settings": {
             "media_presentation": "grid",
             "media_columns": "two",
-            "image_gap": 4,
-            "large_first_image": false,
+            "image_gap": 8,
+            "large_first_image": true,
             "icons_style": "arrow",
             "slideshow_controls_style": "counter",
             "slideshow_mobile_controls_style": "dots",
@@ -27,8 +27,8 @@
             "thumbnail_width": 44,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
-            "media_fit": "contain",
-            "media_radius": 0,
+            "media_fit": "cover",
+            "media_radius": 8,
             "extend_media": false,
             "zoom": true,
             "video_loop": false,
@@ -38,7 +38,67 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "badge_recycled": {
+              "type": "_kahu-media-badge",
+              "settings": {
+                "text": "Made from|recycled material",
+                "layout": "above",
+                "divider": false,
+                "position": "top_left",
+                "image_width_desktop": 32,
+                "image_width_mobile": 24,
+                "text_size_desktop": 11,
+                "text_size_mobile": 10,
+                "weight": "regular",
+                "text_color": "#031426",
+                "radius": 8,
+                "image": "shopify://shop_images/recycle.webp",
+                "background": "#e2b47c"
+              },
+              "blocks": {}
+            },
+            "badge_bag": {
+              "type": "_kahu-media-badge",
+              "settings": {
+                "text": "Carry bag|included",
+                "layout": "beside",
+                "divider": false,
+                "position": "bottom_left",
+                "image_width_desktop": 40,
+                "image_width_mobile": 28,
+                "text_size_desktop": 13,
+                "text_size_mobile": 11,
+                "weight": "regular",
+                "text_color": "#ffffff",
+                "radius": 8
+              },
+              "blocks": {}
+            },
+            "badge_size": {
+              "type": "_kahu-media-badge",
+              "settings": {
+                "text": "Regular",
+                "layout": "beside",
+                "divider": true,
+                "position": "bottom_left",
+                "image_width_desktop": 40,
+                "image_width_mobile": 30,
+                "text_size_desktop": 24,
+                "text_size_mobile": 18,
+                "weight": "bold",
+                "text_color": "#ffffff",
+                "radius": 8,
+                "image": "shopify://shop_images/logo-unit.svg"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "badge_recycled",
+            "badge_bag",
+            "badge_size"
+          ]
         },
         "product-details": {
           "type": "_product-details",
