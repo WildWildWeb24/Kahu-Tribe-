@@ -124,7 +124,7 @@
       "custom_css": [
         "h2,p,input,button {font-family: var(--kahu-font-sans);}",
         "h2 {font-weight: 800; letter-spacing: -0.5px; line-height: 1;}",
-        "button {font-weight: 700;}",
+        "button {font-weight: 700; border-radius: 0 !important;}",
         "@media screen and (max-width: 749px) {h2 {font-size: 2.5rem; }}",
         "@media screen and (min-width: 750px) {.section {--section-min-height: calc(100vw * 1676 / 2880) !important;}}"
       ],
