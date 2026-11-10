@@ -46,8 +46,12 @@
   }
 
   @media (min-width: 750px) {
+    /* Horizontal position is measured on a centred stage of at most 1480px, so on screens wider
+       than the design the graphics stay where they were placed relative to the content,
+       instead of drifting out towards the screen edges. Up to 1480px this equals plain x%. */
     .kahu-sep__graphic {
       left: var(--g-x-d);
+      left: calc(50% + (var(--g-xn-d, 0.5) - 0.5) * min(100%, 1480px));
       top: var(--g-y-d);
       width: var(--g-w-d);
     }

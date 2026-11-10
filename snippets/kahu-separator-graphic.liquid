@@ -59,7 +59,10 @@
     assign y_m = y_d
   endif
 
-  assign g_style = '--g-w-d: ' | append: size_d | append: '; --g-w-m: ' | append: size_m | append: '; --g-x-d: ' | append: x_d | append: '%; --g-y-d: ' | append: y_d | append: '%; --g-x-m: ' | append: x_m | append: '%; --g-y-m: ' | append: y_m | append: '%; --g-rot: ' | append: rot | append: 'deg;'
+  # Desktop x as a 0-1 fraction: lets the CSS keep the graphic in place on very wide screens
+  assign x_n = x_d | divided_by: 100.0
+
+  assign g_style = '--g-w-d: ' | append: size_d | append: '; --g-w-m: ' | append: size_m | append: '; --g-x-d: ' | append: x_d | append: '%; --g-y-d: ' | append: y_d | append: '%; --g-x-m: ' | append: x_m | append: '%; --g-y-m: ' | append: y_m | append: '%; --g-rot: ' | append: rot | append: 'deg; --g-xn-d: ' | append: x_n | append: ';'
 -%}
 <div
   class="kahu-sep__graphic kahu-sep__graphic--{{ layer }}{% if flip %} kahu-sep__graphic--flip{% endif %}{% if hide_m %} kahu-sep__graphic--hide-m{% endif %}"
