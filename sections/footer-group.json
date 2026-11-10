@@ -122,12 +122,13 @@
         "nl_email"
       ],
       "custom_css": [
-        "h2,p,input,button {font-family: var(--kahu-font-sans);}",
-        "h2 {font-weight: 800; letter-spacing: -0.5px; line-height: 1;}",
-        "button {font-weight: 700; border-radius: 0 !important;}",
-        "@media screen and (max-width: 749px) {h2 {font-size: 2.5rem; }}",
-        "@media screen and (min-width: 750px) {.section {--section-min-height: calc(100vw * 1676 / 2880) !important; }}",
-        ".email-signup__input-group {gap: 0 !important; align-items: stretch !important;}"
+        "h2,p,input,button{font-family:var(--kahu-font-sans)}",
+        "h2{font-weight:800;letter-spacing:-.5px;line-height:1}",
+        "button{font-weight:700;border-radius:0!important}",
+        ".email-signup__input-group{gap:0!important;align-items:stretch!important;flex-direction:row!important}",
+        "@media (min-width:750px){.section{--section-min-height:calc(100vw*1676/2880)!important}}",
+        "@media (max-width:749px){h2{font-size:8vw;white-space:nowrap}}",
+        "@media (max-width:749px){button{padding-inline:14px;white-space:nowrap}}"
       ],
       "name": "Newsletter",
       "settings": {
@@ -782,9 +783,8 @@
         "p+p{margin-top:10px}",
         "a:hover{color:#f4c84a}",
         "jumbo-text{font-family:var(--kahu-font-sans)!important;font-weight:800!important}",
-        ".group-block .group-block a+a{margin-left:20px}",
-        "@media (max-width:749px){.footer-content{grid-template-columns:1fr 1fr}}",
-        "@media (max-width:749px){.footer-content>:last-child{grid-column:1/-1}}"
+        "a[href^='/p']+a{margin-left:20px}",
+        "@media (max-width:749px){.footer-content{grid-template-columns:1fr 1fr}.footer-content>:last-child{grid-column:1/-1}.mobile-column .mobile-column{align-items:center}}"
       ]
     }
   },
