@@ -6,6 +6,7 @@
   @param {object} blocks - section.blocks (only blocks whose type starts with "h_" are used)
   @param {string} [layout] - 'split' (left text, right button/image) or 'center'
   @param {string} [right_align] - 'end' | 'center' | 'start'
+  @param {string} [mobile] - 'same' (keep the desktop layout) or 'center' (stack and centre on mobile)
 {%- enddoc -%}
 
 {%- liquid
@@ -42,7 +43,7 @@
   {%- endcapture -%}
 
   <div class="kahu-sh kahu-sh--inline">
-    <div class="kahu-sh__row kahu-sh__row--align-{{ right_align | default: 'end' }}{% if has_right and layout != 'center' %} kahu-sh__row--split{% endif %}{% if layout == 'center' %} kahu-sh__row--center{% endif %}">
+    <div class="kahu-sh__row kahu-sh__row--align-{{ right_align | default: 'end' }}{% if has_right and layout != 'center' %} kahu-sh__row--split{% endif %}{% if layout == 'center' %} kahu-sh__row--center{% endif %}{% if mobile == 'center' %} kahu-sh__row--m-center{% endif %}">
       {%- if left_col != blank -%}
         <div class="kahu-sh__col kahu-sh__col--left">{{ left_col }}</div>
       {%- endif -%}

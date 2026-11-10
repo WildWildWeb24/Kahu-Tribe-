@@ -41,6 +41,8 @@ overflow: hidden;
 border-radius: var(--kc-radius);
 }
 .kahu-col__media--natural .kahu-col__frame { aspect-ratio: auto; }
+.kahu-col__frame picture { display: block; height: 100%; }
+.kahu-col__media--natural .kahu-col__frame picture { height: auto; }
 .kahu-col__img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .kahu-col__media--natural .kahu-col__img { height: auto; }
 .kahu-col__img--placeholder { background: rgb(0 0 0 / 0.06); }

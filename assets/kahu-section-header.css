@@ -73,12 +73,25 @@
     margin: var(--ksh-line-gap-m, 20px) 0 0;
   }
 
+  /* Split layout: left text, right button/image/social. Side by side on every screen size. */
+  .kahu-sh__row--split { flex-direction: row; justify-content: space-between; gap: 16px; }
+  .kahu-sh__row--split .kahu-sh__col--right { flex-shrink: 0; align-items: flex-end; max-width: 50%; }
+  .kahu-sh__row--split.kahu-sh__row--align-end { align-items: flex-end; }
+  .kahu-sh__row--split.kahu-sh__row--align-center { align-items: center; }
+  .kahu-sh__row--split.kahu-sh__row--align-start { align-items: flex-start; }
+
+  /* "Header on mobile: stacked and centred" (e.g. Brands we have worked with) */
+  @media (max-width: 749px) {
+    .kahu-sh__row.kahu-sh__row--m-center { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+    .kahu-sh__row--m-center .kahu-sh__col { align-items: center; max-width: 100%; }
+    .kahu-sh__row--m-center .kahu-sh__col--right { align-items: center; max-width: 100%; }
+    .kahu-sh__row--m-center .kahu-sh__text,
+    .kahu-sh__row--m-center .kahu-sh__media { margin-left: auto; margin-right: auto; }
+  }
+
   @media (min-width: 750px) {
-    .kahu-sh__row--split { flex-direction: row; justify-content: space-between; gap: 40px; }
-    .kahu-sh__row--split .kahu-sh__col--right { flex-shrink: 0; align-items: flex-end; }
-    .kahu-sh__row--align-end { align-items: flex-end; }
-    .kahu-sh__row--align-center { align-items: center; }
-    .kahu-sh__row--align-start { align-items: flex-start; }
+    .kahu-sh__row--split { gap: 40px; }
+    .kahu-sh__row--split .kahu-sh__col--right { max-width: none; }
 
     .kahu-sh__title--md { font-size: 40px; }
     .kahu-sh__title--lg { font-size: 48px; }
