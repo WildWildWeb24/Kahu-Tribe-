@@ -301,6 +301,8 @@
             "style": "teal",
             "arrow": true,
             "full_mobile": false,
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
             "column": "right"
           }
         },
@@ -466,6 +468,7 @@
         "title_size": "sm",
         "header_position": "above",
         "header_layout": "split",
+        "header_mobile": "same",
         "header_right_align": "end",
         "header_text_color": "navy",
         "header_text_color_custom": "#031426",
@@ -935,6 +938,8 @@
             "width_mobile": 30,
             "link": "",
             "alt": "",
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
             "column": "left"
           }
         },
@@ -959,6 +964,8 @@
           "settings": {
             "text": "<p>Use your Kahu poncho bag to carry inside or even use it as a carry bag on your holidays.</p>",
             "max_width": 560,
+            "space_above_desktop": 12,
+            "space_above_mobile": 12,
             "column": "left"
           }
         }
@@ -1085,8 +1092,8 @@
         "shape": "wave",
         "direction": "up",
         "mode": "stack",
-        "wave_color": "navy",
-        "wave_color_custom": "#f3efe5",
+        "wave_color": "custom",
+        "wave_color_custom": "#061A2E",
         "bg_color": "teal",
         "bg_color_custom": "#2fa4a9",
         "height_desktop": 90,
@@ -1156,8 +1163,8 @@
         "layout": "split",
         "full_width": false,
         "right_align": "end",
-        "bg_color": "navy",
-        "bg_color_custom": "#f3efe5",
+        "bg_color": "custom",
+        "bg_color_custom": "#061A2E",
         "text_color": "cream",
         "text_color_custom": "#031426",
         "desktop_padding_top": 26,
@@ -1279,8 +1286,8 @@
         "autoplay": true,
         "show_play": true,
         "click_action": "popup",
-        "bg_color": "navy",
-        "bg_color_custom": "#10253b",
+        "bg_color": "custom",
+        "bg_color_custom": "#061A2E",
         "desktop_padding_top": 0,
         "desktop_padding_bottom": 110,
         "desktop_margin_top": 0,
@@ -1303,8 +1310,8 @@
             "mode": "stack",
             "wave_color": "cream",
             "wave_color_custom": "#f3efe5",
-            "bg_color": "navy",
-            "bg_color_custom": "#2fa4a9",
+            "bg_color": "custom",
+            "bg_color_custom": "#061A2E",
             "height_desktop": 90,
             "height_mobile": 72,
             "flip": false,
@@ -1352,6 +1359,8 @@
             "width_mobile": 90,
             "link": "",
             "alt": "",
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
             "column": "right"
           }
         },
@@ -1504,6 +1513,7 @@
         "title_size": "sm",
         "header_position": "above",
         "header_layout": "split",
+        "header_mobile": "same",
         "header_right_align": "end",
         "header_text_color": "navy",
         "header_text_color_custom": "#031426",
@@ -1546,6 +1556,8 @@
             "style": "teal",
             "arrow": true,
             "full_mobile": false,
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
             "column": "right"
           }
         },
@@ -1731,6 +1743,7 @@
         "title_size": "sm",
         "header_position": "above",
         "header_layout": "split",
+        "header_mobile": "same",
         "header_right_align": "end",
         "header_text_color": "navy",
         "header_text_color_custom": "#031426",
@@ -1773,6 +1786,8 @@
             "style": "teal",
             "arrow": true,
             "full_mobile": false,
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
             "column": "right"
           }
         },
@@ -1971,6 +1986,7 @@
         "title_size": "sm",
         "header_position": "above",
         "header_layout": "split",
+        "header_mobile": "same",
         "header_right_align": "end",
         "header_text_color": "navy",
         "header_text_color_custom": "#031426",
@@ -2026,6 +2042,8 @@
           "settings": {
             "text": "<p>Notes from people who keep finding their way back to the water.</p>",
             "max_width": 560,
+            "space_above_desktop": 12,
+            "space_above_mobile": 12,
             "column": "left"
           }
         },
@@ -2128,9 +2146,9 @@
           "settings": {
             "text": "<p>Notes from people who keep finding their way back to the water</p>",
             "max_width": 560,
-            "column": "left",
             "space_above_desktop": 16,
-            "space_above_mobile": 12
+            "space_above_mobile": 12,
+            "column": "left"
           }
         },
         "h_button_ws": {
@@ -2141,9 +2159,9 @@
             "style": "teal",
             "arrow": true,
             "full_mobile": false,
-            "column": "left",
             "space_above_desktop": 32,
-            "space_above_mobile": 24
+            "space_above_mobile": 24,
+            "column": "left"
           }
         },
         "h_logos_ws": {
@@ -2154,9 +2172,9 @@
             "width_mobile": 340,
             "link": "",
             "alt": "Brands we have worked with",
-            "column": "left",
             "space_above_desktop": 48,
-            "space_above_mobile": 32
+            "space_above_mobile": 32,
+            "column": "left"
           }
         },
         "h_photo_ws": {
@@ -2167,9 +2185,9 @@
             "width_mobile": 340,
             "link": "",
             "alt": "",
-            "column": "right",
             "space_above_desktop": 0,
-            "space_above_mobile": 8
+            "space_above_mobile": 8,
+            "column": "right"
           }
         }
       },
@@ -2193,6 +2211,7 @@
         "title_size": "sm",
         "header_position": "above",
         "header_layout": "split",
+        "header_mobile": "center",
         "header_right_align": "center",
         "header_text_color": "navy",
         "header_text_color_custom": "#031426",
@@ -2221,8 +2240,7 @@
         "mobile_padding_top": 48,
         "mobile_padding_bottom": 48,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "header_mobile": "center"
+        "mobile_margin_bottom": 0
       }
     }
   },
