@@ -80,6 +80,24 @@
   .kahu-sh__row--split.kahu-sh__row--align-center { align-items: center; }
   .kahu-sh__row--split.kahu-sh__row--align-start { align-items: flex-start; }
 
+  /* Mobile, side by side: the left text takes the room that is left, and the right button
+     shrinks to a compact size so it never runs off the screen or over the title. */
+  @media (max-width: 749px) {
+    .kahu-sh__row--split .kahu-sh__col--left { flex: 1 1 0; min-width: 0; }
+    .kahu-sh__row--split .kahu-sh__col--right { max-width: 55%; }
+    .kahu-sh__row--split .kahu-sh__col--right .kahu-btn {
+      min-width: 0;
+      width: auto;
+      max-width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .kahu-sh__row--split .kahu-sh__col--right .kahu-btn__label { font-size: 12px; }
+    .kahu-sh__row--split .kahu-sh__col--right .kahu-sh__button--full-m .kahu-btn { width: auto; }
+  }
+
   /* "Header on mobile: stacked and centred" (e.g. Brands we have worked with) */
   @media (max-width: 749px) {
     .kahu-sh__row.kahu-sh__row--m-center { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
