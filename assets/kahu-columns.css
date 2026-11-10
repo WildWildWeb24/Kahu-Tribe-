@@ -73,7 +73,7 @@ z-index: 2;
 display: flex;
 flex-direction: column;
 gap: 8px;
-padding: 20px;
+padding: var(--kc-in-pt, 20px) var(--kc-in-px, 20px) var(--kc-in-pb, 20px);
 color: var(--kc-in-fg);
 pointer-events: none;
 }
@@ -126,7 +126,6 @@ gap: 16px;
 .kahu-cols--btn-auto .kahu-col__btn--inside { align-self: auto; }
 @media (min-width: 750px) {
 .kahu-cols__grid { grid-template-columns: repeat(var(--kc-cols-d), minmax(0, 1fr)); }
-.kahu-col__inside { padding: 24px; }
 .kahu-col__in-title,
 .kahu-col__title--moved { font-size: var(--kc-in-title-d, 40px); }
 .kahu-cols--title-sm .kahu-col__title { font-size: 20px; }
