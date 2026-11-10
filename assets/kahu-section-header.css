@@ -96,6 +96,8 @@
     }
     .kahu-sh__row--split .kahu-sh__col--right .kahu-btn__label { font-size: 12px; }
     .kahu-sh__row--split .kahu-sh__col--right .kahu-sh__button--full-m .kahu-btn { width: auto; }
+    /* Title a little smaller when it shares the row with a button, so it wraps onto fewer lines */
+    .kahu-sh__row--split:has(.kahu-sh__col--right .kahu-btn) .kahu-sh__title { font-size: 26px; }
   }
 
   /* "Header on mobile: stacked and centred" (e.g. Brands we have worked with) */
