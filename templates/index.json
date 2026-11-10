@@ -2103,6 +2103,116 @@
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0
       }
+    },
+    "kahu_columns_wholesale": {
+      "type": "kahu-columns",
+      "blocks": {
+        "h_eyebrow_ws": {
+          "type": "h_eyebrow",
+          "settings": {
+            "text": "",
+            "column": "left"
+          }
+        },
+        "h_title_ws": {
+          "type": "h_title",
+          "settings": {
+            "text": "Brands we have worked with",
+            "size": "xl",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "h_text_ws": {
+          "type": "h_text",
+          "settings": {
+            "text": "<p>Notes from people who keep finding their way back to the water</p>",
+            "max_width": 560,
+            "column": "left"
+          }
+        },
+        "h_button_ws": {
+          "type": "h_button",
+          "settings": {
+            "label": "Wholesale Enquiry",
+            "link": "",
+            "style": "teal",
+            "arrow": true,
+            "full_mobile": false,
+            "column": "left"
+          }
+        },
+        "h_logos_ws": {
+          "type": "h_image",
+          "settings": {
+            "width_desktop": 600,
+            "width_mobile": 340,
+            "link": "",
+            "alt": "Brands we have worked with",
+            "column": "left"
+          }
+        },
+        "h_photo_ws": {
+          "type": "h_image",
+          "settings": {
+            "width_desktop": 620,
+            "width_mobile": 340,
+            "link": "",
+            "alt": "",
+            "column": "right"
+          }
+        }
+      },
+      "block_order": [
+        "h_eyebrow_ws",
+        "h_title_ws",
+        "h_text_ws",
+        "h_button_ws",
+        "h_logos_ws",
+        "h_photo_ws"
+      ],
+      "settings": {
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "mobile_layout": "slider",
+        "gap_desktop": 8,
+        "gap_mobile": 8,
+        "full_width": false,
+        "ratio": "1 / 1",
+        "radius": 0,
+        "title_size": "sm",
+        "header_position": "above",
+        "header_layout": "split",
+        "header_right_align": "center",
+        "header_text_color": "navy",
+        "header_text_color_custom": "#031426",
+        "header_gap_desktop": 0,
+        "header_gap_mobile": 0,
+        "btn_width": "fixed",
+        "btn_width_fixed": 172,
+        "btn_height": 40,
+        "btn_height_mobile": 40,
+        "btn_padding": 16,
+        "btn_font": 12,
+        "in_pad_top_desktop": 24,
+        "in_pad_side_desktop": 24,
+        "in_pad_bottom_desktop": 40,
+        "in_pad_top_mobile": 20,
+        "in_pad_side_mobile": 20,
+        "in_pad_bottom_mobile": 20,
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 80,
+        "desktop_padding_bottom": 80,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 48,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
     }
   },
   "order": [
@@ -2121,6 +2231,7 @@
     "kahu_columns_xKYD4q",
     "kahu_columns_iPrFJt",
     "kahu_columns_DKh6VL",
-    "kahu_reviews"
+    "kahu_reviews",
+    "kahu_columns_wholesale"
   ]
 }
