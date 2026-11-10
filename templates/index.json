@@ -2110,7 +2110,7 @@
         "h_eyebrow_ws": {
           "type": "h_eyebrow",
           "settings": {
-            "text": "",
+            "text": "Wholesale Opportunities",
             "column": "left"
           }
         },
@@ -2145,6 +2145,7 @@
         "h_logos_ws": {
           "type": "h_image",
           "settings": {
+            "image": "shopify://shop_images/logos.webp",
             "width_desktop": 600,
             "width_mobile": 340,
             "link": "",
@@ -2155,7 +2156,8 @@
         "h_photo_ws": {
           "type": "h_image",
           "settings": {
-            "width_desktop": 620,
+            "image": "shopify://shop_images/wholesale.webp",
+            "width_desktop": 490,
             "width_mobile": 340,
             "link": "",
             "alt": "",
