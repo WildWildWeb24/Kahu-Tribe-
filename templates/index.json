@@ -1942,8 +1942,8 @@
             "size": 14,
             "color": "inherit",
             "color_custom": "#031426",
-            "space_desktop": 0,
-            "space_mobile": 0
+            "space_desktop": 20,
+            "space_mobile": 10
           }
         }
       },
@@ -1966,7 +1966,7 @@
         "gap_desktop": 8,
         "gap_mobile": 8,
         "full_width": false,
-        "ratio": "4 / 5",
+        "ratio": "1 / 1",
         "radius": 0,
         "title_size": "sm",
         "header_position": "above",
