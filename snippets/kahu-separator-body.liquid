@@ -25,7 +25,7 @@
     assign fill = 'var(--kahu-' | append: s.wave_color | append: ')'
   endif
 
-  if s.mode == 'overlap'
+  if s.mode == 'overlap' or s.mode == 'overlap_next'
     assign bg = 'transparent'
   endif
 

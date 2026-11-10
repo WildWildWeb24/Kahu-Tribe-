@@ -55,3 +55,9 @@
 
   /* Theme editor: keep the separator selectable */
   .shopify-design-mode .kahu-sep { pointer-events: auto; }
+
+/* Overlap the section below: the curve sits on top of the next section's top edge (e.g. over a photo) */
+.kahu-sep--overlap_next {
+  margin-bottom: calc((var(--kahu-sep-h) + var(--kahu-sep-bottom)) * -1);
+  z-index: 3;
+}

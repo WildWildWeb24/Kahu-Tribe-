@@ -38,12 +38,30 @@
       "id": "shape",
       "label": "Shape",
       "options": [
-        { "value": "wave", "label": "Wave" },
-        { "value": "tide", "label": "Double wave" },
-        { "value": "arc", "label": "Arc (bulge up)" },
-        { "value": "dip", "label": "Dip (curve down)" },
-        { "value": "slant", "label": "Slant" },
-        { "value": "flat", "label": "None (plain space)" }
+        {
+          "value": "wave",
+          "label": "Wave"
+        },
+        {
+          "value": "tide",
+          "label": "Double wave"
+        },
+        {
+          "value": "arc",
+          "label": "Arc (bulge up)"
+        },
+        {
+          "value": "dip",
+          "label": "Dip (curve down)"
+        },
+        {
+          "value": "slant",
+          "label": "Slant"
+        },
+        {
+          "value": "flat",
+          "label": "None (plain space)"
+        }
       ],
       "default": "wave"
     },
@@ -52,8 +70,14 @@
       "id": "direction",
       "label": "Curve direction",
       "options": [
-        { "value": "up", "label": "Rises from the bottom (into section below)" },
-        { "value": "down", "label": "Hangs from the top (from section above)" }
+        {
+          "value": "up",
+          "label": "Rises from the bottom (into section below)"
+        },
+        {
+          "value": "down",
+          "label": "Hangs from the top (from section above)"
+        }
       ],
       "default": "up"
     },
@@ -62,28 +86,67 @@
       "id": "mode",
       "label": "Placement",
       "options": [
-        { "value": "stack", "label": "Own space between sections" },
-        { "value": "overlap", "label": "Overlap the section above (e.g. over a photo)" }
+        {
+          "value": "stack",
+          "label": "Own space between sections"
+        },
+        {
+          "value": "overlap",
+          "label": "Overlap the section above (e.g. over a photo)"
+        },
+        {
+          "value": "overlap_next",
+          "label": "Overlap the section below (e.g. a photo)"
+        }
       ],
       "default": "stack",
       "info": "Overlap: give the section above enough bottom spacing so its text isn't covered."
     },
-
-    { "type": "header", "content": "Colours" },
+    {
+      "type": "header",
+      "content": "Colours"
+    },
     {
       "type": "select",
       "id": "wave_color",
       "label": "Curve colour",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "navy", "label": "Navy" },
-        { "value": "ink", "label": "Ink" },
-        { "value": "teal", "label": "Teal" },
-        { "value": "yellow", "label": "Yellow" },
-        { "value": "sea", "label": "Sea" },
-        { "value": "white", "label": "White" },
-        { "value": "coral", "label": "Coral" },
-        { "value": "custom", "label": "Custom" }
+        {
+          "value": "cream",
+          "label": "Cream"
+        },
+        {
+          "value": "navy",
+          "label": "Navy"
+        },
+        {
+          "value": "ink",
+          "label": "Ink"
+        },
+        {
+          "value": "teal",
+          "label": "Teal"
+        },
+        {
+          "value": "yellow",
+          "label": "Yellow"
+        },
+        {
+          "value": "sea",
+          "label": "Sea"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "coral",
+          "label": "Coral"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
       ],
       "default": "cream"
     },
@@ -99,16 +162,46 @@
       "id": "bg_color",
       "label": "Background colour",
       "options": [
-        { "value": "transparent", "label": "Transparent" },
-        { "value": "cream", "label": "Cream" },
-        { "value": "navy", "label": "Navy" },
-        { "value": "ink", "label": "Ink" },
-        { "value": "teal", "label": "Teal" },
-        { "value": "yellow", "label": "Yellow" },
-        { "value": "sea", "label": "Sea" },
-        { "value": "white", "label": "White" },
-        { "value": "coral", "label": "Coral" },
-        { "value": "custom", "label": "Custom" }
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        },
+        {
+          "value": "cream",
+          "label": "Cream"
+        },
+        {
+          "value": "navy",
+          "label": "Navy"
+        },
+        {
+          "value": "ink",
+          "label": "Ink"
+        },
+        {
+          "value": "teal",
+          "label": "Teal"
+        },
+        {
+          "value": "yellow",
+          "label": "Yellow"
+        },
+        {
+          "value": "sea",
+          "label": "Sea"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        },
+        {
+          "value": "coral",
+          "label": "Coral"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
       ],
       "default": "teal",
       "visible_if": "{{ section.settings.mode == 'stack' and section.settings.shape != 'flat' }}"
@@ -120,66 +213,261 @@
       "default": "#2fa4a9",
       "visible_if": "{{ section.settings.mode == 'stack' and section.settings.bg_color == 'custom' }}"
     },
-
-    { "type": "header", "content": "Curve size" },
-    { "type": "range", "id": "height_desktop", "label": "Curve height (desktop)", "min": 20, "max": 220, "step": 2, "unit": "px", "default": 90 },
-    { "type": "range", "id": "height_mobile", "label": "Curve height (mobile)", "min": 10, "max": 120, "step": 2, "unit": "px", "default": 40 },
-    { "type": "checkbox", "id": "flip", "label": "Mirror left/right", "default": false },
-
-    { "type": "header", "content": "Extra space", "info": "Solid bands that extend the colour above or below the curve" },
-    { "type": "range", "id": "extra_bottom_desktop", "label": "Below the curve (desktop)", "min": 0, "max": 300, "step": 4, "unit": "px", "default": 0 },
-    { "type": "range", "id": "extra_bottom_mobile", "label": "Below the curve (mobile)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
-    { "type": "range", "id": "extra_top_desktop", "label": "Above the curve (desktop)", "min": 0, "max": 300, "step": 4, "unit": "px", "default": 0 },
-    { "type": "range", "id": "extra_top_mobile", "label": "Above the curve (mobile)", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 }
+    {
+      "type": "header",
+      "content": "Curve size"
+    },
+    {
+      "type": "range",
+      "id": "height_desktop",
+      "label": "Curve height (desktop)",
+      "min": 20,
+      "max": 220,
+      "step": 2,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "height_mobile",
+      "label": "Curve height (mobile)",
+      "min": 10,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "checkbox",
+      "id": "flip",
+      "label": "Mirror left/right",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Extra space",
+      "info": "Solid bands that extend the colour above or below the curve"
+    },
+    {
+      "type": "range",
+      "id": "extra_bottom_desktop",
+      "label": "Below the curve (desktop)",
+      "min": 0,
+      "max": 300,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "extra_bottom_mobile",
+      "label": "Below the curve (mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "extra_top_desktop",
+      "label": "Above the curve (desktop)",
+      "min": 0,
+      "max": 300,
+      "step": 4,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "extra_top_mobile",
+      "label": "Above the curve (mobile)",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
   ],
   "blocks": [
     {
       "type": "graphic",
       "name": "Graphic",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Image", "info": "Transparent WebP/PNG, e.g. sea turtle, manta ray" },
-        { "type": "text", "id": "alt", "label": "Alt text", "info": "Leave empty if purely decorative" },
         {
-          "type": "select", "id": "layer", "label": "Layer",
-          "options": [ { "value": "front", "label": "In front of the curve" }, { "value": "back", "label": "Behind the curve" } ],
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Transparent WebP/PNG, e.g. sea turtle, manta ray"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Alt text",
+          "info": "Leave empty if purely decorative"
+        },
+        {
+          "type": "select",
+          "id": "layer",
+          "label": "Layer",
+          "options": [
+            {
+              "value": "front",
+              "label": "In front of the curve"
+            },
+            {
+              "value": "back",
+              "label": "Behind the curve"
+            }
+          ],
           "default": "front"
         },
-        { "type": "range", "id": "rotate", "label": "Rotation", "min": -45, "max": 45, "step": 1, "unit": "deg", "default": 0 },
-        { "type": "checkbox", "id": "flip", "label": "Mirror image", "default": false },
-
         {
-          "type": "select", "id": "size_mode", "label": "Sizing",
+          "type": "range",
+          "id": "rotate",
+          "label": "Rotation",
+          "min": -45,
+          "max": 45,
+          "step": 1,
+          "unit": "deg",
+          "default": 0
+        },
+        {
+          "type": "checkbox",
+          "id": "flip",
+          "label": "Mirror image",
+          "default": false
+        },
+        {
+          "type": "select",
+          "id": "size_mode",
+          "label": "Sizing",
           "options": [
-            { "value": "auto", "label": "Auto (scales with screen width)" },
-            { "value": "fixed", "label": "Fixed pixels" }
+            {
+              "value": "auto",
+              "label": "Auto (scales with screen width)"
+            },
+            {
+              "value": "fixed",
+              "label": "Fixed pixels"
+            }
           ],
           "default": "auto"
         },
-
-        { "type": "header", "content": "Desktop" },
-        { "type": "range", "id": "width_desktop", "label": "Width", "min": 40, "max": 600, "step": 10, "unit": "px", "default": 240, "info": "Auto: size on a 1440px-wide screen; smaller screens shrink it" },
-        { "type": "range", "id": "x_desktop", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 25 },
-        { "type": "range", "id": "y_desktop", "label": "Vertical position", "min": -50, "max": 150, "step": 2, "unit": "%", "default": 50, "info": "0% = top of the separator, 100% = bottom; beyond overhangs the next/previous section" },
-
-        { "type": "header", "content": "Mobile" },
-        { "type": "checkbox", "id": "hide_mobile", "label": "Hide on mobile", "default": false },
-        { "type": "range", "id": "mobile_scale", "label": "Size on mobile", "min": 20, "max": 100, "step": 5, "unit": "%", "default": 50, "info": "% of the desktop width, then scales with the phone's width", "visible_if": "{{ block.settings.size_mode != 'fixed' }}" },
-        { "type": "range", "id": "width_mobile", "label": "Width", "min": 20, "max": 400, "step": 10, "unit": "px", "default": 120, "visible_if": "{{ block.settings.size_mode == 'fixed' }}" },
         {
-          "type": "select", "id": "mobile_position", "label": "Position on mobile",
+          "type": "header",
+          "content": "Desktop"
+        },
+        {
+          "type": "range",
+          "id": "width_desktop",
+          "label": "Width",
+          "min": 40,
+          "max": 600,
+          "step": 10,
+          "unit": "px",
+          "default": 240,
+          "info": "Auto: size on a 1440px-wide screen; smaller screens shrink it"
+        },
+        {
+          "type": "range",
+          "id": "x_desktop",
+          "label": "Horizontal position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 25
+        },
+        {
+          "type": "range",
+          "id": "y_desktop",
+          "label": "Vertical position",
+          "min": -50,
+          "max": 150,
+          "step": 2,
+          "unit": "%",
+          "default": 50,
+          "info": "0% = top of the separator, 100% = bottom; beyond overhangs the next/previous section"
+        },
+        {
+          "type": "header",
+          "content": "Mobile"
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_mobile",
+          "label": "Hide on mobile",
+          "default": false
+        },
+        {
+          "type": "range",
+          "id": "mobile_scale",
+          "label": "Size on mobile",
+          "min": 20,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50,
+          "info": "% of the desktop width, then scales with the phone's width",
+          "visible_if": "{{ block.settings.size_mode != 'fixed' }}"
+        },
+        {
+          "type": "range",
+          "id": "width_mobile",
+          "label": "Width",
+          "min": 20,
+          "max": 400,
+          "step": 10,
+          "unit": "px",
+          "default": 120,
+          "visible_if": "{{ block.settings.size_mode == 'fixed' }}"
+        },
+        {
+          "type": "select",
+          "id": "mobile_position",
+          "label": "Position on mobile",
           "options": [
-            { "value": "same", "label": "Same as desktop" },
-            { "value": "custom", "label": "Set separately" }
+            {
+              "value": "same",
+              "label": "Same as desktop"
+            },
+            {
+              "value": "custom",
+              "label": "Set separately"
+            }
           ],
           "default": "same"
         },
-        { "type": "range", "id": "x_mobile", "label": "Horizontal position", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 25, "visible_if": "{{ block.settings.mobile_position == 'custom' }}" },
-        { "type": "range", "id": "y_mobile", "label": "Vertical position", "min": -50, "max": 150, "step": 2, "unit": "%", "default": 50, "visible_if": "{{ block.settings.mobile_position == 'custom' }}" }
+        {
+          "type": "range",
+          "id": "x_mobile",
+          "label": "Horizontal position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 25,
+          "visible_if": "{{ block.settings.mobile_position == 'custom' }}"
+        },
+        {
+          "type": "range",
+          "id": "y_mobile",
+          "label": "Vertical position",
+          "min": -50,
+          "max": 150,
+          "step": 2,
+          "unit": "%",
+          "default": 50,
+          "visible_if": "{{ block.settings.mobile_position == 'custom' }}"
+        }
       ]
     }
   ],
   "presets": [
-    { "name": "Kahu separator" }
+    {
+      "name": "Kahu separator"
+    }
   ]
 }
 {% endschema %}
