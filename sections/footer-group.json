@@ -262,7 +262,7 @@
     },
     "kahu_newsletter": {
       "type": "section",
-      "name": "Newsletter (Join the KAHU Tribe)",
+      "name": "Newsletter",
       "blocks": {
         "nl_heading": {
           "type": "text",
