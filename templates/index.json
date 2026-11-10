@@ -1926,6 +1926,22 @@
             "button_position": "inside",
             "button_full": false
           }
+        },
+        "note_Wb7DXL": {
+          "type": "note",
+          "settings": {
+            "text": "Pack pricing applied automatically",
+            "position": "below",
+            "align": "center",
+            "italic": true,
+            "dashes": "lines",
+            "dash_length": 8,
+            "size": 14,
+            "color": "inherit",
+            "color_custom": "#031426",
+            "space_desktop": 0,
+            "space_mobile": 0
+          }
         }
       },
       "block_order": [
@@ -1936,7 +1952,8 @@
         "column_xahjBG",
         "column_8Fhnt8",
         "column_fE9qDH",
-        "column_qQd9J6"
+        "column_qQd9J6",
+        "note_Wb7DXL"
       ],
       "name": "Kahu columns",
       "settings": {
