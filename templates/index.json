@@ -2021,6 +2021,14 @@
             "column": "left"
           }
         },
+        "h_text_UeWPck": {
+          "type": "h_text",
+          "settings": {
+            "text": "<p>Notes from people who keep finding their way back to the water.</p>",
+            "max_width": 560,
+            "column": "left"
+          }
+        },
         "review_1": {
           "type": "review",
           "settings": {
@@ -2045,6 +2053,7 @@
       "block_order": [
         "h_eyebrow_rv",
         "h_title_rv",
+        "h_text_UeWPck",
         "review_1",
         "review_2"
       ],
@@ -2064,6 +2073,7 @@
         "column_gap": 50,
         "align": "center",
         "show_arrows": true,
+        "aria_label": "Customer reviews",
         "card_width": 330,
         "card_width_mobile": 82,
         "card_min_height": 210,
@@ -2072,17 +2082,26 @@
         "card_radius": 0,
         "quote_size": 18,
         "quote_size_mobile": 16,
+        "bg_image": "shopify://shop_images/reviews.webp",
         "overlay": 40,
         "bg_color": "ink",
+        "bg_color_custom": "#10253b",
         "text_color": "white",
+        "text_color_custom": "#ffffff",
         "card_bg": "cream",
+        "card_bg_custom": "#f3efe5",
         "card_fg": "navy",
+        "card_fg_custom": "#031426",
         "star_color": "yellow",
         "name_color": "sea",
         "desktop_padding_top": 82,
         "desktop_padding_bottom": 82,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
         "mobile_padding_top": 56,
-        "mobile_padding_bottom": 56
+        "mobile_padding_bottom": 56,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
       }
     }
   },
