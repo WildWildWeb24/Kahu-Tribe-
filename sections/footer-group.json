@@ -406,9 +406,29 @@
         "padding-block-start": 12,
         "padding-block-end": 16
       }
+    },
+    "kahu_separator_newsletter_top": {
+      "type": "kahu-separator",
+      "settings": {
+        "shape": "wave",
+        "direction": "down",
+        "mode": "overlap_next",
+        "wave_color": "cream",
+        "wave_color_custom": "#f3efe5",
+        "bg_color": "transparent",
+        "bg_color_custom": "#2fa4a9",
+        "height_desktop": 90,
+        "height_mobile": 40,
+        "flip": true,
+        "extra_bottom_desktop": 0,
+        "extra_bottom_mobile": 0,
+        "extra_top_desktop": 0,
+        "extra_top_mobile": 0
+      }
     }
   },
   "order": [
+    "kahu_separator_newsletter_top",
     "kahu_newsletter",
     "kahu_separator_newsletter",
     "footer",
