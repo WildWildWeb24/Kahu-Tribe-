@@ -126,7 +126,7 @@
         "h2 {font-weight: 800; letter-spacing: -0.5px; line-height: 1;}",
         "button {font-weight: 700; border-radius: 0 !important;}",
         "@media screen and (max-width: 749px) {h2 {font-size: 2.5rem; }}",
-        "@media screen and (min-width: 750px) {.section {--section-min-height: calc(100vw * 1676 / 2880) !important;}}",
+        "@media screen and (min-width: 750px) {.section {--section-min-height: calc(100vw * 1676 / 2880) !important; }}",
         ".email-signup__input-group {gap: 0 !important; align-items: stretch !important;}"
       ],
       "name": "Newsletter",
@@ -359,7 +359,6 @@
         "menu_footer",
         "menu_main"
       ],
-      "disabled": true,
       "name": "t:names.footer",
       "settings": {
         "section_width": "page-width",
@@ -417,7 +416,6 @@
         "policy_list",
         "social_icons"
       ],
-      "disabled": true,
       "settings": {
         "section_width": "page-width",
         "gap": 24,
