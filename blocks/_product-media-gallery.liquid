@@ -1,16 +1,19 @@
+{%- capture kahu_badges -%}{%- content_for 'blocks' -%}{%- endcapture -%}
 {% render 'product-media-gallery-content',
   media_presentation: block.settings.media_presentation,
   block_settings: block.settings,
   block_id: block.id,
   block_shopify_attributes: block.shopify_attributes,
   block: block,
-  section: section
+  section: section,
+  kahu_badges: kahu_badges
 %}
 
 {% schema %}
 {
   "name": "t:names.product_media",
   "tag": null,
+  "blocks": [{ "type": "_kahu-media-badge" }],
   "settings": [
     {
       "type": "select",

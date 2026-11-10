@@ -9,6 +9,7 @@
   @param {string} block_shopify_attributes - Block shopify attributes
   @param {block} block - The current block object
   @param {section} section - The current section object
+  @param {string} [kahu_badges] - Rendered Kahu badge blocks, shown on the first image
 
   @example
   {% render 'product-media-gallery-content',
@@ -390,6 +391,7 @@
           {% else %}
             {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
           {% endif %}
+          {%- if forloop.first and kahu_badges != blank -%}<div class="kahu-badges">{{ kahu_badges }}</div>{%- endif -%}
         {% endcapture %}
         {% capture class %}
           {{ product_media_container_class }} product-media-container--{{ media.media_type }}{% if block_settings.zoom %} product-media-container--zoomable{% endif %}{% if forloop.index0 == lowest_aspect_ratio_index and block_settings.aspect_ratio == 'adapt' %} product-media-container--tallest{% endif %}
@@ -505,6 +507,7 @@
             {% else %}
               {%- render 'product-media', media: media, sizes: media_sizes, is_main_product_media: forloop.first -%}
             {% endif %}
+            {%- if forloop.first and kahu_badges != blank -%}<div class="kahu-badges">{{ kahu_badges }}</div>{%- endif -%}
           </li>
         {% endfor %}
       </ul>

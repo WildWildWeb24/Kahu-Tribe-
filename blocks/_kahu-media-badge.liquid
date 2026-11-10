@@ -1,0 +1,83 @@
+{%- doc -%}
+  Kahu badge on the FIRST product image (Figma product page: "Made from recycled material",
+  "Carry bag included", KAHU logo | Regular). Added as child blocks of the Product media gallery.
+  Rendered once into the first image by snippets/product-media-gallery-content.liquid.
+  Styles: assets/kahu-tokens.css (".kahu-badge").
+{%- enddoc -%}
+
+{%- liquid
+  assign s = block.settings
+  assign has_text = false
+  if s.text != blank
+    assign has_text = true
+  endif
+  assign corner = s.position | split: '_'
+-%}
+
+{%- if s.image or has_text or request.design_mode -%}
+  <div
+    class="kahu-badge kahu-badge--{{ corner[0] }} kahu-badge--{{ corner[1] }} kahu-badge--{{ s.layout }}{% if s.background != blank %} kahu-badge--card{% endif %}"
+    style="--kbg-img-d: {{ s.image_width_desktop }}px; --kbg-img-m: {{ s.image_width_mobile }}px; --kbg-fs-d: {{ s.text_size_desktop }}px; --kbg-fs-m: {{ s.text_size_mobile }}px; --kbg-fg: {{ s.text_color }};{% if s.background != blank %} --kbg-bg: {{ s.background }};{% endif %} --kbg-radius: {{ s.radius }}px;"
+    {{ block.shopify_attributes }}
+  >
+    {%- if s.image -%}
+      {{ s.image | image_url: width: 480 | image_tag: widths: '120, 240, 360, 480', sizes: '160px', class: 'kahu-badge__img', alt: '' }}
+    {%- endif -%}
+    {%- if s.image and has_text and s.divider -%}
+      <span class="kahu-badge__divider" aria-hidden="true"></span>
+    {%- endif -%}
+    {%- if has_text -%}
+      <span class="kahu-badge__text kahu-badge__text--{{ s.weight }}">{{ s.text | escape | replace: '|', '<br>' }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Badge",
+  "tag": null,
+  "settings": [
+    { "type": "paragraph", "content": "Shows on top of the first product image, on every product using this template." },
+    { "type": "image_picker", "id": "image", "label": "Icon / graphic", "info": "Transparent WebP/PNG/SVG, e.g. recycle icon, bag icon, KAHU logo" },
+    { "type": "text", "id": "text", "label": "Text", "info": "Use | for a line break, e.g. Carry bag|included" },
+    {
+      "type": "select", "id": "layout", "label": "Layout",
+      "options": [
+        { "value": "beside", "label": "Icon beside text" },
+        { "value": "above", "label": "Icon above text" }
+      ],
+      "default": "beside"
+    },
+    { "type": "checkbox", "id": "divider", "label": "Line between icon and text", "default": false, "info": "e.g. KAHU | Regular" },
+    {
+      "type": "select", "id": "position", "label": "Position on the image",
+      "options": [
+        { "value": "top_left", "label": "Top left" },
+        { "value": "top_right", "label": "Top right" },
+        { "value": "bottom_left", "label": "Bottom left" },
+        { "value": "bottom_right", "label": "Bottom right" }
+      ],
+      "default": "top_left",
+      "info": "Badges in the same corner stack in block order"
+    },
+    { "type": "header", "content": "Size" },
+    { "type": "range", "id": "image_width_desktop", "label": "Icon width (desktop)", "min": 16, "max": 240, "step": 4, "unit": "px", "default": 40 },
+    { "type": "range", "id": "image_width_mobile", "label": "Icon width (mobile)", "min": 12, "max": 160, "step": 2, "unit": "px", "default": 28 },
+    { "type": "range", "id": "text_size_desktop", "label": "Text size (desktop)", "min": 10, "max": 40, "step": 1, "unit": "px", "default": 14 },
+    { "type": "range", "id": "text_size_mobile", "label": "Text size (mobile)", "min": 9, "max": 30, "step": 1, "unit": "px", "default": 12 },
+    {
+      "type": "select", "id": "weight", "label": "Text weight",
+      "options": [
+        { "value": "regular", "label": "Regular" },
+        { "value": "bold", "label": "Bold" }
+      ],
+      "default": "regular"
+    },
+    { "type": "header", "content": "Colours" },
+    { "type": "color", "id": "text_color", "label": "Text and line colour", "default": "#ffffff" },
+    { "type": "color", "id": "background", "label": "Card background", "info": "Leave empty for no card (text sits on the photo)" },
+    { "type": "range", "id": "radius", "label": "Card corner radius", "min": 0, "max": 24, "step": 1, "unit": "px", "default": 8 }
+  ],
+  "presets": [{ "name": "Badge" }]
+}
+{% endschema %}

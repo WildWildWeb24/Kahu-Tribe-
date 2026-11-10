@@ -90,3 +90,41 @@
     & .mobile-column .mobile-column { align-items: center; }
   }
 }
+
+/* ------------------------------------------------------------------
+   Product page: Kahu badges on the first product image (blocks/_kahu-media-badge.liquid)
+   ------------------------------------------------------------------ */
+.kahu-badges {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  pointer-events: none;
+}
+.kahu-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--kbg-fg, #fff);
+  font-family: var(--kahu-font-sans);
+}
+.kahu-badge--right { align-self: flex-end; text-align: right; }
+.kahu-badge--bottom { order: 1; }
+/* first bottom badge pushes the bottom group down to the bottom edge */
+.kahu-badges > .kahu-badge--bottom:not(.kahu-badge--bottom ~ .kahu-badge--bottom) { margin-top: auto; }
+.kahu-badge--above { flex-direction: column; align-items: flex-start; gap: 6px; }
+.kahu-badge--card { background: var(--kbg-bg); border-radius: var(--kbg-radius, 8px); padding: 10px 12px; }
+.kahu-badge__img { display: block; width: var(--kbg-img-m, 28px); height: auto; flex-shrink: 0; }
+.kahu-badge__divider { align-self: stretch; border-left: 1px solid currentColor; opacity: 0.8; }
+.kahu-badge__text { font-size: var(--kbg-fs-m, 12px); line-height: 1.15; }
+.kahu-badge__text--bold { font-weight: 700; }
+@media (min-width: 750px) {
+  .kahu-badges { padding: 24px; }
+  .kahu-badge__img { width: var(--kbg-img-d, 40px); }
+  .kahu-badge__text { font-size: var(--kbg-fs-d, 14px); }
+}
+.shopify-design-mode .kahu-badge { pointer-events: auto; }
