@@ -546,7 +546,7 @@
               "type": "text",
               "name": "Links",
               "settings": {
-                "text": "<p>Get new releases, travel stories and water-day inspiration.</p><p><a href=\"https://www.instagram.com/kahu.tribe/\">Instagram</a>&nbsp;·&nbsp;<a href=\"https://www.facebook.com/p/Kahu-Tribe-61573989368085/\">Facebook</a>&nbsp;·&nbsp;<a href=\"https://www.tiktok.com/@kahutribe\">TikTok</a></p>",
+                "text": "<p>Get new releases, travel stories and water-day inspiration.</p><p><a href=\"https://www.instagram.com/kahu.tribe/\">Instagram</a> · <a href=\"https://www.facebook.com/p/Kahu-Tribe-61573989368085/\">Facebook</a> · <a href=\"https://www.tiktok.com/@kahutribe\">TikTok</a></p>",
                 "width": "100%",
                 "max_width": "none",
                 "alignment": "left",
@@ -723,7 +723,7 @@
                   "type": "text",
                   "name": "Legal links",
                   "settings": {
-                    "text": "<p><a href=\"/policies/privacy-policy\">Privacy</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"/policies/terms-of-service\">Terms</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"/pages/contact\">Accessibility</a></p>",
+                    "text": "<p><a href=\"/policies/privacy-policy\">Privacy</a> <a href=\"/policies/terms-of-service\">Terms</a> <a href=\"/pages/contact\">Accessibility</a></p>",
                     "width": "fit-content",
                     "max_width": "none",
                     "alignment": "right",
@@ -783,7 +783,8 @@
         "a:hover {color: #f4c84a;}",
         "jumbo-text {font-family: var(--kahu-font-sans) !important; font-weight: 800 !important; color: #d88b83;}",
         "@media screen and (max-width: 749px) {.footer-content {grid-template-columns: 1fr 1fr; row-gap: 32px; column-gap: 24px;}}",
-        "@media screen and (max-width: 749px) {.footer-content > :last-child {grid-column: 1 / -1;}}"
+        "@media screen and (max-width: 749px) {.footer-content > :last-child {grid-column: 1 / -1;}}",
+        ".group-block .group-block a + a {margin-left: 20px;}"
       ]
     },
     "utilities": {
