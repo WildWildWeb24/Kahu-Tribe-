@@ -2001,6 +2001,89 @@
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0
       }
+    },
+    "kahu_reviews": {
+      "type": "kahu-reviews",
+      "blocks": {
+        "h_eyebrow_rv": {
+          "type": "h_eyebrow",
+          "settings": {
+            "text": "Kahu vibe",
+            "column": "left"
+          }
+        },
+        "h_title_rv": {
+          "type": "h_title",
+          "settings": {
+            "text": "Kahu happy customers",
+            "size": "xl",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "review_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "",
+            "quote": "Our beach bag is lighter and the dryer feels much more comfortable.",
+            "name": "",
+            "product": ""
+          }
+        },
+        "review_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "",
+            "quote": "The colours get noticed everywhere we take them.",
+            "name": "",
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "h_eyebrow_rv",
+        "h_title_rv",
+        "review_1",
+        "review_2"
+      ],
+      "settings": {
+        "source": "judgeme",
+        "judgeme_token": "ZZlOP7nmVOfXI1M368iyM1Yg1r0",
+        "max_reviews": 6,
+        "min_stars": 5,
+        "min_chars": 20,
+        "attribution": "label",
+        "label": "KAHU customer",
+        "show_title": false,
+        "show_product": false,
+        "show_date": false,
+        "layout": "side",
+        "intro_width": 350,
+        "column_gap": 50,
+        "align": "center",
+        "show_arrows": true,
+        "card_width": 330,
+        "card_width_mobile": 82,
+        "card_min_height": 210,
+        "card_padding": 26,
+        "card_gap": 18,
+        "card_radius": 0,
+        "quote_size": 18,
+        "quote_size_mobile": 16,
+        "overlay": 40,
+        "bg_color": "ink",
+        "text_color": "white",
+        "card_bg": "cream",
+        "card_fg": "navy",
+        "star_color": "yellow",
+        "name_color": "sea",
+        "desktop_padding_top": 82,
+        "desktop_padding_bottom": 82,
+        "mobile_padding_top": 56,
+        "mobile_padding_bottom": 56
+      }
     }
   },
   "order": [
@@ -2018,6 +2101,7 @@
     "kahu_video_stories",
     "kahu_columns_xKYD4q",
     "kahu_columns_iPrFJt",
-    "kahu_columns_DKh6VL"
+    "kahu_columns_DKh6VL",
+    "kahu_reviews"
   ]
 }
