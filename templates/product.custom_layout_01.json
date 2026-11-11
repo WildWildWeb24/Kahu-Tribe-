@@ -1902,7 +1902,7 @@
         "text_color": "navy",
         "text_color_custom": "#031426",
         "desktop_padding_top": 0,
-        "desktop_padding_bottom": 0,
+        "desktop_padding_bottom": 50,
         "desktop_margin_top": 0,
         "desktop_margin_bottom": 0,
         "mobile_padding_top": 0,
