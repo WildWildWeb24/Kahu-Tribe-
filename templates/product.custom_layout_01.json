@@ -738,10 +738,202 @@
         "padding-block-end": 15,
         "gap_between_elements": 10
       }
+    },
+    "kahu_columns_dry_pack_go": {
+      "type": "kahu-columns",
+      "name": "Dry, Pack & Go",
+      "blocks": {
+        "h_title_dpg": {
+          "type": "h_title",
+          "settings": {
+            "text": "Dry, Pack & Go",
+            "size": "md",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "h_text_dpg": {
+          "type": "h_text",
+          "settings": {
+            "text": "<p>From the last swim to the drive home in three easy steps. Dry off, roll your Kahu into its bag and keep the day going.</p>",
+            "max_width": 640,
+            "space_above_desktop": 16,
+            "space_above_mobile": 12,
+            "column": "left"
+          }
+        },
+        "h_divider_dpg": {
+          "type": "h_divider",
+          "settings": {
+            "color": "current",
+            "color_custom": "#031426",
+            "thickness": 1,
+            "space_desktop": 24,
+            "space_mobile": 20
+          }
+        },
+        "col_dry": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 0,
+            "overlay_style": "bottom",
+            "sticker": "",
+            "sticker_width": 35,
+            "sticker_position": "top-right",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "Dry yourself",
+            "in_title_position": "above_image",
+            "in_title_size": 24,
+            "in_divider": "straight",
+            "in_divider_height": 44,
+            "in_divider_thickness": 1,
+            "in_divider_gap": 12,
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false,
+            "in_title_color": "teal",
+            "in_title_align": "center"
+          }
+        },
+        "col_pack": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 0,
+            "overlay_style": "bottom",
+            "sticker": "",
+            "sticker_width": 35,
+            "sticker_position": "top-right",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "Pack your Kahu Poncho",
+            "in_title_position": "above_image",
+            "in_title_size": 24,
+            "in_divider": "straight",
+            "in_divider_height": 44,
+            "in_divider_thickness": 1,
+            "in_divider_gap": 12,
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false,
+            "in_title_color": "teal",
+            "in_title_align": "center"
+          }
+        },
+        "col_go": {
+          "type": "column",
+          "settings": {
+            "image": "",
+            "alt": "",
+            "ratio": "inherit",
+            "link": "",
+            "overlay": 0,
+            "overlay_style": "bottom",
+            "sticker": "",
+            "sticker_width": 35,
+            "sticker_position": "top-right",
+            "sticker_rotate": 0,
+            "in_logo_width": 40,
+            "in_title": "Continue your adventure",
+            "in_title_position": "above_image",
+            "in_title_size": 24,
+            "in_divider": "straight",
+            "in_divider_height": 44,
+            "in_divider_thickness": 1,
+            "in_divider_gap": 12,
+            "in_text": "",
+            "in_position": "split",
+            "in_color": "cream",
+            "title": "",
+            "text": "",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "cream",
+            "button_position": "inside",
+            "button_full": false,
+            "in_title_color": "teal",
+            "in_title_align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "h_title_dpg",
+        "h_text_dpg",
+        "h_divider_dpg",
+        "col_dry",
+        "col_pack",
+        "col_go"
+      ],
+      "settings": {
+        "columns_desktop": 3,
+        "columns_mobile": "1",
+        "mobile_layout": "slider",
+        "gap_desktop": 16,
+        "gap_mobile": 12,
+        "full_width": false,
+        "ratio": "4 / 3",
+        "radius": 0,
+        "title_size": "sm",
+        "header_position": "above",
+        "header_layout": "split",
+        "header_mobile": "same",
+        "header_right_align": "end",
+        "header_text_color": "navy",
+        "header_text_color_custom": "#031426",
+        "header_gap_desktop": 36,
+        "header_gap_mobile": 24,
+        "btn_width": "fixed",
+        "btn_width_fixed": 172,
+        "btn_height": 40,
+        "btn_height_mobile": 40,
+        "btn_padding": 16,
+        "btn_font": 12,
+        "in_pad_top_desktop": 24,
+        "in_pad_side_desktop": 24,
+        "in_pad_bottom_desktop": 40,
+        "in_pad_top_mobile": 20,
+        "in_pad_side_mobile": 20,
+        "in_pad_bottom_mobile": 20,
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 64,
+        "desktop_padding_bottom": 64,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
     }
   },
   "order": [
     "main",
-    "marquee_features"
+    "marquee_features",
+    "kahu_columns_dry_pack_go"
   ]
 }
