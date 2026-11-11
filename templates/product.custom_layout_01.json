@@ -1165,10 +1165,10 @@
     },
     "kahu_specs": {
       "type": "section",
-      "name": "Specs",
       "blocks": {
         "spec_title": {
           "type": "text",
+          "name": "Title",
           "settings": {
             "text": "<h2>Product Specs &amp; Fabric Details</h2>",
             "width": "100%",
@@ -1190,8 +1190,7 @@
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {},
-          "name": "Title"
+          "blocks": {}
         },
         "spec_divider": {
           "type": "_divider",
@@ -1207,6 +1206,7 @@
         },
         "spec_body": {
           "type": "group",
+          "name": "Specs and image",
           "settings": {
             "content_direction": "row",
             "vertical_on_mobile": true,
@@ -1246,6 +1246,7 @@
           "blocks": {
             "spec_left": {
               "type": "group",
+              "name": "Specs",
               "settings": {
                 "content_direction": "column",
                 "vertical_on_mobile": true,
@@ -1285,6 +1286,7 @@
               "blocks": {
                 "spec_recycled": {
                   "type": "group",
+                  "name": "Recycled",
                   "settings": {
                     "content_direction": "row",
                     "vertical_on_mobile": false,
@@ -1336,6 +1338,7 @@
                     },
                     "spec_rec_title": {
                       "type": "text",
+                      "name": "Recycled heading",
                       "settings": {
                         "text": "<h3>Made from recycled material</h3>",
                         "width": "fit-content",
@@ -1357,18 +1360,17 @@
                         "padding-inline-start": 0,
                         "padding-inline-end": 0
                       },
-                      "blocks": {},
-                      "name": "Recycled heading"
+                      "blocks": {}
                     }
                   },
                   "block_order": [
                     "spec_icon",
                     "spec_rec_title"
-                  ],
-                  "name": "Recycled"
+                  ]
                 },
                 "spec_rec_line": {
                   "type": "text",
+                  "name": "Recycled line",
                   "settings": {
                     "text": "<p>Designed to reduce waste without compromising performance.</p>",
                     "width": "100%",
@@ -1390,11 +1392,11 @@
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
-                  "blocks": {},
-                  "name": "Recycled line"
+                  "blocks": {}
                 },
                 "spec_table": {
                   "type": "text",
+                  "name": "Specs table",
                   "settings": {
                     "text": "<p><strong>Material</strong>Suede microfiber</p><p><strong>Composition</strong>88% Polyester / 12% Nylon</p><p><strong>Feel</strong>Soft, smooth, lightweight</p><p><strong>Absorbency</strong>Quick absorb, fast dry</p><p><strong>Sand Resistance</strong>Yes</p><p><strong>Fit</strong>Relaxed poncho fit</p><p><strong>Design</strong>Hooded with wooden button</p><p><strong>Wash Care</strong>Wash cold, avoid bleach, dry on low or air dry, and don't use fabric softener.</p>",
                     "width": "100%",
@@ -1416,19 +1418,18 @@
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
-                  "blocks": {},
-                  "name": "Specs table"
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "spec_recycled",
                 "spec_rec_line",
                 "spec_table"
-              ],
-              "name": "Specs"
+              ]
             },
             "spec_right": {
               "type": "group",
+              "name": "Image",
               "settings": {
                 "content_direction": "column",
                 "vertical_on_mobile": true,
@@ -1470,7 +1471,7 @@
                   "type": "image",
                   "name": "Product image",
                   "settings": {
-                    "image": "",
+                    "image": "{{ closest.product.metafields.custom.specification_image.value }}",
                     "link": "",
                     "image_ratio": "adapt",
                     "width": "custom",
@@ -1493,15 +1494,13 @@
               },
               "block_order": [
                 "spec_image"
-              ],
-              "name": "Image"
+              ]
             }
           },
           "block_order": [
             "spec_left",
             "spec_right"
-          ],
-          "name": "Specs and image"
+          ]
         }
       },
       "block_order": [
@@ -1509,6 +1508,7 @@
         "spec_divider",
         "spec_body"
       ],
+      "name": "Specs",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
