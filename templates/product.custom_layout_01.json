@@ -525,13 +525,13 @@
             "kd_payment": {
               "type": "payment-icons",
               "settings": {
+                "only_types": "shopify_pay, paypal, google_pay, apple_pay",
                 "horizontal_alignment": "flex-start",
                 "gap": 8,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0,
-                "only_types": "shopify_pay, paypal, google_pay, apple_pay"
+                "padding-inline-end": 0
               },
               "blocks": {}
             }
@@ -563,8 +563,8 @@
         "gap": 48,
         "enable_sticky_add_to_cart": true,
         "background_color": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 15,
+        "padding-block-end": 30
       }
     },
     "marquee_features": {
