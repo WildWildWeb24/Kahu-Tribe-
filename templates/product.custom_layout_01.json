@@ -741,7 +741,6 @@
     },
     "kahu_columns_dry_pack_go": {
       "type": "kahu-columns",
-      "name": "Dry, Pack & Go",
       "blocks": {
         "h_title_dpg": {
           "type": "h_title",
@@ -775,19 +774,20 @@
         "col_dry": {
           "type": "column",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/Dry_yourself.webp",
             "alt": "",
             "ratio": "inherit",
             "link": "",
             "overlay": 0,
             "overlay_style": "bottom",
-            "sticker": "",
             "sticker_width": 35,
             "sticker_position": "top-right",
             "sticker_rotate": 0,
             "in_logo_width": 40,
             "in_title": "Dry yourself",
             "in_title_position": "above_image",
+            "in_title_color": "teal",
+            "in_title_align": "center",
             "in_title_size": 24,
             "in_divider": "straight",
             "in_divider_height": 44,
@@ -802,27 +802,26 @@
             "button_link": "",
             "button_style": "cream",
             "button_position": "inside",
-            "button_full": false,
-            "in_title_color": "teal",
-            "in_title_align": "center"
+            "button_full": false
           }
         },
         "col_pack": {
           "type": "column",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/pack_your_Kahu_Poncho.webp",
             "alt": "",
             "ratio": "inherit",
             "link": "",
             "overlay": 0,
             "overlay_style": "bottom",
-            "sticker": "",
             "sticker_width": 35,
             "sticker_position": "top-right",
             "sticker_rotate": 0,
             "in_logo_width": 40,
             "in_title": "Pack your Kahu Poncho",
             "in_title_position": "above_image",
+            "in_title_color": "teal",
+            "in_title_align": "center",
             "in_title_size": 24,
             "in_divider": "straight",
             "in_divider_height": 44,
@@ -837,27 +836,26 @@
             "button_link": "",
             "button_style": "cream",
             "button_position": "inside",
-            "button_full": false,
-            "in_title_color": "teal",
-            "in_title_align": "center"
+            "button_full": false
           }
         },
         "col_go": {
           "type": "column",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/Continue_your_adventure.webp",
             "alt": "",
             "ratio": "inherit",
             "link": "",
             "overlay": 0,
             "overlay_style": "bottom",
-            "sticker": "",
             "sticker_width": 35,
             "sticker_position": "top-right",
             "sticker_rotate": 0,
             "in_logo_width": 40,
             "in_title": "Continue your adventure",
             "in_title_position": "above_image",
+            "in_title_color": "teal",
+            "in_title_align": "center",
             "in_title_size": 24,
             "in_divider": "straight",
             "in_divider_height": 44,
@@ -872,9 +870,7 @@
             "button_link": "",
             "button_style": "cream",
             "button_position": "inside",
-            "button_full": false,
-            "in_title_color": "teal",
-            "in_title_align": "center"
+            "button_full": false
           }
         }
       },
@@ -886,10 +882,11 @@
         "col_pack",
         "col_go"
       ],
+      "name": "Dry, Pack & Go",
       "settings": {
         "columns_desktop": 3,
         "columns_mobile": "1",
-        "mobile_layout": "slider",
+        "mobile_layout": "grid",
         "gap_desktop": 16,
         "gap_mobile": 12,
         "full_width": false,
