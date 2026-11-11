@@ -742,6 +742,7 @@
   },
   "order": [
     "main",
+    "marquee_features",
     "marquee_features"
   ]
 }
