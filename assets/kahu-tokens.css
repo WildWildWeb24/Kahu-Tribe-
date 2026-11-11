@@ -116,6 +116,13 @@
 .kahu-badge--bottom { order: 1; }
 /* first bottom badge pushes the bottom group down to the bottom edge */
 .kahu-badges > .kahu-badge--bottom:not(.kahu-badge--bottom ~ .kahu-badge--bottom) { margin-top: auto; }
+/* "Stick to the image edge": cancel the side padding of .kahu-badges, square the corners on that side */
+.kahu-badge--flush.kahu-badge--left { margin-left: -16px; border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.kahu-badge--flush.kahu-badge--right { margin-right: -16px; border-top-right-radius: 0; border-bottom-right-radius: 0; }
+@media (min-width: 750px) {
+  .kahu-badge--flush.kahu-badge--left { margin-left: -24px; }
+  .kahu-badge--flush.kahu-badge--right { margin-right: -24px; }
+}
 .kahu-badge__main { display: flex; align-items: center; gap: 10px; }
 .kahu-badge--above .kahu-badge__main { flex-direction: column; align-items: flex-start; gap: 6px; }
 .kahu-badge { gap: 14px; }
