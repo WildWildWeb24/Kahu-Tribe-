@@ -204,3 +204,26 @@ gap: 16px;
   .kahu-cols__nav-line { position: relative; flex: 1; height: 1px; background: currentColor; }
   .kahu-cols__nav-fill { position: absolute; top: -1px; height: 3px; background: currentColor; border-radius: 2px; transition: left 0.2s, width 0.2s; }
 }
+
+/* Edge-to-edge photo strip */
+.kahu-cols__inner--edge { padding-left: 0; padding-right: 0; }
+.kahu-cols__inner--edge .kahu-cols__head,
+.kahu-cols__inner--edge .kahu-cols__note { padding-left: var(--kahu-gutter, 20px); padding-right: var(--kahu-gutter, 20px); }
+@media (max-width: 749px) {
+  .kahu-cols--slider-m .kahu-cols__inner--edge .kahu-cols__grid { padding-right: 0; }
+  .kahu-cols__inner--edge .kahu-cols__nav { margin-left: var(--kahu-gutter, 20px); }
+}
+
+/* Instagram post type icon (top-right) */
+.kahu-col__post-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+  width: 22px;
+  height: 22px;
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.45));
+  pointer-events: none;
+}
+@media (max-width: 749px) { .kahu-col__post-icon { width: 18px; height: 18px; top: 8px; right: 8px; } }
