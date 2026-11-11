@@ -226,7 +226,7 @@
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-body--family)",
-                    "font_size": "1.75rem",
+                    "font_size": "2rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -317,7 +317,7 @@
                         "line_height": "normal",
                         "letter_spacing": "normal",
                         "case": "none",
-                        "wrap": "pretty",
+                        "wrap": "nowrap",
                         "text_color": "",
                         "background": false,
                         "background_color": "#00000026",
@@ -460,7 +460,7 @@
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
-                    "style_class": "button",
+                    "style_class": "button-custom",
                     "custom_button_background": "#031426",
                     "custom_button_text": "#f3efe5",
                     "custom_button_border": "#031426"
