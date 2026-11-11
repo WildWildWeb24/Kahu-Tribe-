@@ -62,10 +62,12 @@
               "type": "_kahu-media-badge",
               "settings": {
                 "image": "shopify://shop_images/recycle.webp",
+                "text_source": "custom",
                 "text": "Made from|recycled material",
                 "layout": "above",
                 "divider": false,
                 "position": "top_left",
+                "flush": true,
                 "image_2": "shopify://shop_images/bottles_d5c9af3a-88a5-4fe6-b651-3cccc0508f02.webp",
                 "image_width_desktop": 32,
                 "image_width_mobile": 24,
@@ -76,8 +78,7 @@
                 "weight": "regular",
                 "text_color": "#031426",
                 "background": "#e7b67e",
-                "radius": 8,
-                "flush": true
+                "radius": 8
               },
               "blocks": {}
             },
@@ -85,10 +86,12 @@
               "type": "_kahu-media-badge",
               "settings": {
                 "image": "shopify://shop_images/carry_bag.webp",
+                "text_source": "custom",
                 "text": "Carry bag|included",
                 "layout": "beside",
                 "divider": false,
                 "position": "bottom_left",
+                "flush": false,
                 "image_width_desktop": 40,
                 "image_width_mobile": 28,
                 "image_2_width_desktop": 120,
@@ -106,10 +109,12 @@
               "type": "_kahu-media-badge",
               "settings": {
                 "image": "shopify://shop_images/logo-unit.svg",
+                "text_source": "size",
                 "text": "Regular",
                 "layout": "beside",
                 "divider": true,
                 "position": "bottom_left",
+                "flush": false,
                 "image_width_desktop": 40,
                 "image_width_mobile": 30,
                 "image_2_width_desktop": 120,
@@ -119,8 +124,7 @@
                 "weight": "bold",
                 "text_color": "#ffffff",
                 "background": "",
-                "radius": 8,
-                "text_source": "size"
+                "radius": 8
               },
               "blocks": {}
             }
@@ -166,6 +170,10 @@
               },
               "blocks": {}
             },
+            "judge_me_reviews_preview_badge_pxqFXf": {
+              "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+              "settings": {}
+            },
             "kd_review": {
               "type": "review",
               "settings": {
@@ -180,6 +188,7 @@
             },
             "kd_title_row": {
               "type": "group",
+              "name": "Title and price",
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
@@ -219,6 +228,7 @@
               "blocks": {
                 "kd_title": {
                   "type": "text",
+                  "name": "Title",
                   "settings": {
                     "text": "<h1>{{ closest.product.title }}</h1>",
                     "width": "fit-content",
@@ -240,11 +250,11 @@
                     "padding-inline-start": 0,
                     "padding-inline-end": 0
                   },
-                  "blocks": {},
-                  "name": "Title"
+                  "blocks": {}
                 },
                 "kd_price_col": {
                   "type": "group",
+                  "name": "Price",
                   "settings": {
                     "content_direction": "column",
                     "vertical_on_mobile": true,
@@ -306,8 +316,9 @@
                     },
                     "kd_tax": {
                       "type": "text",
+                      "name": "Tax note",
                       "settings": {
-                        "text": "<p>Price inclusive<br>of all taxes.</p>",
+                        "text": "<p>Price inclusive of all taxes.</p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "right",
@@ -317,7 +328,7 @@
                         "line_height": "normal",
                         "letter_spacing": "normal",
                         "case": "none",
-                        "wrap": "pretty",
+                        "wrap": "nowrap",
                         "text_color": "",
                         "background": false,
                         "background_color": "#00000026",
@@ -327,22 +338,19 @@
                         "padding-inline-start": 0,
                         "padding-inline-end": 0
                       },
-                      "blocks": {},
-                      "name": "Tax note"
+                      "blocks": {}
                     }
                   },
                   "block_order": [
                     "kd_price",
                     "kd_tax"
-                  ],
-                  "name": "Price"
+                  ]
                 }
               },
               "block_order": [
                 "kd_title",
                 "kd_price_col"
-              ],
-              "name": "Title and price"
+              ]
             },
             "kd_installments": {
               "type": "custom-liquid",
@@ -354,6 +362,7 @@
             },
             "kd_bullets": {
               "type": "text",
+              "name": "Feature bullets",
               "settings": {
                 "text": "<p>• <strong>All in one Poncho &amp; Towel:</strong> Wear it for warmth, privacy, and easy changing, or lay it flat and use it like a beach towel to sit, stretch, or relax by the water.</p><p>• <strong>Quick Dry:</strong> Suede microfiber dries up to three times faster than a cotton towel, so it's ready to pack again by the time you are.</p><p>• <strong>Comfortable Fit:</strong> A relaxed poncho silhouette with a hood and snap-button sides offers easy movement, coverage, and comfort in and out of the water.</p><p>• <strong>FREE Matching Bag:</strong> Designed to pack down small and fit neatly into its matching drawstring bag, making it ideal for travel, road trips, and long beach days.</p>",
                 "width": "100%",
@@ -375,8 +384,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {},
-              "name": "Feature bullets"
+              "blocks": {}
             },
             "kd_divider_1": {
               "type": "_divider",
@@ -392,6 +400,7 @@
             },
             "kd_family": {
               "type": "text",
+              "name": "Family and team packs",
               "settings": {
                 "text": "<h3>Family &amp; Team Packs</h3><p>We also have specific discounts on <a href=\"/pages/wholesale-enquires\">Pack of 3</a>, <a href=\"/pages/wholesale-enquires\">Pack of 4</a>, <a href=\"/pages/wholesale-enquires\">Pack of 5</a> and <a href=\"/pages/wholesale-enquires\">wholesale prices</a> on larger orders.</p>",
                 "width": "100%",
@@ -413,8 +422,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {},
-              "name": "Family and team packs"
+              "blocks": {}
             },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
@@ -490,6 +498,7 @@
             },
             "kd_whatsapp": {
               "type": "text",
+              "name": "WhatsApp line",
               "settings": {
                 "text": "<p>Connect on WhatsApp. Get your answers instantly. Pay using <strong>Gpay, PhonePe and PayTM</strong></p>",
                 "width": "100%",
@@ -511,8 +520,7 @@
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
               },
-              "blocks": {},
-              "name": "WhatsApp line"
+              "blocks": {}
             },
             "kd_payment": {
               "type": "payment-icons",
@@ -529,6 +537,7 @@
           },
           "block_order": [
             "kd_breadcrumb",
+            "judge_me_reviews_preview_badge_pxqFXf",
             "kd_review",
             "kd_title_row",
             "kd_installments",
@@ -548,7 +557,7 @@
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
-        "equal_columns": true,
+        "equal_columns": false,
         "limit_details_width": false,
         "gap": 48,
         "enable_sticky_add_to_cart": true,
