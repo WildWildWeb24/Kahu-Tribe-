@@ -797,6 +797,7 @@
             "in_position": "split",
             "in_color": "cream",
             "title": "",
+            "title_icon_width": 28,
             "text": "",
             "button_label": "",
             "button_link": "",
@@ -831,6 +832,7 @@
             "in_position": "split",
             "in_color": "cream",
             "title": "",
+            "title_icon_width": 28,
             "text": "",
             "button_label": "",
             "button_link": "",
@@ -865,6 +867,7 @@
             "in_position": "split",
             "in_color": "cream",
             "title": "",
+            "title_icon_width": 28,
             "text": "",
             "button_label": "",
             "button_link": "",
@@ -887,6 +890,7 @@
         "columns_desktop": 3,
         "columns_mobile": "1",
         "mobile_layout": "grid",
+        "slider_arrows": false,
         "gap_desktop": 16,
         "gap_mobile": 12,
         "full_width": false,
@@ -929,7 +933,6 @@
     },
     "kahu_columns_engineered": {
       "type": "kahu-columns",
-      "name": "Engineered",
       "blocks": {
         "h_title_eng": {
           "type": "h_title",
@@ -963,19 +966,20 @@
         "col_absorbent": {
           "type": "column",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/super_absorbent.webp",
             "alt": "",
             "ratio": "inherit",
             "link": "",
             "overlay": 0,
             "overlay_style": "bottom",
-            "sticker": "",
             "sticker_width": 35,
             "sticker_position": "top-right",
             "sticker_rotate": 0,
             "in_logo_width": 40,
             "in_title": "",
             "in_title_position": "below_image",
+            "in_title_color": "inherit",
+            "in_title_align": "left",
             "in_title_size": 40,
             "in_divider": "straight",
             "in_divider_height": 44,
@@ -985,31 +989,32 @@
             "in_position": "split",
             "in_color": "cream",
             "title": "Super Absorbent",
+            "title_icon_width": 28,
             "text": "<p>Suede microfiber absorbs water quickly and dries faster than traditional towels.</p>",
             "button_label": "",
             "button_link": "",
             "button_style": "cream",
             "button_position": "inside",
-            "button_full": false,
-            "title_icon_width": 28
+            "button_full": false
           }
         },
         "col_sand": {
           "type": "column",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/sand_resistance.webp",
             "alt": "",
             "ratio": "inherit",
             "link": "",
             "overlay": 0,
             "overlay_style": "bottom",
-            "sticker": "",
             "sticker_width": 35,
             "sticker_position": "top-right",
             "sticker_rotate": 0,
             "in_logo_width": 40,
             "in_title": "",
             "in_title_position": "below_image",
+            "in_title_color": "inherit",
+            "in_title_align": "left",
             "in_title_size": 40,
             "in_divider": "straight",
             "in_divider_height": 44,
@@ -1019,31 +1024,32 @@
             "in_position": "split",
             "in_color": "cream",
             "title": "Sand Resistance",
+            "title_icon_width": 28,
             "text": "<p>A smooth suede finish helps sand fall right off. Less mess, less shake-out, more time enjoying the beach.</p>",
             "button_label": "",
             "button_link": "",
             "button_style": "cream",
             "button_position": "inside",
-            "button_full": false,
-            "title_icon_width": 28
+            "button_full": false
           }
         },
         "col_quickdry": {
           "type": "column",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/quick_dry.webp",
             "alt": "",
             "ratio": "inherit",
             "link": "",
             "overlay": 0,
             "overlay_style": "bottom",
-            "sticker": "",
             "sticker_width": 35,
             "sticker_position": "top-right",
             "sticker_rotate": 0,
             "in_logo_width": 40,
             "in_title": "",
             "in_title_position": "below_image",
+            "in_title_color": "inherit",
+            "in_title_align": "left",
             "in_title_size": 40,
             "in_divider": "straight",
             "in_divider_height": 44,
@@ -1053,31 +1059,32 @@
             "in_position": "split",
             "in_color": "cream",
             "title": "Quick Dry",
+            "title_icon_width": 28,
             "text": "<p>Our microfiber suede towels dry 3x faster than regular towels.</p>",
             "button_label": "",
             "button_link": "",
             "button_style": "cream",
             "button_position": "inside",
-            "button_full": false,
-            "title_icon_width": 28
+            "button_full": false
           }
         },
         "col_soft": {
           "type": "column",
           "settings": {
-            "image": "",
+            "image": "shopify://shop_images/soft_feel.webp",
             "alt": "",
             "ratio": "inherit",
             "link": "",
             "overlay": 0,
             "overlay_style": "bottom",
-            "sticker": "",
             "sticker_width": 35,
             "sticker_position": "top-right",
             "sticker_rotate": 0,
             "in_logo_width": 40,
             "in_title": "",
             "in_title_position": "below_image",
+            "in_title_color": "inherit",
+            "in_title_align": "left",
             "in_title_size": 40,
             "in_divider": "straight",
             "in_divider_height": 44,
@@ -1087,13 +1094,13 @@
             "in_position": "split",
             "in_color": "cream",
             "title": "Soft feel",
+            "title_icon_width": 28,
             "text": "<p>Relaxed poncho fit gives you privacy anywhere. Change comfortably at the beach, pool, or on the road.</p>",
             "button_label": "",
             "button_link": "",
             "button_style": "cream",
             "button_position": "inside",
-            "button_full": false,
-            "title_icon_width": 28
+            "button_full": false
           }
         }
       },
@@ -1106,10 +1113,12 @@
         "col_quickdry",
         "col_soft"
       ],
+      "name": "Engineered",
       "settings": {
         "columns_desktop": 4,
         "columns_mobile": "1",
-        "mobile_layout": "grid",
+        "mobile_layout": "slider",
+        "slider_arrows": true,
         "gap_desktop": 16,
         "gap_mobile": 12,
         "full_width": false,
@@ -1147,8 +1156,7 @@
         "mobile_padding_top": 40,
         "mobile_padding_bottom": 40,
         "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0,
-        "slider_arrows": true
+        "mobile_margin_bottom": 0
       }
     }
   },
