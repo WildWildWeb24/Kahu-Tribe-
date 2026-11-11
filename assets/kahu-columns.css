@@ -173,3 +173,34 @@ gap: 16px;
 .kahu-col__title--c-coral { color: var(--kahu-coral); }
 .kahu-col__title--a-center { text-align: center; }
 @media (min-width: 750px) { .kahu-col__title--above { margin-bottom: 20px; } }
+
+/* Icon beside the title (below the image) */
+.kahu-col__title--icon { display: flex; align-items: center; gap: 10px; }
+.kahu-col__title-icon { display: block; width: var(--kc-ticon-w, 28px); height: auto; flex-shrink: 0; }
+
+/* Mobile slider arrows: ‹ ——— › with no background */
+.kahu-cols__nav { display: none; }
+@media (max-width: 749px) {
+  .kahu-cols__nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px var(--kahu-gutter, 20px) 0 0;
+    color: var(--kahu-navy);
+  }
+  .kahu-cols__arrow {
+    all: unset;
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 32px;
+    cursor: pointer;
+    color: inherit;
+    background: none;
+  }
+  .kahu-cols__arrow svg { width: 10px; height: 18px; display: block; }
+  .kahu-cols__arrow:disabled { opacity: 0.3; cursor: default; }
+  .kahu-cols__arrow:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .kahu-cols__nav-line { position: relative; flex: 1; height: 1px; background: currentColor; }
+  .kahu-cols__nav-fill { position: absolute; top: -1px; height: 3px; background: currentColor; border-radius: 2px; transition: left 0.2s, width 0.2s; }
+}
