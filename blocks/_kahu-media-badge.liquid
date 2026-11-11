@@ -7,8 +7,38 @@
 
 {%- liquid
   assign s = block.settings
+  assign badge_text = s.text
+
+  # "Product size (automatic)": Regular / Max / Mini from the product's Kahu size collection,
+  # or from the "(Regular)" part of the product title. [size] inside the text is replaced too.
+  if s.text_source == 'size' or s.text contains '[size]'
+    assign size_name = ''
+    assign p = closest.product
+    for c in p.collections
+      case c.handle
+        when 'kahu-regular'
+          assign size_name = 'Regular'
+        when 'kahu-max'
+          assign size_name = 'Max'
+        when 'kahu-mini'
+          assign size_name = 'Mini'
+      endcase
+      if size_name != blank
+        break
+      endif
+    endfor
+    if size_name == blank and p.title contains '('
+      assign size_name = p.title | split: '(' | last | split: ')' | first | strip
+    endif
+    if s.text_source == 'size'
+      assign badge_text = size_name
+    else
+      assign badge_text = s.text | replace: '[size]', size_name
+    endif
+  endif
+
   assign has_text = false
-  if s.text != blank
+  if badge_text != blank
     assign has_text = true
   endif
   assign corner = s.position | split: '_'
@@ -16,7 +46,7 @@
 
 {%- if s.image or has_text or request.design_mode -%}
   <div
-    class="kahu-badge kahu-badge--{{ corner[0] }} kahu-badge--{{ corner[1] }} kahu-badge--{{ s.layout }}{% if s.background != blank %} kahu-badge--card{% endif %}"
+    class="kahu-badge kahu-badge--{{ corner[0] }} kahu-badge--{{ corner[1] }} kahu-badge--{{ s.layout }}{% if s.flush %} kahu-badge--flush{% endif %}{% if s.background != blank %} kahu-badge--card{% endif %}"
     style="--kbg-img-d: {{ s.image_width_desktop }}px; --kbg-img-m: {{ s.image_width_mobile }}px; --kbg-img2-d: {{ s.image_2_width_desktop }}px; --kbg-img2-m: {{ s.image_2_width_mobile }}px; --kbg-fs-d: {{ s.text_size_desktop }}px; --kbg-fs-m: {{ s.text_size_mobile }}px; --kbg-fg: {{ s.text_color }};{% if s.background != blank %} --kbg-bg: {{ s.background }};{% endif %} --kbg-radius: {{ s.radius }}px;"
     {{ block.shopify_attributes }}
   >
@@ -28,7 +58,7 @@
         <span class="kahu-badge__divider" aria-hidden="true"></span>
       {%- endif -%}
       {%- if has_text -%}
-        <span class="kahu-badge__text kahu-badge__text--{{ s.weight }}">{{ s.text | escape | replace: '|', '<br>' }}</span>
+        <span class="kahu-badge__text kahu-badge__text--{{ s.weight }}">{{ badge_text | escape | replace: '|', '<br>' }}</span>
       {%- endif -%}
     </span>
     {%- if s.image_2 -%}
@@ -44,7 +74,16 @@
   "settings": [
     { "type": "paragraph", "content": "Shows on top of the first product image, on every product using this template." },
     { "type": "image_picker", "id": "image", "label": "Icon / graphic", "info": "Transparent WebP/PNG/SVG, e.g. recycle icon, bag icon, KAHU logo" },
-    { "type": "text", "id": "text", "label": "Text", "info": "Use | for a line break, e.g. Carry bag|included" },
+    {
+      "type": "select", "id": "text_source", "label": "Text",
+      "options": [
+        { "value": "custom", "label": "Custom text" },
+        { "value": "size", "label": "Product size (automatic)" }
+      ],
+      "default": "custom",
+      "info": "Automatic shows Regular, Max or Mini for each product (from its Kahu size collection or the size in its title)"
+    },
+    { "type": "text", "id": "text", "label": "Custom text", "info": "Use | for a line break, e.g. Carry bag|included. [size] is replaced by Regular / Max / Mini", "visible_if": "{{ block.settings.text_source != 'size' }}" },
     {
       "type": "select", "id": "layout", "label": "Layout",
       "options": [
@@ -65,6 +104,7 @@
       "default": "top_left",
       "info": "Badges in the same corner stack in block order"
     },
+    { "type": "checkbox", "id": "flush", "label": "Stick to the image edge", "default": false, "info": "Touches the left (or right) edge of the image, with square corners on that side" },
     { "type": "image_picker", "id": "image_2", "label": "Second graphic (right side)", "info": "e.g. the ten bottles, shown to the right of the icon and text" },
     { "type": "header", "content": "Size" },
     { "type": "range", "id": "image_width_desktop", "label": "Icon width (desktop)", "min": 16, "max": 240, "step": 4, "unit": "px", "default": 40 },
