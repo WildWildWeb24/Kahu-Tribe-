@@ -165,3 +165,11 @@ gap: 16px;
 .kahu-cols__head--below { margin-bottom: 0; margin-top: var(--kc-head-gap); }
 .kahu-cols__note strong, .kahu-cols__note b { font-weight: 700; }
 .kahu-cols__note a { color: inherit; text-decoration: underline; }
+
+/* Title above/below the image: colour + alignment options */
+.kahu-col__title--above { margin: 0 0 16px; line-height: 1.1; }
+.kahu-col__title--c-navy { color: var(--kahu-navy); }
+.kahu-col__title--c-teal { color: var(--kahu-teal); }
+.kahu-col__title--c-coral { color: var(--kahu-coral); }
+.kahu-col__title--a-center { text-align: center; }
+@media (min-width: 750px) { .kahu-col__title--above { margin-bottom: 20px; } }
