@@ -180,7 +180,7 @@
   & .quantity-selector-wrapper, & .quantity-selector, & .quantity-label, & quantity-selector-component { display: none !important; }
   & .product-form-buttons > * { flex-basis: 100% !important; }
   /* tax note stays on one line under the price */
-  & .kahu-pd-tax, & [class*='text-block']:has(> p:only-child) { white-space: nowrap; }
+
   & .add-to-cart-button, & button[name='add'] {
     width: 100%;
     min-height: 56px;
@@ -194,7 +194,7 @@
 
 @media (max-width: 749px) {
   .product-details:has(.kahu-pd-crumb) {
-    & h1 { font-size: 26px !important; }
-    & .price, & product-price { font-size: 24px !important; }
+    & h1 { font-size: 22px !important; line-height: 1.15 !important; }
+    & .price, & product-price { font-size: 20px !important; }
   }
 }

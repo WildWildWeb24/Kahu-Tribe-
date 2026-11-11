@@ -307,7 +307,7 @@
                     "kd_tax": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Price inclusive of all taxes.</p>",
+                        "text": "<p>Price inclusive<br>of all taxes.</p>",
                         "width": "fit-content",
                         "max_width": "none",
                         "alignment": "right",
@@ -317,7 +317,7 @@
                         "line_height": "normal",
                         "letter_spacing": "normal",
                         "case": "none",
-                        "wrap": "nowrap",
+                        "wrap": "pretty",
                         "text_color": "",
                         "background": false,
                         "background_color": "#00000026",
