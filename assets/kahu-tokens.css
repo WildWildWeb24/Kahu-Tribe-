@@ -128,7 +128,7 @@
 .kahu-badge { gap: 14px; }
 .kahu-badge--card { background: var(--kbg-bg); border-radius: var(--kbg-radius, 8px); padding: 10px 12px; }
 /* !important: the product gallery styles every img inside a media item as full-size */
-.kahu-badges .kahu-badge__img { display: block; position: static !important; width: var(--kbg-img-m, 28px) !important; height: auto !important; max-width: none; aspect-ratio: auto !important; object-fit: contain !important; flex-shrink: 0; }
+.kahu-badges .kahu-badge__img { display: block; position: static !important; width: var(--kbg-img-m, 28px) !important; height: auto !important; max-width: none; aspect-ratio: auto !important; object-fit: contain !important; flex-shrink: 0; background: none !important; border-radius: 0 !important; box-shadow: none !important; opacity: 1 !important; }
 .kahu-badges .kahu-badge__img--2 { width: var(--kbg-img2-m, 80px) !important; }
 .kahu-badge__divider { align-self: stretch; border-left: 1px solid currentColor; opacity: 0.8; }
 .kahu-badge__text { font-size: var(--kbg-fs-m, 12px); line-height: 1.15; }
