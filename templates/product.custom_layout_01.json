@@ -1594,13 +1594,13 @@
             "button_full": false
           }
         },
-        "ig_2": {
+        "ig_5": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/Rectangle_14.webp",
+            "image": "shopify://shop_images/Rectangle_11.webp",
             "alt": "",
             "ratio": "inherit",
-            "link": "",
+            "link": "https://www.instagram.com/reel/Da4DHpGxf_o/?utm_source=ig_web_copy_link&srtk=MzRlODBiNWFlZA==",
             "link_new_tab": true,
             "post_type": "none",
             "overlay": 0,
@@ -1674,7 +1674,7 @@
             "image": "shopify://shop_images/Rectangle_13.webp",
             "alt": "",
             "ratio": "inherit",
-            "link": "",
+            "link": "https://www.instagram.com/p/DZ-DOhJFLo1/?utm_source=ig_web_copy_link&vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
             "link_new_tab": true,
             "post_type": "none",
             "overlay": 0,
@@ -1705,13 +1705,13 @@
             "button_full": false
           }
         },
-        "ig_5": {
+        "ig_2": {
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/Rectangle_14.webp",
             "alt": "",
             "ratio": "inherit",
-            "link": "",
+            "link": "https://www.instagram.com/reel/DYv7ARKOoOv/?utm_source=ig_web_copy_link&exln=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
             "link_new_tab": true,
             "post_type": "none",
             "overlay": 0,
@@ -1748,7 +1748,7 @@
             "image": "shopify://shop_images/Rectangle_15.webp",
             "alt": "",
             "ratio": "inherit",
-            "link": "",
+            "link": "https://www.instagram.com/p/DYpU4j6ljJl/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
             "link_new_tab": true,
             "post_type": "none",
             "overlay": 0,
@@ -1785,7 +1785,7 @@
             "image": "shopify://shop_images/Rectangle_16.webp",
             "alt": "",
             "ratio": "inherit",
-            "link": "",
+            "link": "https://www.instagram.com/p/DXWyCXyESEi/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
             "link_new_tab": true,
             "post_type": "none",
             "overlay": 0,
@@ -1822,7 +1822,7 @@
             "image": "shopify://shop_images/Rectangle_20.webp",
             "alt": "",
             "ratio": "inherit",
-            "link": "",
+            "link": "https://www.instagram.com/p/DV5xOzqFhAW/?utm_source=ig_web_copy_link&rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
             "link_new_tab": true,
             "post_type": "reel",
             "overlay": 0,
@@ -1856,10 +1856,10 @@
       },
       "block_order": [
         "ig_1",
-        "ig_2",
+        "ig_5",
         "ig_3",
         "ig_4",
-        "ig_5",
+        "ig_2",
         "ig_6",
         "ig_7",
         "ig_8"
