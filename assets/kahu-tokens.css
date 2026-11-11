@@ -179,7 +179,8 @@
   /* buy buttons: no quantity box (not in the design), navy Add to Cart */
   & .quantity-selector-wrapper, & .quantity-selector, & .quantity-label, & quantity-selector-component { display: none !important; }
   & .product-form-buttons > * { flex-basis: 100% !important; }
-  /* tax note stays on one line under the price */
+  /* "Price inclusive|of all taxes." under the price: small, exactly two lines */
+  & p:has(> br):not(:has(strong, a)) { font-size: 11px !important; line-height: 1.35 !important; white-space: nowrap; color: rgb(3 20 38 / 0.7); }
 
   & .add-to-cart-button, & button[name='add'] {
     width: 100%;
@@ -196,5 +197,6 @@
   .product-details:has(.kahu-pd-crumb) {
     & h1 { font-size: 22px !important; line-height: 1.15 !important; }
     & .price, & product-price { font-size: 20px !important; }
+    & p:has(> br):not(:has(strong, a)) { font-size: 10px !important; }
   }
 }
