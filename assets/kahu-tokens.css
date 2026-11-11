@@ -209,10 +209,9 @@
    ------------------------------------------------------------------ */
 .shopify-section[id$='__kahu_specs'] {
   color: var(--kahu-navy);
-  & h2 { font-family: var(--kahu-font-sans) !important; font-weight: 800 !important; font-size: 40px !important; line-height: 1.05 !important; letter-spacing: -0.5px; margin: 0; }
-  & h3 { font-family: var(--kahu-font-sans) !important; font-weight: 700 !important; font-size: 20px !important; margin: 0; }
-  & p { font-family: var(--kahu-font-sans); font-size: 15px; line-height: 1.5; margin: 0; }
-  /* Specs table: each paragraph is a row, bold label left, mono value right, line between rows */
+  & h2, & h3 { margin: 0; }
+  & p { margin: 0; }
+  /* Specs table: each paragraph is a row, bold label left, value right, line between rows (theme fonts) */
   & p:has(> strong:first-child) {
     display: flex;
     justify-content: space-between;
@@ -220,18 +219,15 @@
     gap: 24px;
     padding: 14px 0;
     border-bottom: 1px solid rgb(3 20 38 / 0.25);
-    font-family: var(--kahu-font-mono);
-    font-size: 14px;
     text-align: right;
   }
   & p:has(> strong:first-child):first-child { border-top: 1px solid rgb(3 20 38 / 0.25); margin-top: 8px; }
-  & p > strong:first-child { font-family: var(--kahu-font-sans); font-weight: 600; text-align: left; flex-shrink: 0; }
+  & p > strong:first-child { text-align: left; flex-shrink: 0; }
 }
 @media (max-width: 749px) {
   .shopify-section[id$='__kahu_specs'] {
-    & h2 { font-size: 30px !important; }
     /* image first on mobile */
     & .group-block:has(> .group-block-content > [class*='image-block']) { order: -1; }
-    & p:has(> strong:first-child) { font-size: 13px; gap: 16px; }
+    & p:has(> strong:first-child) { gap: 16px; }
   }
 }
