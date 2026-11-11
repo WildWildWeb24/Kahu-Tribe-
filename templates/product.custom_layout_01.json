@@ -893,7 +893,7 @@
         "gap_desktop": 16,
         "gap_mobile": 12,
         "full_width": false,
-        "ratio": "4 / 3",
+        "ratio": "1 / 1",
         "radius": 0,
         "title_size": "sm",
         "header_position": "above",
