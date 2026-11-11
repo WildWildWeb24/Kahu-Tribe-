@@ -173,6 +173,9 @@
   & h3 { font-family: var(--kahu-font-sans) !important; font-weight: 700 !important; font-size: 16px !important; margin: 0 0 8px; }
   & .rte a, & p a { color: var(--kahu-coral); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
+  /* payment icons: bigger badges like the design */
+  & .payment-icons__list svg { width: auto; height: 30px; }
+
   /* installments line */
   & .kahu-pd-installments { font-size: 14px; font-weight: 700; }
 

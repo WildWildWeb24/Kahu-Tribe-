@@ -19,7 +19,14 @@
     class="payment-icons__list"
     role="list"
   >
-    {%- for type in shop.enabled_payment_types -%}
+    {%- liquid
+      # Kahu: optional fixed list, e.g. "shopify_pay, paypal, google_pay, apple_pay" (shown in that order)
+      assign payment_types = shop.enabled_payment_types
+      if block_settings.only_types != blank
+        assign payment_types = block_settings.only_types | remove: ' ' | split: ','
+      endif
+    -%}
+    {%- for type in payment_types -%}
       <li class="payment-icons__item">
         {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
       </li>
@@ -53,6 +60,12 @@
   "name": "t:names.payment_icons",
   "tag": null,
   "settings": [
+    {
+      "type": "text",
+      "id": "only_types",
+      "label": "Only show these payment icons",
+      "info": "Comma-separated, in order. Leave empty to show every payment method enabled in the store. Examples: shopify_pay, paypal, google_pay, apple_pay, visa, master, american_express"
+    },
     {
       "type": "select",
       "id": "horizontal_alignment",
