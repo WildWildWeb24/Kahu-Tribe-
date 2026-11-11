@@ -76,7 +76,8 @@
                 "weight": "regular",
                 "text_color": "#031426",
                 "background": "#e7b67e",
-                "radius": 8
+                "radius": 8,
+                "flush": true
               },
               "blocks": {}
             },
@@ -118,7 +119,8 @@
                 "weight": "bold",
                 "text_color": "#ffffff",
                 "background": "",
-                "radius": 8
+                "radius": 8,
+                "text_source": "size"
               },
               "blocks": {}
             }
