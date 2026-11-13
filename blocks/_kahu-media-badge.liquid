@@ -47,7 +47,7 @@
 {%- if s.image or has_text or request.design_mode -%}
   <div
     class="kahu-badge kahu-badge--{{ corner[0] }} kahu-badge--{{ corner[1] }} kahu-badge--{{ s.layout }}{% if s.flush %} kahu-badge--flush{% endif %}{% if s.background != blank %} kahu-badge--card{% endif %}"
-    style="--kbg-img-d: {{ s.image_width_desktop }}px; --kbg-img-m: {{ s.image_width_mobile }}px; --kbg-img2-d: {{ s.image_2_width_desktop }}px; --kbg-img2-m: {{ s.image_2_width_mobile }}px; --kbg-fs-d: {{ s.text_size_desktop }}px; --kbg-fs-m: {{ s.text_size_mobile }}px; --kbg-fg: {{ s.text_color }};{% if s.background != blank %} --kbg-bg: {{ s.background }};{% endif %} --kbg-radius: {{ s.radius }}px;"
+    style="--kbg-img-d: {{ s.image_width_desktop }}px; --kbg-img-m: {{ s.image_width_mobile }}px; --kbg-img2-d: {{ s.image_2_width_desktop }}px; --kbg-img2-m: {{ s.image_2_width_mobile }}px; --kbg-fs-d: {{ s.text_size_desktop }}px; --kbg-fs-m: {{ s.text_size_mobile }}px; --kbg-fg: {{ s.text_color }};{% if s.background != blank %} --kbg-bg: {{ s.background }};{% endif %} --kbg-radius: {{ s.radius }}px; --kbg-r: {{ s.radius }}; --kbg-n-img-d: {{ s.image_width_desktop }}; --kbg-n-img-m: {{ s.image_width_mobile }}; --kbg-n-img2-d: {{ s.image_2_width_desktop }}; --kbg-n-img2-m: {{ s.image_2_width_mobile }}; --kbg-n-fs-d: {{ s.text_size_desktop }}; --kbg-n-fs-m: {{ s.text_size_mobile }};"
     {{ block.shopify_attributes }}
   >
     <span class="kahu-badge__main">

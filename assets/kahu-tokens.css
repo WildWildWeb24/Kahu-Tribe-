@@ -94,21 +94,26 @@
 /* ------------------------------------------------------------------
    Product page: Kahu badges on the first product image (blocks/_kahu-media-badge.liquid)
    ------------------------------------------------------------------ */
+/* Scalable: every size is min(design px, n x --u). --u = 1/640 of the image width (1/360 on mobile),
+   so badges keep their size on the product page and shrink on small images (quick-add pop-up, cards). */
 .kahu-badges {
   position: absolute;
   inset: 0;
   z-index: 2;
+  container-type: inline-size;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
-  padding: 16px;
+  gap: min(12px, 3cqw);
+  padding: min(16px, 4.1%);
   pointer-events: none;
 }
 .kahu-badge {
+  --u: calc(100cqw / 330);
+  --flush: min(16px, 4.43cqw);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: min(14px, calc(14 * var(--u)));
   color: var(--kbg-fg, #fff);
   font-family: var(--kahu-font-sans);
 }
@@ -117,27 +122,23 @@
 /* first bottom badge pushes the bottom group down to the bottom edge */
 .kahu-badges > .kahu-badge--bottom:not(.kahu-badge--bottom ~ .kahu-badge--bottom) { margin-top: auto; }
 /* "Stick to the image edge": cancel the side padding of .kahu-badges, square the corners on that side */
-.kahu-badge--flush.kahu-badge--left { margin-left: -16px; border-top-left-radius: 0; border-bottom-left-radius: 0; }
-.kahu-badge--flush.kahu-badge--right { margin-right: -16px; border-top-right-radius: 0; border-bottom-right-radius: 0; }
-@media (min-width: 750px) {
-  .kahu-badge--flush.kahu-badge--left { margin-left: -24px; }
-  .kahu-badge--flush.kahu-badge--right { margin-right: -24px; }
-}
-.kahu-badge__main { display: flex; align-items: center; gap: 10px; }
-.kahu-badge--above .kahu-badge__main { flex-direction: column; align-items: flex-start; gap: 6px; }
-.kahu-badge { gap: 14px; }
-.kahu-badge--card { background: var(--kbg-bg); border-radius: var(--kbg-radius, 8px); padding: 10px 12px; }
+.kahu-badge--flush.kahu-badge--left { margin-left: calc(-1 * var(--flush)); border-top-left-radius: 0; border-bottom-left-radius: 0; }
+.kahu-badge--flush.kahu-badge--right { margin-right: calc(-1 * var(--flush)); border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.kahu-badge__main { display: flex; align-items: center; gap: min(10px, calc(10 * var(--u))); }
+.kahu-badge--above .kahu-badge__main { flex-direction: column; align-items: flex-start; gap: min(6px, calc(6 * var(--u))); }
+.kahu-badge--card { background: var(--kbg-bg); border-radius: min(var(--kbg-radius, 8px), calc(var(--kbg-r, 8) * var(--u))); padding: min(10px, calc(10 * var(--u))) min(12px, calc(12 * var(--u))); }
 /* !important: the product gallery styles every img inside a media item as full-size */
-.kahu-badges .kahu-badge__img { display: block; position: static !important; width: var(--kbg-img-m, 28px) !important; height: auto !important; max-width: none; aspect-ratio: auto !important; object-fit: contain !important; flex-shrink: 0; background: none !important; border-radius: 0 !important; box-shadow: none !important; opacity: 1 !important; }
-.kahu-badges .kahu-badge__img--2 { width: var(--kbg-img2-m, 80px) !important; }
+.kahu-badges .kahu-badge__img { display: block; position: static !important; width: min(var(--kbg-img-m, 28px), calc(var(--kbg-n-img-m, 28) * var(--u))) !important; height: auto !important; max-width: none; aspect-ratio: auto !important; object-fit: contain !important; flex-shrink: 0; background: none !important; border-radius: 0 !important; box-shadow: none !important; opacity: 1 !important; }
+.kahu-badges .kahu-badge__img--2 { width: min(var(--kbg-img2-m, 80px), calc(var(--kbg-n-img2-m, 80) * var(--u))) !important; }
 .kahu-badge__divider { align-self: stretch; border-left: 1px solid currentColor; opacity: 0.8; }
-.kahu-badge__text { font-size: var(--kbg-fs-m, 12px); line-height: 1.15; }
+.kahu-badge__text { font-size: max(8px, min(var(--kbg-fs-m, 12px), calc(var(--kbg-n-fs-m, 12) * var(--u)))); line-height: 1.15; }
 .kahu-badge__text--bold { font-weight: 700; }
 @media (min-width: 750px) {
-  .kahu-badges { padding: 24px; }
-  .kahu-badges .kahu-badge__img { width: var(--kbg-img-d, 40px) !important; }
-  .kahu-badges .kahu-badge__img--2 { width: var(--kbg-img2-d, 120px) !important; }
-  .kahu-badge__text { font-size: var(--kbg-fs-d, 14px); }
+  .kahu-badges { padding: min(24px, 3.75%); }
+  .kahu-badge { --u: calc(100cqw / 600); --flush: min(24px, 4.06cqw); }
+  .kahu-badges .kahu-badge__img { width: min(var(--kbg-img-d, 40px), calc(var(--kbg-n-img-d, 40) * var(--u))) !important; }
+  .kahu-badges .kahu-badge__img--2 { width: min(var(--kbg-img2-d, 120px), calc(var(--kbg-n-img2-d, 120) * var(--u))) !important; }
+  .kahu-badge__text { font-size: max(8px, min(var(--kbg-fs-d, 14px), calc(var(--kbg-n-fs-d, 14) * var(--u)))); }
 }
 .shopify-design-mode .kahu-badge { pointer-events: auto; }
 
