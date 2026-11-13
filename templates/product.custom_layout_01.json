@@ -398,6 +398,68 @@
               },
               "blocks": {}
             },
+            "kd_print_picker": {
+              "type": "kahu-print-picker",
+              "settings": {
+                "label": "Choose your print",
+                "pool": "shop-all",
+                "hint": "Swipe for more prints →",
+                "swatch_size": 56,
+                "swatch_size_mobile": 60,
+                "swatch_1": "shopify://shop_images/Anuenue-_Rainbow_turtle.webp",
+                "swatch_2": "shopify://shop_images/Hahalua_-_Ocean_Angel.webp",
+                "swatch_3": "shopify://shop_images/Hee_-_Octopus_Outline.webp",
+                "swatch_4": "shopify://shop_images/Hihimanu_-_Ornate_Eagle_Ray.webp",
+                "swatch_5": "shopify://shop_images/Honu_-_Green_Sea_Turtle.webp",
+                "swatch_6": "shopify://shop_images/Mano_Kihikihi_-_Rippled_Hammer_Head_Sharks.webp",
+                "swatch_7": "shopify://shop_images/Hiu_-_Mermaid.webp",
+                "swatch_8": "shopify://shop_images/Mano_Nui_-_Hammer_Head_Sharks.webp",
+                "swatch_9": "shopify://shop_images/Manu_-_Octopus.webp",
+                "swatch_10": "shopify://shop_images/Kukui_Kai_-_Manta_Ray.webp",
+                "swatch_11": "shopify://shop_images/Lahui_-_Hawaiian_Tribal.webp",
+                "swatch_12": "shopify://shop_images/Lelewa_a_-_Whale_Shark.webp",
+                "swatch_13": "shopify://shop_images/Naia_-_Dolphin.webp",
+                "swatch_14": "shopify://shop_images/PADI_Aware_-_Shark_Close-Up.webp",
+                "swatch_15": "shopify://shop_images/PADI_Aware_-_Shark.webp",
+                "swatch_16": "shopify://shop_images/Pololia_-_Jelly_Fish.webp"
+              },
+              "blocks": {}
+            },
+            "kd_divider_print": {
+              "type": "_divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "divider_color": "#031426",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "kd_size_picker": {
+              "type": "kahu-size-picker",
+              "settings": {
+                "label": "Choose your size",
+                "pool": "shop-all",
+                "guide_label": "Size guide",
+                "guide_link": "/blogs/news/poncho-size-guide",
+                "hide_missing": false
+              },
+              "blocks": {}
+            },
+            "kd_divider_size": {
+              "type": "_divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "divider_color": "#031426",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
             "kd_family": {
               "type": "text",
               "name": "Family and team packs",
@@ -532,52 +594,6 @@
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
                 "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "kd_print_picker": {
-              "type": "kahu-print-picker",
-              "settings": {
-                "label": "Choose your print",
-                "pool": "shop-all",
-                "hint": "swipe for more prints →",
-                "swatch_size": 56,
-                "swatch_size_mobile": 60
-              },
-              "blocks": {}
-            },
-            "kd_divider_print": {
-              "type": "_divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "divider_color": "#031426",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
-            "kd_size_picker": {
-              "type": "kahu-size-picker",
-              "settings": {
-                "label": "Choose your size",
-                "pool": "shop-all",
-                "guide_label": "Size guide",
-                "guide_link": "/blogs/news/poncho-size-guide",
-                "hide_missing": false
-              },
-              "blocks": {}
-            },
-            "kd_divider_size": {
-              "type": "_divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "divider_color": "#031426",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
               },
               "blocks": {}
             }
