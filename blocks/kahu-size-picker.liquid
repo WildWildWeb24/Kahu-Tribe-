@@ -1,0 +1,103 @@
+{%- doc -%}
+  Kahu size picker (product page): Regular / Max / Mini.
+  A button links to the product with the current product's print (kahu.print) and that size (kahu.size).
+{%- enddoc -%}
+
+{%- liquid
+  assign s = block.settings
+  assign current = closest.product | default: product
+  assign cur_print = current.metafields.kahu.print.value
+  assign cur_size = current.metafields.kahu.size.value
+  assign pool = s.pool | default: collections['shop-all']
+  assign sizes = 'Regular|Max|Mini' | split: '|'
+-%}
+
+<div class="kahu-picker kahu-picker--sizes" {{ block.shopify_attributes }}>
+  <div class="kahu-picker__head">
+    {%- if s.label != blank -%}<span class="kahu-picker__label">{{ s.label | escape }}</span>{%- endif -%}
+    {%- if s.guide_link != blank and s.guide_label != blank -%}
+      <a class="kahu-picker__guide" href="{{ s.guide_link }}">{{ s.guide_label | escape }}</a>
+    {%- endif -%}
+  </div>
+
+  {%- if cur_print == blank and request.design_mode -%}
+    <p class="kahu-picker__note">This product has no Print set (product field “Print”), so the sizes can't be matched.</p>
+  {%- endif -%}
+
+  <div class="kahu-sizes" role="list">
+    {%- paginate pool.products by 250 -%}
+      {%- for size_name in sizes -%}
+        {%- liquid
+          assign match = nil
+          if size_name == cur_size
+            assign match = current
+          else
+            for p in pool.products
+              if p.metafields.kahu.print.value == cur_print and p.metafields.kahu.size.value == size_name
+                assign match = p
+                break
+              endif
+            endfor
+          endif
+        -%}
+        {%- if match -%}
+          <a
+            class="kahu-size{% if size_name == cur_size %} is-current{% endif %}"
+            href="{{ match.url }}"
+            role="listitem"
+            {% if size_name == cur_size %}aria-current="true"{% endif %}
+          >{{ size_name }}</a>
+        {%- elsif s.hide_missing == false -%}
+          <span class="kahu-size is-missing" role="listitem" aria-disabled="true" title="Not available in this print">{{ size_name }}</span>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kahu size picker",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Regular / Max / Mini buttons. Each links to the product with the same Print and that Size (product fields kahu.print and kahu.size). Sizes that don't exist for this print are shown faded and can't be clicked."
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Heading",
+      "default": "Choose your size"
+    },
+    {
+      "type": "collection",
+      "id": "pool",
+      "label": "Products to search",
+      "info": "Collection that contains all ponchos, e.g. Shop All"
+    },
+    {
+      "type": "text",
+      "id": "guide_label",
+      "label": "Size guide link text",
+      "default": "Size guide"
+    },
+    {
+      "type": "url",
+      "id": "guide_link",
+      "label": "Size guide link"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_missing",
+      "label": "Hide sizes that don't exist for this print",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kahu size picker"
+    }
+  ]
+}
+{% endschema %}

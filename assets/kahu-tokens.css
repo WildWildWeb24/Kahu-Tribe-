@@ -231,3 +231,69 @@
     & p:has(> strong:first-child) { gap: 16px; }
   }
 }
+
+/* ------------------------------------------------------------------
+   Product page: Kahu print picker + size picker (blocks/kahu-print-picker, blocks/kahu-size-picker)
+   Figma: round print swatches with a yellow ring on the current one; three size buttons, current = yellow.
+   Fonts come from the theme.
+   ------------------------------------------------------------------ */
+.kahu-picker { display: flex; flex-direction: column; gap: 12px; width: 100%; color: var(--kahu-navy); }
+.kahu-picker__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.kahu-picker__label { font-weight: 700; }
+.kahu-picker__guide { color: inherit; text-decoration: underline; text-underline-offset: 3px; font-size: 0.875em; }
+.kahu-picker__note { margin: 0; padding: 8px 10px; font-size: 12px; background: #fff3cd; border-radius: 4px; }
+
+/* Print swatches */
+.kahu-swatches { display: flex; flex-wrap: wrap; gap: 12px; margin: 0; padding: 0; list-style: none; }
+.kahu-swatch {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--kp-sw, 56px);
+  height: var(--kp-sw, 56px);
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgb(3 20 38 / 0.08);
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+  transition: outline-color 0.15s;
+}
+.kahu-swatch:hover { outline-color: rgb(3 20 38 / 0.35); }
+.kahu-swatch.is-current { outline: 3px solid var(--kahu-yellow, #f4c84a); }
+.kahu-swatch:focus-visible { outline-color: var(--kahu-navy); }
+.kahu-swatch__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kahu-swatch__fallback { font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.kahu-picker__hint { display: none; margin: 0; font-size: 12px; opacity: 0.7; }
+
+/* Size buttons */
+.kahu-sizes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.kahu-size {
+  display: grid;
+  place-items: center;
+  min-height: 48px;
+  padding: 0 12px;
+  border: 1.5px solid var(--kahu-navy);
+  border-radius: 6px;
+  color: var(--kahu-navy);
+  text-decoration: none;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+.kahu-size:hover { background: rgb(3 20 38 / 0.05); }
+.kahu-size.is-current { background: var(--kahu-yellow, #f4c84a); border-color: var(--kahu-yellow, #f4c84a); }
+.kahu-size.is-missing { opacity: 0.35; cursor: not-allowed; }
+
+@media (max-width: 749px) {
+  .kahu-swatches {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 4px 4px 6px;
+    margin: -4px -4px 0;
+    scrollbar-width: none;
+  }
+  .kahu-swatches::-webkit-scrollbar { display: none; }
+  .kahu-swatches li { flex: 0 0 auto; scroll-snap-align: start; }
+  .kahu-swatch { width: var(--kp-sw-m, 60px); height: var(--kp-sw-m, 60px); }
+  .kahu-picker__hint { display: block; }
+}

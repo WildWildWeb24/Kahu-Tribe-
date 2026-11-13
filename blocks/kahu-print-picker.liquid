@@ -1,0 +1,219 @@
+{%- doc -%}
+  Kahu print picker (product page). Products are separate SKUs, no variants.
+  Each product has two fields: kahu.print (one of the prints below) and kahu.size (Regular / Max / Mini).
+  A swatch links to the product with that print AND the current product's size.
+  The print list below must match the choices of the kahu.print product field.
+{%- enddoc -%}
+
+{%- liquid
+  assign s = block.settings
+  assign current = closest.product | default: product
+  assign cur_print = current.metafields.kahu.print.value
+  assign cur_size = current.metafields.kahu.size.value
+  assign pool = s.pool | default: collections['shop-all']
+  assign prints = "Anuenue - Rainbow Turtle|Hahalua - Ocean Angel|He'e - Octopus Outline|Hihimanu - Ornate Eagle Ray|Honu - Green Sea Turtle|Mano Kihikihi - Rippled Hammer Head Sharks|Hi'u - Mermaid|Mano Nui - Hammer Head Sharks|Manu - Octopus|Kukui Kai - Manta Ray|Lahui - Hawaiian Tribal|Lelewaʻa - Whale Shark|Nai'a - Dolphin|PADI Aware - Shark Close-Up|PADI Aware - Shark|Pololia - Jelly Fish" | split: "|"
+-%}
+
+<div
+  class="kahu-picker kahu-picker--prints"
+  style="--kp-sw: {{ s.swatch_size }}px; --kp-sw-m: {{ s.swatch_size_mobile }}px;"
+  {{ block.shopify_attributes }}
+>
+  {%- if s.label != blank -%}
+    <div class="kahu-picker__head">
+      <span class="kahu-picker__label">{{ s.label | escape }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- if cur_size == blank and request.design_mode -%}
+    <p class="kahu-picker__note">This product has no Size set (product field “Size”), so the print swatches can't be matched.</p>
+  {%- endif -%}
+
+  <ul class="kahu-swatches" role="list">
+    {%- paginate pool.products by 250 -%}
+      {%- for print_name in prints -%}
+        {%- liquid
+          assign img_key = 'swatch_' | append: forloop.index
+          assign img = s[img_key]
+          assign match = nil
+          for p in pool.products
+            if p.metafields.kahu.print.value == print_name and p.metafields.kahu.size.value == cur_size
+              assign match = p
+              break
+            endif
+          endfor
+          assign is_current = false
+          if print_name == cur_print
+            assign is_current = true
+          endif
+        -%}
+        {%- if match or is_current -%}
+          {%- liquid
+            assign href = match.url | default: current.url
+            assign label = print_name | split: ' - '
+          -%}
+          <li>
+            <a
+              class="kahu-swatch{% if is_current %} is-current{% endif %}"
+              href="{{ href }}"
+              title="{{ print_name | escape }}"
+              aria-label="{{ print_name | escape }}"
+              {% if is_current %}aria-current="true"{% endif %}
+            >
+              {%- if img -%}
+                {{ img | image_url: width: 160 | image_tag: widths: '80, 120, 160', sizes: '64px', loading: 'lazy', alt: '', class: 'kahu-swatch__img' }}
+              {%- else -%}
+                <span class="kahu-swatch__fallback" aria-hidden="true">{{ label.first | slice: 0, 2 }}</span>
+              {%- endif -%}
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endpaginate -%}
+  </ul>
+
+  {%- if s.hint != blank -%}
+    <p class="kahu-picker__hint">{{ s.hint | escape }}</p>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Kahu print picker",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows one round swatch per print. Each swatch links to the product with that Print and the same Size as the product being viewed (product fields kahu.print and kahu.size). Prints that don't exist in that size are hidden."
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Heading",
+      "default": "Choose your print"
+    },
+    {
+      "type": "collection",
+      "id": "pool",
+      "label": "Products to search",
+      "info": "Collection that contains all ponchos, e.g. Shop All"
+    },
+    {
+      "type": "text",
+      "id": "hint",
+      "label": "Mobile hint",
+      "default": "swipe for more prints →"
+    },
+    {
+      "type": "range",
+      "id": "swatch_size",
+      "label": "Swatch size (desktop)",
+      "min": 36,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 56
+    },
+    {
+      "type": "range",
+      "id": "swatch_size_mobile",
+      "label": "Swatch size (mobile)",
+      "min": 36,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Swatch images",
+      "info": "One round image per print, in the order they appear"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_1",
+      "label": "Anuenue - Rainbow Turtle"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_2",
+      "label": "Hahalua - Ocean Angel"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_3",
+      "label": "He'e - Octopus Outline"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_4",
+      "label": "Hihimanu - Ornate Eagle Ray"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_5",
+      "label": "Honu - Green Sea Turtle"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_6",
+      "label": "Mano Kihikihi - Rippled Hammer Head Sharks"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_7",
+      "label": "Hi'u - Mermaid"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_8",
+      "label": "Mano Nui - Hammer Head Sharks"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_9",
+      "label": "Manu - Octopus"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_10",
+      "label": "Kukui Kai - Manta Ray"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_11",
+      "label": "Lahui - Hawaiian Tribal"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_12",
+      "label": "Lelewaʻa - Whale Shark"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_13",
+      "label": "Nai'a - Dolphin"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_14",
+      "label": "PADI Aware - Shark Close-Up"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_15",
+      "label": "PADI Aware - Shark"
+    },
+    {
+      "type": "image_picker",
+      "id": "swatch_16",
+      "label": "Pololia - Jelly Fish"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kahu print picker"
+    }
+  ]
+}
+{% endschema %}
