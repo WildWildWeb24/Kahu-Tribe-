@@ -347,3 +347,10 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
   .quick-add-modal__content .product-details:has(.kahu-pd-crumb) > .group-block { padding: 20px 20px 28px; }
   .quick-add-modal__content .product-details:has(.kahu-pd-crumb) > .group-block > .group-block-content > * { padding-inline: 0; }
 }
+
+/* ------------------------------------------------------------------
+   Collection / search grids: one card size for every product (2:3, the shape of most Kahu
+   product photos, so the whole poncho shows) and photos pinned to the top so heads are never cut.
+   ------------------------------------------------------------------ */
+.product-grid-container .card-gallery { --gallery-aspect-ratio: 2 / 3 !important; }
+.product-grid-container .card-gallery :is(img, video) { object-position: 50% 0 !important; }
