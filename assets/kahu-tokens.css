@@ -311,6 +311,8 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 }
 .quick-add-modal__content .product-details:has(.kahu-pd-crumb) .buy-buttons-block::before { display: none; }
 .quick-add-modal__content .product-details:has(.kahu-pd-crumb) > .group-block { padding-block: var(--padding-3xl); }
+/* Horizon sets every pop-up group gap to 0: give the Kahu buy box its PDP spacing back */
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb) .group-block-content { gap: var(--gap); }
 /* the close button sits over the top-right corner: keep the breadcrumb clear of it */
 .quick-add-modal__content .kahu-pd-crumb { padding-inline-end: 44px; }
 
