@@ -319,7 +319,11 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 /* Very thin scroll bar, no track, thumb a shade darker than the background */
 .quick-add-modal__content .product-details:has(.kahu-pd-crumb),
 .quick-add-modal__content:has(.kahu-pd-crumb) {
-  --kahu-thumb: color-mix(in srgb, var(--color-background) 88%, #000);
+  --kahu-thumb: color-mix(in srgb, var(--color-background) 85%, #000);
+  /* the page sets scrollbar-color on <html> (inherited); Chrome then ignores ::-webkit-scrollbar
+     and draws its default bar. Reset it here so only the thin bar below shows. */
+  scrollbar-color: auto;
+  scrollbar-width: auto;
 }
 .quick-add-modal__content .product-details:has(.kahu-pd-crumb)::-webkit-scrollbar,
 .quick-add-modal__content:has(.kahu-pd-crumb)::-webkit-scrollbar { width: 3px; height: 3px; background: transparent; }
