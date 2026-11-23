@@ -18,12 +18,12 @@
     assign show_arrows = false
     if section.blocks.size > 1
       assign autoplay = true
-      assign show_arrows = true
+      assign show_arrows = section.settings.show_arrows
     endif
   %}
 
   <announcement-bar-component
-    class="announcement-bar__slider"
+    class="announcement-bar__slider{% unless show_arrows %} announcement-bar__slider--no-arrows{% endunless %}"
     {% if autoplay == true %}
       autoplay="{{ section.settings.speed }}" aria-live="polite"
     {% endif %}
@@ -60,6 +60,10 @@
     width: calc(100% - var(--button-size) * 2);
     max-width: 680px;
     margin-inline: auto;
+  }
+
+.announcement-bar__slider--no-arrows .announcement-bar__slides {
+    width: 100%;
   }
 
   .announcement-bar__slides > * {
@@ -143,6 +147,12 @@
       "max": 10,
       "default": 5,
       "unit": "sec"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows",
+      "default": true
     },
     {
       "type": "header",
