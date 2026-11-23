@@ -254,7 +254,8 @@ export class QuickAddComponent extends Component {
 
     if (!productGrid || !modalContent) return;
 
-    if (isMobileBreakpoint()) {
+    // Kahu: products with the Kahu buy box (.kahu-pd-crumb) keep the full product details on mobile too
+    if (isMobileBreakpoint() && !productGrid.querySelector('.kahu-pd-crumb')) {
       const productDetails = productGrid.querySelector('.product-details');
       const productFormComponent = productGrid.querySelector('product-form-component');
       const variantPicker = productGrid.querySelector('variant-picker');

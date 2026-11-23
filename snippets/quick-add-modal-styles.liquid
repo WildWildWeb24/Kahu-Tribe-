@@ -445,7 +445,7 @@
   }
 
   .quick-add-modal__content
-    .product-details
+    .product-details:not(:has(.kahu-pd-crumb))
     *:not(
       .group-block,
       .group-block-content,
@@ -469,6 +469,7 @@
   }
 
   .quick-add-modal__content
+    .product-details:not(:has(.kahu-pd-crumb))
     .group-block:not(
       :has(
           .buy-buttons-block,
@@ -607,7 +608,7 @@
     top: 0;
   }
 
-  .quick-add-modal__content .text-block.rte:not(product-price),
+  .quick-add-modal__content .product-details:not(:has(.kahu-pd-crumb)) .text-block.rte:not(product-price),
   .quick-add-modal__content .view-more-details__wrapper {
     display: none;
   }

@@ -298,3 +298,46 @@
   .kahu-swatch { width: var(--kp-sw-m, 60px); height: var(--kp-sw-m, 60px); }
   .kahu-picker__hint { display: block; }
 }
+
+/* ------------------------------------------------------------------
+   Quick-add pop-up = mini product page. Products with the Kahu buy box (.kahu-pd-crumb)
+   show every product-details block exactly as on the PDP (Horizon's hide rules are scoped
+   off in snippets/quick-add-modal-styles.liquid; mobile keeps the details in assets/quick-add.js).
+   ------------------------------------------------------------------ */
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb) .view-product-title { display: none; }
+dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { mask-image: none; }
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb) .buy-buttons-block {
+  position: static; margin-top: 0; padding-bottom: 0; background: none;
+}
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb) .buy-buttons-block::before { display: none; }
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb) > .group-block { padding-block: var(--padding-3xl); }
+/* the close button sits over the top-right corner: keep the breadcrumb clear of it */
+.quick-add-modal__content .kahu-pd-crumb { padding-inline-end: 44px; }
+
+/* Very thin scroll bar, no track, thumb a shade darker than the background */
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb),
+.quick-add-modal__content:has(.kahu-pd-crumb) {
+  --kahu-thumb: color-mix(in srgb, var(--color-background) 88%, #000);
+}
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb)::-webkit-scrollbar,
+.quick-add-modal__content:has(.kahu-pd-crumb)::-webkit-scrollbar { width: 3px; height: 3px; background: transparent; }
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb)::-webkit-scrollbar-track,
+.quick-add-modal__content:has(.kahu-pd-crumb)::-webkit-scrollbar-track { background: transparent; }
+.quick-add-modal__content .product-details:has(.kahu-pd-crumb)::-webkit-scrollbar-thumb,
+.quick-add-modal__content:has(.kahu-pd-crumb)::-webkit-scrollbar-thumb { background: var(--kahu-thumb); border-radius: 3px; }
+/* Firefox has no 3px option: thin is the closest */
+@supports not selector(::-webkit-scrollbar) {
+  .quick-add-modal__content .product-details:has(.kahu-pd-crumb),
+  .quick-add-modal__content:has(.kahu-pd-crumb) { scrollbar-width: thin; scrollbar-color: var(--kahu-thumb) transparent; }
+}
+
+/* Mobile: one scroll — first image on top, then the full buy box */
+@media screen and (max-width: 749px) {
+  .quick-add-modal__content:has(.kahu-pd-crumb) { display: block; padding: 0; }
+  .quick-add-modal__content:has(.kahu-pd-crumb) .product-information__media { width: 100%; }
+  .quick-add-modal__content .product-details:has(.kahu-pd-crumb) {
+    height: auto; max-height: none; overflow: visible;
+  }
+  .quick-add-modal__content .product-details:has(.kahu-pd-crumb) > .group-block { padding: 20px 20px 28px; }
+  .quick-add-modal__content .product-details:has(.kahu-pd-crumb) > .group-block > .group-block-content > * { padding-inline: 0; }
+}
