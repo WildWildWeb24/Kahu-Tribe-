@@ -77,7 +77,10 @@
     --gallery-aspect-ratio: {{ ratio }};
   "
   data-product-id="{{ product.id }}"
-  {% if settings.show_second_image_on_hover and product.media.size > 1 %}
+  {% comment %} Kahu: cards with several images swipe only while hovered (assets/kahu-card-swipe.js) {% endcomment %}
+  {% if product.media.size > 1 and settings.product_card_carousel != false %}
+    data-kahu-hover-swipe
+  {% elsif settings.show_second_image_on_hover and product.media.size > 1 %}
     on:pointerenter="/previewImage"
     on:pointerleave="/resetImage"
   {% endif %}
@@ -192,12 +195,7 @@
           # Arrows can only reach slides that are rendered visible. Variant images past
           # the featured media are hidden, so a product whose only extra media are
           # variant images has a single navigable slide and would get inert arrows.
-          # Kahu: no arrows on cards; cards with more than one image auto-swipe every 7 seconds
-          # (pauses while hovered)
-          assign card_autoplay = false
-          if product.media.size > 1 and visible_slide_count > 1 and settings.product_card_carousel != false
-            assign card_autoplay = true
-          endif
+          # Kahu: no arrows on cards. Featured image until hovered, then swipe (assets/kahu-card-swipe.js)
 
           assign slideshow_attributes = 'data-generic-media-size="[generic_media_size]"' | replace: '[generic_media_size]', generic_media_size
           if settings.product_card_carousel == false
@@ -210,8 +208,6 @@
           slides: slides,
           slide_count: media_list_to_show.size,
           show_arrows: false,
-          autoplay: card_autoplay,
-          autoplay_speed: 7,
           attributes: slideshow_attributes
         %}
       {%- endif -%}
@@ -245,6 +241,7 @@
   {{ children }}
 </div>
 
+<script src="{{ 'kahu-card-swipe.js' | asset_url }}" type="module" fetchpriority="low"></script>
 {% render 'slideshow-styles' %}
 {% render 'product-media-container-styles' %}
 
