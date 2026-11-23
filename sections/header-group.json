@@ -49,8 +49,7 @@
       ],
       "name": "t:names.announcement_bar",
       "settings": {
-        "speed": 7,
-        "show_arrows": false,
+        "speed": 5,
         "section_width": "page-width",
         "background_color": "#031426",
         "divider_width": 1,
@@ -76,7 +75,7 @@
           "type": "_header-menu",
           "static": true,
           "settings": {
-            "menu": "main-menu",
+            "menu": "new-main-menu",
             "background_color": "{{ settings.color_palette.background }}",
             "text_color": "",
             "type_font_primary_size": "0.875rem",
