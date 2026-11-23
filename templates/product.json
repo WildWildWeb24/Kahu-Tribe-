@@ -487,6 +487,14 @@
               },
               "blocks": {}
             },
+            "custom_liquid_HdcnQE": {
+              "type": "custom-liquid",
+              "name": "t:names.custom_liquid",
+              "settings": {
+                "custom_liquid": "{% comment %}\n  Blue Friday offers\n  Edit the text and colors below.\n  Ends: 30 November 2026, 11:59 AM India Standard Time.\n{% endcomment %}\n\n{% assign offer_end = '2026-11-30T11:59:00+05:30' | date: '%s' | plus: 0 %}\n{% assign current_time = 'now' | date: '%s' | plus: 0 %}\n\n{% if current_time < offer_end or request.design_mode %}\n  <div class=\"kahu-blue-friday\">\n    <p class=\"kahu-blue-friday__heading\">\n      Blue Friday: Buy more, save more\n    </p>\n\n    <ul class=\"kahu-blue-friday__tiers\" role=\"list\">\n      <li>\n        <strong>Save 10%</strong>\n        <span>when you buy 1 item</span>\n      </li>\n      <li>\n        <strong>Save 15%</strong>\n        <span>when you buy 2 items</span>\n      </li>\n      <li>\n        <strong>Save 20%</strong>\n        <span>when you buy 3 items</span>\n      </li>\n      <li>\n        <strong>Save 25%</strong>\n        <span>when you buy 4 items</span>\n      </li>\n      <li>\n        <strong>Save 30%</strong>\n        <span>when you buy 5 items</span>\n      </li>\n      <li>\n        <strong>Save 40%</strong>\n        <span>when you buy 10 items</span>\n      </li>\n    </ul>\n\n    <p class=\"kahu-blue-friday__note\">\n      Mix and match products.\n      Your highest qualifying discount applies automatically at checkout.\n    </p>\n  </div>\n\n  <style>\n    .kahu-blue-friday {\n      /* Change these values to customize the appearance */\n      --offer-highlight: #c7edaa;\n      --offer-highlight-text: #163820;\n      --offer-font-size: 14px;\n      --offer-row-gap: 8px;\n\n      margin: 16px 0;\n      font-size: var(--offer-font-size);\n      line-height: 1.5;\n      text-align: left;\n    }\n\n    .kahu-blue-friday__heading {\n      margin: 0 0 12px;\n      font-size: 1.1em;\n      font-weight: 700;\n    }\n\n    .kahu-blue-friday__tiers {\n      display: grid;\n      gap: var(--offer-row-gap);\n      margin: 0;\n      padding: 0;\n      list-style: none;\n    }\n\n    .kahu-blue-friday__tiers li {\n      display: flex;\n      flex-wrap: wrap;\n      align-items: baseline;\n      gap: 4px 8px;\n      margin: 0;\n    }\n\n    .kahu-blue-friday__tiers strong {\n      padding: 1px 6px;\n      background: var(--offer-highlight);\n      color: var(--offer-highlight-text);\n      font-weight: 700;\n      white-space: nowrap;\n    }\n\n    .kahu-blue-friday__note {\n      margin: 12px 0 0;\n      font-size: 0.875em;\n      padding: 10px 0 0 0;\n    }\n  </style>\n{% endif %}"
+              },
+              "blocks": {}
+            },
             "buy_buttons_eYQEYi": {
               "type": "buy-buttons",
               "settings": {
@@ -597,14 +605,6 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "custom_liquid_HdcnQE": {
-              "type": "custom-liquid",
-              "name": "t:names.custom_liquid",
-              "settings": {
-                "custom_liquid": "{% comment %}\n  Blue Friday offers\n  Edit the text and colors below.\n  Ends: 30 November 2026, 11:59 AM India Standard Time.\n{% endcomment %}\n\n{% assign offer_end = '2026-11-30T11:59:00+05:30' | date: '%s' | plus: 0 %}\n{% assign current_time = 'now' | date: '%s' | plus: 0 %}\n\n{% if current_time < offer_end or request.design_mode %}\n  <div class=\"kahu-blue-friday\">\n    <p class=\"kahu-blue-friday__heading\">\n      Blue Friday: Buy more, save more\n    </p>\n\n    <ul class=\"kahu-blue-friday__tiers\" role=\"list\">\n      <li>\n        <strong>Save 10%</strong>\n        <span>when you buy 1 item</span>\n      </li>\n      <li>\n        <strong>Save 15%</strong>\n        <span>when you buy 2 items</span>\n      </li>\n      <li>\n        <strong>Save 20%</strong>\n        <span>when you buy 3 items</span>\n      </li>\n      <li>\n        <strong>Save 25%</strong>\n        <span>when you buy 4 items</span>\n      </li>\n      <li>\n        <strong>Save 30%</strong>\n        <span>when you buy 5 items</span>\n      </li>\n      <li>\n        <strong>Save 40%</strong>\n        <span>when you buy 10 items</span>\n      </li>\n    </ul>\n\n    <p class=\"kahu-blue-friday__note\">\n      Mix and match products.\n      Your highest qualifying discount applies automatically at checkout.\n    </p>\n  </div>\n\n  <style>\n    .kahu-blue-friday {\n      /* Change these values to customize the appearance */\n      --offer-highlight: #c7edaa;\n      --offer-highlight-text: #163820;\n      --offer-font-size: 14px;\n      --offer-row-gap: 8px;\n\n      margin: 16px 0;\n      font-size: var(--offer-font-size);\n      line-height: 1.5;\n      text-align: left;\n    }\n\n    .kahu-blue-friday__heading {\n      margin: 0 0 12px;\n      font-size: 1.1em;\n      font-weight: 700;\n    }\n\n    .kahu-blue-friday__tiers {\n      display: grid;\n      gap: var(--offer-row-gap);\n      margin: 0;\n      padding: 0;\n      list-style: none;\n    }\n\n    .kahu-blue-friday__tiers li {\n      display: flex;\n      flex-wrap: wrap;\n      align-items: baseline;\n      gap: 4px 8px;\n      margin: 0;\n    }\n\n    .kahu-blue-friday__tiers strong {\n      padding: 1px 6px;\n      background: var(--offer-highlight);\n      color: var(--offer-highlight-text);\n      font-weight: 700;\n      white-space: nowrap;\n    }\n\n    .kahu-blue-friday__note {\n      margin: 12px 0 0;\n      font-size: 0.875em;\n      padding: 10px 0 0 0;\n    }\n  </style>\n{% endif %}"
-              },
-              "blocks": {}
             }
           },
           "block_order": [
@@ -620,11 +620,11 @@
             "kd_size_picker",
             "kd_divider_size",
             "kd_family",
+            "custom_liquid_HdcnQE",
             "buy_buttons_eYQEYi",
             "kd_divider_2",
             "kd_whatsapp",
-            "kd_payment",
-            "custom_liquid_HdcnQE"
+            "kd_payment"
           ]
         }
       },
