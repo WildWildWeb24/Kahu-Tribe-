@@ -39,4 +39,12 @@ function bind(root = document) {
 
 bind();
 // Cards added later (filters, infinite scroll, sorting) get bound too
-new MutationObserver(() => bind()).observe(document.body, { childList: true, subtree: true });
+let queued = false;
+new MutationObserver(() => {
+  if (queued) return;
+  queued = true;
+  requestAnimationFrame(() => {
+    queued = false;
+    bind();
+  });
+}).observe(document.body, { childList: true, subtree: true });
