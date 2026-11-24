@@ -400,7 +400,7 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 }
 
 /* Collection description below the products: full width, centred text, 50px at the sides */
-.shopify-section[id$='__collection_description'] .text-block { max-width: none; width: 100%; padding-inline: 50px; text-align: center; }
+.shopify-section[id$='__collection_description'] .text-block { max-width: none; width: 100%; padding-inline: 100px; text-align: center; }
 .shopify-section[id$='__collection_description'] .text-block :is(p, h2, h3, li) { max-width: none; text-align: center; }
 @media (max-width: 749px) {
   .shopify-section[id$='__collection_description'] .text-block { padding-inline: 20px; }

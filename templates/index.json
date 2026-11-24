@@ -2508,7 +2508,7 @@
         "mobile_card_size": "60cqw",
         "columns_gap": 8,
         "rows_gap": 24,
-        "icons_style": "arrow",
+        "icons_style": "chevron",
         "icons_shape": "none",
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
@@ -2524,6 +2524,7 @@
     "kahu_image_rail",
     "kahu_columns_jxmUGE",
     "marquee_VGLqCT",
+    "product_list_home",
     "section_3MVibR",
     "kahu_separator_yR3zGg",
     "kahu_bottles_header",
@@ -2534,7 +2535,6 @@
     "kahu_columns_xKYD4q",
     "kahu_columns_iPrFJt",
     "kahu_columns_DKh6VL",
-    "product_list_home",
     "kahu_reviews",
     "kahu_columns_wholesale"
   ]

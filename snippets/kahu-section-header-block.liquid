@@ -126,7 +126,7 @@
           {%- endif -%}
           {%- if fs.tag != blank -%}<input type="hidden" name="contact[tags]" value="{{ fs.tag | escape }}">{%- endif -%}
 
-          <div class="kahu-form__field kahu-form__field--half">
+          <div class="kahu-form__field">
             <label for="{{ fid }}-name">{{ fs.name_label | escape }}</label>
             <input id="{{ fid }}-name" type="text" name="contact[name]" autocomplete="name" required value="{{ form.name }}">
           </div>
