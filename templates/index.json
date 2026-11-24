@@ -523,6 +523,272 @@
         "mobile_margin_bottom": 0
       }
     },
+    "kahu_section_header_shop": {
+      "type": "kahu-section-header",
+      "blocks": {
+        "eyebrow_shop": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Shop the collection",
+            "column": "left"
+          }
+        },
+        "title_shop": {
+          "type": "title",
+          "settings": {
+            "text": "Find your Kahu",
+            "size": "md",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "button_shop": {
+          "type": "button",
+          "settings": {
+            "label": "View all ponchos",
+            "link": "shopify://collections/shop-all",
+            "style": "teal",
+            "arrow": true,
+            "full_mobile": false,
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
+            "column": "right"
+          }
+        },
+        "divider_shop": {
+          "type": "divider",
+          "settings": {
+            "color": "current",
+            "color_custom": "#031426",
+            "thickness": 1,
+            "space_desktop": 24,
+            "space_mobile": 20
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_shop",
+        "title_shop",
+        "button_shop",
+        "divider_shop"
+      ],
+      "settings": {
+        "layout": "split",
+        "full_width": false,
+        "right_align": "end",
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 72,
+        "desktop_padding_bottom": 32,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 24,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
+    },
+    "product_list_home": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_fifeh4": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2>Shop towel ponchos</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_eibbma": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_fifeh4",
+            "product_list_button_eibbma"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_PEPpfq": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "portrait",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_WNMpHe": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_yXfkPX": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_PEPpfq",
+            "product_title_WNMpHe",
+            "price_yXfkPX"
+          ]
+        }
+      },
+      "name": "t:names.featured_collection",
+      "settings": {
+        "collection": "shop-all",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 12,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "chevron",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 0,
+        "background_color": "",
+        "padding-block-start": 0,
+        "padding-block-end": 64
+      }
+    },
     "marquee_VGLqCT": {
       "type": "marquee",
       "blocks": {
@@ -1381,6 +1647,7 @@
             "image": "shopify://shop_images/sizes.webp",
             "width_desktop": 140,
             "width_mobile": 90,
+            "fill": false,
             "link": "",
             "alt": "",
             "space_above_desktop": 0,
@@ -2187,6 +2454,7 @@
         "quote_size": 18,
         "quote_size_mobile": 16,
         "bg_image": "shopify://shop_images/reviews.webp",
+        "bg_fit": true,
         "overlay": 40,
         "bg_color": "ink",
         "bg_color_custom": "#10253b",
@@ -2256,6 +2524,7 @@
             "image": "shopify://shop_images/logos.webp",
             "width_desktop": 600,
             "width_mobile": 340,
+            "fill": false,
             "link": "",
             "alt": "Brands we have worked with",
             "space_above_desktop": 48,
@@ -2269,6 +2538,7 @@
             "image": "shopify://shop_images/wholesale.webp",
             "width_desktop": 490,
             "width_mobile": 340,
+            "fill": false,
             "link": "",
             "alt": "",
             "space_above_desktop": 0,
@@ -2330,259 +2600,6 @@
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0
       }
-    },
-    "product_list_home": {
-      "type": "product-list",
-      "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_fifeh4": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h2>Shop towel ponchos</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h2",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_eibbma": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_fifeh4",
-            "product_list_button_eibbma"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 4,
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_PEPpfq": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "portrait",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_WNMpHe": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_yXfkPX": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_PEPpfq",
-            "product_title_WNMpHe",
-            "price_yXfkPX"
-          ]
-        }
-      },
-      "name": "t:names.featured_collection",
-      "settings": {
-        "collection": "shop-all",
-        "layout_type": "carousel",
-        "carousel_on_mobile": true,
-        "max_products": 12,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "chevron",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 64
-      }
-    },
-    "kahu_section_header_shop": {
-      "type": "kahu-section-header",
-      "blocks": {
-        "eyebrow_shop": {
-          "type": "eyebrow",
-          "settings": {
-            "text": "Shop the collection",
-            "column": "left"
-          }
-        },
-        "title_shop": {
-          "type": "title",
-          "settings": {
-            "text": "Find your Kahu",
-            "size": "md",
-            "tag": "h2",
-            "column": "left"
-          }
-        },
-        "button_shop": {
-          "type": "button",
-          "settings": {
-            "label": "View all ponchos",
-            "link": "shopify://collections/shop-all",
-            "style": "teal",
-            "arrow": true,
-            "full_mobile": false,
-            "space_above_desktop": 0,
-            "space_above_mobile": 0,
-            "column": "right"
-          }
-        },
-        "divider_shop": {
-          "type": "divider",
-          "settings": {
-            "color": "current",
-            "color_custom": "#031426",
-            "thickness": 1,
-            "space_desktop": 24,
-            "space_mobile": 20
-          }
-        }
-      },
-      "block_order": [
-        "eyebrow_shop",
-        "title_shop",
-        "button_shop",
-        "divider_shop"
-      ],
-      "settings": {
-        "layout": "split",
-        "full_width": false,
-        "right_align": "end",
-        "bg_color": "cream",
-        "bg_color_custom": "#f3efe5",
-        "text_color": "navy",
-        "text_color_custom": "#031426",
-        "desktop_padding_top": 72,
-        "desktop_padding_bottom": 32,
-        "desktop_margin_top": 0,
-        "desktop_margin_bottom": 0,
-        "mobile_padding_top": 48,
-        "mobile_padding_bottom": 24,
-        "mobile_margin_top": 0,
-        "mobile_margin_bottom": 0
-      }
     }
   },
   "order": [
@@ -2590,9 +2607,9 @@
     "kahu_separator_hero",
     "kahu_image_rail",
     "kahu_columns_jxmUGE",
-    "marquee_VGLqCT",
     "kahu_section_header_shop",
     "product_list_home",
+    "marquee_VGLqCT",
     "section_3MVibR",
     "kahu_separator_yR3zGg",
     "kahu_bottles_header",
