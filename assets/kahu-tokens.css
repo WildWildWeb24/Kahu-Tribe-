@@ -413,3 +413,12 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 /* Contact form button: label centred in the box */
 .kahu-form__actions .kahu-btn { justify-content: center; text-align: center; }
 .kahu-form__actions .kahu-btn__label { flex: 0 0 auto; margin: 0 auto; }
+
+/* Cart: discount code field + Apply always visible, square corners */
+.kahu-discount-open > summary { display: none !important; }
+.kahu-discount-open > .details-content { display: block !important; height: auto !important; overflow: visible !important; opacity: 1 !important; padding-top: 4px; }
+.cart-discount__form { display: flex; gap: 0 !important; }
+.cart-discount__input { flex: 1 1 auto; min-width: 0; height: 48px; border-radius: 0 !important; border: 1px solid rgb(3 20 38 / 0.25) !important; border-right: 0 !important; background: #fff; padding-inline: 14px; }
+.cart-discount__input:focus { outline: none; border-color: var(--kahu-teal, #2fa4a9) !important; }
+.cart-discount__button { height: 48px; border-radius: 0 !important; padding-inline: 22px; background: var(--kahu-navy, #031426) !important; color: var(--kahu-cream, #f3efe5) !important; flex-shrink: 0; }
+.cart-discount__pill, .cart-discount__codes > * { border-radius: 0 !important; }

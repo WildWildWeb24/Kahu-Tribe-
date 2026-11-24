@@ -140,11 +140,8 @@
         %}
 
         {% capture cart_discount_accordion_children %}
-          <details
-            {% if disclosure_expanded %}
-              open
-            {% endif %}
-          >
+          {%- comment -%} Kahu: discount field always visible (no accordion) {%- endcomment -%}
+          <details open class="kahu-discount-open">
             <summary class="cart-discount__summary">
               <span class="cart-discount__label cart-primary-typography">{{ 'content.discount' | t }}</span>
 
