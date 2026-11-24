@@ -431,11 +431,19 @@
                 "label": "Choose your size",
                 "pool": "shop-all",
                 "guide_label": "Size guide",
+                "guide_mode": "popup",
                 "guide_link": "/blogs/news/poncho-size-guide",
                 "hide_missing": false,
-                "guide_mode": "popup",
+                "sg_title": "Size guide",
+                "sg_text": "<p>Every Kahu is cut from the same quick-dry suede microfiber, just sized for different bodies. Pick by height: if you're between sizes or want room to change underneath, go one up.</p>",
                 "sg_logo": "shopify://shop_images/logo-unit.svg",
-                "sg_photo": "shopify://shop_images/Regular.webp"
+                "sg_max_best": "Best for|6ft & above",
+                "sg_max_dim": "H = 120cm|W = 90cm",
+                "sg_regular_best": "Best for|4.5ft till 6ft",
+                "sg_regular_dim": "H = 110cm|W = 80cm",
+                "sg_mini_best": "Best for|3ft till 4.5ft",
+                "sg_mini_dim": "H = 75cm|W = 75cm",
+                "sg_photo": "shopify://shop_images/73EC96DF-1946-4133-80D8-6BFB582A0AC5.jpg"
               },
               "blocks": {}
             },
