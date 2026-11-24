@@ -609,3 +609,41 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 .kahu-mm__product-title { white-space: normal; font-size: 13px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .kahu-mm__product-price { font-size: 13px; font-weight: 700; }
 .kahu-mm__more { display: block; margin-top: 16px; text-align: center; font-size: 13px; color: var(--kahu-navy, #031426); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ------------------------------------------------------------------
+   Blog articles: full width with 50px sides (20px on phones), nothing clipped,
+   and the boxes/tables written into older articles restyled to the Kahu palette
+   ------------------------------------------------------------------ */
+.section:has(> .section-content-wrapper .blog-post-content) > .section-content-wrapper {
+  grid-column: 1 / -1; width: 100%; max-width: none; padding-inline: 50px; box-sizing: border-box;
+}
+.blog-post-content, .blog-post-comments-container { max-width: none !important; width: 100%; }
+.blog-post-content :is(img, video, iframe) { max-width: 100%; height: auto; }
+.blog-post-content table { width: 100% !important; max-width: 100%; }
+.blog-post-content .overflow-x-auto, .blog-post-content :has(> table) { max-width: 100%; overflow-x: auto; }
+.section-content-wrapper:has(.blog-post-content) .blog-post-featured-image img,
+.section-content-wrapper:has(.blog-post-content) [class*='featured-image'] img { width: 100%; height: auto; object-fit: contain; }
+@media (max-width: 749px) {
+  .section:has(> .section-content-wrapper .blog-post-content) > .section-content-wrapper { padding-inline: 20px; }
+}
+/* an older article sets body{} fonts/colours; keep the theme's on article pages */
+html body:has(.blog-post-content) { font-family: var(--font-body--family); color: var(--color-foreground); background: var(--color-background); }
+/* article boxes in Kahu colours (cream, navy, teal, yellow); square corners */
+.blog-post-content :is(.takeaways, .meta, .alt, .email) {
+  background: rgb(3 20 38 / 0.05) !important; border-radius: 0 !important; color: inherit !important;
+}
+.blog-post-content .takeaways { border-left: 4px solid var(--kahu-yellow, #f4c84a) !important; }
+.blog-post-content .email { border: 2px dashed var(--kahu-teal, #2fa4a9) !important; }
+.blog-post-content :is(.takeaways, .meta, .alt, .email) :is(strong, b) { color: var(--kahu-navy, #031426) !important; }
+.blog-post-content :is(.specbox, pre) { background: var(--kahu-navy, #031426) !important; color: var(--kahu-cream, #f3efe5) !important; border-radius: 0 !important; }
+.blog-post-content .specbox :is(b, strong) { color: var(--kahu-yellow, #f4c84a) !important; }
+.blog-post-content .blog { background: transparent !important; border-color: rgb(3 20 38 / 0.15) !important; border-radius: 0 !important; box-shadow: none !important; }
+.blog-post-content .tag { background: var(--kahu-navy, #031426) !important; color: var(--kahu-cream, #f3efe5) !important; border-radius: 0 !important; }
+.blog-post-content .alt code { background: rgb(3 20 38 / 0.08) !important; }
+.blog-post-content table :is(th, td) { border-color: rgb(3 20 38 / 0.15) !important; }
+.blog-post-content table th { background: var(--kahu-navy, #031426) !important; color: var(--kahu-cream, #f3efe5) !important; }
+.blog-post-content table tr:nth-child(even) td { background: rgb(3 20 38 / 0.04) !important; }
+.blog-post-content :is(.cta, a[style*='background']) {
+  background: var(--kahu-teal, #2fa4a9) !important; color: var(--kahu-navy, #031426) !important; border-radius: 0 !important;
+}
+.blog-post-content :is(.cta, a[style*='background']):hover { background: var(--kahu-navy, #031426) !important; color: var(--kahu-cream, #f3efe5) !important; }

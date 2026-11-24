@@ -18,7 +18,7 @@
           "settings": {
             "text": "<h1>{{ article.title }}</h1>",
             "width": "100%",
-            "max_width": "normal",
+            "max_width": "none",
             "alignment": "center",
             "type_preset": "h2",
             "font": "var(--font-body--family)",
@@ -59,8 +59,8 @@
           "type": "_blog-post-featured-image",
           "name": "t:names.featured_image",
           "settings": {
-            "image_ratio": "landscape",
-            "width": "custom",
+            "image_ratio": "adapt",
+            "width": "fill",
             "custom_width": 75,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
