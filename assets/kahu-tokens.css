@@ -422,3 +422,51 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 .cart-discount__input:focus { outline: none; border-color: var(--kahu-teal, #2fa4a9) !important; }
 .cart-discount__button { height: 48px; border-radius: 0 !important; padding-inline: 22px; background: var(--kahu-navy, #031426) !important; color: var(--kahu-cream, #f3efe5) !important; flex-shrink: 0; }
 .cart-discount__pill, .cart-discount__codes > * { border-radius: 0 !important; }
+
+/* ------------------------------------------------------------------
+   Product image pop-up: one image per screen, fitted (never stretched),
+   arrows at the sides, dots at the bottom (assets/kahu-zoom-nav.js)
+   ------------------------------------------------------------------ */
+.dialog-zoomed-gallery__dialog .dialog-thumbnails-list-container { display: none !important; }
+@media screen and (min-width: 750px) {
+  .dialog-zoomed-gallery {
+    display: flex !important; flex-direction: row !important;
+    width: 100vw; height: 100vh; margin: 0 !important; padding: 0 !important;
+    overflow-x: hidden; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    overscroll-behavior: contain; scrollbar-width: none;
+  }
+  .dialog-zoomed-gallery::-webkit-scrollbar { display: none; }
+  .dialog-zoomed-gallery > .product-media-container {
+    flex: 0 0 100vw !important; width: 100vw !important; height: 100vh !important; max-height: none;
+    scroll-snap-align: start; display: flex; align-items: center; justify-content: center;
+    padding: 56px 96px 72px; box-sizing: border-box; margin: 0 !important;
+  }
+  .dialog-zoomed-gallery .product-media-container--image .product-media,
+  .dialog-zoomed-gallery .product-media__drag-zoom-wrapper {
+    width: 100% !important; height: 100% !important; aspect-ratio: auto !important; display: flex; align-items: center; justify-content: center;
+  }
+  .dialog-zoomed-gallery .product-media-container--image img {
+    width: 100% !important; height: 100% !important; max-width: 100%; max-height: 100%; object-fit: contain !important;
+  }
+}
+.kahu-zoom-nav__arrow {
+  position: fixed; top: 50%; z-index: 5; transform: translateY(-50%);
+  display: grid; place-items: center; width: 48px; height: 48px; padding: 0; cursor: pointer;
+  background: rgb(243 239 229 / 0.92); color: var(--kahu-navy, #031426); border: 0; border-radius: 0;
+  transition: background-color 0.2s;
+}
+.kahu-zoom-nav__arrow:hover { background: var(--kahu-yellow, #f4c84a); }
+.kahu-zoom-nav__arrow--prev { left: 24px; }
+.kahu-zoom-nav__arrow--next { right: 24px; }
+.kahu-zoom-nav__dots {
+  position: fixed; left: 50%; bottom: 24px; z-index: 5; transform: translateX(-50%);
+  display: flex; gap: 8px; padding: 8px 12px; background: rgb(243 239 229 / 0.85);
+}
+.kahu-zoom-nav__dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: rgb(3 20 38 / 0.25); cursor: pointer; transition: background-color 0.2s, transform 0.2s; }
+.kahu-zoom-nav__dot[aria-selected='true'] { background: var(--kahu-navy, #031426); transform: scale(1.25); }
+@media screen and (max-width: 749px) {
+  .kahu-zoom-nav__arrow { width: 40px; height: 40px; }
+  .kahu-zoom-nav__arrow--prev { left: 8px; }
+  .kahu-zoom-nav__arrow--next { right: 8px; }
+  .kahu-zoom-nav__dots { bottom: 16px; }
+}
