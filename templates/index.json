@@ -2221,7 +2221,7 @@
         "h_title_ws": {
           "type": "h_title",
           "settings": {
-            "text": "Brands we have worked with",
+            "text": "Brands we have|worked with",
             "size": "xl",
             "tag": "h2",
             "column": "left"

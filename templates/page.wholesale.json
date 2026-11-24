@@ -12,17 +12,10 @@
     "kahu_wholesale": {
       "type": "kahu-columns",
       "blocks": {
-        "h_eyebrow_ws": {
-          "type": "h_eyebrow",
-          "settings": {
-            "text": "Wholesale Inquiries",
-            "column": "left"
-          }
-        },
         "h_title_ws": {
           "type": "h_title",
           "settings": {
-            "text": "Stock KAHU in your store",
+            "text": "Stock Kahu in|your store",
             "size": "xl",
             "tag": "h2",
             "column": "left"
@@ -89,7 +82,6 @@
         }
       },
       "block_order": [
-        "h_eyebrow_ws",
         "h_title_ws",
         "h_text_ws",
         "h_form_ws",

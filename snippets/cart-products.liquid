@@ -294,7 +294,6 @@
                             <li class="kahu-line-discount">
                               {{- 'icon-discount.svg' | inline_asset_content -}}
                               <bdi>{{ discount.discount_application.title | escape }}</bdi>
-                              <span class="kahu-line-discount__amt">-{{ discount.amount | money }}</span>
                             </li>
                           {%- endfor -%}
                         </ul>
