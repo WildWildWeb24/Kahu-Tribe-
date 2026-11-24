@@ -15,8 +15,12 @@
 <div class="kahu-picker kahu-picker--sizes" {{ block.shopify_attributes }}>
   <div class="kahu-picker__head">
     {%- if s.label != blank -%}<span class="kahu-picker__label">{{ s.label | escape }}</span>{%- endif -%}
-    {%- if s.guide_link != blank and s.guide_label != blank -%}
-      <a class="kahu-picker__guide" href="{{ s.guide_link }}">{{ s.guide_label | escape }}</a>
+    {%- if s.guide_label != blank -%}
+      {%- if s.guide_mode == 'popup' -%}
+        <button type="button" class="kahu-picker__guide kahu-sg-open" aria-haspopup="dialog" aria-controls="KahuSizeGuide-{{ block.id }}">{{ s.guide_label | escape }}</button>
+      {%- elsif s.guide_link != blank -%}
+        <a class="kahu-picker__guide" href="{{ s.guide_link }}">{{ s.guide_label | escape }}</a>
+      {%- endif -%}
     {%- endif -%}
   </div>
 
@@ -53,6 +57,73 @@
       {%- endfor -%}
     {%- endpaginate -%}
   </div>
+
+  {%- if s.guide_mode == 'popup' -%}
+    {%- liquid
+      assign sg = 'Max|Regular|Mini' | split: '|'
+      assign sg_best = s.sg_max_best | append: '||' | append: s.sg_regular_best | append: '||' | append: s.sg_mini_best | split: '||'
+      assign sg_dim = s.sg_max_dim | append: '||' | append: s.sg_regular_dim | append: '||' | append: s.sg_mini_dim | split: '||'
+      assign sg_h = '120|110|75' | split: '|'
+      assign sg_w = '90|80|75' | split: '|'
+    -%}
+    <dialog class="kahu-sg" id="KahuSizeGuide-{{ block.id }}" aria-label="{{ s.sg_title | escape }}">
+      <div class="kahu-sg__sheet">
+        <button type="button" class="kahu-sg__close" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="kahu-sg__grid">
+          <div class="kahu-sg__info">
+            <h2 class="kahu-sg__title">{{ s.sg_title | escape }}</h2>
+            {%- if s.sg_text != blank -%}<div class="kahu-sg__text">{{ s.sg_text }}</div>{%- endif -%}
+            <div class="kahu-sg__sizes">
+              {%- for name in sg -%}
+                {%- assign i = forloop.index0 -%}
+                <div class="kahu-sg__size" style="--sg-h: {{ sg_h[i] }}; --sg-w: {{ sg_w[i] }};">
+                  <div class="kahu-sg__name">
+                    {%- if s.sg_logo -%}{{ s.sg_logo | image_url: width: 120 | image_tag: class: 'kahu-sg__logo', alt: 'Kahu' }}<span class="kahu-sg__bar" aria-hidden="true"></span>{%- endif -%}
+                    <span>{{ name }}</span>
+                  </div>
+                  <p class="kahu-sg__best">{{ sg_best[i] | escape | replace: '|', '<br>' }}</p>
+                  <p class="kahu-sg__dim">{{ sg_dim[i] | escape | replace: '|', '<br>' }}</p>
+                  <svg class="kahu-sg__poncho" viewBox="0 0 100 130" preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M30 18 Q50 -2 70 18 L72 24 Q50 30 28 24 Z" fill="#5f8d89" stroke="#031426" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
+                    <path d="M26 22 Q50 30 74 22 L76 27 Q50 35 24 27 Z" fill="#3b3b3b"/>
+                    <rect x="2" y="28" width="96" height="100" rx="9" fill="#5f8d89" stroke="#031426" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
+                    <rect x="34" y="28" width="32" height="3" fill="#3b3b3b"/>
+                    <rect x="74" y="104" width="24" height="5" fill="#3b3b3b"/>
+                  </svg>
+                </div>
+              {%- endfor -%}
+            </div>
+            {%- if s.sg_logo -%}{{ s.sg_logo | image_url: width: 160 | image_tag: class: 'kahu-sg__brand', alt: 'Kahu' }}{%- endif -%}
+          </div>
+          {%- if s.sg_photo -%}
+            <div class="kahu-sg__photo">{{ s.sg_photo | image_url: width: 1200 | image_tag: widths: '600, 900, 1200', sizes: '(min-width: 750px) 40vw, 100vw', loading: 'lazy', alt: s.sg_title }}</div>
+          {%- endif -%}
+        </div>
+      </div>
+    </dialog>
+    {%- unless kahu_sg_js -%}
+      <script>
+        (() => {
+          if (window.__kahuSG) return; window.__kahuSG = true;
+          const close = (d) => { d.classList.remove('is-open'); setTimeout(() => d.open && d.close(), 320); document.documentElement.style.overflow = ''; };
+          document.addEventListener('click', (e) => {
+            const open = e.target.closest('.kahu-sg-open');
+            if (open) {
+              const d = document.getElementById(open.getAttribute('aria-controls'));
+              if (d) { document.body.appendChild(d); d.showModal(); requestAnimationFrame(() => d.classList.add('is-open')); document.documentElement.style.overflow = 'hidden'; }
+              return;
+            }
+            const d = e.target.closest('dialog.kahu-sg');
+            if (d && (e.target === d || e.target.closest('.kahu-sg__close'))) close(d);
+          });
+          document.addEventListener('cancel', (e) => { if (e.target.matches('dialog.kahu-sg')) { e.preventDefault(); close(e.target); } }, true);
+        })();
+      </script>
+      {%- assign kahu_sg_js = true -%}
+    {%- endunless -%}
+  {%- endif -%}
 </div>
 
 {% schema %}
@@ -83,15 +154,106 @@
       "default": "Size guide"
     },
     {
+      "type": "select",
+      "id": "guide_mode",
+      "label": "Size guide opens",
+      "options": [
+        {
+          "value": "popup",
+          "label": "Pop-up from the bottom"
+        },
+        {
+          "value": "link",
+          "label": "A page (link below)"
+        }
+      ],
+      "default": "popup"
+    },
+    {
       "type": "url",
       "id": "guide_link",
-      "label": "Size guide link"
+      "label": "Size guide link",
+      "visible_if": "{{ block.settings.guide_mode == 'link' }}"
     },
     {
       "type": "checkbox",
       "id": "hide_missing",
       "label": "Hide sizes that don't exist for this print",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Size guide pop-up",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "text",
+      "id": "sg_title",
+      "label": "Title",
+      "default": "Size guide",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "richtext",
+      "id": "sg_text",
+      "label": "Text",
+      "default": "<p>Every Kahu is cut from the same quick-dry suede microfiber, just sized for different bodies. Pick by height: if you're between sizes or want room to change underneath, go one up.</p>",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "sg_logo",
+      "label": "Kahu logo",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "text",
+      "id": "sg_max_best",
+      "label": "Max: best for",
+      "default": "Best for|6ft & above",
+      "info": "Use | for a line break",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "text",
+      "id": "sg_max_dim",
+      "label": "Max: size",
+      "default": "H = 120cm|W = 90cm",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "text",
+      "id": "sg_regular_best",
+      "label": "Regular: best for",
+      "default": "Best for|4.5ft till 6ft",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "text",
+      "id": "sg_regular_dim",
+      "label": "Regular: size",
+      "default": "H = 110cm|W = 80cm",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "text",
+      "id": "sg_mini_best",
+      "label": "Mini: best for",
+      "default": "Best for|3ft till 4.5ft",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "text",
+      "id": "sg_mini_dim",
+      "label": "Mini: size",
+      "default": "H = 75cm|W = 75cm",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
+    },
+    {
+      "type": "image_picker",
+      "id": "sg_photo",
+      "label": "Photo (right side)",
+      "visible_if": "{{ block.settings.guide_mode == 'popup' }}"
     }
   ],
   "presets": [

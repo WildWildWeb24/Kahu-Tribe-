@@ -432,7 +432,10 @@
                 "pool": "shop-all",
                 "guide_label": "Size guide",
                 "guide_link": "/blogs/news/poncho-size-guide",
-                "hide_missing": false
+                "hide_missing": false,
+                "guide_mode": "popup",
+                "sg_logo": "shopify://shop_images/logo-unit.svg",
+                "sg_photo": "shopify://shop_images/Regular.webp"
               },
               "blocks": {}
             },
