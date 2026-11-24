@@ -470,3 +470,4 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
   .kahu-zoom-nav__arrow--next { right: 8px; }
   .kahu-zoom-nav__dots { bottom: 16px; }
 }
+.kahu-zoom-nav__arrow { box-shadow: 0 0 0 1px rgb(3 20 38 / 0.12); }
