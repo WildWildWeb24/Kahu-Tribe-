@@ -759,3 +759,25 @@ dialog.kahu-sg.is-open .kahu-sg__sheet { transform: none; }
 /* close button always above the photo; ponchos keep their shape (no stretching) */
 .kahu-sg__close { z-index: 5; background: rgb(243 239 229 / 0.9); }
 .kahu-sg__poncho { overflow: visible; }
+
+/* stop the page sliding sideways on phones (sliders and wide graphics stay inside the screen) */
+html, body { overflow-x: clip; }
+
+/* side cart on phones: name, discount tag, price, then quantity + remove, all in one column */
+@media screen and (max-width: 749px) {
+  .cart-drawer__items .cart-items__table-row--full-width-variants {
+    grid-template-columns: 76px minmax(0, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      'media details'
+      'media variants'
+      'media price'
+      'media quantity'
+      'media error';
+    row-gap: 6px;
+  }
+  .cart-drawer__items .cart-items__price { justify-self: start; text-align: start; }
+  .cart-drawer__items .cart-items__price > * { justify-content: flex-start; text-align: start; }
+  .cart-drawer__items .cart-items__quantity { justify-self: start; }
+  .cart-drawer__items .cart-items__quantity-controls { justify-content: flex-start; }
+}
