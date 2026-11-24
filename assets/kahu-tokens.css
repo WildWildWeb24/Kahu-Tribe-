@@ -475,18 +475,17 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 /* Home product slider: contained like Kahu columns (no cards peeking at the sides),
    arrows styled like the Kahu video stories arrows (round, frosted), photos pinned to the top */
 .shopify-section[id$='__product_list_home'] .card-gallery :is(img, video) { object-position: 50% 0 !important; }
-.shopify-section[id$='__product_list_home'] .section-resource-list,
-.shopify-section[id$='__product_list_home'] slideshow-component {
+.shopify-section[id$='__product_list_home'] .resource-list__carousel {
   max-width: calc(var(--kahu-content, 1280px) + var(--kahu-gutter, 20px) * 2);
   margin-inline: auto; padding-inline: var(--kahu-gutter, 20px); box-sizing: border-box;
 }
-.shopify-section[id$='__product_list_home'] slideshow-slides { padding-inline: 0 !important; scroll-padding-inline: 0 !important; }
-.shopify-section[id$='__product_list_home'] slideshow-slide { --peek-next-slide-size: 0px !important; --gutter-slide-width: 0px !important; }
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-slides { padding-inline: 0 !important; scroll-padding-inline: 0 !important; }
+.shopify-section[id$='__product_list_home'] .resource-list__slide { --peek-next-slide-size: 0px !important; }
 @media (max-width: 749px) {
-  .shopify-section[id$='__product_list_home'] slideshow-slide { width: calc((100% - 8px) / 2) !important; min-width: 0; }
+  .shopify-section[id$='__product_list_home'] .resource-list__slide { width: calc((100% - 8px) / 2) !important; min-width: 0; }
 }
-.shopify-section[id$='__product_list_home'] slideshow-arrows { padding-inline: 8px !important; pointer-events: none; }
-.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control {
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows { padding-inline: 8px !important; pointer-events: none; }
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control {
   pointer-events: auto; opacity: 1 !important; visibility: visible !important;
   display: grid; place-items: center; width: 44px; height: 44px; padding: 0;
   border: 1px solid rgb(3 20 38 / 0.18); border-radius: 50%;
@@ -494,11 +493,11 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
   color: var(--kahu-navy, #031426); box-shadow: none;
   transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
 }
-.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control:hover { background: rgb(243 239 229 / 0.85); border-color: rgb(3 20 38 / 0.35); }
-.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control:active { transform: scale(0.94); }
-.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control svg { width: 20px; height: 20px; }
-.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control[disabled] { opacity: 0 !important; pointer-events: none; }
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control:hover { background: rgb(243 239 229 / 0.85); border-color: rgb(3 20 38 / 0.35); }
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control:active { transform: scale(0.94); }
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control svg { width: 20px; height: 20px; }
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control[disabled] { opacity: 0 !important; pointer-events: none; }
 @media (max-width: 749px) {
-  .shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control { width: 36px; height: 36px; }
-  .shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control svg { width: 16px; height: 16px; }
+  .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control { width: 36px; height: 36px; }
+  .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control svg { width: 16px; height: 16px; }
 }
