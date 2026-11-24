@@ -476,18 +476,24 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
    arrows styled like the Kahu video stories arrows (round, frosted), photos pinned to the top */
 .shopify-section[id$='__product_list_home'] .card-gallery :is(img, video) { object-position: 50% 0 !important; }
 .shopify-section[id$='__product_list_home'] .resource-list__carousel {
-  /* line the cards up with the title; nothing bleeds past the edges */
-  padding-inline: 0; overflow: hidden;
+  /* nothing bleeds past the edges (slides clip); arrows may sit outside */
+  padding-inline: 0; overflow: visible;
 }
 .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-slides { padding-inline: 0 !important; scroll-padding-inline: 0 !important; }
 @media (min-width: 750px) {
-  .shopify-section[id$='__product_list_home'] .resource-list { padding-inline: max(40px, calc((100% - 1440px) / 2)) !important; }
+  .shopify-section[id$='__product_list_home'] .resource-list { padding-inline: max(var(--kahu-gutter, 80px), calc((100% - var(--kahu-content, 1280px)) / 2)) !important; }
 }
 .shopify-section[id$='__product_list_home'] .resource-list__slide { --peek-next-slide-size: 0px !important; }
 @media (max-width: 749px) {
   .shopify-section[id$='__product_list_home'] .resource-list__slide { width: calc((100% - 8px) / 2) !important; min-width: 0; }
 }
 .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows { padding-inline: 8px !important; pointer-events: none; }
+/* the heading comes from the Kahu section header above (kahu_section_header_shop) */
+.shopify-section[id$='__product_list_home'] .section-resource-list__header, .shopify-section[id$='__product_list_home'] .section-resource-list__content { display: none !important; }
+@media (min-width: 750px) {
+  /* arrows in the empty side margins, outside the cards */
+  .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows { left: -64px !important; right: -64px !important; width: auto !important; padding-inline: 0 !important; }
+}
 .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-arrows .slideshow-control {
   pointer-events: auto; opacity: 1 !important; visibility: visible !important;
   display: grid; place-items: center; width: 44px; height: 44px; padding: 0;

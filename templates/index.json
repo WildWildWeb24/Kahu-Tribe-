@@ -2512,9 +2512,76 @@
         "icons_shape": "none",
         "section_width": "page-width",
         "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "padding-block-start": 64,
+        "gap": 0,
+        "padding-block-start": 0,
         "padding-block-end": 64
+      }
+    },
+    "kahu_section_header_shop": {
+      "type": "kahu-section-header",
+      "blocks": {
+        "eyebrow_shop": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Shop the collection",
+            "column": "left"
+          }
+        },
+        "title_shop": {
+          "type": "title",
+          "settings": {
+            "text": "Find your Kahu",
+            "size": "md",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "button_shop": {
+          "type": "button",
+          "settings": {
+            "label": "View all ponchos",
+            "link": "shopify://collections/shop-all",
+            "style": "teal",
+            "arrow": true,
+            "full_mobile": false,
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
+            "column": "right"
+          }
+        },
+        "divider_shop": {
+          "type": "divider",
+          "settings": {
+            "color": "current",
+            "color_custom": "#031426",
+            "thickness": 1,
+            "space_desktop": 24,
+            "space_mobile": 20
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_shop",
+        "title_shop",
+        "button_shop",
+        "divider_shop"
+      ],
+      "settings": {
+        "layout": "split",
+        "full_width": false,
+        "right_align": "end",
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 72,
+        "desktop_padding_bottom": 32,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 48,
+        "mobile_padding_bottom": 24,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
       }
     }
   },
@@ -2524,6 +2591,7 @@
     "kahu_image_rail",
     "kahu_columns_jxmUGE",
     "marquee_VGLqCT",
+    "kahu_section_header_shop",
     "product_list_home",
     "section_3MVibR",
     "kahu_separator_yR3zGg",
