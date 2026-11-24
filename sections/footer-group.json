@@ -138,6 +138,7 @@
         "background_color": "#031426",
         "video_position": "cover",
         "background_image": "shopify://shop_images/newsletter.webp",
+        "background_image_mobile": "shopify://shop_images/newsletter_mob.webp",
         "background_image_position": "cover",
         "toggle_overlay": false,
         "overlay_color": "#00000059",
@@ -159,7 +160,7 @@
         "direction": "up",
         "mode": "overlap",
         "wave_color": "custom",
-        "wave_color_custom": "#061A2E",
+        "wave_color_custom": "#061a2e",
         "bg_color": "transparent",
         "bg_color_custom": "#2fa4a9",
         "height_desktop": 90,
@@ -763,7 +764,7 @@
       "settings": {
         "section_width": "page-width",
         "gap": 70,
-        "background_color": "#061A2E",
+        "background_color": "#061a2e",
         "padding-block-start": 70,
         "padding-block-end": 30
       }
