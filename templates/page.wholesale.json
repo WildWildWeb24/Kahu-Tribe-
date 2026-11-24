@@ -24,7 +24,7 @@
         "h_text_ws": {
           "type": "h_text",
           "settings": {
-            "text": "<p>Interested in stocking KAHU ponchos in your store? Share a few details and our team will get back to you with wholesale pricing and next steps.</p>",
+            "text": "<p>Interested in stocking Kahu ponchos in your store? Share a few details and our team will get back to you with wholesale pricing and next steps.</p>",
             "max_width": 620,
             "space_above_desktop": 16,
             "space_above_mobile": 12,
@@ -51,7 +51,7 @@
             "width_desktop": 600,
             "width_mobile": 400,
             "link": "",
-            "alt": "KAHU wholesale",
+            "alt": "Kahu wholesale",
             "space_above_desktop": 0,
             "space_above_mobile": 8,
             "column": "right",
