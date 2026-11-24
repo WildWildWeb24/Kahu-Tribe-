@@ -141,15 +141,7 @@
 
         {% capture cart_discount_accordion_children %}
           {%- comment -%} Kahu: discount code field always visible (no accordion) {%- endcomment -%}
-          <details open class="kahu-discount-open">
-            <summary class="cart-discount__summary">
-              <span class="cart-discount__label cart-primary-typography">{{ 'content.discount' | t }}</span>
-
-              <span class="cart-totals__icon">
-                {{- 'icon-plus.svg' | inline_asset_content -}}
-              </span>
-            </summary>
-
+          <div class="kahu-discount-open">
             <div class="details-content">
               <div id="cart-discount-disclosure">
                 <cart-discount-component
@@ -232,9 +224,9 @@
                 </cart-discount-component>
               </div>
             </div>
-          </details>
+          </div>
         {% endcapture %}
-        {% render 'accordion-custom-component', children: cart_discount_accordion_children, class: 'cart-discount' %}
+        <div class="cart-discount">{{ cart_discount_accordion_children }}</div>
       {% endif %}
     </div>
   {% endif %}
