@@ -398,3 +398,6 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 @media (prefers-reduced-motion: reduce) {
   .kahu-savings, .kahu-savings__burst, .kahu-savings__shine { animation: none; }
 }
+
+/* Collection description below the products: centred column */
+.shopify-section[id$='__collection_description'] .text-block { max-width: 760px; margin-inline: auto; text-align: center; }
