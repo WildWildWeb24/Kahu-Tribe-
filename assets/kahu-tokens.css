@@ -734,3 +734,7 @@ dialog.kahu-sg.is-open .kahu-sg__sheet { transform: none; }
   .kahu-sg__photo img { max-height: 60vh; }
 }
 @media (prefers-reduced-motion: reduce) { .kahu-sg__sheet { transition: none; } }
+/* names line up at the top, ponchos sit on a shared baseline; logo shown dark on cream */
+.kahu-sg__sizes { align-items: stretch; }
+.kahu-sg__poncho { margin-top: auto; }
+.kahu-sg__logo, .kahu-sg__brand { filter: brightness(0) saturate(100%) invert(6%) sepia(40%) saturate(2500%) hue-rotate(195deg); }
