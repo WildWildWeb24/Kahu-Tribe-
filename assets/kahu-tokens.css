@@ -756,3 +756,6 @@ dialog.kahu-sg.is-open .kahu-sg__sheet { transform: none; }
   .kahu-sg__sizes { margin-top: auto; padding-top: 24px; }
   .kahu-sg__poncho { height: calc(var(--sg-h) * 2.6px); }
 }
+/* close button always above the photo; ponchos keep their shape (no stretching) */
+.kahu-sg__close { z-index: 5; background: rgb(243 239 229 / 0.9); }
+.kahu-sg__poncho { overflow: visible; }
