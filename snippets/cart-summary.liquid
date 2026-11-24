@@ -344,7 +344,7 @@
   <div class="cart-totals__tax-note kahu-cart-footer__tax cart-primary-typography">
     {% render 'tax-info', has_discounts_enabled: settings.show_add_discount_code %}
   </div>
-{%- else -%}
+{%- elsif part != 'top' -%}
 <div class="cart__ctas">
   <button
     type="submit"
