@@ -541,13 +541,19 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 .cart-drawer__items .cart-items__media-image { aspect-ratio: auto !important; height: auto; object-fit: contain; }
 .cart-drawer__items .cart-items__table-row--full-width-variants {
   grid-template-columns: 76px minmax(0, 1fr) auto;
+  /* right column: price, then quantity + remove straight below it.
+     middle column: title, then the discount tag (one line) */
+  grid-template-rows: min-content min-content 1fr min-content;
   grid-template-areas:
     'media details price'
-    'media variants quantity'
-    'media unit_price quantity'
+    'media details quantity'
+    'media variants variants'
     'media error error';
   row-gap: 6px;
 }
+.cart-drawer__items .cart-items__table-row--full-width-variants .cart-items__variants-wrapper { padding-top: 2px; }
+.cart-drawer__items .kahu-line-discount { white-space: nowrap; font-size: 12px; }
+.cart-drawer__items .cart-items__quantity .quantity-selector { height: 36px; }
 .cart-drawer__items .cart-items__unit-price-wrapper { display: none; }
 .cart-drawer__items .cart-items__price { white-space: nowrap; font-size: 15px; }
 .cart-drawer__items .cart-items__price .kahu-was-price { margin-inline-start: 6px; opacity: 0.55; font-size: 14px; }
