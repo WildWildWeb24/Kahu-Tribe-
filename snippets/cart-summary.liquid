@@ -9,6 +9,30 @@
 {% render 'cart-typography-styles' %}
 
 <div class="cart-totals">
+  {%- comment -%} Kahu: celebrate any saving (automatic tiers like Blue Friday, codes, line discounts) {%- endcomment -%}
+  {%- liquid
+    assign kahu_titles = cart.cart_level_discount_applications | map: 'title'
+    for item in cart.items
+      for allocation in item.line_level_discount_allocations
+        assign kahu_titles = kahu_titles | concat: allocation.discount_application.title
+      endfor
+    endfor
+  -%}
+  <div class="kahu-savings-slot">
+    {%- if cart.total_discount > 0 -%}
+      {%- assign kahu_titles = kahu_titles | uniq -%}
+      <div class="kahu-savings" role="status">
+        <span class="kahu-savings__burst" aria-hidden="true">🎉</span>
+        <span class="kahu-savings__text">
+          <span class="kahu-savings__amount">You're saving <bdi>{{ cart.total_discount | money }}</bdi></span>
+          {%- if kahu_titles.size > 0 -%}
+            <span class="kahu-savings__titles">{{ kahu_titles | join: ' + ' | escape }} applied</span>
+          {%- endif -%}
+        </span>
+        <span class="kahu-savings__shine" aria-hidden="true"></span>
+      </div>
+    {%- endif -%}
+  </div>
   {% # We need to keep this node in place to allow morphing to work properly # %}
   <div class="cart-totals__original-container cart-primary-typography">
     {%- if cart.cart_level_discount_applications.size > 0 -%}

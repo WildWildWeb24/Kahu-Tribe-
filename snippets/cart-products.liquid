@@ -287,12 +287,14 @@
 
                       {%- if item.line_level_discount_allocations.size > 0 -%}
                         <ul
-                          class="list-unstyled"
+                          class="list-unstyled kahu-line-discounts"
                           role="list"
                         >
                           {%- for discount in item.line_level_discount_allocations -%}
-                            <li>
+                            <li class="kahu-line-discount">
+                              {{- 'icon-discount.svg' | inline_asset_content -}}
                               <bdi>{{ discount.discount_application.title | escape }}</bdi>
+                              <span class="kahu-line-discount__amt">-{{ discount.amount | money }}</span>
                             </li>
                           {%- endfor -%}
                         </ul>

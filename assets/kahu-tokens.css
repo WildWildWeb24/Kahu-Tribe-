@@ -354,3 +354,47 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
    ------------------------------------------------------------------ */
 .product-grid-container .card-gallery { --gallery-aspect-ratio: 2 / 3 !important; }
 .product-grid-container .card-gallery :is(img, video) { object-position: 50% 0 !important; }
+
+/* ------------------------------------------------------------------
+   Cart: make savings feel like a win (snippets/cart-summary.liquid, cart-products.liquid)
+   ------------------------------------------------------------------ */
+.kahu-savings {
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 0 14px; padding: 12px 16px;
+  background: linear-gradient(110deg, var(--kahu-yellow, #f4c84a) 0%, #ffdf7e 55%, var(--kahu-yellow, #f4c84a) 100%);
+  color: var(--kahu-navy, #031426);
+  border-radius: 0;
+  animation: kahu-savings-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.kahu-savings__burst { font-size: 26px; line-height: 1; animation: kahu-savings-wiggle 1.6s ease-in-out 0.4s 2; }
+.kahu-savings__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.kahu-savings__amount { font-weight: 800; font-size: 16px; letter-spacing: -0.2px; }
+.kahu-savings__titles { font-size: 12px; font-weight: 500; opacity: 0.8; }
+.kahu-savings__shine {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.65) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: kahu-savings-shine 3.2s ease-in-out 0.6s infinite;
+}
+@keyframes kahu-savings-pop { from { opacity: 0; transform: scale(0.9) translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes kahu-savings-wiggle { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-14deg) scale(1.15); } 40% { transform: rotate(10deg); } 60% { transform: rotate(-6deg); } }
+@keyframes kahu-savings-shine { 0% { transform: translateX(-100%); } 45%, 100% { transform: translateX(100%); } }
+
+/* discount rows under the subtotal + on each line */
+.cart-discounts__item { color: var(--kahu-teal-dark, #1d7f83); font-weight: 600; }
+.cart-discounts__value { color: var(--kahu-teal-dark, #1d7f83); font-weight: 700; }
+.kahu-line-discounts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px !important; }
+.kahu-line-discount {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 9px; font-size: 12px; font-weight: 700; line-height: 1.4;
+  background: rgb(244 200 74 / 0.35); color: var(--kahu-navy, #031426);
+}
+.kahu-line-discount svg { width: 12px; height: 12px; flex-shrink: 0; }
+.kahu-line-discount__amt { font-weight: 800; }
+/* the struck-through original price reads as a deal */
+.cart-items__price s, .cart-items s { opacity: 0.55; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kahu-savings, .kahu-savings__burst, .kahu-savings__shine { animation: none; }
+}
