@@ -606,6 +606,6 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 .kahu-mm__product-media { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: rgb(3 20 38 / 0.04); }
 .kahu-mm__product-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transition: transform 0.4s ease; }
 .kahu-mm__product:hover .kahu-mm__product-media img { transform: scale(1.04); }
-.kahu-mm__product-title { font-size: 13px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.kahu-mm__product-title { white-space: normal; font-size: 13px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .kahu-mm__product-price { font-size: 13px; font-weight: 700; }
 .kahu-mm__more { display: block; margin-top: 16px; text-align: center; font-size: 13px; color: var(--kahu-navy, #031426); text-decoration: underline; text-underline-offset: 3px; }
