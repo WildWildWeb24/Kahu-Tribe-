@@ -149,9 +149,8 @@
                   # Kahu: "Shop by size" / "Shop by design" get the Kahu mega menu (list left, visuals centre)
                   assign kahu_title = link.title | downcase
                   assign kahu_mode = ''
-                  if kahu_title contains 'size'
-                    assign kahu_mode = 'size'
-                  elsif kahu_title contains 'design'
+                  # both work like "Shop by design": hover an item on the left, see its products in the centre
+                  if kahu_title contains 'size' or kahu_title contains 'design'
                     assign kahu_mode = 'design'
                   endif
                 -%}
