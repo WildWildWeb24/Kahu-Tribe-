@@ -553,3 +553,6 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 .cart-drawer__items .cart-items__price .kahu-was-price { margin-inline-start: 6px; opacity: 0.55; font-size: 14px; }
 .cart-drawer__items .cart-items__quantity { justify-self: end; align-self: start; }
 .cart-drawer__items .cart-items__quantity-controls { justify-content: flex-end; }
+/* one scroll for items + savings + discount; only the footer stays put */
+.cart-drawer__content:has(.kahu-cart-footer) { overflow-y: auto; }
+.cart-drawer__content:has(.kahu-cart-footer) > .cart-drawer__items { overflow: visible !important; flex: 0 0 auto; max-height: none; }
