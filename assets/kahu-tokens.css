@@ -285,18 +285,17 @@
 .kahu-size.is-missing { opacity: 0.35; cursor: not-allowed; }
 
 @media (max-width: 749px) {
+  /* all prints shown at once, wrapping onto new rows (no sideways swipe) */
   .kahu-swatches {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    padding: 4px 4px 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--kp-sw-m, 60px), 1fr));
+    justify-items: center;
+    gap: 14px 10px;
+    padding: 4px;
     margin: -4px -4px 0;
-    scrollbar-width: none;
   }
-  .kahu-swatches::-webkit-scrollbar { display: none; }
-  .kahu-swatches li { flex: 0 0 auto; scroll-snap-align: start; }
   .kahu-swatch { width: var(--kp-sw-m, 60px); height: var(--kp-sw-m, 60px); }
-  .kahu-picker__hint { display: block; }
+  .kahu-picker__hint { display: none; }
 }
 
 /* ------------------------------------------------------------------
