@@ -668,8 +668,11 @@ html body:has(.blog-post-content) { font-family: var(--font-body--family); color
 .blog-post-content svg [stroke='#fbf4f1' i] { stroke: #e9e4d8; }
 .blog-post-content svg [stroke='#ecd9d5' i] { stroke: #d6d0c3; }
 .blog-post-content svg text[fill='#a85248' i] { fill: #031426; }
-/* small featured images are not blown up past their real size */
-.section-content-wrapper:has(.blog-post-content) .blog-post-featured-image img { max-width: min(100%, 1100px); margin-inline: auto; display: block; }
+/* featured image: full content width (50px sides), whole image shown */
+.section-content-wrapper:has(.blog-post-content) .blog-post-featured-image { width: 100% !important; max-width: none !important; }
+.section-content-wrapper:has(.blog-post-content) .blog-post-featured-image img { width: 100% !important; max-width: none !important; height: auto !important; display: block; }
+/* title and date use the full width too */
+.section-content-wrapper:has(.blog-post-content) > :is(.text-block, rte-formatter, [class*='blog-post-info']) { max-width: none !important; width: 100%; }
 
 /* articles wrapped in .kahu-article (own white background, brown text, system font): use the theme's */
 .blog-post-content .kahu-article {
