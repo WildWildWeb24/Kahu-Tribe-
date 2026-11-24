@@ -556,3 +556,5 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 /* one scroll for items + savings + discount; only the footer stays put */
 .cart-drawer__content:has(.kahu-cart-footer) { overflow-y: auto; }
 .cart-drawer__content:has(.kahu-cart-footer) > .cart-drawer__items { overflow: visible !important; flex: 0 0 auto; max-height: none; }
+/* let the slider arrows sit outside the cards (slides still clip on their own) */
+.shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container { overflow: visible !important; }
