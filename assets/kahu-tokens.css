@@ -515,9 +515,14 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
    Side cart (snippets/cart-drawer.liquid + cart-summary part top/bottom)
    ------------------------------------------------------------------ */
 /* only the footer is pinned: summary top scrolls with the items */
-.cart-drawer__summary.kahu-cart-summary-top { position: static; box-shadow: none; padding-bottom: 8px; }
+.cart-drawer__summary.kahu-cart-summary-top { position: static; box-shadow: none; padding-bottom: 12px; margin-top: auto; }
+/* savings banner + discount field sit right above the footer; any free space goes between the items and them */
+.cart-drawer__content:has(.kahu-cart-footer) { display: flex; flex-direction: column; }
+.kahu-cart-summary-top .cart-totals { padding-block-start: 0 !important; margin-block-start: 0 !important; border-block-start: 0 !important; }
+.kahu-cart-summary-top .kahu-savings { margin-top: 12px; }
+.kahu-cart-summary-top .cart-actions { margin-block-start: 0 !important; border-block-end: 0 !important; }
 .kahu-cart-footer {
-  position: sticky; bottom: 0; z-index: 2; margin-top: auto;
+  position: sticky; bottom: 0; z-index: 2; margin-top: 0;
   padding: 14px var(--cart-drawer-padding, 20px) 12px;
   background: var(--color-background);
   border-top: 1px solid rgb(3 20 38 / 0.12);
