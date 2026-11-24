@@ -11,12 +11,16 @@
 <div class="cart-totals">
   {%- comment -%} Kahu: celebrate any saving (automatic tiers like Blue Friday, codes, line discounts) {%- endcomment -%}
   {%- liquid
-    assign kahu_titles = cart.cart_level_discount_applications | map: 'title'
+    assign kahu_title_str = cart.cart_level_discount_applications | map: 'title' | join: '|'
     for item in cart.items
       for allocation in item.line_level_discount_allocations
-        assign kahu_titles = kahu_titles | concat: allocation.discount_application.title
+        if kahu_title_str != blank
+          assign kahu_title_str = kahu_title_str | append: '|'
+        endif
+        assign kahu_title_str = kahu_title_str | append: allocation.discount_application.title
       endfor
     endfor
+    assign kahu_titles = kahu_title_str | split: '|'
   -%}
   <div class="kahu-savings-slot">
     {%- if cart.total_discount > 0 -%}
