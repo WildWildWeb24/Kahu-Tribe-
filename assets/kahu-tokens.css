@@ -481,7 +481,7 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
 }
 .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-slides { padding-inline: 0 !important; scroll-padding-inline: 0 !important; }
 @media (min-width: 750px) {
-  .shopify-section[id$='__product_list_home'] .resource-list__carousel { padding-inline: max(40px, calc((100% - 1440px) / 2 + 40px)); }
+  .shopify-section[id$='__product_list_home'] .resource-list__carousel { padding-inline: max(40px, calc((100vw - 1440px) / 2)); }
 }
 .shopify-section[id$='__product_list_home'] .resource-list__slide { --peek-next-slide-size: 0px !important; }
 @media (max-width: 749px) {
