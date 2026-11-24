@@ -31,33 +31,6 @@
             "column": "left"
           }
         },
-        "h_logos_ws": {
-          "type": "h_image",
-          "settings": {
-            "image": "shopify://shop_images/logos.webp",
-            "width_desktop": 600,
-            "width_mobile": 340,
-            "link": "",
-            "alt": "Brands we have worked with",
-            "space_above_desktop": 48,
-            "space_above_mobile": 32,
-            "column": "left"
-          }
-        },
-        "h_photo_ws": {
-          "type": "h_image",
-          "settings": {
-            "image": "shopify://shop_images/wholesale.webp",
-            "width_desktop": 600,
-            "width_mobile": 400,
-            "link": "",
-            "alt": "Kahu wholesale",
-            "space_above_desktop": 0,
-            "space_above_mobile": 8,
-            "column": "right",
-            "fill": true
-          }
-        },
         "h_form_ws": {
           "type": "h_form",
           "settings": {
@@ -78,6 +51,34 @@
             "space_above_desktop": 32,
             "space_above_mobile": 24,
             "column": "left"
+          }
+        },
+        "h_logos_ws": {
+          "type": "h_image",
+          "settings": {
+            "image": "shopify://shop_images/logos.webp",
+            "width_desktop": 600,
+            "width_mobile": 340,
+            "fill": false,
+            "link": "",
+            "alt": "Brands we have worked with",
+            "space_above_desktop": 48,
+            "space_above_mobile": 32,
+            "column": "left"
+          }
+        },
+        "h_photo_ws": {
+          "type": "h_image",
+          "settings": {
+            "image": "shopify://shop_images/whole_sale_enquiries.webp",
+            "width_desktop": 520,
+            "width_mobile": 400,
+            "fill": false,
+            "link": "",
+            "alt": "Kahu wholesale",
+            "space_above_desktop": 0,
+            "space_above_mobile": 8,
+            "column": "right"
           }
         }
       },
