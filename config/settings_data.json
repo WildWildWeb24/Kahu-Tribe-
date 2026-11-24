@@ -86,6 +86,16 @@
         "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
+      },
+      "10508887350528622030": {
+        "type": "shopify://apps/appstle-bundles/blocks/appstle-bundle/8909921b-2d24-4d68-9b12-9d045d3dcb0a",
+        "disabled": false,
+        "settings": {}
+      },
+      "13768625480086291342": {
+        "type": "shopify://apps/forms/blocks/forms/8744a304-fcb1-4347-b211-bb6b4759a76a",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_palette": {
