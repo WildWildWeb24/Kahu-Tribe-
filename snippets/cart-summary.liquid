@@ -1,6 +1,8 @@
 {%- doc -%}
   Renders the cart summary totals.
 
+  @param {string} [part] - Kahu: 'top' (savings, discounts, code field) or 'bottom' (total, checkout, wallets, tax note) for the side cart's sticky footer. Empty = everything (cart page).
+
   @param {string} [accelerated_checkout_buttons_layout] - { 'vertical' } Forced layout of the additional checkout buttons, instead of relying on platform's layout.
   @param {string} [section_id] - The section ID for cart discount component.
 {%- enddoc -%}
@@ -8,6 +10,7 @@
 {% render 'text-component-shimmer-styles' %}
 {% render 'cart-typography-styles' %}
 
+{%- unless part == 'bottom' -%}
 <div class="cart-totals">
   {%- comment -%} Kahu: celebrate any saving (automatic tiers like Blue Friday, codes, line discounts) {%- endcomment -%}
   {%- liquid
@@ -239,6 +242,7 @@
     endif
   -%}
 
+  {%- unless part == 'top' -%}
   <div class="cart-totals__container{% if settings.show_installments %} cart-totals__container--has-installments{% endif %}">
     <span
       class="cart-totals__item cart-totals__total"
@@ -267,8 +271,49 @@
       {% render 'tax-info', has_discounts_enabled: settings.show_add_discount_code %}
     </div>
   </div>
+  {%- endunless -%}
 </div>
+{%- endunless -%}
 
+{%- if part == 'bottom' -%}
+  {%- comment -%} Kahu side-cart footer: total, checkout, wallets, then the tax note last {%- endcomment -%}
+  {%- liquid
+    if settings.currency_code_enabled_cart_total
+      assign total_price = cart.total_price | money_with_currency
+    else
+      assign total_price = cart.total_price | money
+    endif
+  -%}
+  <div class="cart-totals kahu-cart-footer__totals">
+  <div class="cart-totals__container{% if settings.show_installments %} cart-totals__container--has-installments{% endif %}">
+    <span
+      class="cart-totals__item cart-totals__total"
+      role="status"
+    >
+      <span class="cart-totals__total-label cart-primary-typography">{{ 'content.cart_estimated_total' | t }}</span>
+      <text-component
+        ref="cartTotal"
+        value="{{ total_price | strip_html }}"
+        class="cart-totals__total-value cart-secondary-typography"
+        {% comment %} Used by payment_terms web component {% endcomment %}
+        data-testid="cart-total-value"
+        data-cart-subtotal
+      >
+        <bdi>{{ total_price }}</bdi>
+      </text-component>
+    </span>
+    {% if settings.show_installments %}
+      <span class="cart-totals__item cart-totals__installments">
+        {% form 'cart', cart %}
+          {{ form | payment_terms }}
+        {% endform %}
+      </span>
+    {% endif %}
+    <div class="cart-totals__item cart-totals__tax-note cart-primary-typography">
+      {% render 'tax-info', has_discounts_enabled: settings.show_add_discount_code %}
+    </div>
+  </div>
+  </div>
 <div class="cart__ctas">
   <button
     type="submit"
@@ -296,6 +341,38 @@
     </div>
   {% endif %}
 </div>
+  <div class="cart-totals__tax-note kahu-cart-footer__tax cart-primary-typography">
+    {% render 'tax-info', has_discounts_enabled: settings.show_add_discount_code %}
+  </div>
+{%- else -%}
+<div class="cart__ctas">
+  <button
+    type="submit"
+    id="checkout"
+    class="cart__checkout-button button"
+    name="checkout"
+    {% if cart == empty %}
+      disabled
+    {% endif %}
+    form="cart-form"
+  >
+    <span class="button-text">
+      {{ 'content.checkout' | t }}
+    </span>
+  </button>
+
+  {% if additional_checkout_buttons and settings.show_accelerated_checkout_buttons %}
+    <div
+      class="
+        additional-checkout-buttons
+        {% if accelerated_checkout_buttons_layout == 'vertical' %}additional-checkout-buttons--vertical{% endif %}
+      "
+    >
+      {{ content_for_additional_checkout_buttons }}
+    </div>
+  {% endif %}
+</div>
+{%- endif -%}
 
 {% stylesheet %}
   .cart-actions {

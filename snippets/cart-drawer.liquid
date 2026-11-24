@@ -114,8 +114,12 @@
                   {% render 'cart-products', context: 'drawer' %}
                 </scroll-hint>
 
-                <div class="cart-drawer__summary">
-                  {% render 'cart-summary', section_id: 'cart-drawer-section' %}
+                <div class="cart-drawer__summary kahu-cart-summary-top">
+                  {% render 'cart-summary', section_id: 'cart-drawer-section', part: 'top' %}
+                </div>
+                {%- comment -%} Kahu: only the total, checkout, wallet buttons and tax note stay pinned {%- endcomment -%}
+                <div class="kahu-cart-footer">
+                  {% render 'cart-summary', section_id: 'cart-drawer-section', part: 'bottom' %}
                 </div>
               </scroll-hint>
             {%- endif -%}

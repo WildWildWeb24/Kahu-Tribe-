@@ -413,6 +413,18 @@
                   <text-component value="{{ price | strip_html }}"
                     ><bdi>{{ price }}</bdi></text-component
                   >
+                  {%- if context == 'drawer' -%}
+                    {%- liquid
+                      assign kahu_was = item.original_line_price
+                      if item.variant.compare_at_price > item.original_price
+                        assign kahu_was = item.variant.compare_at_price | times: item.quantity
+                      endif
+                    -%}
+                    {%- if kahu_was > item.final_line_price -%}
+                      <span class="visually-hidden">{{ 'content.price_regular' | t }}</span>
+                      <s class="kahu-was-price"><bdi>{{ kahu_was | money }}</bdi></s>
+                    {%- endif -%}
+                  {%- endif -%}
                   {%- if item.unit_price_measurement -%}
                     <div class="cart-items__price-unit cart-secondary-typography">
                       {% render 'unit-price', price: unit_price, measurement: item.unit_price_measurement %}
