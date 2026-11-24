@@ -1,0 +1,13 @@
+{%- doc -%}
+  One product tile in the Kahu mega menu.
+  @param {object} p - Product
+{%- enddoc -%}
+<a href="{{ p.url }}" class="kahu-mm__product">
+  <span class="kahu-mm__product-media">
+    {%- if p.featured_image -%}
+      {{ p.featured_image | image_url: width: 500 | image_tag: widths: '250, 375, 500', sizes: '200px', loading: 'lazy', alt: p.featured_image.alt | default: p.title }}
+    {%- endif -%}
+  </span>
+  <span class="kahu-mm__product-title">{{ p.title }}</span>
+  <span class="kahu-mm__product-price">{{ p.price | money }}</span>
+</a>

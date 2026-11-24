@@ -1,0 +1,105 @@
+{%- doc -%}
+  Kahu mega menu (desktop): link list on the left, visual panel in the centre.
+  - mode 'size': one tile per link (Regular / Mini / Max size images from the header menu block settings,
+    else the collection image), each going to its collection.
+  - mode 'design': hovering a link in the list swaps the centre to that design's products
+    (collection link: its first products; product link: that product).
+  Styles: assets/kahu-tokens.css ("Kahu mega menu"). Script: inline, once per page.
+
+  @param {object} parent_link - The top-level menu link
+  @param {string} mode - 'size' or 'design'
+  @param {object} s - The header menu block settings
+{%- enddoc -%}
+
+<div class="kahu-mm kahu-mm--{{ mode }}" data-kahu-mm>
+  <ul class="kahu-mm__list list-unstyled" role="list">
+    {%- for link in parent_link.links -%}
+      <li>
+        <a
+          href="{{ link.url }}"
+          class="kahu-mm__link{% if forloop.first and mode == 'design' %} is-active{% endif %}"
+          data-kahu-mm-index="{{ forloop.index0 }}"
+        >
+          {{- link.title -}}
+          <span class="kahu-mm__arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    {%- endfor -%}
+    {%- if parent_link.url != '#' and parent_link.url != blank -%}
+      <li><a href="{{ parent_link.url }}" class="kahu-mm__link kahu-mm__link--all">View all</a></li>
+    {%- endif -%}
+  </ul>
+
+  <div class="kahu-mm__stage">
+    {%- if mode == 'size' -%}
+      <div class="kahu-mm__panel is-active kahu-mm__sizes">
+        {%- for link in parent_link.links -%}
+          {%- liquid
+            assign t = link.title | downcase
+            assign h = link.object.handle | default: '' | downcase
+            assign img = link.object.featured_image | default: link.object.image
+            if t contains 'regular' or h contains 'regular'
+              assign img = s.kahu_size_regular | default: img
+            elsif t contains 'mini' or h contains 'mini'
+              assign img = s.kahu_size_mini | default: img
+            elsif t contains 'max' or h contains 'max'
+              assign img = s.kahu_size_max | default: img
+            endif
+          -%}
+          <a href="{{ link.url }}" class="kahu-mm__size" data-kahu-mm-index="{{ forloop.index0 }}">
+            <span class="kahu-mm__size-media">
+              {%- if img -%}
+                {{ img | image_url: width: 500 | image_tag: widths: '250, 375, 500', sizes: '220px', loading: 'lazy', alt: link.title }}
+              {%- endif -%}
+            </span>
+            <span class="kahu-mm__size-label">{{ link.title }}</span>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      {%- for link in parent_link.links -%}
+        <div class="kahu-mm__panel{% if forloop.first %} is-active{% endif %}" data-kahu-mm-panel="{{ forloop.index0 }}">
+          <div class="kahu-mm__products">
+            {%- liquid
+              assign shown = 0
+            -%}
+            {%- if link.type == 'product_link' and link.object -%}
+              {%- render 'kahu-mega-menu-product', p: link.object -%}
+              {%- assign shown = 1 -%}
+            {%- elsif link.object.products -%}
+              {%- for p in link.object.products limit: 4 -%}
+                {%- render 'kahu-mega-menu-product', p: p -%}
+                {%- assign shown = shown | plus: 1 -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+          {%- if link.type == 'collection_link' and link.object.products_count > shown -%}
+            <a href="{{ link.url }}" class="kahu-mm__more">See all {{ link.object.products_count }} {{ link.title }} ponchos →</a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{%- unless kahu_mm_script_done -%}
+  <script>
+    (() => {
+      if (window.__kahuMM) return;
+      window.__kahuMM = true;
+      const activate = (link) => {
+        const root = link.closest('[data-kahu-mm]');
+        if (!root || !root.classList.contains('kahu-mm--design')) return;
+        const i = link.dataset.kahuMmIndex;
+        root.querySelectorAll('.kahu-mm__link').forEach((a) => a.classList.toggle('is-active', a === link));
+        root.querySelectorAll('[data-kahu-mm-panel]').forEach((p) => p.classList.toggle('is-active', p.dataset.kahuMmPanel === i));
+      };
+      ['pointerover', 'focusin'].forEach((type) =>
+        document.addEventListener(type, (e) => {
+          const link = e.target.closest && e.target.closest('.kahu-mm__link[data-kahu-mm-index]');
+          if (link) activate(link);
+        })
+      );
+    })();
+  </script>
+{%- endunless -%}

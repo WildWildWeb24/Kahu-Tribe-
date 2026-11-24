@@ -92,7 +92,10 @@
             "text_color_navigation_bar": "",
             "drawer_accordion": false,
             "drawer_accordion_expand_first": false,
-            "drawer_dividers": false
+            "drawer_dividers": false,
+            "kahu_size_regular": "shopify://shop_images/Regular.webp",
+            "kahu_size_mini": "shopify://shop_images/Mini.webp",
+            "kahu_size_max": "shopify://shop_images/Max.webp"
           },
           "blocks": {}
         }

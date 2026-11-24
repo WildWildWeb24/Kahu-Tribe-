@@ -145,7 +145,20 @@
                 style="{% render 'submenu-font-styles', settings: block_settings %}"
               >
                 {% assign list_id = 'MegaMenuList-' | append: forloop.index %}
+                {%- liquid
+                  # Kahu: "Shop by size" / "Shop by design" get the Kahu mega menu (list left, visuals centre)
+                  assign kahu_title = link.title | downcase
+                  assign kahu_mode = ''
+                  if kahu_title contains 'size'
+                    assign kahu_mode = 'size'
+                  elsif kahu_title contains 'design'
+                    assign kahu_mode = 'design'
+                  endif
+                -%}
                 <div class="mega-menu section section--full-width-margin section--{{ section.settings.section_width }}">
+                  {%- if kahu_mode != '' -%}
+                    {% render 'kahu-mega-menu', parent_link: link, mode: kahu_mode, s: block_settings %}
+                  {%- else -%}
                   <div
                     class="mega-menu__grid"
                     data-menu-grid-id="{{ list_id }}"
@@ -162,6 +175,7 @@
                       image_border_radius: image_border_radius
                     %}
                   </div>
+                  {%- endif -%}
                 </div>
               </div>
             </div>
@@ -1060,6 +1074,29 @@
       "id": "drawer_dividers",
       "label": "t:settings.dividers",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Kahu: Shop by size images"
+    },
+    {
+      "type": "paragraph",
+      "content": "Shown in the \"Shop by size\" menu, matched by the link name (Regular / Mini / Max)."
+    },
+    {
+      "type": "image_picker",
+      "id": "kahu_size_regular",
+      "label": "Regular image"
+    },
+    {
+      "type": "image_picker",
+      "id": "kahu_size_mini",
+      "label": "Mini image"
+    },
+    {
+      "type": "image_picker",
+      "id": "kahu_size_max",
+      "label": "Max image"
     }
   ]
 }
