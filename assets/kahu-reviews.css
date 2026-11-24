@@ -30,3 +30,8 @@
   .kahu-rv__card { flex-basis: var(--kr-card-w, 330px); }
   .kahu-rv__quote { font-size: var(--kr-quote-d, 18px); line-height: 1.55; }
 }
+
+/* "Show the whole background image": section is at least as tall as the photo at full width; content stays centred */
+@media (min-width: 750px) {
+  .kahu-rv--fit { min-height: var(--kr-fit-h, auto); display: flex; flex-direction: column; justify-content: center; }
+}
