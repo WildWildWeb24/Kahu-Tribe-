@@ -1,0 +1,149 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "kahu_wholesale": {
+      "type": "kahu-columns",
+      "blocks": {
+        "h_eyebrow_ws": {
+          "type": "h_eyebrow",
+          "settings": {
+            "text": "Wholesale Inquiries",
+            "column": "left"
+          }
+        },
+        "h_title_ws": {
+          "type": "h_title",
+          "settings": {
+            "text": "Stock KAHU in your store",
+            "size": "xl",
+            "tag": "h2",
+            "column": "left"
+          }
+        },
+        "h_text_ws": {
+          "type": "h_text",
+          "settings": {
+            "text": "<p>Interested in stocking KAHU ponchos in your store? Share a few details and our team will get back to you with wholesale pricing and next steps.</p>",
+            "max_width": 620,
+            "space_above_desktop": 16,
+            "space_above_mobile": 12,
+            "column": "left"
+          }
+        },
+        "h_logos_ws": {
+          "type": "h_image",
+          "settings": {
+            "image": "shopify://shop_images/logos.webp",
+            "width_desktop": 600,
+            "width_mobile": 340,
+            "link": "",
+            "alt": "Brands we have worked with",
+            "space_above_desktop": 48,
+            "space_above_mobile": 32,
+            "column": "left"
+          }
+        },
+        "h_photo_ws": {
+          "type": "h_image",
+          "settings": {
+            "image": "shopify://shop_images/wholesale.webp",
+            "width_desktop": 600,
+            "width_mobile": 400,
+            "link": "",
+            "alt": "KAHU wholesale",
+            "space_above_desktop": 0,
+            "space_above_mobile": 8,
+            "column": "right",
+            "fill": true
+          }
+        },
+        "h_form_ws": {
+          "type": "h_form",
+          "settings": {
+            "tag": "Wholesale enquiry",
+            "name_label": "Full name",
+            "email_label": "Email",
+            "company_label": "Company",
+            "phone_label": "Phone number",
+            "subject_label": "Subject",
+            "subject_placeholder": "Select a subject",
+            "subjects": "New wholesale account\nBulk order enquiry\nCustom branding / collab\nOther",
+            "message_label": "Order details / message",
+            "message_placeholder": "Tell us about your store, order quantities, styles you’re interested in, timelines, etc.",
+            "button_label": "Send message",
+            "button_style": "teal",
+            "success": "Thanks! We’ve got your enquiry and will be in touch with wholesale pricing and next steps.",
+            "max_width": 620,
+            "space_above_desktop": 32,
+            "space_above_mobile": 24,
+            "column": "left"
+          }
+        }
+      },
+      "block_order": [
+        "h_eyebrow_ws",
+        "h_title_ws",
+        "h_text_ws",
+        "h_form_ws",
+        "h_logos_ws",
+        "h_photo_ws"
+      ],
+      "settings": {
+        "columns_desktop": 4,
+        "columns_mobile": "1",
+        "mobile_layout": "slider",
+        "slider_arrows": false,
+        "gap_desktop": 8,
+        "gap_mobile": 8,
+        "full_width": false,
+        "edge_to_edge": false,
+        "ratio": "1 / 1",
+        "radius": 0,
+        "title_size": "sm",
+        "header_position": "above",
+        "header_layout": "split",
+        "header_mobile": "center",
+        "header_right_align": "start",
+        "header_text_color": "navy",
+        "header_text_color_custom": "#031426",
+        "header_gap_desktop": 0,
+        "header_gap_mobile": 0,
+        "btn_width": "fixed",
+        "btn_width_fixed": 172,
+        "btn_height": 40,
+        "btn_height_mobile": 40,
+        "btn_padding": 16,
+        "btn_font": 12,
+        "in_pad_top_desktop": 24,
+        "in_pad_side_desktop": 24,
+        "in_pad_bottom_desktop": 40,
+        "in_pad_top_mobile": 20,
+        "in_pad_side_mobile": 20,
+        "in_pad_bottom_mobile": 20,
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 64,
+        "desktop_padding_bottom": 96,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 32,
+        "mobile_padding_bottom": 56,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "kahu_wholesale"
+  ]
+}

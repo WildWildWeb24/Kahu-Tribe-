@@ -93,7 +93,7 @@
             alt: block.settings.alt | default: block.settings.image.alt }}
       {%- endcapture -%}
       <div
-        class="kahu-sh__media kahu-sh__space"
+        class="kahu-sh__media kahu-sh__space{% if block.settings.fill %} kahu-sh__media--fill{% endif %}"
         style="--ksh-img-w-d: {{ block.settings.width_desktop }}px; --ksh-img-w-m: {{ block.settings.width_mobile }}px; --ksh-sa-d: {{ block.settings.space_above_desktop | default: 0 }}px; --ksh-sa-m: {{ block.settings.space_above_mobile | default: 0 }}px;"
         {{ block.shopify_attributes }}
       >
@@ -104,4 +104,70 @@
         {%- endif -%}
       </div>
     {%- endif -%}
+  {%- when 'form' -%}
+    {%- liquid
+      assign fs = block.settings
+      assign fid = 'KahuForm-' | append: block.id
+      assign subjects = fs.subjects | newline_to_br | split: '<br />'
+    -%}
+    <div
+      class="kahu-form kahu-sh__space"
+      style="--kf-max: {{ fs.max_width }}px; --ksh-sa-d: {{ fs.space_above_desktop }}px; --ksh-sa-m: {{ fs.space_above_mobile }}px;"
+      {{ block.shopify_attributes }}
+    >
+      {%- form 'contact', id: fid, class: 'kahu-form__form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="kahu-form__msg kahu-form__msg--ok" role="status" tabindex="-1" autofocus>{{ fs.success | escape }}</p>
+        {%- else -%}
+          {%- if form.errors -%}
+            <div class="kahu-form__msg kahu-form__msg--error" role="alert" tabindex="-1" autofocus>
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+          {%- if fs.tag != blank -%}<input type="hidden" name="contact[tags]" value="{{ fs.tag | escape }}">{%- endif -%}
+
+          <div class="kahu-form__field kahu-form__field--half">
+            <label for="{{ fid }}-name">{{ fs.name_label | escape }}</label>
+            <input id="{{ fid }}-name" type="text" name="contact[name]" autocomplete="name" required value="{{ form.name }}">
+          </div>
+          <div class="kahu-form__field">
+            <label for="{{ fid }}-email">{{ fs.email_label | escape }}</label>
+            <input id="{{ fid }}-email" type="email" name="contact[email]" autocomplete="email" required spellcheck="false" autocapitalize="off" value="{{ form.email }}">
+          </div>
+          {%- if fs.company_label != blank -%}
+            <div class="kahu-form__field">
+              <label for="{{ fid }}-company">{{ fs.company_label | escape }}</label>
+              <input id="{{ fid }}-company" type="text" name="contact[Company]" autocomplete="organization">
+            </div>
+          {%- endif -%}
+          {%- if fs.phone_label != blank -%}
+            <div class="kahu-form__field">
+              <label for="{{ fid }}-phone">{{ fs.phone_label | escape }} <span class="kahu-form__opt">(Optional)</span></label>
+              <input id="{{ fid }}-phone" type="tel" name="contact[phone]" autocomplete="tel" pattern="[0-9\-\+\s\(\)]*" value="{{ form.phone }}">
+            </div>
+          {%- endif -%}
+          {%- if fs.subject_label != blank -%}
+            <div class="kahu-form__field">
+              <label for="{{ fid }}-subject">{{ fs.subject_label | escape }}</label>
+              <div class="kahu-form__select">
+                <select id="{{ fid }}-subject" name="contact[Subject]">
+                  <option value="">{{ fs.subject_placeholder | escape }}</option>
+                  {%- for opt in subjects -%}
+                    {%- assign o = opt | strip -%}
+                    {%- if o != blank -%}<option value="{{ o | escape }}">{{ o | escape }}</option>{%- endif -%}
+                  {%- endfor -%}
+                </select>
+              </div>
+            </div>
+          {%- endif -%}
+          <div class="kahu-form__field">
+            <label for="{{ fid }}-body">{{ fs.message_label | escape }}</label>
+            <textarea id="{{ fid }}-body" name="contact[body]" rows="6" required placeholder="{{ fs.message_placeholder | escape }}">{{ form.body }}</textarea>
+          </div>
+          <div class="kahu-form__actions">
+            <button type="submit" class="kahu-btn kahu-btn--{{ fs.button_style }}"><span class="kahu-btn__label">{{ fs.button_label | escape }}</span></button>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
 {%- endcase -%}
