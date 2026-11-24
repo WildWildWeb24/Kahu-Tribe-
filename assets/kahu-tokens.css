@@ -476,8 +476,8 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
    arrows styled like the Kahu video stories arrows (round, frosted), photos pinned to the top */
 .shopify-section[id$='__product_list_home'] .card-gallery :is(img, video) { object-position: 50% 0 !important; }
 .shopify-section[id$='__product_list_home'] .resource-list__carousel {
-  max-width: calc(var(--kahu-content, 1280px) + var(--kahu-gutter, 20px) * 2);
-  margin-inline: auto; padding-inline: var(--kahu-gutter, 20px); box-sizing: border-box;
+  /* same side margins as the section title (Horizon page width) */
+  padding-inline: max(var(--page-margin, 40px), calc((100% - min(90rem, 100% - var(--page-margin, 40px) * 2)) / 2)); box-sizing: border-box;
 }
 .shopify-section[id$='__product_list_home'] .resource-list__carousel > slideshow-container > slideshow-slides { padding-inline: 0 !important; scroll-padding-inline: 0 !important; }
 .shopify-section[id$='__product_list_home'] .resource-list__slide { --peek-next-slide-size: 0px !important; }
