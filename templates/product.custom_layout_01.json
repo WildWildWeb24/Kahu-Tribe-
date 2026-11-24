@@ -174,18 +174,6 @@
               "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
               "settings": {}
             },
-            "kd_review": {
-              "type": "review",
-              "settings": {
-                "stars_style": "shaded",
-                "show_number": true,
-                "text_color": "",
-                "type_preset": "paragraph",
-                "width": "100%",
-                "alignment": "left"
-              },
-              "blocks": {}
-            },
             "kd_title_row": {
               "type": "group",
               "name": "Title and price",
@@ -601,7 +589,6 @@
           "block_order": [
             "kd_breadcrumb",
             "judge_me_reviews_preview_badge_pxqFXf",
-            "kd_review",
             "kd_title_row",
             "kd_installments",
             "kd_bullets",
