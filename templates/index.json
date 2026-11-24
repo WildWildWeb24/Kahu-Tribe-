@@ -2600,11 +2600,174 @@
         "mobile_margin_top": 0,
         "mobile_margin_bottom": 0
       }
+    },
+    "kahu_columns_blue_friday": {
+      "type": "kahu-columns",
+      "blocks": {
+        "tile_bf_1": {
+          "type": "tile",
+          "settings": {
+            "top": "Buy 1 item",
+            "value": "10%",
+            "bottom": "off",
+            "link": "shopify://collections/shop-all",
+            "bg_custom": "#e2eaee",
+            "fg_custom": "#0a3a5f",
+            "tag": "",
+            "tag_side": "right",
+            "tag_bg": "#f4c84a",
+            "tag_fg": "#031426"
+          }
+        },
+        "tile_bf_2": {
+          "type": "tile",
+          "settings": {
+            "top": "Buy 2 items",
+            "value": "15%",
+            "bottom": "off",
+            "link": "shopify://collections/shop-all",
+            "bg_custom": "#e2eaee",
+            "fg_custom": "#0a3a5f",
+            "tag": "",
+            "tag_side": "right",
+            "tag_bg": "#f4c84a",
+            "tag_fg": "#031426"
+          }
+        },
+        "tile_bf_3": {
+          "type": "tile",
+          "settings": {
+            "top": "Buy 3 items",
+            "value": "20%",
+            "bottom": "off",
+            "link": "shopify://collections/shop-all",
+            "bg_custom": "#e2eaee",
+            "fg_custom": "#0a3a5f",
+            "tag": "",
+            "tag_side": "right",
+            "tag_bg": "#f4c84a",
+            "tag_fg": "#031426"
+          }
+        },
+        "tile_bf_4": {
+          "type": "tile",
+          "settings": {
+            "top": "Buy 4 items",
+            "value": "25%",
+            "bottom": "off",
+            "link": "shopify://collections/shop-all",
+            "bg_custom": "#e2eaee",
+            "fg_custom": "#0a3a5f",
+            "tag": "",
+            "tag_side": "right",
+            "tag_bg": "#f4c84a",
+            "tag_fg": "#031426"
+          }
+        },
+        "tile_bf_5": {
+          "type": "tile",
+          "settings": {
+            "top": "Buy 5 items",
+            "value": "30%",
+            "bottom": "off",
+            "link": "shopify://collections/shop-all",
+            "bg_custom": "#b9dcec",
+            "fg_custom": "#0a3a5f",
+            "tag": "",
+            "tag_side": "right",
+            "tag_bg": "#f4c84a",
+            "tag_fg": "#031426"
+          }
+        },
+        "tile_bf_6": {
+          "type": "tile",
+          "settings": {
+            "top": "Buy 10 items",
+            "value": "40%",
+            "bottom": "off",
+            "link": "shopify://collections/shop-all",
+            "bg_custom": "#0a3a5f",
+            "fg_custom": "#ffffff",
+            "tag": "Biggest saving",
+            "tag_side": "right",
+            "tag_bg": "#f4c84a",
+            "tag_fg": "#031426"
+          }
+        },
+        "button_bf": {
+          "type": "h_button",
+          "settings": {
+            "label": "Shop Blue Friday",
+            "link": "shopify://collections/shop-all",
+            "style": "navy",
+            "arrow": true,
+            "full_mobile": false,
+            "space_above_desktop": 0,
+            "space_above_mobile": 0,
+            "column": "left"
+          }
+        }
+      },
+      "block_order": [
+        "tile_bf_1",
+        "tile_bf_2",
+        "tile_bf_3",
+        "tile_bf_4",
+        "tile_bf_5",
+        "tile_bf_6",
+        "button_bf"
+      ],
+      "settings": {
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "mobile_layout": "grid",
+        "slider_arrows": false,
+        "gap_desktop": 8,
+        "gap_mobile": 8,
+        "full_width": false,
+        "edge_to_edge": false,
+        "ratio": "314 / 492",
+        "radius": 0,
+        "title_size": "sm",
+        "header_position": "below",
+        "header_layout": "center",
+        "header_mobile": "center",
+        "header_right_align": "end",
+        "header_text_color": "navy",
+        "header_text_color_custom": "#031426",
+        "header_gap_desktop": 36,
+        "header_gap_mobile": 24,
+        "btn_width": "fixed",
+        "btn_width_fixed": 176,
+        "btn_height": 44,
+        "btn_height_mobile": 40,
+        "btn_padding": 16,
+        "btn_font": 12,
+        "in_pad_top_desktop": 24,
+        "in_pad_side_desktop": 24,
+        "in_pad_bottom_desktop": 24,
+        "in_pad_top_mobile": 20,
+        "in_pad_side_mobile": 20,
+        "in_pad_bottom_mobile": 20,
+        "bg_color": "cream",
+        "bg_color_custom": "#f3efe5",
+        "text_color": "navy",
+        "text_color_custom": "#031426",
+        "desktop_padding_top": 56,
+        "desktop_padding_bottom": 56,
+        "desktop_margin_top": 0,
+        "desktop_margin_bottom": 0,
+        "mobile_padding_top": 40,
+        "mobile_padding_bottom": 40,
+        "mobile_margin_top": 0,
+        "mobile_margin_bottom": 0
+      }
     }
   },
   "order": [
     "kahu_hero",
     "kahu_separator_hero",
+    "kahu_columns_blue_friday",
     "kahu_image_rail",
     "kahu_columns_jxmUGE",
     "kahu_section_header_shop",
