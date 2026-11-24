@@ -295,6 +295,7 @@
         },
         "button_abDp4b": {
           "type": "h_button",
+          "disabled": true,
           "settings": {
             "label": "Shop towel ponchos",
             "link": "",
@@ -792,6 +793,7 @@
             "button_MJgY37": {
               "type": "button",
               "name": "t:names.button",
+              "disabled": true,
               "settings": {
                 "label": "Shop Kahu Poncho →",
                 "link": "shopify://collections/shop-all",
@@ -2239,7 +2241,7 @@
           "type": "h_button",
           "settings": {
             "label": "Wholesale Enquiry",
-            "link": "",
+            "link": "shopify://pages/wholesale-enquires",
             "style": "teal",
             "arrow": true,
             "full_mobile": false,
