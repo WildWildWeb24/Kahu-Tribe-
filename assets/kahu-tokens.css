@@ -471,3 +471,14 @@ dialog[open] .quick-add-modal__content .product-details:has(.kahu-pd-crumb) { ma
   .kahu-zoom-nav__dots { bottom: 16px; }
 }
 .kahu-zoom-nav__arrow { box-shadow: 0 0 0 1px rgb(3 20 38 / 0.12); }
+
+/* Home product carousel: arrows always visible (Kahu square buttons), photos pinned to the top */
+.shopify-section[id$='__product_list_home'] .card-gallery :is(img, video) { object-position: 50% 0 !important; }
+.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control {
+  opacity: 1 !important; visibility: visible !important;
+  width: 48px; height: 48px; display: grid; place-items: center;
+  background: rgb(243 239 229 / 0.95); color: var(--kahu-navy, #031426);
+  box-shadow: 0 0 0 1px rgb(3 20 38 / 0.12); border-radius: 0;
+}
+.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control:hover { background: var(--kahu-yellow, #f4c84a); }
+.shopify-section[id$='__product_list_home'] slideshow-arrows .slideshow-control[disabled] { opacity: 0.35 !important; }
